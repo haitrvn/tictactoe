@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
     androidLibrary {
-        namespace = "com.haitrvn.features.login"
+        namespace = "com.haitrvn.features.template"
         compileSdk = 35
         minSdk = 24
         withHostTestBuilder {
@@ -18,8 +18,8 @@ kotlin {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
     }
-    val xcfName = "login"
-
+    val xcfName = "template"
+    
     listOf(
         iosX64(),
         iosArm64(),
