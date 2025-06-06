@@ -1,11 +1,11 @@
-package org.haitrvn.plugin.convention.plugins
+package org.haitrvn.plugin
 
 import com.android.build.gradle.TestExtension
-import org.haitrvn.plugin.convention.AndroidBuildConfig
-import org.haitrvn.plugin.convention.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.haitrvn.plugin.convention.AndroidBuildConfig
+import org.haitrvn.plugin.convention.configureKotlinAndroid
 
 class AndroidTestConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {

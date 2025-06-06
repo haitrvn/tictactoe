@@ -12,13 +12,4 @@ compose-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle
 
 
 [plugins]
-android-application = { id = "haitrvn.android.application" }
-android-application-compose = { id = "haitrvn.android.application.compose" }
-android-library = { id = "haitrvn.android.library" }
-android-library-compose = { id = "haitrvn.android.library.compose" }
-android-test = { id = "haitrvn.android.test" }
-android-jacoco = { id = "haitrvn.android.jacoco" }
-android-koin = { id = "haitrvn.android.koin" }
-android-lint = { id = "haitrvn.android.lint" }
-library-jvm = { id = "haitrvn.library.jvm" }
-library-multiplatform = { id = "haitrvn.library.multiplatform" }
+feature-common = { id = "haitrvn.android.application" }

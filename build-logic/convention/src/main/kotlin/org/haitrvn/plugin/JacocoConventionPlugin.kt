@@ -1,13 +1,13 @@
-package org.haitrvn.plugin.convention.plugins
+package org.haitrvn.plugin
 
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import org.haitrvn.plugin.convention.configureJacoco
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
+import org.haitrvn.plugin.convention.configureJacoco
 
 class JacocoConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {

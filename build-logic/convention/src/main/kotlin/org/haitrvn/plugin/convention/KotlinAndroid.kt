@@ -14,12 +14,6 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     commonExtension.apply {
-        compileSdk = AndroidBuildConfig.compileSdkVersion
-
-        defaultConfig {
-            minSdk = AndroidBuildConfig.minSdkVersion
-        }
-
         packaging {
             resources {
                 excludes += "/META-INF/{AL2.0,LGPL2.1}"

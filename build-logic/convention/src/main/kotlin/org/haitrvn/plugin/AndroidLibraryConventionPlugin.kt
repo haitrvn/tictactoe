@@ -1,13 +1,13 @@
-package org.haitrvn.plugin.convention.plugins
+package org.haitrvn.plugin
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import org.haitrvn.plugin.convention.AndroidBuildConfig
-import org.haitrvn.plugin.convention.configureFlavors
-import org.haitrvn.plugin.convention.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.haitrvn.plugin.convention.AndroidBuildConfig
+import org.haitrvn.plugin.convention.configureFlavors
+import org.haitrvn.plugin.convention.configureKotlinAndroid
 
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {

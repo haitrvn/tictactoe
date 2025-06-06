@@ -1,4 +1,4 @@
-package org.haitrvn.plugin.convention.plugins
+package org.haitrvn.plugin
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension

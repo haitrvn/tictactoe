@@ -1,4 +1,4 @@
-package org.haitrvn.plugin.convention.plugins
+package org.haitrvn.plugin
 
 import com.android.build.gradle.LibraryExtension
 import org.haitrvn.plugin.convention.AndroidBuildConfig
