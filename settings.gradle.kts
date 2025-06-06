@@ -1,6 +1,7 @@
 rootProject.name = "Tic-Tac-Toe"
 
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content { 
@@ -26,6 +27,11 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+    }
+    versionCatalogs {
+        create("haitrvn") {
+            from(files("./build-logic/building.versions.toml"))
+        }
     }
 }
 plugins {
