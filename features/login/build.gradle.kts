@@ -33,6 +33,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(project(":core-ui"))
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -41,6 +42,7 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.koin.compose)
+                implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
             }
         }
 

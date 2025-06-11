@@ -40,27 +40,12 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":features:login"))
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(libs.kermit)
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.client.serialization)
-            implementation(libs.ktor.client.logging)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(libs.kotlinx.serialization.json)
-            implementation(libs.koin.core)
-            implementation(libs.koin.compose)
-            implementation(libs.coil)
-            implementation(libs.coil.network.ktor)
-            implementation(libs.multiplatformSettings)
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.kstore)
         }
 
         commonTest.dependencies {
@@ -98,7 +83,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
         targetSdk = 35
 
         applicationId = "com.haitrvn.tictactoe.androidApp"
