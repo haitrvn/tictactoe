@@ -53,6 +53,26 @@ fun CommonTextField(
     )
 }
 
+@Composable
+fun CommonTextField(
+    value: String,
+    placeholder: String = "",
+    isPassword: Boolean = false,
+    enabled: Boolean = true,
+    singleLine: Boolean = true,
+    onValueChange: (String) -> Unit,
+) {
+    CommonTextField(
+        modifier = Modifier,
+        value = value,
+        placeholder = placeholder,
+        isPassword = isPassword,
+        enabled = enabled,
+        singleLine = singleLine,
+        onValueChange = onValueChange
+    )
+}
+
 
 @Composable
 fun CommonText(
@@ -76,11 +96,30 @@ fun CommonText(
 }
 
 @Composable
+fun CommonText(
+    text: String,
+    fontSize: TextUnit = 16.sp,
+    fontWeight: FontWeight = FontWeight.Normal,
+    color: Color = Color.Black,
+    textAlign: TextAlign? = null,
+    maxLines: Int = Int.MAX_VALUE,
+) {
+    CommonText(
+        modifier = Modifier,
+        text = text,
+        fontSize = fontSize,
+        fontWeight = fontWeight,
+        color = color,
+        textAlign = textAlign,
+        maxLines = maxLines)
+}
+
+@Composable
 fun CommonButton(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit,
     enabled: Boolean = true,
     text: String,
+    onClick: () -> Unit,
 ) {
     // Dùng Box và clickable thay cho Button Material
     Box(
@@ -97,4 +136,18 @@ fun CommonButton(
             fontWeight = FontWeight.Bold,
         )
     }
+}
+
+@Composable
+fun CommonButton(
+    text: String,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
+    CommonButton(
+        modifier = Modifier,
+        enabled = enabled,
+        text = text,
+        onClick = onClick
+    )
 }

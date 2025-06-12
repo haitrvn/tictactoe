@@ -1,15 +1,20 @@
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
+
     androidLibrary {
-        namespace = "com.haitrvn.domain"
+        namespace = "com.haitrvn.core"
         compileSdk = 35
         minSdk = 24
+
         withHostTestBuilder {
         }
+
         withDeviceTestBuilder {
             sourceSetTreeName = "test"
         }.configure {
@@ -17,7 +22,7 @@ kotlin {
         }
     }
 
-    val xcfName = "domainKit"
+    val xcfName = "corekit"
 
     listOf(
         iosX64(),
@@ -32,7 +37,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":core"))
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.kotlinx.coroutines.core)
             }
@@ -41,6 +45,7 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.coroutines.test)
             }
         }
 
