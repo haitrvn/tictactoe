@@ -7,17 +7,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CommonButton
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonTextField
+import org.koin.compose.koinInject
 
 @Composable
 fun Login(
     modifier: Modifier = Modifier,
-    viewmodel: LoginViewModel = remember { LoginViewModel() },
+    viewmodel: LoginViewModel = koinInject<LoginViewModel>(),
 ) {
     val loginState by viewmodel.uiState.collectAsState()
     Column(
@@ -39,5 +39,6 @@ fun Login(
         CommonButton("Login") {
             viewmodel.dispatch(LoginAction.LoginClicked)
         }
+        CommonButton("Register") { }
     }
 }

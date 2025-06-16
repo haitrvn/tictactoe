@@ -1,8 +1,10 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -21,7 +23,11 @@ kotlin {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
     }
+    jvm()
 
+    wasmJs {
+        browser()
+    }
     val xcfName = "corekit"
 
     listOf(

@@ -2,15 +2,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import java.awt.Dimension
+import com.haitrvn.data.di.dataModule
+import com.haitrvn.features.login.di.loginModule
 import com.haitrvn.tictactoe.App
+import org.koin.core.context.startKoin
+import java.awt.Dimension
+import java.awt.Color
 
 fun main() = application {
+    startKoin {
+        modules(loginModule, dataModule)
+    }
     Window(
         title = "TicTacToe",
-        state = rememberWindowState(width = 800.dp, height = 600.dp),
+        alwaysOnTop = true,
+        state = rememberWindowState(width = 350.dp, height = 600.dp),
         onCloseRequest = ::exitApplication,
     ) {
+        window.background = Color.WHITE
         window.minimumSize = Dimension(350, 600)
         App()
     }

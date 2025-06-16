@@ -1,3 +1,7 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
@@ -19,6 +23,11 @@ kotlin {
         }
     }
     val xcfName = "login"
+
+    jvm()
+    wasmJs {
+        browser()
+    }
 
     listOf(
         iosX64(),
@@ -44,7 +53,9 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.koin.compose)
-                implementation(libs.koin.compose.viewmodel)
+                implementation("io.insert-koin:koin-compose-viewmodel:4.0.4") {
+                    exclude(group = "org.jetbrains.androidx.core", module = "core-bundle")
+                }
                 implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
             }
         }
