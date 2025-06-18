@@ -31,9 +31,11 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(project(":core-ui"))
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.navigation.compose)
                 implementation(libs.kotlinx.serialization.json)
+                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
             }
         }
 
