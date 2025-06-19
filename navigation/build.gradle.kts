@@ -16,6 +16,10 @@ kotlin {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
     }
+    jvm()
+    wasmJs {
+        browser()
+    }
 
     val xcfName = "navigationKit"
     listOf(
@@ -31,11 +35,13 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":core-ui"))
+                implementation(projects.coreUi)
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.navigation.compose)
                 implementation(libs.kotlinx.serialization.json)
                 implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
             }
         }
 

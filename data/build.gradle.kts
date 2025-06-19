@@ -39,7 +39,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":domain"))
+                implementation(projects.domain)
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.koin.core)
             }

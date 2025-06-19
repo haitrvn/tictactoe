@@ -1,31 +1,36 @@
 package com.haitrvn.tictactoe
 
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.dp
-import com.haitrvn.features.login.Login
-import tic_tac_toe.composeapp.generated.resources.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.haitrvn.navigation.GraphDestination
+import com.haitrvn.navigation.Navigator
+import com.haitrvn.navigation.loginScreen
 import com.haitrvn.tictactoe.theme.AppTheme
-import com.haitrvn.tictactoe.theme.LocalThemeIsDark
-import kotlinx.coroutines.isActive
-import org.jetbrains.compose.resources.Font
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.koinInject
+import org.koin.core.parameter.ParametersHolder
 
 @Preview
 @Composable
 internal fun App() = AppTheme {
-    Login()
+    val navController = rememberNavController()
+    val navigator: Navigator = koinInject<Navigator>(parameters = {
+        ParametersHolder(
+            mutableListOf(
+                navController
+            )
+        )
+    })
+    NavHost(
+        modifier = Modifier.fillMaxSize(),
+        navController = navController,
+        startDestination = GraphDestination.Login
+    ) {
+        loginScreen(navigator)
+    }
 
 //    Column(
 //        modifier = Modifier

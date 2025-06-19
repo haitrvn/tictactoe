@@ -1,4 +1,5 @@
-rootProject.name = "Tic-Tac-Toe"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = "Peep"
 
 pluginManagement {
     includeBuild("build-logic")

@@ -42,9 +42,10 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":domain"))
-                implementation(project(":core-ui"))
-                implementation(project(":core"))
+                implementation(projects.navigation)
+                implementation(projects.domain)
+                implementation(projects.coreUi)
+                implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)
                 implementation(compose.foundation)

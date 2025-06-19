@@ -12,12 +12,16 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CommonButton
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonTextField
+import com.haitrvn.navigation.Navigator
+import com.haitrvn.navigation.arg.LoginScreenArgument
 import org.koin.compose.koinInject
 
 @Composable
 fun Login(
     modifier: Modifier = Modifier,
     viewmodel: LoginViewModel = koinInject<LoginViewModel>(),
+    navigator: Navigator,
+    arg: LoginScreenArgument?,
 ) {
     val loginState by viewmodel.uiState.collectAsState()
     Column(

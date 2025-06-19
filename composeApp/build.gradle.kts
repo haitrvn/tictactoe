@@ -41,8 +41,12 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":features:login"))
-            implementation(project(":data"))
+            implementation(projects.features.login)
+            implementation(projects.data)
+            implementation(projects.navigation)
+
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
