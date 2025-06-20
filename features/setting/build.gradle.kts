@@ -18,8 +18,14 @@ kotlin {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
     }
+
+    jvm()
+    wasmJs {
+        browser()
+    }
+
     val xcfName = "template"
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -33,6 +39,9 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(projects.core)
+                implementation(projects.coreUi)
+
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)
                 implementation(compose.foundation)

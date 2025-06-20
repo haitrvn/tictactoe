@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CommonButton
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonTextField
+import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Navigator
 import com.haitrvn.navigation.arg.LoginScreenArgument
 import org.koin.compose.koinInject
@@ -43,6 +44,8 @@ fun Login(
         CommonButton("Login") {
             viewmodel.dispatch(LoginAction.LoginClicked)
         }
-        CommonButton("Register") { }
+        CommonButton("Register") {
+            navigator.navigate(Destination.Setting)
+        }
     }
 }

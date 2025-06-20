@@ -6,7 +6,7 @@ import androidx.navigation.NavDeepLinkRequest
 internal class NavigatorImpl(
     private val navigator: NavController
 ) : Navigator {
-    override suspend fun navigate(
+    override fun navigate(
         destination: Destination,
         popUpToRoute: String?,
         popUpToInclusive: Boolean,
@@ -26,7 +26,7 @@ internal class NavigatorImpl(
         }
     }
 
-    override suspend fun popBackStack(
+    override fun popBackStack(
         destination: Destination?,
         inclusive: Boolean,
         saveState: Boolean
@@ -36,11 +36,11 @@ internal class NavigatorImpl(
         } ?: navigator.popBackStack()
     }
 
-    override suspend fun clearBackStack(destination: Destination) {
+    override fun clearBackStack(destination: Destination) {
         navigator.clearBackStack(destination)
     }
 
-    override suspend fun handleDeeplink(deeplink: String) {
+    override fun handleDeeplink(deeplink: String) {
         navigator.handleDeepLink(NavDeepLinkRequest.Builder.fromAction(deeplink).build())
     }
 }

@@ -2,11 +2,11 @@ package com.haitrvn.domain.usecase
 
 class UserLoginValidationUseCase {
     suspend fun validatePassword(password: String): List<PasswordValidationError> {
-        TODO()
+        return emptyList()
     }
 
     suspend fun validateUserName(username: String): List<UsernameValidationError> {
-        TODO()
+        return emptyList()
     }
 }
 

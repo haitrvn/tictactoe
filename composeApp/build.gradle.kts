@@ -5,7 +5,6 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.compose.reload.ComposeHotRun
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
     alias(libs.plugins.multiplatform)
@@ -41,11 +40,16 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.features.login)
             implementation(projects.data)
             implementation(projects.navigation)
+            implementation(projects.core)
+            implementation(projects.coreUi)
+
+            implementation(projects.features.login)
+            implementation(projects.features.setting)
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+            implementation("org.jetbrains.compose.ui:ui-backhandler:1.8.2")
 
             implementation(compose.runtime)
             implementation(compose.foundation)

@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -42,6 +45,12 @@ kotlin {
                 implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
+
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
             }
         }
 

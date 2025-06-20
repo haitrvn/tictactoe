@@ -6,6 +6,6 @@ import com.haitrvn.domain.model.UserLogin
 
 class UserLoginRepositoryImpl : UserLoginRepository {
     override fun login(login: UserLogin): Result<User> {
-        TODO("Not yet implemented")
+        return Result.success(User())
     }
 }
