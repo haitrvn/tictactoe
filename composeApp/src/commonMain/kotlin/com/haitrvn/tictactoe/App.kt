@@ -6,6 +6,8 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.backhandler.BackHandler
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.haitrvn.core.AppLogger
+import com.haitrvn.core.Log
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
@@ -49,7 +51,5 @@ internal fun App() = AppTheme {
     ) { innerPadding ->
         MainGraph(navController = navController, navigator = navigator)
     }
-    BackHandler(true) {
-        navigator.navigate(destination = Destination.Setting, launchSingleTop = true)
-    }
+    BackPressSample()
 }
