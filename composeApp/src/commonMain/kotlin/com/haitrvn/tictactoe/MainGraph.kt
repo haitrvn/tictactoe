@@ -1,6 +1,5 @@
 package com.haitrvn.tictactoe
 
-import Setting
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
@@ -14,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.features.login.Login
+import com.haitrvn.features.setting.Setting
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator

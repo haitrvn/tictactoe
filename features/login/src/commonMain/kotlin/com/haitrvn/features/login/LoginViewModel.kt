@@ -60,9 +60,10 @@ class LoginViewModel(
         }.flatMapFirst {
             flow {
                 _uiState.update { it.copy(isLoading = true) }
-                userLoginUseCase.invoke(UserLogin(_uiState.value.username, _uiState.value.password)).onSuccess {
-                    emit(true)
-                }.onFailure {
+                userLoginUseCase.invoke(UserLogin(_uiState.value.username, _uiState.value.password))
+                    .onSuccess {
+                        emit(true)
+                    }.onFailure {
                     emit(false)
                 }
             }

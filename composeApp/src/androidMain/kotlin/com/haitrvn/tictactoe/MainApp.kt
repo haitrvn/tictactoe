@@ -6,7 +6,7 @@ import com.haitrvn.features.login.di.loginModule
 import com.haitrvn.navigation.di.navigationMode
 import org.koin.core.context.startKoin
 
-class MainApp: Application() {
+class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {

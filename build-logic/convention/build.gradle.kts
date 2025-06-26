@@ -25,6 +25,7 @@ dependencies {
 gradlePlugin {
     plugins.register("androidApplication") {
         id = "haitrvn.android.application"
-        implementationClass = "org.haitrvn.plugin.convention.plugins.AndroidApplicationConventionPlugin"
+        implementationClass =
+            "org.haitrvn.plugin.convention.plugins.AndroidApplicationConventionPlugin"
     }
 }
