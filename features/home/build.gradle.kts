@@ -1,37 +1,33 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
-import com.codingfeline.buildkonfig.gradle.TargetConfigDsl
 
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
-    alias(libs.plugins.buildKonfig)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose)
 }
 
 kotlin {
-
     androidLibrary {
-        namespace = "com.haitrvn.core"
+        namespace = "com.haitrvn.features.login"
         compileSdk = 35
         minSdk = 24
-
         withHostTestBuilder {
         }
-
         withDeviceTestBuilder {
             sourceSetTreeName = "test"
         }.configure {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
     }
-    jvm()
+    val xcfName = "login"
 
+    jvm()
     wasmJs {
         browser()
     }
-    val xcfName = "corekit"
 
     listOf(
         iosX64(),
@@ -46,16 +42,28 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(projects.navigation)
+                implementation(projects.domain)
+                implementation(projects.coreUi)
+                implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
-                implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.kermit)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.koin.compose)
+                implementation("io.insert-koin:koin-compose-viewmodel:4.0.4") {
+                    exclude(group = "org.jetbrains.androidx.core", module = "core-bundle")
+                }
+                implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
             }
         }
 
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
-                implementation(libs.kotlinx.coroutines.test)
             }
         }
 
@@ -65,35 +73,6 @@ kotlin {
                 implementation(libs.androidx.core)
                 implementation(libs.androidx.junit)
             }
-        }
-    }
-}
-
-buildkonfig {
-    packageName = "com.haitrvn.cook"
-
-    // default config is required
-    defaultConfigs {
-        buildConfigField(STRING, "name", "value")
-    }
-    // flavor is passed as a first argument of defaultConfigs
-    defaultConfigs("dev") {
-        buildConfigField(STRING, "name", "devValue")
-    }
-
-    targetConfigs {
-        create("android") {
-            buildConfigField(STRING, "name2", "value2")
-        }
-
-        create("ios") {
-            buildConfigField(STRING, "name", "valueIos")
-        }
-    }
-    // flavor is passed as a first argument of targetConfigs
-    targetConfigs("dev") {
-        create("ios") {
-            buildConfigField(STRING, "name", "devValueIos")
         }
     }
 }

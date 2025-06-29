@@ -19,7 +19,7 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(17)
     androidTarget()
 
     jvm()
@@ -46,6 +46,7 @@ kotlin {
             implementation(projects.coreUi)
 
             implementation(projects.features.login)
+            implementation(projects.features.home)
             implementation(projects.features.setting)
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
@@ -118,7 +119,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "TicTacToe"
+            packageName = "com.haitrvn.cook"
             packageVersion = "1.0.0"
 
             linux {
@@ -146,7 +147,7 @@ tasks.withType<ComposeHotRun>().configureEach {
 buildkonfig {
     // BuildKonfig configuration here.
     // https://github.com/yshrsmz/BuildKonfig#gradle-configuration
-    packageName = "com.haitrvn.tictactoe"
+    packageName = "com.haitrvn.cook"
     defaultConfigs {
     }
 }

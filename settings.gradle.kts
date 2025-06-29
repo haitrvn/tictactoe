@@ -1,5 +1,5 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-rootProject.name = "Peep"
+rootProject.name = "CookApp"
 
 pluginManagement {
     includeBuild("build-logic")
@@ -49,4 +49,5 @@ include(":core-ui")
 include(":core")
 include(":navigation")
 include(":features:login")
+include(":features:home")
 include(":features:setting")

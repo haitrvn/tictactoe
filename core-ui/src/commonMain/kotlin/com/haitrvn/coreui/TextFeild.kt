@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -21,6 +23,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun CommonTextField(
@@ -80,7 +84,7 @@ fun CommonText(
     text: String,
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.Normal,
-    color: Color = Color.Black,
+    color: Color = MaterialTheme.colorScheme.onSurface,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) {
@@ -100,10 +104,11 @@ fun CommonText(
     text: String,
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.Normal,
-    color: Color = Color.Black,
+    color: Color = MaterialTheme.colorScheme.onSurface,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
 ) {
+
     CommonText(
         modifier = Modifier,
         text = text,
@@ -117,6 +122,7 @@ fun CommonText(
 @Composable
 fun CommonButton(
     modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.primary,
     enabled: Boolean = true,
     text: String,
     onClick: () -> Unit,
@@ -141,6 +147,7 @@ fun CommonButton(
 @Composable
 fun CommonButton(
     text: String,
+    color: Color = MaterialTheme.colorScheme.primary,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
@@ -149,5 +156,21 @@ fun CommonButton(
         enabled = enabled,
         text = text,
         onClick = onClick
+    )
+}
+
+
+@Composable
+fun CommonImage(
+    modifier: Modifier = Modifier,
+    imageResId: DrawableResource,
+    contentDescription: String? = null,
+    contentScale: ContentScale = ContentScale.Crop
+) {
+    androidx.compose.foundation.Image(
+        painter = painterResource(imageResId),
+        contentDescription = contentDescription,
+        modifier = modifier,
+        contentScale = contentScale
     )
 }

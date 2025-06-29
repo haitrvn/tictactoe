@@ -11,12 +11,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.haitrvn.coreui.CommonText
+import com.haitrvn.features.home.Home
 import com.haitrvn.features.login.Login
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
+import com.haitrvn.navigation.arg.LoginScreenArgument
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
@@ -24,7 +27,7 @@ internal fun MainGraph(
     modifier: Modifier = Modifier,
     navigator: Navigator,
     navController: NavHostController = rememberNavController(),
-    startDestination: Destination = Destination.Login,
+    startDestination: Destination = Destination.Home,
 ) {
     NavHost(
         modifier = Modifier.fillMaxSize().then(modifier),
@@ -32,7 +35,11 @@ internal fun MainGraph(
         startDestination = startDestination
     ) {
         composable<Destination.Login> {
-            Login(navigator = navigator, arg = null)
+            val arg: LoginScreenArgument? = it.toRoute<Destination.Login>().loginScreenArgument
+            Login(navigator = navigator, arg = arg)
+        }
+        composable<Destination.Home> {
+            Home(navigator = navigator, arg = null)
         }
         composable<Destination.Setting> {
             Setting()

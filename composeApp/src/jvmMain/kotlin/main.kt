@@ -3,6 +3,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.haitrvn.data.di.dataModule
+import com.haitrvn.features.home.di.homeModule
 import com.haitrvn.features.login.di.loginModule
 import com.haitrvn.navigation.di.navigationMode
 import com.haitrvn.tictactoe.App
@@ -12,7 +13,7 @@ import java.awt.Dimension
 
 fun main() = application {
     startKoin {
-        modules(loginModule, dataModule, navigationMode)
+        modules(homeModule, loginModule, dataModule, navigationMode)
     }
     Window(
         title = "TicTacToe",

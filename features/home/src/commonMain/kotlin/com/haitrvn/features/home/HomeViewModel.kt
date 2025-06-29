@@ -1,4 +1,4 @@
-package com.haitrvn.features.login
+package com.haitrvn.features.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class LoginViewModel(
+class HomeViewModel(
     private val userLoginUseCase: UserLoginUseCase,
     private val userLoginValidationUseCase: UserLoginValidationUseCase
 ) : ViewModel() {
@@ -64,8 +64,8 @@ class LoginViewModel(
                     .onSuccess {
                         emit(true)
                     }.onFailure {
-                        emit(false)
-                    }
+                    emit(false)
+                }
             }
         }.onEach {
             println("Login clicked after flatmap")
@@ -85,8 +85,6 @@ data class LoginUiState(
     val username: String,
     val password: String,
     val isHidePassword: Boolean,
-    val usernameErrorMessage: String,
-    val passwordErrorMessage: String,
     val errorMessage: String,
     val isLoading: Boolean,
 ) {
@@ -95,8 +93,6 @@ data class LoginUiState(
             username = "",
             password = "",
             isHidePassword = true,
-            usernameErrorMessage = "",
-            passwordErrorMessage = "",
             errorMessage = "",
             isLoading = false,
         )
