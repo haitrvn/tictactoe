@@ -1,17 +1,26 @@
 package com.haitrvn.navigation
 
-import com.haitrvn.navigation.arg.LoginScreenArgument
 import kotlinx.serialization.Serializable
 
-sealed class Destination {
+sealed interface Destination
+
+@Serializable
+data object Auth : Destination {
     @Serializable
-    data class Login(
-        val loginScreenArgument: LoginScreenArgument
-    ) : Destination()
+    data class Login(val email: String = "") : Destination
 
     @Serializable
-    data object Home : Destination()
+    data class Register(val email: String = "") : Destination
+}
+
+@Serializable
+data object Home : Destination {
+    @Serializable
+    data object Main : Destination
 
     @Serializable
-    data object Setting : Destination()
+    data object Search : Destination
+
+    @Serializable
+    data object Setting : Destination
 }

@@ -45,7 +45,7 @@ kotlin {
             implementation(projects.core)
             implementation(projects.coreUi)
 
-            implementation(projects.features.login)
+            implementation(projects.features.auth)
             implementation(projects.features.home)
             implementation(projects.features.setting)
 

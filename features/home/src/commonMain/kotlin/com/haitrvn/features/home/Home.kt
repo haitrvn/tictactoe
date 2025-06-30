@@ -11,7 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CommonText
-import com.haitrvn.navigation.Destination
+import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import com.haitrvn.navigation.arg.LoginScreenArgument
 import org.koin.compose.koinInject
@@ -31,7 +31,7 @@ fun Home(
         verticalArrangement = Arrangement.Center
     ) {
         CommonText(text = "This is home", modifier = modifier.clickable {
-            navigator.navigate(Destination.Login(LoginScreenArgument("haitrvn")))
+            navigator.navigate(Auth.Login())
         })
     }
 }

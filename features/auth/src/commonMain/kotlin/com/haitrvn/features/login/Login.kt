@@ -17,13 +17,13 @@ import com.haitrvn.coreui.CommonButton
 import com.haitrvn.coreui.CommonImage
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonTextField
-import com.haitrvn.navigation.Destination
+import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
 import com.haitrvn.navigation.arg.LoginScreenArgument
-import cookapp.features.login.generated.resources.Res
-import cookapp.features.login.generated.resources.ic_cyclone
-import cookapp.features.login.generated.resources.login_hint_email_or_username
-import cookapp.features.login.generated.resources.login_hint_password
+import cookapp.features.auth.generated.resources.Res
+import cookapp.features.auth.generated.resources.ic_cyclone
+import cookapp.features.auth.generated.resources.login_hint_email_or_username
+import cookapp.features.auth.generated.resources.login_hint_password
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
@@ -58,7 +58,7 @@ fun Login(
                 viewmodel.dispatch(LoginAction.LoginClicked)
             }
             CommonButton("Register") {
-                navigator.navigate(Destination.Setting)
+                navigator.navigate(Home.Setting)
             }
         }
     }
