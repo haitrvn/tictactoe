@@ -14,6 +14,7 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.haitrvn.core.Log
 import com.haitrvn.coreui.CommonText
+import com.haitrvn.coreui.di.koinInjectHomeQualifier
 import com.haitrvn.features.home.Home
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.navigation.Auth
@@ -27,9 +28,7 @@ import cookapp.composeapp.generated.resources.ic_cyclone
 import cookapp.composeapp.generated.resources.login_title
 import cookapp.composeapp.generated.resources.setting_title
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
-import org.koin.core.qualifier.named
 
 @Composable
 internal fun MainGraph(
@@ -53,10 +52,8 @@ internal fun NavGraphBuilder.homeGraph(
     navigator: Navigator,
 ) {
     composable<Home> {
-        val navController: NavHostController = rememberNavController().apply {
-            Log.i("NavController", "homeGraph navController: $this")
-        }
-        val homeNavigator = koinInject<Navigator>(qualifier = named("HOME")) { parametersOf(navController) }
+        val navController: NavHostController = rememberNavController()
+        val homeNavigator = koinInjectHomeQualifier<Navigator> { parametersOf(navController) }
         val navigationItemsLists = listOf(
             NavigationItem(
                 unSelectedIcon = Res.drawable.ic_cyclone,
@@ -85,7 +82,10 @@ internal fun NavGraphBuilder.homeGraph(
                     currentRoute = currentRoute,
                     onItemClick = { item ->
                         currentRoute = item.destination
-                        homeNavigator.navigate(destination = item.destination, launchSingleTop = true)
+                        homeNavigator.navigate(
+                            destination = item.destination,
+                            launchSingleTop = true
+                        )
                     }
                 )
             }
@@ -104,7 +104,7 @@ internal fun NavGraphBuilder.homeGraph(
                     })
                 }
                 composable<Home.Setting> {
-                    Setting(onLogout = {navigator.navigate(Auth.Login())})
+                    Setting(onLogout = { navigator.navigate(Auth.Login()) })
                 }
             }
         }

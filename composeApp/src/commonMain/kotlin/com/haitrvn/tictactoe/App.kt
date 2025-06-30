@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.haitrvn.core.Log
+import com.haitrvn.coreui.di.koinInjectAppQualifier
 import com.haitrvn.coreui.theme.AppTheme
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
@@ -20,6 +21,6 @@ internal fun App() = AppTheme {
             Log.i("NavController", "AppTheme navController: $this")
         }
 
-    val navigator = koinInject<Navigator>(qualifier = named("APP")) { parametersOf(navController) }
+    val navigator = koinInjectAppQualifier<Navigator> { parametersOf(navController) }
     MainGraph(navController = navController, navigator = navigator, startDestination = Auth)
 }
