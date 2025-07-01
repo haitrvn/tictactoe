@@ -1,10 +1,11 @@
 package com.haitrvn.navigation
 
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 
 data class NavigationItem(
     val unSelectedIcon: DrawableResource,
     val selectedIcon: DrawableResource,
-    val title: String,
+    val title: StringResource,
     val destination: Destination
 )

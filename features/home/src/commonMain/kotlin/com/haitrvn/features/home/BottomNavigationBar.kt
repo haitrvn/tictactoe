@@ -1,4 +1,4 @@
-package com.haitrvn.tictactoe
+package com.haitrvn.features.home
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.NavigationItem
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
@@ -27,12 +28,12 @@ fun BottomNavigationBar(
                 icon = {
                     Icon(
                         imageVector = vectorResource(navigationItem.unSelectedIcon),
-                        contentDescription = navigationItem.title,
+                        contentDescription = stringResource(navigationItem.title),
                     )
                 },
                 label = {
                     CommonText(
-                        text = navigationItem.title,
+                        text = stringResource(navigationItem.title),
                         maxLines = 1,
                     )
                 },

@@ -116,7 +116,8 @@ fun CommonText(
         fontWeight = fontWeight,
         color = color,
         textAlign = textAlign,
-        maxLines = maxLines)
+        maxLines = maxLines
+    )
 }
 
 @Composable
