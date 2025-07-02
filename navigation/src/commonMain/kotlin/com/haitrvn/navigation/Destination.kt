@@ -10,7 +10,13 @@ sealed interface Destination {
 @Serializable
 data object Auth : Destination {
     @Serializable
-    data class Login(val email: String = "") : Destination
+    data object Welcome : Destination
+
+    @Serializable
+    data object Login : Destination
+
+    @Serializable
+    data object LoginWithEmail : Destination
 
     @Serializable
     data class Register(val email: String = "") : Destination

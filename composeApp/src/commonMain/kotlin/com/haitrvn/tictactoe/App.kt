@@ -21,26 +21,28 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
 
-val navigationItemsLists = listOf(
-    NavigationItem(
-        unSelectedIcon = Res.drawable.ic_home_main,
-        selectedIcon = Res.drawable.ic_home_main,
-        title = Res.string.presentation_bottom_main_title,
-        destination = Home.Main,
-    ),
-    NavigationItem(
-        unSelectedIcon = Res.drawable.ic_home_main,
-        selectedIcon = Res.drawable.ic_home_main,
-        title = Res.string.presentation_bottom_search_title,
-        destination = Home.Search,
-    ),
-    NavigationItem(
-        unSelectedIcon = Res.drawable.ic_home_main,
-        selectedIcon = Res.drawable.ic_home_main,
-        title = Res.string.presentation_bottom_setting_title,
-        destination = Home.Setting,
-    ),
-)
+val navigationItemsLists by lazy {
+    listOf(
+        NavigationItem(
+            unSelectedIcon = Res.drawable.ic_home_main,
+            selectedIcon = Res.drawable.ic_home_main,
+            title = Res.string.presentation_bottom_main_title,
+            destination = Home.Main,
+        ),
+        NavigationItem(
+            unSelectedIcon = Res.drawable.ic_home_main,
+            selectedIcon = Res.drawable.ic_home_main,
+            title = Res.string.presentation_bottom_search_title,
+            destination = Home.Search,
+        ),
+        NavigationItem(
+            unSelectedIcon = Res.drawable.ic_home_main,
+            selectedIcon = Res.drawable.ic_home_main,
+            title = Res.string.presentation_bottom_setting_title,
+            destination = Home.Setting,
+        ),
+    )
+}
 
 @Preview
 @Composable
@@ -56,18 +58,13 @@ internal fun App() = AppTheme {
                     currentRoute = currentRoute,
                     onItemClick = { item ->
                         navigator.navigate(
-                            destination = item.destination,
-                            launchSingleTop = true
+                            destination = item.destination, launchSingleTop = true
                         )
-                    }
-                )
+                    })
             }
-        }
-    ) {
+        }) {
         MainGraph(
-            navController = navController,
-            navigator = navigator,
-            startDestination = Auth
+            navController = navController, navigator = navigator, startDestination = Auth
         )
     }
 }

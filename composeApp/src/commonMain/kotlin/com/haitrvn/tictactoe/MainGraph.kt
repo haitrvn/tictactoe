@@ -1,15 +1,21 @@
 package com.haitrvn.tictactoe
 
-import androidx.compose.foundation.clickable
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
+import androidx.navigation.navigation
 import com.haitrvn.coreui.CommonText
+import com.haitrvn.features.login.Login
+import com.haitrvn.features.login.LoginWithEmail
+import com.haitrvn.features.login.Welcome
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
@@ -45,7 +51,7 @@ internal fun NavGraphBuilder.homeGraph(
             CommonText(text = "Search")
         }
         composable<Home.Setting> {
-            Setting(onLogout = { navigator.navigate(Auth.Login()) })
+            Setting(onLogout = { navigator.navigate(Auth) })
         }
     }
 }
@@ -54,14 +60,59 @@ internal fun NavGraphBuilder.authGraph(
     modifier: Modifier = Modifier,
     navigator: Navigator,
 ) {
-    navigation<Auth>(startDestination = Auth.Login()) {
-        composable<Auth.Login> {
-            CommonText(text = "Login", modifier = Modifier.clickable {
-                navigator.navigate(Home)
-            })
+    navigation<Auth>(startDestination = Auth.Welcome) {
+        composable<Auth.Welcome>(
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None },
+            popEnterTransition = { EnterTransition.None },
+            popExitTransition = { ExitTransition.None }
+        ) {
+            Welcome(navigator = navigator)
         }
-        composable<Auth.Register> {
+        composable<Auth.Login>(
+            enterTransition = { getEnterTransition(initialState, targetState) },
+            exitTransition = { getExitTransition(initialState, targetState) },
+            popEnterTransition = { getEnterTransition(initialState, targetState) },
+            popExitTransition = { getExitTransition(initialState, targetState) }
+        ) {
+            Login(navigator = navigator)
+        }
+        composable<Auth.LoginWithEmail>{
+            LoginWithEmail(navigator = navigator)
+        }
+        composable<Auth.Register>{
             CommonText("Register")
         }
     }
+}
+
+private fun shouldSkipTransition(from: String?, to: String?): Boolean {
+    val welcomeRoute = Auth.Welcome::class.qualifiedName.toString()
+    val loginRoute = Auth.Login::class.qualifiedName.toString()
+    return (from == welcomeRoute && to == loginRoute) || to == welcomeRoute || from == welcomeRoute
+}
+
+private fun getEnterTransition(
+    initialState: NavBackStackEntry,
+    targetState: NavBackStackEntry,
+): EnterTransition {
+    val from = initialState.destination.route
+    val to = targetState.destination.route
+    val welcomeRoute = Auth.Welcome::class.qualifiedName.toString()
+    if (shouldSkipTransition(from, to)) {
+        return EnterTransition.None
+    }
+    return slideInHorizontally(initialOffsetX = { if (to == welcomeRoute) -it else it })
+}
+
+private fun getExitTransition(
+    initialState: NavBackStackEntry,
+    targetState: NavBackStackEntry,
+): ExitTransition {
+    val from = initialState.destination.route
+    val to = targetState.destination.route
+    if (shouldSkipTransition(from, to)) {
+        return ExitTransition.None
+    }
+    return ExitTransition.None // Customize exit transition as needed
 }
