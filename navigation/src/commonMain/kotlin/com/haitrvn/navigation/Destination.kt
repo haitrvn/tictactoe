@@ -16,18 +16,15 @@ data object Auth : Destination {
     data class Register(val email: String = "") : Destination
 }
 
-interface HaveBottomBar
-
-interface HomeDestination: Destination, HaveBottomBar
 
 @Serializable
-data object Home : HomeDestination {
+data object Home : Destination {
     @Serializable
-    data object Main : HomeDestination
+    data object Main : Destination
 
     @Serializable
-    data object Search : HomeDestination
+    data object Search : Destination
 
     @Serializable
-    data object Setting : HomeDestination
+    data object Setting : Destination
 }

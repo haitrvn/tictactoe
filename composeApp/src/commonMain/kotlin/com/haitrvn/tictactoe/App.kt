@@ -6,13 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import com.haitrvn.coreui.theme.AppTheme
 import com.haitrvn.features.home.BottomNavigationBar
 import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Home
-import com.haitrvn.navigation.HomeDestination
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
 import cookapp.composeapp.generated.resources.Res
@@ -50,10 +47,10 @@ val navigationItemsLists = listOf(
 internal fun App() = AppTheme {
     val (navController, navigator) = rememberNavControllerAndNavigator()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.toRoute<Destination>()
+    val currentRoute = navBackStackEntry?.destination?.route
     Scaffold(
         bottomBar = {
-            if (currentRoute is HomeDestination) {
+            if (currentRoute?.contains(Home::class.qualifiedName.toString()) == true) {
                 BottomNavigationBar(
                     items = navigationItemsLists,
                     currentRoute = currentRoute,
