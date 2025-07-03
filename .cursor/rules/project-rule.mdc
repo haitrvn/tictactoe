@@ -1,0 +1,27 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+- Các class/function/value/variable có phạm vi rộng hơn private cần thêm Kdoc để dễ hiểu và sử dụng
+- Project sẽ áp dụng Clean Architecture (Presentation -> Domain <- Data)
+
+#Domain
+- Là một lớp business chính của app nên nó sẽ chứa các logic chung nhất (thường sẽ là ở trong các classes UseCase), chứa các model chung nhất để các module cấp nhỏ hơn sử dụng
+- Là một module cấp cao nhất nên tuyệt đối không thêm các dependencies vào đây (implementation trong file gradle)
+- Không phụ thuộc vào module khác
+- Hãy cố gắng viết logic chung nhất của app vào trong domain không nên để logic
+
+
+#Presentation (tên module là ComposeApp)
+- Sử dụng compose (multiplatform) nhiều nhất có thể
+- Thực hiện tái sử dụng các composable khác nhiều nhất có thể 
+- Thực hiện các logic liên quan đến UI
+- Áp dụng MVI design pattern
+- Có sử dụng ViewModel là stateholder
+- Sử dụng StateFlow(MutableStateFLow) và SharedFlow(MutableSharedFlow)
+
+#Data
+
+- Áp dụng Repository Design Pattern

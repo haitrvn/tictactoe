@@ -8,21 +8,31 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.haitrvn.coreui.CommonButton
+import com.haitrvn.coreui.CommonText
+import com.haitrvn.coreui.CommonImage
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
+import cookapp.features.auth.generated.resources.Res
+import cookapp.features.auth.generated.resources.ic_cyclone
 
 @Composable
 fun Welcome(
@@ -36,15 +46,40 @@ fun Welcome(
         moveImageUp(headerScaleY, isDoAnimate, navigator)
     }
 
-    Box(modifier = Modifier.fillMaxSize().then(modifier)) {
-        Background()
-        Column(modifier = Modifier.fillMaxSize().then(modifier)) {
-            Header(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(headerScaleY.value)
-                    .background(Color.Red)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+            .then(modifier)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 32.dp, vertical = 48.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(32.dp))
+            CommonImage(
+                imageResId = Res.drawable.ic_cyclone,
+                contentDescription = "App Logo",
+                modifier = Modifier.height(120.dp)
             )
+            Spacer(modifier = Modifier.height(32.dp))
+            CommonText(
+                text = "Welcome to PeepPreview!",
+                fontWeight = FontWeight.Bold,
+                fontSize = 28.sp,
+                color = MaterialTheme.colorScheme.primary,
+                textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            CommonText(
+                text = "Discover and share the best recipes with our community. Get started now!",
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground,
+                textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.weight(1f))
             AnimatedVisibility(
                 visible = !isDoAnimate,
                 exit = androidx.compose.animation.fadeOut(
@@ -54,7 +89,11 @@ fun Welcome(
                     )
                 )
             ) {
-                Footer { isDoAnimate = true }
+                CommonButton(
+                    text = "Get Started",
+                    onClick = { isDoAnimate = true },
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         }
     }
@@ -72,24 +111,5 @@ private fun moveImageUp(
             animationSpec = tween(durationMillis = 1000)
         )
         navigator.navigate(Auth.Login)
-    }
-}
-
-@Composable
-private fun Background(modifier: Modifier = Modifier) {
-    modifier.background(Color.Gray)
-}
-
-@Composable
-private fun Header(modifier: Modifier = Modifier) {
-    Box(modifier = modifier)
-}
-
-@Composable
-fun Footer(modifier: Modifier = Modifier, onClick: () -> Unit) {
-    Button(
-        onClick = { onClick() },
-    ) {
-        Text("Login Di chuyển lên")
     }
 }
