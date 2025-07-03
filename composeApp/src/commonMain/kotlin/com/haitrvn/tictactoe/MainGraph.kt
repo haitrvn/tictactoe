@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.haitrvn.coreui.CommonText
+import com.haitrvn.features.home.DiscoverScreen
 import com.haitrvn.features.login.Login
 import com.haitrvn.features.login.LoginWithEmail
 import com.haitrvn.features.login.Welcome
@@ -48,7 +49,7 @@ internal fun NavGraphBuilder.homeGraph(
             CommonText(text = "Main")
         }
         composable<Home.Search> {
-            CommonText(text = "Search")
+            DiscoverScreen()
         }
         composable<Home.Setting> {
             Setting(onLogout = { navigator.navigate(Auth) })
@@ -69,12 +70,7 @@ internal fun NavGraphBuilder.authGraph(
         ) {
             Welcome(navigator = navigator)
         }
-        composable<Auth.Login>(
-            enterTransition = { getEnterTransition(initialState, targetState) },
-            exitTransition = { getExitTransition(initialState, targetState) },
-            popEnterTransition = { getEnterTransition(initialState, targetState) },
-            popExitTransition = { getExitTransition(initialState, targetState) }
-        ) {
+        composable<Auth.Login> {
             Login(navigator = navigator)
         }
         composable<Auth.LoginWithEmail>{
