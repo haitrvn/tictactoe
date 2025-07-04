@@ -31,8 +31,8 @@ import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonImage
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
-import cookapp.features.auth.generated.resources.Res
-import cookapp.features.auth.generated.resources.ic_cyclone
+import cookapp.resources.auth.Res
+import cookapp.resources.auth.ic_cyclone1
 
 @Composable
 fun Welcome(
@@ -60,7 +60,7 @@ fun Welcome(
         ) {
             Spacer(modifier = Modifier.height(32.dp))
             CommonImage(
-                imageResId = Res.drawable.ic_cyclone,
+                imageResId = Res.drawable.ic_cyclone1,
                 contentDescription = "App Logo",
                 modifier = Modifier.height(120.dp)
             )

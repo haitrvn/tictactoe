@@ -18,10 +18,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CommonText
-import cookapp.features.home.generated.resources.Res
-import cookapp.features.home.generated.resources.card_image_1
-import cookapp.features.home.generated.resources.play_icon
-import cookapp.features.home.generated.resources.star_icon
+import cookapp.resources.home.Res
+import cookapp.resources.home.card_image_1
+import cookapp.resources.home.play_icon
+import cookapp.resources.home.star_icon
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -45,7 +45,6 @@ fun DiscoverScreen() {
 
 @Composable
 fun StatusBar() {
-    // Placeholder for status bar
     Spacer(modifier = Modifier.height(44.dp))
 }
 

@@ -19,10 +19,10 @@ import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonTextField
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
-import cookapp.features.auth.generated.resources.Res
-import cookapp.features.auth.generated.resources.ic_cyclone
-import cookapp.features.auth.generated.resources.login_hint_email_or_username
-import cookapp.features.auth.generated.resources.login_hint_password
+import cookapp.resources.auth.Res
+import cookapp.resources.auth.ic_cyclone1
+import cookapp.resources.auth.login_hint_email_or_username
+import cookapp.resources.auth.login_hint_password
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
@@ -70,7 +70,7 @@ private fun Background(modifier: Modifier = Modifier) {
             .then(modifier)
     ) {
         CommonImage(
-            modifier = Modifier.fillMaxSize(), imageResId = Res.drawable.ic_cyclone
+            modifier = Modifier.fillMaxSize(), imageResId = Res.drawable.ic_cyclone1
         )
     }
 }

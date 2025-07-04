@@ -12,11 +12,11 @@ import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
-import cookapp.composeapp.generated.resources.Res
-import cookapp.composeapp.generated.resources.ic_home_main
-import cookapp.composeapp.generated.resources.presentation_bottom_main_title
-import cookapp.composeapp.generated.resources.presentation_bottom_search_title
-import cookapp.composeapp.generated.resources.presentation_bottom_setting_title
+import cookapp.resources.app.Res
+import cookapp.resources.app.ic_home_main
+import cookapp.resources.app.presentation_bottom_main_title
+import cookapp.resources.app.presentation_bottom_search_title
+import cookapp.resources.app.presentation_bottom_setting_title
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
