@@ -2,11 +2,18 @@ package com.haitrvn.features.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,14 +32,14 @@ import cookapp.resources.home.star_icon
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun DiscoverScreen() {
+fun DiscoverScreen(modifier: Modifier = Modifier) {
     LazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.White),
     ) {
         item {
-            StatusBar()
+            StatusBar(modifier = modifier)
             Heading()
             Tabs()
             CardsSection()
@@ -44,34 +51,30 @@ fun DiscoverScreen() {
 }
 
 @Composable
-fun StatusBar() {
-    Spacer(modifier = Modifier.height(44.dp))
+fun StatusBar(modifier: Modifier = Modifier) {
+    Spacer(modifier = Modifier)
 }
 
 @Composable
 fun Heading(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .height(69.dp)
-            .padding(top = 44.dp)
     ) {
         CommonText(
             text = "Saved recipes",
-            fontSize = 24.sp,
+            fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(start = 22.dp, top = 20.dp)
         )
     }
 }
 
 @Composable
-fun Tabs() {
+fun Tabs(modifier: Modifier = Modifier) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(58.dp)
-            .padding(horizontal = 20.dp, vertical = 12.dp),
+            .then(modifier),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Box(
@@ -104,47 +107,43 @@ fun Tabs() {
 }
 
 @Composable
-fun CardsSection() {
+fun CardsSection(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(top = 8.dp)
     ) {
-        DiscoverCard()
-        DiscoverCard()
-        DiscoverCard()
+        DiscoverCard(modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
+        DiscoverCard(modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
+        DiscoverCard(modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
     }
 }
 
 @Composable
-fun DiscoverCard() {
+fun DiscoverCard(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
-            .padding(horizontal = 20.dp, vertical = 8.dp)
-            .height(246.dp)
+        modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
             .background(Color.White)
             .shadow(2.dp, RoundedCornerShape(16.dp))
     ) {
-        Column {
+        Column(modifier = Modifier.padding(0.dp)) {
             Box(
                 modifier = Modifier
-                    .height(180.dp)
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(10.dp))
             ) {
                 Image(
                     painter = painterResource(Res.drawable.card_image_1),
                     contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxWidth()
                 )
                 Box(
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .size(48.dp)
                         .clip(CircleShape)
                         .background(Color(0x636B6B6B))
+                        .padding(12.dp)
                 ) {
                     Image(
                         painter = painterResource(Res.drawable.play_icon),
@@ -155,7 +154,6 @@ fun DiscoverCard() {
                 Box(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(8.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(Color(0xFF797979))
                         .padding(horizontal = 8.dp, vertical = 4.dp)
@@ -164,7 +162,7 @@ fun DiscoverCard() {
                         Image(
                             painter = painterResource(Res.drawable.star_icon),
                             contentDescription = null,
-                            modifier = Modifier.size(16.dp)
+                            modifier = Modifier
                         )
                         Text(
                             text = "4,7",
@@ -178,7 +176,6 @@ fun DiscoverCard() {
                 Box(
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
-                        .padding(8.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(Color(0xFF797979))
                         .padding(horizontal = 8.dp, vertical = 4.dp)
@@ -190,7 +187,7 @@ fun DiscoverCard() {
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.padding(top = 8.dp))
             Text(
                 text = "How to make sandwich",
                 fontSize = 16.sp,
@@ -204,9 +201,9 @@ fun DiscoverCard() {
             ) {
                 Box(
                     modifier = Modifier
-                        .size(24.dp)
                         .clip(CircleShape)
                         .background(Color(0xFFC4C4C4))
+                        .padding(12.dp)
                 ) {
                     // Avatar image placeholder
                 }
@@ -222,13 +219,13 @@ fun DiscoverCard() {
 }
 
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(modifier: Modifier = Modifier) {
     // Placeholder for bottom navigation bar
-    Spacer(modifier = Modifier.height(122.dp))
+    Spacer(modifier = modifier)
 }
 
 @Composable
-fun HomeIndicator() {
+fun HomeIndicator(modifier: Modifier = Modifier) {
     // Placeholder for home indicator
-    Spacer(modifier = Modifier.height(34.dp))
+    Spacer(modifier = modifier)
 } 

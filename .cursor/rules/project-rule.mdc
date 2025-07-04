@@ -92,3 +92,8 @@ Generate code, corrections, and refactorings that comply with the basic principl
 - Use Navigation Component to manage navigation between activities/fragments
 - Use StateFlow or MutableStateFLow / SharedFlow or MutableSharedFlow to manage UI state
 - Use core-ui for the UI
+
+
+###Compose
+- Composable alway has modifier parameter
+- Children composable alway use modifier parameter by .then(modifier) to apply parent modifier

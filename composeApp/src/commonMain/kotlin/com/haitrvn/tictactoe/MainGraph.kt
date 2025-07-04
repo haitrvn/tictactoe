@@ -44,7 +44,7 @@ internal fun NavGraphBuilder.homeGraph(
     modifier: Modifier = Modifier,
     navigator: Navigator,
 ) {
-    navigation<Home>(startDestination = Home.Main) {
+    navigation<Home>(startDestination = Home.Search) {
         composable<Home.Main> {
             CommonText(text = "Main")
         }

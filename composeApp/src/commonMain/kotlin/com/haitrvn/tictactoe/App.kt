@@ -64,7 +64,7 @@ internal fun App() = AppTheme {
             }
         }) {
         MainGraph(
-            navController = navController, navigator = navigator, startDestination = Auth
+            navController = navController, navigator = navigator, startDestination = Home
         )
     }
 }
