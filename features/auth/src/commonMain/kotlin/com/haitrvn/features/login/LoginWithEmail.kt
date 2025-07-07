@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CommonButton
 import com.haitrvn.coreui.CommonImage
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonTextField
+import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
@@ -66,7 +66,7 @@ fun LoginWithEmail(
 private fun Background(modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
-            .background(color = Color.Cyan)
+            .background(color = CookTheme.colors.primary)
             .then(modifier)
     ) {
         CommonImage(

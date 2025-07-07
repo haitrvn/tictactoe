@@ -6,9 +6,8 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.haitrvn.coreui.theme.AppTheme
+import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.features.home.BottomNavigationBar
-import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
@@ -46,7 +45,7 @@ val navigationItemsLists by lazy {
 
 @Preview
 @Composable
-internal fun App() = AppTheme {
+internal fun App() = CookTheme {
     val (navController, navigator) = rememberNavControllerAndNavigator()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route

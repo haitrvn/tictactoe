@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CommonButton
 import com.haitrvn.coreui.CommonText
 import com.haitrvn.coreui.CommonImage
+import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
@@ -49,7 +49,7 @@ fun Welcome(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(CookTheme.colors.background)
             .then(modifier)
     ) {
         Column(
@@ -69,14 +69,14 @@ fun Welcome(
                 text = "Welcome to PeepPreview!",
                 fontWeight = FontWeight.Bold,
                 fontSize = 28.sp,
-                color = MaterialTheme.colorScheme.primary,
+                color = CookTheme.colors.textPrimary,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(16.dp))
             CommonText(
                 text = "Discover and share the best recipes with our community. Get started now!",
                 fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = CookTheme.colors.textPrimary,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.weight(1f))

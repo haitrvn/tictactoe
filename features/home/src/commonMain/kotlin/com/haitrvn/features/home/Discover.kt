@@ -19,12 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CommonText
+import com.haitrvn.coreui.theme.CookTheme
 import cookapp.resources.home.Res
 import cookapp.resources.home.card_image_1
 import cookapp.resources.home.play_icon
@@ -36,7 +36,7 @@ fun DiscoverScreen(modifier: Modifier = Modifier) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(CookTheme.colors.background),
     ) {
         item {
             StatusBar(modifier = modifier)
@@ -79,27 +79,27 @@ fun Tabs(modifier: Modifier = Modifier) {
     ) {
         Box(
             modifier = Modifier
-                .background(Color(0xFF797979), RoundedCornerShape(10.dp))
+                .background(CookTheme.colors.background, RoundedCornerShape(10.dp))
                 .padding(horizontal = 12.dp, vertical = 8.dp)
         ) {
             Text(
                 text = "Video",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White,
+                color = CookTheme.colors.textPrimary,
                 textAlign = TextAlign.Center
             )
         }
         Box(
             modifier = Modifier
-                .background(Color(0xFF898989), RoundedCornerShape(10.dp))
+                .background(CookTheme.colors.background, RoundedCornerShape(10.dp))
                 .padding(horizontal = 12.dp, vertical = 8.dp)
         ) {
             Text(
                 text = "Recipes",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFFC1C1C1),
+                color = CookTheme.colors.textPrimary,
                 textAlign = TextAlign.Center
             )
         }
@@ -124,7 +124,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
-            .background(Color.White)
+            .background(CookTheme.colors.background)
             .shadow(2.dp, RoundedCornerShape(16.dp))
     ) {
         Column(modifier = Modifier.padding(0.dp)) {
@@ -142,7 +142,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .align(Alignment.Center)
                         .clip(CircleShape)
-                        .background(Color(0x636B6B6B))
+                        .background(CookTheme.colors.textPrimary)
                         .padding(12.dp)
                 ) {
                     Image(
@@ -155,7 +155,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .clip(RoundedCornerShape(8.dp))
-                        .background(Color(0xFF797979))
+                        .background(CookTheme.colors.textPrimary)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -168,7 +168,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                             text = "4,7",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.White,
+                            color = CookTheme.colors.textPrimary,
                             modifier = Modifier.padding(start = 3.dp)
                         )
                     }
@@ -177,13 +177,13 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .clip(RoundedCornerShape(8.dp))
-                        .background(Color(0xFF797979))
+                        .background(CookTheme.colors.textPrimary)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Text(
                         text = "8:12",
                         fontSize = 12.sp,
-                        color = Color.White
+                        color = CookTheme.colors.textPrimary
                     )
                 }
             }
@@ -192,7 +192,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 text = "How to make sandwich",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF181818),
+                color = CookTheme.colors.textPrimary,
                 modifier = Modifier.padding(start = 0.dp, top = 0.dp)
             )
             Row(
@@ -202,7 +202,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 Box(
                     modifier = Modifier
                         .clip(CircleShape)
-                        .background(Color(0xFFC4C4C4))
+                        .background(CookTheme.colors.textPrimary)
                         .padding(12.dp)
                 ) {
                     // Avatar image placeholder
@@ -210,7 +210,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 Text(
                     text = "By Robert hurtson",
                     fontSize = 12.sp,
-                    color = Color(0xFF797979),
+                    color = CookTheme.colors.textPrimary,
                     modifier = Modifier.padding(start = 8.dp)
                 )
             }

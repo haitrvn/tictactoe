@@ -19,12 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CommonButton
 import com.haitrvn.coreui.CommonText
+import com.haitrvn.coreui.theme.CookTheme
 
 @Composable
 private fun Avatar(
@@ -40,7 +40,7 @@ private fun Avatar(
             modifier = Modifier
                 .size(64.dp)
                 .clip(CircleShape)
-                .background(Color.Gray)
+                .background(CookTheme.colors.background)
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
@@ -52,7 +52,6 @@ private fun Avatar(
             CommonText(
                 text = userEmail,
                 fontSize = 14.sp,
-                color = Color.Gray
             )
         }
         CommonButton(
@@ -128,13 +127,11 @@ private fun Privacy(
         CommonText(
             text = "App Version $appVersion",
             fontSize = 12.sp,
-            color = Color.Gray
         )
         Spacer(modifier = Modifier.height(4.dp))
         CommonText(
             text = "Terms of Service",
             fontSize = 12.sp,
-            color = Color.Gray,
             modifier = Modifier.clickable(onClick = onTermsClick)
         )
     }
