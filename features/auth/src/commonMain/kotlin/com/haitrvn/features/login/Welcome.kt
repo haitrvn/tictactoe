@@ -8,9 +8,9 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -21,13 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.haitrvn.coreui.CommonButton
-import com.haitrvn.coreui.CommonText
-import com.haitrvn.coreui.CommonImage
+import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.CookTextButton
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
@@ -59,25 +56,17 @@ fun Welcome(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(32.dp))
-            CommonImage(
-                imageResId = Res.drawable.ic_cyclone1,
-                contentDescription = "App Logo",
+            CookImage(
+                drawableResource = Res.drawable.ic_cyclone1,
                 modifier = Modifier.height(120.dp)
             )
             Spacer(modifier = Modifier.height(32.dp))
-            CommonText(
+            CookBodyText(
                 text = "Welcome to PeepPreview!",
-                fontWeight = FontWeight.Bold,
-                fontSize = 28.sp,
-                color = CookTheme.colors.textPrimary,
-                textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(16.dp))
-            CommonText(
+            CookBodyText(
                 text = "Discover and share the best recipes with our community. Get started now!",
-                fontSize = 16.sp,
-                color = CookTheme.colors.textPrimary,
-                textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.weight(1f))
             AnimatedVisibility(
@@ -89,7 +78,7 @@ fun Welcome(
                     )
                 )
             ) {
-                CommonButton(
+                CookTextButton(
                     text = "Get Started",
                     onClick = { isDoAnimate = true },
                     modifier = Modifier.fillMaxWidth()

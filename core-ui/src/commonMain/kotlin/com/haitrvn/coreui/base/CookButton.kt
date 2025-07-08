@@ -1,13 +1,11 @@
-package com.haitrvn.coreui
+package com.haitrvn.coreui.base
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.ButtonElevation
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,7 +14,8 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.CookTheme
 
 @Composable
-fun CommonButton(
+internal fun CookButton(
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = CookTheme.shapes.small,
     backgroundColor: Color = CookTheme.colors.primary,
@@ -25,12 +24,11 @@ fun CommonButton(
     colors: ButtonColors = buttonColors(
         containerColor = backgroundColor,
         contentColor = contentColor,
-        disabledContainerColor = backgroundColor.copy(alpha = 0.20f),
+        disabledContainerColor = backgroundColor.copy(alpha = 0.2f),
         disabledContentColor = contentColor,
     ),
     enabled: Boolean = true,
-    text: String,
-    onClick: () -> Unit,
+    content: @Composable () -> Unit
 ) {
     Button(
         modifier = modifier,
@@ -41,22 +39,7 @@ fun CommonButton(
         colors = colors
     ) {
         ProvideTextStyle(value = CookTheme.typography.captionBold) {
-            Text(text = text, color = contentColor)
+            content()
         }
     }
 }
-
-@Composable
-fun CommonButton(
-    text: String,
-    enabled: Boolean = true,
-    onClick: () -> Unit,
-) {
-    CommonButton(
-        modifier = Modifier,
-        enabled = enabled,
-        text = text,
-        onClick = onClick
-    )
-}
-

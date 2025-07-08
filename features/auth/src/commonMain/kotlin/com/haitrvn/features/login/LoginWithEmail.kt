@@ -11,11 +11,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.haitrvn.coreui.CommonButton
-import com.haitrvn.coreui.CommonImage
-import com.haitrvn.coreui.CommonText
-import com.haitrvn.coreui.CommonTextField
+import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.CookTextButton
+import com.haitrvn.coreui.CookTextInput
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
@@ -52,10 +51,10 @@ fun LoginWithEmail(
                 viewmodel.dispatch(LoginAction.PasswordChanged(it))
             }
             ErrorMessages(errorMessage = loginState.errorMessage)
-            CommonButton("Login") {
+            CookTextButton("Login") {
                 viewmodel.dispatch(LoginAction.LoginClicked)
             }
-            CommonButton("Register") {
+            CookTextButton("Register") {
                 navigator.navigate(Home.Setting)
             }
         }
@@ -69,15 +68,16 @@ private fun Background(modifier: Modifier = Modifier) {
             .background(color = CookTheme.colors.primary)
             .then(modifier)
     ) {
-        CommonImage(
-            modifier = Modifier.fillMaxSize(), imageResId = Res.drawable.ic_cyclone1
+        CookImage(
+            modifier = Modifier,
+            drawableResource = Res.drawable.ic_cyclone1,
         )
     }
 }
 
 @Composable
 private fun Header(modifier: Modifier = Modifier) {
-    CommonText(text = "Login", fontSize = 30.sp)
+    CookBodyText(text = "Login")
 }
 
 @Composable
@@ -89,10 +89,9 @@ private fun BaseInput(
     onValueChange: (String) -> Unit,
     isPassword: Boolean = false,
 ) {
-    CommonTextField(
+    CookTextInput(
         modifier = Modifier.then(modifier),
         value = value,
-        placeholder = hint,
         isPassword = isPassword
     ) {
         onValueChange(it)
@@ -134,7 +133,7 @@ private fun ErrorMessages(
     errorMessage: String,
 ) {
     if (errorMessage.isNotEmpty()) {
-        CommonText(errorMessage)
+        CookBodyText(text = errorMessage)
     }
 }
 

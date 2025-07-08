@@ -19,11 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.haitrvn.coreui.CommonButton
-import com.haitrvn.coreui.CommonText
+import com.haitrvn.coreui.CookTextButton
+import com.haitrvn.coreui.CookTitleText
 import com.haitrvn.coreui.theme.CookTheme
 
 @Composable
@@ -44,17 +42,10 @@ private fun Avatar(
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
-            CommonText(
-                text = userName,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-            CommonText(
-                text = userEmail,
-                fontSize = 14.sp,
-            )
+            CookTitleText(text = userName)
+            CookTitleText(text = userEmail)
         }
-        CommonButton(
+        CookTextButton(
             text = "Edit",
             onClick = onEditAvatar
         )
@@ -70,10 +61,8 @@ private fun SettingsList(
 ) {
     LazyColumn(modifier = Modifier) {
         item {
-            CommonText(
+            CookTitleText(
                 text = "General",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(vertical = 8.dp)
             )
         }
@@ -84,14 +73,12 @@ private fun SettingsList(
                     .clickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
-                CommonText(text = title)
+                CookTitleText(text = title)
             }
         }
         item {
-            CommonText(
+            CookTitleText(
                 text = "Security",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(vertical = 8.dp)
             )
         }
@@ -102,12 +89,12 @@ private fun SettingsList(
                     .clickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
-                CommonText(text = title)
+                CookTitleText(text = title)
             }
         }
         item {
             Spacer(modifier = Modifier.height(24.dp))
-            CommonButton(
+            CookTextButton(
                 text = "Log Out",
                 onClick = onLogout
             )
@@ -124,14 +111,12 @@ private fun Privacy(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
     ) {
-        CommonText(
+        CookTitleText(
             text = "App Version $appVersion",
-            fontSize = 12.sp,
         )
         Spacer(modifier = Modifier.height(4.dp))
-        CommonText(
+        CookTitleText(
             text = "Terms of Service",
-            fontSize = 12.sp,
             modifier = Modifier.clickable(onClick = onTermsClick)
         )
     }

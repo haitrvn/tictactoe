@@ -46,6 +46,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -54,6 +55,11 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.koin.compose)
+                implementation(libs.coil.core)
+                implementation(libs.coil.compose)
+                implementation(libs.coil.network.core)
+                implementation(libs.coil.network.ktor)
+                implementation(libs.coil.network.cache.control)
             }
         }
 
@@ -61,6 +67,18 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
             }
+        }
+
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        jvmMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
 
         getByName("androidDeviceTest") {

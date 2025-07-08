@@ -1,16 +1,19 @@
-package com.haitrvn.coreui.theme
+package com.haitrvn.coreui.base
 
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.defaultContentColorFor
 
 @Composable
-fun Surface(
+internal fun CookSurface(
     modifier: Modifier = Modifier,
-    shape: Shape = RectangleShape,
+    shape: Shape = RoundedCornerShape(10.dp),
     color: Color = CookTheme.colors.background,
     contentColor: Color = defaultContentColorFor(color),
     content: @Composable () -> Unit
