@@ -1,7 +1,6 @@
 package com.haitrvn.coreui.imageloader
 
 import coil3.PlatformContext
-import coil3.disk.DiskCache
 import kotlinx.cinterop.ExperimentalForeignApi
 import okio.Path
 import okio.Path.Companion.toPath

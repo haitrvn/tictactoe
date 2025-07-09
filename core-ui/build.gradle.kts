@@ -75,6 +75,7 @@ kotlin {
 
         jvmMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+            implementation("com.github.tkuenneth:nativeparameterstoreaccess:0.1.3")
         }
 
         iosMain.dependencies {

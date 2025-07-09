@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalSharedTransitionApi::class)
+
 package com.haitrvn.tictactoe
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -12,7 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.features.home.DiscoverScreen
 import com.haitrvn.features.login.Login
 import com.haitrvn.features.login.LoginWithEmail
@@ -29,24 +33,32 @@ internal fun MainGraph(
     navigator: Navigator,
     navController: NavHostController,
     startDestination: Destination,
+    sharedTransitionScope: SharedTransitionScope,
 ) {
     NavHost(
         modifier = Modifier.fillMaxSize().then(modifier),
         navController = navController,
         startDestination = startDestination
     ) {
-        authGraph(navigator = navigator)
-        homeGraph(navigator = navigator)
+        authGraph(
+            navigator = navigator,
+            sharedTransitionScope = sharedTransitionScope,
+        )
+        homeGraph(
+            navigator = navigator,
+            sharedTransitionScope = sharedTransitionScope,
+        )
     }
 }
 
 internal fun NavGraphBuilder.homeGraph(
     modifier: Modifier = Modifier,
     navigator: Navigator,
+    sharedTransitionScope: SharedTransitionScope,
 ) {
     navigation<Home>(startDestination = Home.Search) {
         composable<Home.Main> {
-            CookBodyText(text = "Main")
+            CookParagraphText(text = "Main")
         }
         composable<Home.Search> {
             DiscoverScreen()
@@ -60,6 +72,7 @@ internal fun NavGraphBuilder.homeGraph(
 internal fun NavGraphBuilder.authGraph(
     modifier: Modifier = Modifier,
     navigator: Navigator,
+    sharedTransitionScope: SharedTransitionScope,
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
         composable<Auth.Welcome>(
@@ -68,16 +81,25 @@ internal fun NavGraphBuilder.authGraph(
             popEnterTransition = { EnterTransition.None },
             popExitTransition = { ExitTransition.None }
         ) {
-            Welcome(navigator = navigator)
+            Welcome(
+                modifier = modifier,
+                navigator = navigator,
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = this@composable,
+            )
         }
         composable<Auth.Login> {
-            Login(navigator = navigator)
+            Login(
+                navigator = navigator,
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = this@composable,
+            )
         }
         composable<Auth.LoginWithEmail> {
             LoginWithEmail(navigator = navigator)
         }
         composable<Auth.Register> {
-            CookBodyText(text = "Register")
+            CookParagraphText(text = "Register")
         }
     }
 }

@@ -3,18 +3,21 @@ package com.haitrvn.coreui.base
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
+import com.haitrvn.coreui.theme.CookTheme
 
 @Composable
 internal fun CookText(
     modifier: Modifier = Modifier,
     text: String,
     style: TextStyle,
+    color: Color = CookTheme.colors.onPrimary,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,
@@ -37,6 +40,7 @@ internal fun CookText(
         maxLines = maxLines,
         minLines = minLines,
         onTextLayout = onTextLayout,
+        color = color,
         style = style,
     )
 }

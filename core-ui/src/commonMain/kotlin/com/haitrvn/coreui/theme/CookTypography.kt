@@ -8,54 +8,59 @@ import androidx.compose.ui.unit.sp
 
 @Immutable
 data class CookTypography(
-        val title1: TextStyle = TextStyle(
-                fontWeight = FontWeight.Medium,
-                fontSize = 24.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 20.sp
-        ),
-        val title2: TextStyle = TextStyle(
-                fontWeight = FontWeight.Medium,
-                fontSize = 22.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 20.sp
-        ),
-        val body1: TextStyle = TextStyle(
-                fontWeight = FontWeight.Medium,
-                fontSize = 16.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 20.sp
-        ),
-        val body1Bold: TextStyle = TextStyle(
-                fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 20.sp
-        ),
-        val body2: TextStyle = TextStyle(
-                fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 18.sp
-        ),
-        val body2Bold: TextStyle = TextStyle(
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 18.sp
-        ),
-        val caption: TextStyle = TextStyle(
-                fontWeight = FontWeight.Medium,
-                fontSize = 12.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 16.sp
-        ),
-        val captionBold: TextStyle = TextStyle(
-                fontWeight = FontWeight.Bold,
-                fontSize = 12.sp,
-                letterSpacing = 0.sp,
-                lineHeight = 16.sp
-        ),
+    val heading: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 56.sp,
+        lineHeight = 68.sp,
+    ),
+    val h1: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        lineHeight = 26.sp,
+    ),
+    val h2: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 20.sp,
+    ),
+    val h3: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 20.sp,
+    ),
+    val h4: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 18.sp,
+    ),
+    val h5: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+        lineHeight = 18.sp,
+    ),
+    val paragraph: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 18.sp,
+    ),
+    val label: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+    ),
+    val small: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+    ),
+    val tiny: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp,
+        lineHeight = 12.sp,
+    ),
 )
+
+fun TextStyle.bold() = copy(fontWeight = FontWeight.Bold)
+fun TextStyle.light() = copy(fontWeight = FontWeight.Light)
 
 internal val LocalTypography = staticCompositionLocalOf { CookTypography() }

@@ -52,6 +52,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.components.resources)
+                implementation(compose.animation)
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.koin.compose)

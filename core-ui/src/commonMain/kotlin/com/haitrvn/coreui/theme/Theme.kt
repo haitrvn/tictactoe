@@ -9,38 +9,36 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 
 val LightColors = CookColor(
-    primary = Blue,
-    background = White,
-    textPrimary = White,
-    onPrimary = White,
-    onBackground = DarkGrey,
-    isLight = true
+    primary = darkPrimary,
+    background = darkBackground,
+    textPrimary = darkTextPrimary,
+    onPrimary = darkOnPrimary,
+    onBackground = darkOnBackground,
 )
 
 val DarkColors = CookColor(
-    primary = Blue,
-    background = DarkGrey,
-    textPrimary = Black,
-    onPrimary = Black,
-    onBackground = Black,
-    isLight = false
+    primary = lightPrimary,
+    background = lightBackground,
+    textPrimary = lightTextPrimary,
+    onPrimary = lightOnPrimary,
+    onBackground = lightOnBackground,
 )
 
 @Composable
 fun CookTheme(
     typography: CookTypography = CookTheme.typography,
     shapes: Shapes = CookTheme.shapes,
-    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) DarkColors else LightColors
+    val systemIsDark = isSystemInDarkTheme()
+    val colors = if (systemIsDark) DarkColors else LightColors
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
     CompositionLocalProvider(
         LocalColors provides rememberedColors,
         LocalShapes provides shapes,
         LocalTypography provides typography,
     ) {
-        ProvideTextStyle(value = typography.body1, content = content)
+        ProvideTextStyle(value = typography.paragraph, content = content)
     }
 }
 

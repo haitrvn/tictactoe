@@ -1,14 +1,26 @@
 package com.haitrvn.coreui.theme
 
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.takeOrElse
 
-val Blue = Color(0xFF3651F1)
-val DarkGrey = Color(0xFF141F33)
-val White = Color(0xffffffff)
-val Black = Color(0xff000000)
+val darkPrimary = Color(0xFFFF6A00)
+val darkBackground = Color(0xcc000000)
+val darkTextPrimary = Color(0xffffffff)
+val darkOnPrimary = Color(0xFF000000)
+val darkOnBackground = Color(0xffffffff)
+
+val lightPrimary = Color(0xFFFF6A00)
+val lightBackground = Color(0xfffefefe)
+val lightTextPrimary = Color(0xcc000000)
+val lightOnPrimary = Color(0xccffffff)
+val lightOnBackground = Color(0xFF000000)
 
 class CookColor(
     primary: Color,
@@ -16,7 +28,6 @@ class CookColor(
     textPrimary: Color,
     onPrimary: Color,
     onBackground: Color,
-    isLight: Boolean
 ) {
 
     var primary by mutableStateOf(primary)
@@ -29,8 +40,6 @@ class CookColor(
         private set
     var onBackground by mutableStateOf(onBackground)
         private set
-    var isLight by mutableStateOf(isLight)
-        private set
 
     fun copy(
         primary: Color = this.primary,
@@ -38,14 +47,12 @@ class CookColor(
         textPrimary: Color = this.textPrimary,
         onPrimary: Color = this.onPrimary,
         onBackground: Color = this.onBackground,
-        isLight: Boolean = this.isLight
     ): CookColor = CookColor(
         primary,
         background,
         textPrimary,
         onPrimary,
         onBackground,
-        isLight
     )
 
     fun updateColorsFrom(other: CookColor) {
@@ -54,7 +61,6 @@ class CookColor(
         textPrimary = other.textPrimary
         onPrimary = other.onPrimary
         onBackground = other.onBackground
-        isLight = other.isLight
     }
 }
 

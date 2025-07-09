@@ -10,8 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookTextButton
 import com.haitrvn.coreui.CookTextInput
@@ -77,7 +78,7 @@ private fun Background(modifier: Modifier = Modifier) {
 
 @Composable
 private fun Header(modifier: Modifier = Modifier) {
-    CookBodyText(text = "Login")
+    CookParagraphText(text = "Login")
 }
 
 @Composable
@@ -133,7 +134,7 @@ private fun ErrorMessages(
     errorMessage: String,
 ) {
     if (errorMessage.isNotEmpty()) {
-        CookBodyText(text = errorMessage)
+        CookParagraphText(text = errorMessage)
     }
 }
 

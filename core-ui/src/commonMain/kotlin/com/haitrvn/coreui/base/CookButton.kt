@@ -38,7 +38,7 @@ internal fun CookButton(
         elevation = elevation,
         colors = colors
     ) {
-        ProvideTextStyle(value = CookTheme.typography.captionBold) {
+        ProvideTextStyle(value = CookTheme.typography.paragraph) {
             content()
         }
     }

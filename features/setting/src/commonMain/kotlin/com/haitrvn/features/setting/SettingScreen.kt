@@ -20,8 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.CookBodyBoldText
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookTextButton
-import com.haitrvn.coreui.CookTitleText
 import com.haitrvn.coreui.theme.CookTheme
 
 @Composable
@@ -42,8 +43,8 @@ private fun Avatar(
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
-            CookTitleText(text = userName)
-            CookTitleText(text = userEmail)
+            CookParagraphText(text = userName)
+            CookParagraphText(text = userEmail)
         }
         CookTextButton(
             text = "Edit",
@@ -61,7 +62,7 @@ private fun SettingsList(
 ) {
     LazyColumn(modifier = Modifier) {
         item {
-            CookTitleText(
+            CookBodyBoldText(
                 text = "General",
                 modifier = Modifier.padding(vertical = 8.dp)
             )
@@ -73,11 +74,11 @@ private fun SettingsList(
                     .clickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
-                CookTitleText(text = title)
+                CookParagraphText(text = title)
             }
         }
         item {
-            CookTitleText(
+            CookBodyBoldText(
                 text = "Security",
                 modifier = Modifier.padding(vertical = 8.dp)
             )
@@ -89,7 +90,7 @@ private fun SettingsList(
                     .clickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
-                CookTitleText(text = title)
+                CookParagraphText(text = title)
             }
         }
         item {
@@ -111,11 +112,11 @@ private fun Privacy(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
     ) {
-        CookTitleText(
+        CookBodyBoldText(
             text = "App Version $appVersion",
         )
         Spacer(modifier = Modifier.height(4.dp))
-        CookTitleText(
+        CookBodyBoldText(
             text = "Terms of Service",
             modifier = Modifier.clickable(onClick = onTermsClick)
         )
