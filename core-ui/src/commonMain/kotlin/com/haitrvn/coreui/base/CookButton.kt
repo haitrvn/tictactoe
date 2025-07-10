@@ -5,7 +5,6 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.ButtonElevation
-import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,8 +37,6 @@ internal fun CookButton(
         elevation = elevation,
         colors = colors
     ) {
-        ProvideTextStyle(value = CookTheme.typography.paragraph) {
-            content()
-        }
+        content()
     }
 }

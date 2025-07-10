@@ -20,9 +20,10 @@ internal fun CookSurface(
 ) {
     Surface(
         modifier = modifier,
-        color = color,
-        contentColor = contentColor,
         shape = shape,
-        content = content
-    )
+        color = color,
+        contentColor = contentColor
+    ) {
+        content()
+    }
 }

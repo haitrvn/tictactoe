@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,9 +19,21 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.CookBigHeadTitle
+import com.haitrvn.coreui.CookHeadTitle
 import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookSurface
+import com.haitrvn.coreui.CookTextButton
+import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
+import cookapp.resources.auth.Res
+import cookapp.resources.auth.login_button_start_cooking
+import cookapp.resources.auth.login_welcome_app_name
+import cookapp.resources.auth.login_welcome_description
+import cookapp.resources.auth.login_welcome_quote
+import cookapp.resources.auth.login_welcome_quote_question
+import org.jetbrains.compose.resources.stringResource
 
 const val HEADER_CONTENT_SCALE = 0.5f
 
@@ -43,41 +55,67 @@ fun Welcome(
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Header(modifier = Modifier.fillMaxWidth().fillMaxHeight(HEADER_CONTENT_SCALE))
-                Buttons(modifier = Modifier.fillMaxSize())
+                Header(
+                    modifier = Modifier.fillMaxWidth().fillMaxHeight(HEADER_CONTENT_SCALE),
+                    url = "https://cdn.attractionsvietnam.com/uploads/2024/03/gioi-thieu-mon-pho-bo-1024x683-1.jpg"
+                )
+                Buttons(modifier = Modifier.fillMaxSize()) {
+                    navigator.navigate(Auth.Login)
+                }
             }
         }
     }
 }
 
 @Composable
-private fun Header(modifier: Modifier = Modifier) {
-    CookSurface(modifier = modifier, color = Color.Yellow) {
+private fun Header(
+    modifier: Modifier = Modifier,
+    url: String,
+) {
+    CookSurface(
+        modifier = modifier.fillMaxSize(),
+        shape = RoundedCornerShape(bottomStart = 50.dp)
+    ) {
         CookImage(
-            modifier = Modifier.fillMaxSize().height(20.dp),
+            modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop,
-            url = "https://static.vecteezy.com/system/resources/previews/013/488/415/non_2x/tasty-fast-food-hand-drawn-for-cute-background-illustration-design-wallpaper-in-pattern-hand-drawn-style-vector.jpg"
+            url = url
         )
-        Box(
+        CookSurface(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp)
+                .fillMaxHeight(0.75f)
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
                             Color.Black.copy(alpha = 0.5f),
-                            Color.Black.copy(alpha = 0.5f),
+                            Color.Transparent,
                         )
                     )
-//                    Color.Black
-                )
+                ),
+            color = Color.Transparent,
+            content = {}
         )
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CookBigHeadTitle(text = stringResource(Res.string.login_welcome_app_name))
+            CookParagraphText(text = stringResource(Res.string.login_welcome_quote))
+        }
     }
 }
 
 @Composable
-private fun Buttons(modifier: Modifier = Modifier) {
-    CookSurface(modifier = modifier, color = Color.Red) {
-
+private fun Buttons(
+    modifier: Modifier = Modifier,
+    onStartCookingClick: () -> Unit
+) {
+    Column() {
+        CookHeadTitle(text = stringResource(Res.string.login_welcome_quote_question))
+        CookHeadTitle(text = stringResource(Res.string.login_welcome_description))
+        CookTextButton(text = stringResource(Res.string.login_button_start_cooking)) {
+            onStartCookingClick()
+        }
     }
 }

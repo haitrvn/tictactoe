@@ -17,7 +17,7 @@ internal fun CookText(
     modifier: Modifier = Modifier,
     text: String,
     style: TextStyle,
-    color: Color = CookTheme.colors.onPrimary,
+    color: Color = CookTheme.colors.textPrimary,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,

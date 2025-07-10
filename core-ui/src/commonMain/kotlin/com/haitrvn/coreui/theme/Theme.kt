@@ -1,22 +1,14 @@
 package com.haitrvn.coreui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
+import com.haitrvn.coreui.CookSurface
 
 val LightColors = CookColor(
-    primary = darkPrimary,
-    background = darkBackground,
-    textPrimary = darkTextPrimary,
-    onPrimary = darkOnPrimary,
-    onBackground = darkOnBackground,
-)
-
-val DarkColors = CookColor(
     primary = lightPrimary,
     background = lightBackground,
     textPrimary = lightTextPrimary,
@@ -24,13 +16,21 @@ val DarkColors = CookColor(
     onBackground = lightOnBackground,
 )
 
+val DarkColors = CookColor(
+    primary = darkPrimary,
+    background = darkBackground,
+    textPrimary = darkTextPrimary,
+    onPrimary = darkOnPrimary,
+    onBackground = darkOnBackground,
+)
+
 @Composable
 fun CookTheme(
     typography: CookTypography = CookTheme.typography,
     shapes: Shapes = CookTheme.shapes,
-    content: @Composable () -> Unit
+    systemIsDark: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit,
 ) {
-    val systemIsDark = isSystemInDarkTheme()
     val colors = if (systemIsDark) DarkColors else LightColors
     val rememberedColors = remember { colors.copy() }.apply { updateColorsFrom(colors) }
     CompositionLocalProvider(
@@ -38,7 +38,9 @@ fun CookTheme(
         LocalShapes provides shapes,
         LocalTypography provides typography,
     ) {
-        ProvideTextStyle(value = typography.paragraph, content = content)
+        CookSurface {
+            content()
+        }
     }
 }
 
