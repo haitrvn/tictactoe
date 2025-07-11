@@ -20,7 +20,6 @@ import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.features.home.DiscoverScreen
 import com.haitrvn.features.login.Login
 import com.haitrvn.features.login.LoginWithEmail
-import com.haitrvn.features.login.Welcome
 import com.haitrvn.features.login.Welcome2
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.navigation.Auth

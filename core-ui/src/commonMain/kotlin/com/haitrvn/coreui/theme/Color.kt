@@ -1,14 +1,10 @@
 package com.haitrvn.coreui.theme
 
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.takeOrElse
 
 val darkPrimary = Color(0xFFFF6A00)
 val darkBackground = Color(0xcc000000)
