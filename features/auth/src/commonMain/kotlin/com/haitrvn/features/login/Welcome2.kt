@@ -1,20 +1,12 @@
-@file:OptIn(ExperimentalSharedTransitionApi::class)
-
 package com.haitrvn.features.login
 
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -25,66 +17,68 @@ import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.CookTextButton
-import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Navigator
+import org.jetbrains.compose.resources.stringResource
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.login_button_start_cooking
 import cookapp.resources.auth.login_welcome_app_name
 import cookapp.resources.auth.login_welcome_description
 import cookapp.resources.auth.login_welcome_quote
 import cookapp.resources.auth.login_welcome_quote_question
-import org.jetbrains.compose.resources.stringResource
-
-const val HEADER_CONTENT_SCALE = 0.5f
 
 @Composable
-fun Welcome(
+fun Welcome2(
     modifier: Modifier = Modifier,
-    navigator: Navigator,
-    sharedTransitionScope: SharedTransitionScope,
-    animatedVisibilityScope: AnimatedVisibilityScope,
+    onStartCookingClick: () -> Unit = {},
 ) {
     CookSurface(
         modifier = Modifier
             .fillMaxSize()
             .then(modifier)
     ) {
-        with(sharedTransitionScope) {
-            Column(
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            WelcomeHeader(
                 modifier = Modifier
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Header(
-                    modifier = Modifier.fillMaxWidth().fillMaxHeight(HEADER_CONTENT_SCALE),
-                    url = "https://cdn.attractionsvietnam.com/uploads/2024/03/gioi-thieu-mon-pho-bo-1024x683-1.jpg"
-                )
-                Buttons(modifier = Modifier.fillMaxSize()) {
-                    navigator.navigate(Auth.Login)
-                }
-            }
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.5f),
+                url = "https://cdn.attractionsvietnam.com/uploads/2024/03/gioi-thieu-mon-pho-bo-1024x683-1.jpg"
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+            WelcomeContent(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+            )
+            Spacer(modifier = Modifier.height(32.dp))
+            WelcomeButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+                onClick = onStartCookingClick
+            )
         }
     }
 }
 
 @Composable
-private fun Header(
+private fun WelcomeHeader(
     modifier: Modifier = Modifier,
     url: String,
 ) {
-    CookSurface(
-        modifier = modifier.fillMaxSize(),
-        shape = RoundedCornerShape(bottomStart = 50.dp)
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(bottomStart = 50.dp, bottomEnd = 50.dp))
     ) {
         CookImage(
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop,
             url = url
         )
-        CookSurface(
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.75f)
+                .fillMaxSize()
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
@@ -92,30 +86,43 @@ private fun Header(
                             Color.Transparent,
                         )
                     )
-                ),
-            color = Color.Transparent,
-            content = {}
+                )
         )
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CookBigHeadTitle(text = stringResource(Res.string.login_welcome_app_name))
+            Spacer(modifier = Modifier.height(8.dp))
             CookParagraphText(text = stringResource(Res.string.login_welcome_quote))
         }
     }
 }
 
 @Composable
-private fun Buttons(
-    modifier: Modifier = Modifier,
-    onStartCookingClick: () -> Unit
+private fun WelcomeContent(
+    modifier: Modifier = Modifier
 ) {
-    Column() {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         CookHeadTitle(text = stringResource(Res.string.login_welcome_quote_question))
+        Spacer(modifier = Modifier.height(8.dp))
         CookHeadTitle(text = stringResource(Res.string.login_welcome_description))
-        CookTextButton(text = stringResource(Res.string.login_button_start_cooking)) {
-            onStartCookingClick()
-        }
     }
 }
+
+@Composable
+private fun WelcomeButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    CookTextButton(
+        text = stringResource(Res.string.login_button_start_cooking),
+        modifier = modifier,
+        onClick = onClick
+    )
+} 

@@ -1,15 +1,19 @@
 @file:OptIn(ExperimentalSharedTransitionApi::class)
 
-package com.haitrvn.tictactoe
+package com.haitrvn.cookapp
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.haitrvn.coreui.CookSurface
+import com.haitrvn.coreui.imageloader.initImageLoader
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.features.home.BottomNavigationBar
 import com.haitrvn.navigation.Auth
@@ -21,12 +25,14 @@ import cookapp.resources.app.ic_home_main
 import cookapp.resources.app.presentation_bottom_main_title
 import cookapp.resources.app.presentation_bottom_search_title
 import cookapp.resources.app.presentation_bottom_setting_title
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
 
 @Composable
-internal fun App() = CookTheme {
+internal fun App(
+    modifier: Modifier = Modifier
+) = CookTheme {
+    initImageLoader()
     val (navController, navigator) = rememberNavControllerAndNavigator()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -44,12 +50,14 @@ internal fun App() = CookTheme {
             }
         }) {
         SharedTransitionLayout {
-            MainGraph(
-                navController = navController,
-                navigator = navigator,
-                startDestination = Auth,
-                sharedTransitionScope = this@SharedTransitionLayout,
-            )
+            CookSurface {
+                MainGraph(
+                    navController = navController,
+                    navigator = navigator,
+                    startDestination = Auth,
+                    sharedTransitionScope = this@SharedTransitionLayout,
+                )
+            }
         }
     }
 }

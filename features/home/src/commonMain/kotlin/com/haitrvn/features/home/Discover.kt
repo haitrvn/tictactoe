@@ -3,7 +3,6 @@ package com.haitrvn.features.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CookParagraphText
+import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.theme.CookTheme
 import cookapp.resources.home.Res
 import cookapp.resources.home.card_image_1
@@ -57,7 +57,7 @@ fun StatusBar(modifier: Modifier = Modifier) {
 
 @Composable
 fun Heading(modifier: Modifier = Modifier) {
-    Box(
+    CookSurface(
         modifier = modifier
             .fillMaxWidth()
     ) {
@@ -75,7 +75,7 @@ fun Tabs(modifier: Modifier = Modifier) {
             .then(modifier),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Box(
+        CookSurface(
             modifier = Modifier
                 .background(CookTheme.colors.background, RoundedCornerShape(10.dp))
                 .padding(horizontal = 12.dp, vertical = 8.dp)
@@ -88,7 +88,7 @@ fun Tabs(modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Center
             )
         }
-        Box(
+        CookSurface(
             modifier = Modifier
                 .background(CookTheme.colors.background, RoundedCornerShape(10.dp))
                 .padding(horizontal = 12.dp, vertical = 8.dp)
@@ -118,7 +118,7 @@ fun CardsSection(modifier: Modifier = Modifier) {
 
 @Composable
 fun DiscoverCard(modifier: Modifier = Modifier) {
-    Box(
+    CookSurface(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
@@ -126,7 +126,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
             .shadow(2.dp, RoundedCornerShape(16.dp))
     ) {
         Column(modifier = Modifier.padding(0.dp)) {
-            Box(
+            CookSurface(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(10.dp))
@@ -136,9 +136,9 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                     contentDescription = null,
                     modifier = Modifier.fillMaxWidth()
                 )
-                Box(
+                CookSurface(
                     modifier = Modifier
-                        .align(Alignment.Center)
+                        .align(Alignment.CenterHorizontally)
                         .clip(CircleShape)
                         .background(CookTheme.colors.textPrimary)
                         .padding(12.dp)
@@ -146,12 +146,10 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                     Image(
                         painter = painterResource(Res.drawable.play_icon),
                         contentDescription = null,
-                        modifier = Modifier.align(Alignment.Center)
                     )
                 }
-                Box(
+                CookSurface(
                     modifier = Modifier
-                        .align(Alignment.TopEnd)
                         .clip(RoundedCornerShape(8.dp))
                         .background(CookTheme.colors.textPrimary)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
@@ -171,9 +169,8 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                         )
                     }
                 }
-                Box(
+                CookSurface(
                     modifier = Modifier
-                        .align(Alignment.BottomEnd)
                         .clip(RoundedCornerShape(8.dp))
                         .background(CookTheme.colors.textPrimary)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
@@ -197,7 +194,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(top = 8.dp)
             ) {
-                Box(
+                CookSurface(
                     modifier = Modifier
                         .clip(CircleShape)
                         .background(CookTheme.colors.textPrimary)

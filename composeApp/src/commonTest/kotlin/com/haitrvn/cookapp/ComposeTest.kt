@@ -1,4 +1,4 @@
-package com.haitrvn.tictactoe
+package com.haitrvn.cookapp
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button

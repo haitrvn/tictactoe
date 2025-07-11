@@ -23,6 +23,7 @@ fun initImageLoader() {
                     .maxSizePercent(0.02)
                     .build()
             }
+            .logger(LoggerImpl())
             .build()
     }
 }

@@ -26,7 +26,7 @@ val DarkColors = CookColor(
 
 @Composable
 fun CookTheme(
-    typography: CookTypography = CookTheme.typography,
+    typography: CookTypography = CookTypography.withFontFamily(),
     shapes: Shapes = CookTheme.shapes,
     systemIsDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,

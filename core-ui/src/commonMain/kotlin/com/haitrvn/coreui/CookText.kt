@@ -6,21 +6,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import com.haitrvn.coreui.theme.CookTheme
-import com.haitrvn.coreui.theme.bold
 import com.haitrvn.coreui.base.CookText as BaseCookText
 
 @Composable
 fun CookBigHeadTitle(
     modifier: Modifier = Modifier,
     text: String,
-    fontStyle: TextStyle = CookTheme.typography.heading.bold(),
+    fontStyle: TextStyle = CookTheme.typography.heading,
+    color: Color = CookTheme.colors.primary,
 ) {
     BaseCookText(
         modifier = modifier,
         text = text,
         style = fontStyle,
         textAlign = TextAlign.Center,
-        color = CookTheme.colors.primary
+        color = color
     )
 }
 
@@ -72,7 +72,7 @@ fun CookLabelText(
 fun CookBodyBoldText(
     modifier: Modifier = Modifier,
     text: String,
-    fontStyle: TextStyle = CookTheme.typography.paragraph.bold(),
+    fontStyle: TextStyle = CookTheme.typography.h4,
 ) {
     BaseCookText(
         modifier = modifier,

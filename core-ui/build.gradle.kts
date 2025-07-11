@@ -60,6 +60,7 @@ kotlin {
                 implementation(libs.coil.network.core)
                 implementation(libs.coil.network.ktor)
                 implementation(libs.coil.network.cache.control)
+                implementation(libs.ktor.client.core)
             }
         }
 
@@ -82,7 +83,9 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
-
+        wasmJsMain.dependencies {
+            implementation("io.ktor:ktor-client-js:3.2.1")
+        }
         getByName("androidDeviceTest") {
             dependencies {
                 implementation(libs.androidx.runner)
@@ -91,4 +94,10 @@ kotlin {
             }
         }
     }
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "cookapp.resources.coreui"
+    generateResClass = auto
 }

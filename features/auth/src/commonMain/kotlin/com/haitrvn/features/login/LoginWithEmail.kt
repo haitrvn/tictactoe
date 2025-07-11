@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.CookParagraphText
+import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.CookTextButton
 import com.haitrvn.coreui.CookTextInput
 import com.haitrvn.coreui.theme.CookTheme
@@ -33,7 +33,7 @@ fun LoginWithEmail(
     navigator: Navigator,
 ) {
     val loginState by viewmodel.uiState.collectAsState()
-    Box(modifier = Modifier.fillMaxSize().then(modifier)) {
+    CookSurface(modifier = Modifier.fillMaxSize().then(modifier)) {
         Background()
         Column(
             modifier = Modifier.fillMaxSize().padding(horizontal = 30.dp).then(modifier),
@@ -64,7 +64,7 @@ fun LoginWithEmail(
 
 @Composable
 private fun Background(modifier: Modifier = Modifier) {
-    Box(
+    CookSurface(
         modifier = Modifier
             .background(color = CookTheme.colors.primary)
             .then(modifier)

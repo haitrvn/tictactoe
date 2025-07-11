@@ -1,0 +1,13 @@
+<resources>
+    <string name="login_header_title">Login</string>
+    <string name="login_hint_email_or_username">Email or username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_button_login">Password</string>
+    <string name="login_button_register">Register</string>
+
+    <string name="login_welcome_app_name">VietCook</string>
+    <string name="login_welcome_quote">Tasty food for your family</string>
+    <string name="login_welcome_quote_question">Ready to serv tasty food?</string>
+    <string name="login_welcome_description">BeautyFood provide you clear explanation tutorial with complete cooking best practice only for you.</string>
+    <string name="login_button_start_cooking">Start Cooking</string>
+</resources>

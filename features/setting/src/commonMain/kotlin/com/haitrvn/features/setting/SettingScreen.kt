@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookBodyBoldText
+import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookTextButton
 import com.haitrvn.coreui.theme.CookTheme
@@ -35,11 +36,12 @@ private fun Avatar(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        Box(
+        CookImage(
             modifier = Modifier
                 .size(64.dp)
                 .clip(CircleShape)
-                .background(CookTheme.colors.background)
+                .background(CookTheme.colors.background),
+            url = ""
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {

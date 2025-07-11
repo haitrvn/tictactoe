@@ -64,17 +64,4 @@ class CookColor(
     }
 }
 
-@Composable
-@ReadOnlyComposable
-fun defaultContentColorFor(backgroundColor: Color): Color =
-    CookTheme.colors.contentColorFor(backgroundColor).takeOrElse { LocalContentColor.current }
-
-private fun CookColor.contentColorFor(backgroundColor: Color): Color {
-    return when (backgroundColor) {
-        primary -> onPrimary
-        background -> onBackground
-        else -> Color.Unspecified
-    }
-}
-
 internal val LocalColors = staticCompositionLocalOf { LightColors }

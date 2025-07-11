@@ -1,4 +1,4 @@
-package com.haitrvn.tictactoe
+package com.haitrvn.cookapp
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

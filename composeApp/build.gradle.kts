@@ -24,6 +24,7 @@ kotlin {
 
     jvm()
     wasmJs {
+        binaries.executable()
         browser()
     }
 
@@ -92,14 +93,14 @@ kotlin {
 }
 
 android {
-    namespace = "com.haitrvn.tictactoe"
+    namespace = "com.haitrvn.cookapp"
     compileSdk = 35
 
     defaultConfig {
         minSdk = 24
         targetSdk = 35
 
-        applicationId = "com.haitrvn.tictactoe.androidApp"
+        applicationId = "com.haitrvn.cookapp"
         versionCode = 1
         versionName = "1.0.0"
 
@@ -115,11 +116,11 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "com.haitrvn.cookapp.MainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.haitrvn.cook"
+            packageName = "com.haitrvn.cookapp"
             packageVersion = "1.0.0"
 
             linux {
@@ -130,7 +131,7 @@ compose.desktop {
             }
             macOS {
                 iconFile.set(project.file("desktopAppIcons/MacosIcon.icns"))
-                bundleID = "com.haitrvn.tictactoe.desktopApp"
+                bundleID = "com.haitrvn.cookapp"
             }
         }
     }
@@ -141,7 +142,7 @@ composeCompiler {
     featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups)
 }
 tasks.withType<ComposeHotRun>().configureEach {
-    mainClass.set("MainKt")
+    mainClass.set("com.haitrvn.cookapp.MainKt")
 }
 
 buildkonfig {

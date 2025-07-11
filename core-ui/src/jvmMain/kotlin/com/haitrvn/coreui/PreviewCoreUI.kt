@@ -14,11 +14,11 @@ fun PreviewApp() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column {
-                    CookBigHeadTitle(text = "ABaC")
-                    CookHeadTitle(text = "ABaC")
-                    CookParagraphText(text = "ABaC")
-                    CookLabelText(text = "ABaC")
-                    CookBodyBoldText(text = "ABaC")
+                    CookBigHeadTitle(text = "BigHeadTitle")
+                    CookHeadTitle(text = "HeadTitle")
+                    CookParagraphText(text = "ParagraphText")
+                    CookLabelText(text = "LabelText")
+                    CookBodyBoldText(text = "BodyBoldText")
                 }
             }
         }
@@ -26,11 +26,11 @@ fun PreviewApp() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column {
-                    CookBigHeadTitle(text = "ABaC")
-                    CookHeadTitle(text = "ABaC")
-                    CookParagraphText(text = "ABaC")
-                    CookLabelText(text = "ABaC")
-                    CookBodyBoldText(text = "ABaC")
+                    CookBigHeadTitle(text = "BigHeadTitle")
+                    CookHeadTitle(text = "HeadTitle")
+                    CookParagraphText(text = "ParagraphText")
+                    CookLabelText(text = "LabelText")
+                    CookBodyBoldText(text = "BodyBoldText")
                 }
             }
         }

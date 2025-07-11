@@ -1,4 +1,4 @@
-package com.haitrvn.tictactoe
+package com.haitrvn.cookapp
 
 import android.app.Application
 import com.haitrvn.data.di.dataModule
