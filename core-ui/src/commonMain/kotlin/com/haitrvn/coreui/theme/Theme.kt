@@ -1,6 +1,7 @@
 package com.haitrvn.coreui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -27,6 +28,7 @@ val DarkColors = CookColor(
 @Composable
 fun CookTheme(
     typography: CookTypography = CookTypography.withFontFamily(),
+    contentPadding: ContentPadding = CookTheme.contentPadding,
     shapes: Shapes = CookTheme.shapes,
     systemIsDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
@@ -37,6 +39,7 @@ fun CookTheme(
         LocalColors provides rememberedColors,
         LocalShapes provides shapes,
         LocalTypography provides typography,
+        LocalContentPadding provides contentPadding,
     ) {
         CookSurface {
             content()
@@ -61,4 +64,9 @@ object CookTheme {
         @ReadOnlyComposable
         @Composable
         get() = LocalShapes.current
+
+    val contentPadding: ContentPadding
+        @ReadOnlyComposable
+        @Composable
+        get() = LocalContentPadding.current
 }

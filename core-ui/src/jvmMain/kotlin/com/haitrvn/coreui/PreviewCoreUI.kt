@@ -22,6 +22,7 @@ fun PreviewApp() {
                     CookSecondaryButton(text = "CookSecondaryButton") {}
                     CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
                     CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
+//                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
                 }
             }
         }
@@ -37,6 +38,7 @@ fun PreviewApp() {
                     CookSecondaryButton(text = "CookSecondaryButton") {}
                     CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
                     CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
+//                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
                 }
             }
         }
