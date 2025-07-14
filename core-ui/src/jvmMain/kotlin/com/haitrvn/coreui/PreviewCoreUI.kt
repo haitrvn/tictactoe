@@ -19,10 +19,10 @@ fun PreviewApp() {
                     CookBodyText(text = "CookBodyText")
                     CookLabelText(text = "CookLabelText")
                     CookCaptionText(text = "CookCaptionText")
-                    CookSecondaryButton(text = "CookSecondaryButton") {}
                     CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
                     CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
-//                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
+                    CookBigSecondaryButton(text = "CookBigSecondaryButton") {}
+                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
                 }
             }
         }
@@ -35,10 +35,10 @@ fun PreviewApp() {
                     CookBodyText(text = "CookBodyText")
                     CookLabelText(text = "CookLabelText")
                     CookCaptionText(text = "CookCaptionText")
-                    CookSecondaryButton(text = "CookSecondaryButton") {}
                     CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
                     CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
-//                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
+                    CookBigSecondaryButton(text = "CookSecondaryButton") {}
+                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
                 }
             }
         }

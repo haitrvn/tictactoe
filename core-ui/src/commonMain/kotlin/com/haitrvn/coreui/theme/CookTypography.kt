@@ -24,6 +24,11 @@ data class CookTypography(
         fontSize = 32.sp,
         lineHeight = 38.sp, // 120%
     ),
+    val subTitle: TextStyle = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 22.sp,
+        lineHeight = 28.sp, // 120%
+    ),
     val body: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
@@ -75,8 +80,8 @@ data class CookTypography(
                     title = title.copy(fontFamily = fontFamilyNormal),
                     body = body.copy(fontFamily = fontFamilyNormal),
                     bodyBold = bodyBold.copy(fontFamily = fontFamilyNormal),
-                    label = label.copy(fontFamily = fontFamilyItalic),
-                    labelBold = labelBold.copy(fontFamily = fontFamilyItalic),
+                    label = label.copy(fontFamily = fontFamilyNormal),
+                    labelBold = labelBold.copy(fontFamily = fontFamilyNormal),
                     caption = caption.copy(fontFamily = fontFamilyItalic),
                     captionBold = captionBold.copy(fontFamily = fontFamilyItalic),
                 )

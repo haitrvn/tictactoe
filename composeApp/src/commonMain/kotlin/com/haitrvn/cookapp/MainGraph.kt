@@ -87,7 +87,9 @@ internal fun NavGraphBuilder.authGraph(
 //                sharedTransitionScope = sharedTransitionScope,
 //                animatedVisibilityScope = this@composable,
 //            )
-            Welcome2()
+            Welcome2     {
+                navigator.navigate(Auth.Login)
+            }
         }
         composable<Auth.Login> {
             Login(

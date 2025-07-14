@@ -3,9 +3,14 @@ import ComposeApp
 
 @main
 struct ComposeApp: App {
+    init() {
+        MainKt.doInitInjection()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView().ignoresSafeArea(.all)
+                .ignoresSafeArea(.keyboard)
         }
     }
 }
