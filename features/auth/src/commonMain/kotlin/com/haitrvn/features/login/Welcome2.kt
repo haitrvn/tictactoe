@@ -18,19 +18,19 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookBigHeadTitle
-import com.haitrvn.coreui.CookHeadTitle
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.CookTextButton
+import com.haitrvn.coreui.CookBigPrimaryButton
+import org.jetbrains.compose.resources.stringResource
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.login_button_start_cooking
 import cookapp.resources.auth.login_welcome_app_name
 import cookapp.resources.auth.login_welcome_description
 import cookapp.resources.auth.login_welcome_quote
 import cookapp.resources.auth.login_welcome_quote_question
-import org.jetbrains.compose.resources.stringResource
+import com.haitrvn.coreui.CookDisplayText
+import com.haitrvn.coreui.CookTitleText
+import com.haitrvn.coreui.CookBodyText
 
 @Composable
 fun Welcome2(
@@ -101,9 +101,9 @@ private fun WelcomeHeader(
                 .padding(bottom = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CookBigHeadTitle(text = stringResource(Res.string.login_welcome_app_name))
+            CookDisplayText(text = stringResource(Res.string.login_welcome_app_name))
             Spacer(modifier = Modifier.height(8.dp))
-            CookParagraphText(text = stringResource(Res.string.login_welcome_quote))
+            CookBodyText(text = stringResource(Res.string.login_welcome_quote))
         }
     }
 }
@@ -116,9 +116,9 @@ private fun WelcomeContent(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CookHeadTitle(text = stringResource(Res.string.login_welcome_quote_question))
+        CookTitleText(text = stringResource(Res.string.login_welcome_quote_question))
         Spacer(modifier = Modifier.height(8.dp))
-        CookHeadTitle(text = stringResource(Res.string.login_welcome_description))
+        CookTitleText(text = stringResource(Res.string.login_welcome_description))
     }
 }
 
@@ -127,7 +127,7 @@ private fun WelcomeButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    CookTextButton(
+    CookBigPrimaryButton(
         text = stringResource(Res.string.login_button_start_cooking),
         modifier = modifier,
         onClick = onClick

@@ -14,11 +14,14 @@ fun PreviewApp() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column {
-                    CookBigHeadTitle(text = "BigHeadTitle")
-                    CookHeadTitle(text = "HeadTitle")
-                    CookParagraphText(text = "ParagraphText")
-                    CookLabelText(text = "LabelText")
-                    CookBodyBoldText(text = "BodyBoldText")
+                    CookDisplayText(text = "CookDisplayText")
+                    CookTitleText(text = "CookTitleText")
+                    CookBodyText(text = "CookBodyText")
+                    CookLabelText(text = "CookLabelText")
+                    CookCaptionText(text = "CookCaptionText")
+                    CookSecondaryButton(text = "CookSecondaryButton") {}
+                    CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
+                    CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
                 }
             }
         }
@@ -26,11 +29,14 @@ fun PreviewApp() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column {
-                    CookBigHeadTitle(text = "BigHeadTitle")
-                    CookHeadTitle(text = "HeadTitle")
-                    CookParagraphText(text = "ParagraphText")
-                    CookLabelText(text = "LabelText")
-                    CookBodyBoldText(text = "BodyBoldText")
+                    CookDisplayText(text = "CookDisplayText")
+                    CookTitleText(text = "CookTitleText")
+                    CookBodyText(text = "CookBodyText")
+                    CookLabelText(text = "CookLabelText")
+                    CookCaptionText(text = "CookCaptionText")
+                    CookSecondaryButton(text = "CookSecondaryButton") {}
+                    CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
+                    CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
                 }
             }
         }

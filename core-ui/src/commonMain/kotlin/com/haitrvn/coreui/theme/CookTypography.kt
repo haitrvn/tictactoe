@@ -14,62 +14,56 @@ import org.jetbrains.compose.resources.Font
 
 @Immutable
 data class CookTypography(
-    val heading: TextStyle = TextStyle(
+    val display: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 56.sp,
-        lineHeight = 62.sp,
+        lineHeight = 67.sp, // 120%
     ),
-    val h1: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 46.sp,
-        lineHeight = 51.sp,
-    ),
-    val h2: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 40.sp,
-        lineHeight = 44.sp,
-    ),
-    val h3: TextStyle = TextStyle(
+    val title: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 32.sp,
-        lineHeight = 36.sp,
+        lineHeight = 38.sp, // 120%
     ),
-    val h4: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 27.sp,
-    ),
-    val h5: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        lineHeight = 22.sp,
-    ),
-    val paragraph: TextStyle = TextStyle(
+    val body: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        lineHeight = 18.sp,
+        lineHeight = 22.sp, // 140%
+    ),
+    val bodyBold: TextStyle = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        lineHeight = 22.sp, // 140%
     ),
     val label: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        lineHeight = 16.sp,
+        lineHeight = 20.sp, // 140%
     ),
-    val small: TextStyle = TextStyle(
+    val labelBold: TextStyle = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp,
+        lineHeight = 20.sp, // 140%
+    ),
+    val caption: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
-        lineHeight = 14.sp,
+        lineHeight = 18.sp, // 150%
     ),
-    val tiny: TextStyle = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 10.sp,
-        lineHeight = 12.sp,
+    val captionBold: TextStyle = TextStyle(
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp,
+        lineHeight = 18.sp, // 150%
     ),
 ) {
-    private val fontFamily: FontFamily
+    private val fontFamilyNormal: FontFamily
         @Composable
         get() = FontFamily(
-            Font(Res.font.nunito_normal, FontWeight.Bold),
-            Font(Res.font.nunito_italic, FontWeight.Normal),
+            Font(Res.font.nunito_normal, FontWeight.Normal),
+        )
+    private val fontFamilyItalic: FontFamily
+        @Composable
+        get() = FontFamily(
+            Font(Res.font.nunito_italic, FontWeight.Bold),
         )
 
     companion object {
@@ -77,23 +71,18 @@ data class CookTypography(
         fun withFontFamily(): CookTypography {
             return CookTypography().run {
                 copy(
-                    heading = heading.copy(fontFamily = fontFamily),
-                    h1 = h1.copy(fontFamily = fontFamily),
-                    h2 = h2.copy(fontFamily = fontFamily),
-                    h3 = h3.copy(fontFamily = fontFamily),
-                    h4 = h4.copy(fontFamily = fontFamily),
-                    h5 = h5.copy(fontFamily = fontFamily),
-                    paragraph = paragraph.copy(fontFamily = fontFamily),
-                    label = label.copy(fontFamily = fontFamily),
-                    small = small.copy(fontFamily = fontFamily),
-                    tiny = tiny.copy(fontFamily = fontFamily),
+                    display = display.copy(fontFamily = fontFamilyNormal),
+                    title = title.copy(fontFamily = fontFamilyNormal),
+                    body = body.copy(fontFamily = fontFamilyNormal),
+                    bodyBold = bodyBold.copy(fontFamily = fontFamilyNormal),
+                    label = label.copy(fontFamily = fontFamilyItalic),
+                    labelBold = labelBold.copy(fontFamily = fontFamilyItalic),
+                    caption = caption.copy(fontFamily = fontFamilyItalic),
+                    captionBold = captionBold.copy(fontFamily = fontFamilyItalic),
                 )
             }
         }
     }
 }
-
-fun TextStyle.bold() = copy(fontWeight = FontWeight.Bold)
-fun TextStyle.light() = copy(fontWeight = FontWeight.Light)
 
 internal val LocalTypography = staticCompositionLocalOf { CookTypography() }

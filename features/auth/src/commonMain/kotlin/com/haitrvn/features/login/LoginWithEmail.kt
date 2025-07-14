@@ -10,10 +10,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.CookBodyText
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.CookTextButton
+import com.haitrvn.coreui.CookBigPrimaryButton
 import com.haitrvn.coreui.CookTextInput
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.Home
@@ -51,10 +51,10 @@ fun LoginWithEmail(
                 viewmodel.dispatch(LoginAction.PasswordChanged(it))
             }
             ErrorMessages(errorMessage = loginState.errorMessage)
-            CookTextButton("Login") {
+            CookBigPrimaryButton("Login") {
                 viewmodel.dispatch(LoginAction.LoginClicked)
             }
-            CookTextButton("Register") {
+            CookBigPrimaryButton("Register") {
                 navigator.navigate(Home.Setting)
             }
         }
@@ -77,7 +77,7 @@ private fun Background(modifier: Modifier = Modifier) {
 
 @Composable
 private fun Header(modifier: Modifier = Modifier) {
-    CookParagraphText(text = "Login")
+    CookBodyText(text = "Login")
 }
 
 @Composable
@@ -133,7 +133,7 @@ private fun ErrorMessages(
     errorMessage: String,
 ) {
     if (errorMessage.isNotEmpty()) {
-        CookParagraphText(text = errorMessage)
+        CookBodyText(text = errorMessage)
     }
 }
 

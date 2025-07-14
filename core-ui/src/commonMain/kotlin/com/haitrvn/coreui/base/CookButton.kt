@@ -1,10 +1,12 @@
 package com.haitrvn.coreui.base
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.ButtonElevation
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,6 +38,36 @@ internal fun CookButton(
         shape = shape,
         elevation = elevation,
         colors = colors
+    ) {
+        content()
+    }
+}
+
+@Composable
+internal fun CookOutlineButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    shape: Shape = CookTheme.shapes.small,
+    outlineColor: Color = CookTheme.colors.primary,
+    contentColor: Color = CookTheme.colors.primary,
+    elevation: ButtonElevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = 0.dp),
+    colors: ButtonColors = buttonColors(
+        containerColor = Color.Transparent,
+        contentColor = contentColor,
+        disabledContainerColor = Color.Transparent,
+        disabledContentColor = contentColor.copy(alpha = 0.2f),
+    ),
+    enabled: Boolean = true,
+    content: @Composable () -> Unit
+) {
+    OutlinedButton(
+        modifier = modifier,
+        onClick = onClick,
+        enabled = enabled,
+        shape = shape,
+        elevation = elevation,
+        colors = colors,
+        border = BorderStroke(width = 1.dp, color = if (enabled) outlineColor else outlineColor.copy(alpha = 0.2f))
     ) {
         content()
     }
