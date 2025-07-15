@@ -18,9 +18,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookDisplayText
+import com.haitrvn.coreui.CookHeaderText
 import com.haitrvn.coreui.CookTitleText
-import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.CookBigPrimaryButton
@@ -99,8 +99,8 @@ private fun Header(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CookDisplayText(text = stringResource(Res.string.login_welcome_app_name))
-            CookBodyText(text = stringResource(Res.string.login_welcome_quote))
+            CookHeaderText(text = stringResource(Res.string.login_welcome_app_name))
+            CookParagraphText(text = stringResource(Res.string.login_welcome_quote))
         }
     }
 }

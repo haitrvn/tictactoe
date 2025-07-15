@@ -14,14 +14,17 @@ fun PreviewApp() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column {
-                    CookDisplayText(text = "CookDisplayText")
+                    CookHeaderText(text = "CookHeaderText")
                     CookTitleText(text = "CookTitleText")
-                    CookBodyText(text = "CookBodyText")
+                    CookSubTitleText(text = "CookSubTitleText")
                     CookLabelText(text = "CookLabelText")
-                    CookCaptionText(text = "CookCaptionText")
+                    CookParagraphText(text = "CookParagraphText")
+                    CookSmallText(text = "CookSmallText")
+                    CookSmallBodyText(text = "CookSmallBodyText")
+                    CookTinyText(text = "CookTinyText")
                     CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
                     CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
-                    CookBigSecondaryButton(text = "CookBigSecondaryButton") {}
+                    CookBigSecondaryButton(text = "CookSecondaryButton") {}
                     CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
                 }
             }
@@ -30,11 +33,14 @@ fun PreviewApp() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column {
-                    CookDisplayText(text = "CookDisplayText")
+                    CookHeaderText(text = "CookHeaderText")
                     CookTitleText(text = "CookTitleText")
-                    CookBodyText(text = "CookBodyText")
+                    CookSubTitleText(text = "CookSubTitleText")
                     CookLabelText(text = "CookLabelText")
-                    CookCaptionText(text = "CookCaptionText")
+                    CookParagraphText(text = "CookParagraphText")
+                    CookSmallText(text = "CookSmallText")
+                    CookSmallBodyText(text = "CookSmallBodyText")
+                    CookTinyText(text = "CookTinyText")
                     CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
                     CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
                     CookBigSecondaryButton(text = "CookSecondaryButton") {}

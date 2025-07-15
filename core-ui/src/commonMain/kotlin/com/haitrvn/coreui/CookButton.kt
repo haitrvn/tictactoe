@@ -19,12 +19,13 @@ fun CookBigPrimaryButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
-        contentPadding = CookTheme.contentPadding.medium
+        contentPadding = CookTheme.contentPadding.medium,
+        shape = CookTheme.shapes.medium,
     ) {
         BaseCookText(
             modifier = modifier,
             text = text,
-            style = CookTheme.typography.subTitle,
+            style = CookTheme.typography.subtitle,
             textAlign = TextAlign.Center,
             color = CookTheme.colors.onPrimary
         )
@@ -64,11 +65,13 @@ fun CookBigSecondaryButton(
         onClick = onClick,
         modifier = modifier,
         enabled = enabled,
+        contentPadding = CookTheme.contentPadding.medium,
+        shape = CookTheme.shapes.medium,
     ) {
         BaseCookText(
             modifier = modifier,
             text = text,
-            style = CookTheme.typography.bodyBold,
+            style = CookTheme.typography.subtitle,
             textAlign = TextAlign.Center,
             color = CookTheme.colors.primary
         )
@@ -90,7 +93,7 @@ fun CookSmallSecondaryButton(
         BaseCookText(
             modifier = modifier,
             text = text,
-            style = CookTheme.typography.caption,
+            style = CookTheme.typography.label,
             textAlign = TextAlign.Center,
             color = CookTheme.colors.primary
         )

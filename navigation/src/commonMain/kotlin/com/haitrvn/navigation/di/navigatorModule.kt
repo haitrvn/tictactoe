@@ -6,7 +6,8 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val navigationMode = module {
-    single { param ->
+    //Singleton + recomposition -> crash (navController not change)
+    factory { param ->
         NavigatorImpl(param.get())
     } bind Navigator::class
 }

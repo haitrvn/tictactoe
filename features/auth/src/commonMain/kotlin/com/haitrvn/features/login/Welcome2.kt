@@ -28,9 +28,9 @@ import cookapp.resources.auth.login_welcome_app_name
 import cookapp.resources.auth.login_welcome_description
 import cookapp.resources.auth.login_welcome_quote
 import cookapp.resources.auth.login_welcome_quote_question
-import com.haitrvn.coreui.CookDisplayText
+import com.haitrvn.coreui.CookHeaderText
 import com.haitrvn.coreui.CookTitleText
-import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookParagraphText
 
 @Composable
 fun Welcome2(
@@ -101,9 +101,9 @@ private fun WelcomeHeader(
                 .padding(bottom = 32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CookDisplayText(text = stringResource(Res.string.login_welcome_app_name))
+            CookHeaderText(text = stringResource(Res.string.login_welcome_app_name))
             Spacer(modifier = Modifier.height(8.dp))
-            CookBodyText(text = stringResource(Res.string.login_welcome_quote))
+            CookParagraphText(text = stringResource(Res.string.login_welcome_quote))
         }
     }
 }

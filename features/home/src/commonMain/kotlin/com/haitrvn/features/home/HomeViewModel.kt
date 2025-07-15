@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package com.haitrvn.features.home
 
 import androidx.lifecycle.ViewModel
@@ -6,6 +8,7 @@ import com.haitrvn.core.flatMapFirst
 import com.haitrvn.domain.model.UserLogin
 import com.haitrvn.domain.usecase.UserLoginUseCase
 import com.haitrvn.domain.usecase.UserLoginValidationUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

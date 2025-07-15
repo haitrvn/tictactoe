@@ -3,12 +3,13 @@ package com.haitrvn.coreui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.base.CookText as BaseCookText
 
 @Composable
-fun CookDisplayText(
+fun CookHeaderText(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = CookTheme.colors.primary,
@@ -16,7 +17,7 @@ fun CookDisplayText(
     BaseCookText(
         modifier = modifier,
         text = text,
-        style = CookTheme.typography.display,
+        style = CookTheme.typography.header,
         textAlign = TextAlign.Center,
         color = color
     )
@@ -27,6 +28,7 @@ fun CookTitleText(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = CookTheme.colors.textPrimary,
+    style: TextStyle = CookTheme.typography.title,
 ) {
     BaseCookText(
         modifier = modifier,
@@ -38,19 +40,18 @@ fun CookTitleText(
 }
 
 @Composable
-fun CookBodyText(
+fun CookSubTitleText(
     modifier: Modifier = Modifier,
     text: String,
-    bold: Boolean = false,
     color: Color = CookTheme.colors.textPrimary,
+    style: TextStyle = CookTheme.typography.subtitle,
 ) {
-    val style = if (bold) CookTheme.typography.bodyBold else CookTheme.typography.body
     BaseCookText(
         modifier = modifier,
         text = text,
-        style = style,
         textAlign = TextAlign.Center,
-        color = color
+        color = color,
+        style = style,
     )
 }
 
@@ -58,10 +59,9 @@ fun CookBodyText(
 fun CookLabelText(
     modifier: Modifier = Modifier,
     text: String,
-    bold: Boolean = false,
     color: Color = CookTheme.colors.textPrimary,
+    style: TextStyle = CookTheme.typography.label,
 ) {
-    val style = if (bold) CookTheme.typography.labelBold else CookTheme.typography.label
     BaseCookText(
         modifier = modifier,
         text = text,
@@ -72,13 +72,60 @@ fun CookLabelText(
 }
 
 @Composable
-fun CookCaptionText(
+fun CookParagraphText(
     modifier: Modifier = Modifier,
     text: String,
-    bold: Boolean = false,
     color: Color = CookTheme.colors.textPrimary,
+    style: TextStyle = CookTheme.typography.paragraph,
 ) {
-    val style = if (bold) CookTheme.typography.captionBold else CookTheme.typography.caption
+    BaseCookText(
+        modifier = modifier,
+        text = text,
+        style = style,
+        textAlign = TextAlign.Center,
+        color = color
+    )
+}
+
+@Composable
+fun CookSmallText(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = CookTheme.colors.textPrimary,
+    style: TextStyle = CookTheme.typography.small,
+    ) {
+    BaseCookText(
+        modifier = modifier,
+        text = text,
+        style = style,
+        textAlign = TextAlign.Center,
+        color = color
+    )
+}
+
+@Composable
+fun CookSmallBodyText(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = CookTheme.colors.textPrimary,
+    style: TextStyle = CookTheme.typography.smallBold,
+    ) {
+    BaseCookText(
+        modifier = modifier,
+        text = text,
+        style = style,
+        textAlign = TextAlign.Center,
+        color = color
+    )
+}
+
+@Composable
+fun CookTinyText(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = CookTheme.colors.textPrimary,
+    style: TextStyle = CookTheme.typography.tiny,
+) {
     BaseCookText(
         modifier = modifier,
         text = text,

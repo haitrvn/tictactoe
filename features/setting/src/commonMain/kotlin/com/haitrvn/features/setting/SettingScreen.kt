@@ -20,7 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookBigPrimaryButton
 import com.haitrvn.coreui.theme.CookTheme
@@ -44,8 +44,8 @@ private fun Avatar(
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {
-            CookBodyText(text = userName)
-            CookBodyText(text = userEmail)
+            CookParagraphText(text = userName)
+            CookParagraphText(text = userEmail)
         }
         CookBigPrimaryButton(
             text = "Edit",
@@ -63,10 +63,9 @@ private fun SettingsList(
 ) {
     LazyColumn(modifier = Modifier) {
         item {
-            CookBodyText(
+            CookParagraphText(
                 text = "General",
                 modifier = Modifier.padding(vertical = 8.dp),
-                bold = true
             )
         }
         items(generalSettings) { title ->
@@ -76,14 +75,13 @@ private fun SettingsList(
                     .clickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
-                CookBodyText(text = title)
+                CookParagraphText(text = title)
             }
         }
         item {
-            CookBodyText(
+            CookParagraphText(
                 text = "Security",
                 modifier = Modifier.padding(vertical = 8.dp),
-                bold = true
             )
         }
         items(securitySettings) { title ->
@@ -93,7 +91,7 @@ private fun SettingsList(
                     .clickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
-                CookBodyText(text = title)
+                CookParagraphText(text = title)
             }
         }
         item {
@@ -115,15 +113,13 @@ private fun Privacy(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
     ) {
-        CookBodyText(
+        CookParagraphText(
             text = "App Version $appVersion",
-            bold = true
         )
         Spacer(modifier = Modifier.height(4.dp))
-        CookBodyText(
+        CookParagraphText(
             text = "Terms of Service",
             modifier = Modifier.clickable(onClick = onTermsClick),
-            bold = true
         )
     }
 }

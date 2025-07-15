@@ -19,21 +19,19 @@ internal val LocalContentPadding = staticCompositionLocalOf {
 }
 
 data class ContentPadding(
-    val default: PaddingValues = PaddingValues(2.dp),
+    val default: PaddingValues = PaddingValues(
+        all = 2.dp
+    ),
     val small: PaddingValues = PaddingValues(
-        horizontal = 12.dp,
-        vertical = 4.dp
-    ),
-    val medium: PaddingValues = PaddingValues(
         horizontal = 16.dp,
-        vertical = 5.dp
-    ),
-    val large: PaddingValues = PaddingValues(
-        horizontal = 24.dp,
         vertical = 8.dp
     ),
-    val extraLarge: PaddingValues = PaddingValues(
-        horizontal = 32.dp,
+    val medium: PaddingValues = PaddingValues(
+        horizontal = 24.dp,
         vertical = 10.dp
-    )
+    ),
+    val large: PaddingValues = PaddingValues(
+        horizontal = 40.dp,
+        vertical = 20.dp
+    ),
 )

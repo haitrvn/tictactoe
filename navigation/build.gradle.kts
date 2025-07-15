@@ -39,6 +39,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(projects.coreUi)
+                implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.navigation.compose)
                 implementation(libs.kotlinx.serialization.json)

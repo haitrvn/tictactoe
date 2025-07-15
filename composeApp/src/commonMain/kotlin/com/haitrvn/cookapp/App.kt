@@ -7,10 +7,13 @@ import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.haitrvn.core.Log
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.imageloader.initImageLoader
 import com.haitrvn.coreui.theme.CookTheme
@@ -26,13 +29,20 @@ import cookapp.resources.app.presentation_bottom_search_title
 import cookapp.resources.app.presentation_bottom_setting_title
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
+import org.koin.mp.KoinPlatform.getKoin
 
 @Composable
 internal fun App(
     modifier: Modifier = Modifier
 ) = CookTheme {
     initImageLoader()
-    val (navController, navigator) = rememberNavControllerAndNavigator()
+//    val navController: NavHostController = rememberNavController()
+//    val navigator = koinInject<Navigator> { parametersOf(navController) }
+    val navController = rememberNavController()
+    val navigator: Navigator by remember(navController) {
+        Log.d("nav: $navController")
+        mutableStateOf(getKoin().get<Navigator>(parameters = { parametersOf(navController) }))
+    }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
     Scaffold(
@@ -59,13 +69,6 @@ internal fun App(
             }
         }
     }
-}
-
-@Composable
-private fun rememberNavControllerAndNavigator(): Pair<NavHostController, Navigator> {
-    val navController: NavHostController = rememberNavController()
-    val navigator = koinInject<Navigator> { parametersOf(navController) }
-    return navController to navigator
 }
 
 val navigationItemsLists by lazy {

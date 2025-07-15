@@ -6,7 +6,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.navigation.NavigationItem
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
@@ -31,7 +31,7 @@ fun BottomNavigationBar(
                     )
                 },
                 label = {
-                    CookBodyText(
+                    CookParagraphText(
                         text = stringResource(navigationItem.title),
                     )
                 },

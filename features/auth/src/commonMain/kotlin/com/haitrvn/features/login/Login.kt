@@ -20,7 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookDisplayText
+import com.haitrvn.coreui.CookHeaderText
 import com.haitrvn.coreui.CookLabelText
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.CookBigPrimaryButton
@@ -81,7 +81,7 @@ private fun Header(modifier: Modifier = Modifier) {
     CookSurface(
         modifier = modifier
     ) {
-        CookDisplayText(
+        CookHeaderText(
             modifier = Modifier,
             text = stringResource(Res.string.login_welcome_app_name),
         )

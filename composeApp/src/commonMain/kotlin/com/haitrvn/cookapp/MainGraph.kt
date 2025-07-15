@@ -16,7 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.haitrvn.coreui.CookBodyText
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.features.home.DiscoverScreen
 import com.haitrvn.features.login.Login
 import com.haitrvn.features.login.LoginWithEmail
@@ -58,7 +58,7 @@ internal fun NavGraphBuilder.homeGraph(
 ) {
     navigation<Home>(startDestination = Home.Search) {
         composable<Home.Main> {
-            CookBodyText(text = "Main")
+            CookParagraphText(text = "Main")
         }
         composable<Home.Search> {
             DiscoverScreen()
@@ -102,7 +102,7 @@ internal fun NavGraphBuilder.authGraph(
             LoginWithEmail(navigator = navigator)
         }
         composable<Auth.Register> {
-            CookBodyText(text = "Register")
+            CookParagraphText(text = "Register")
         }
     }
 }
