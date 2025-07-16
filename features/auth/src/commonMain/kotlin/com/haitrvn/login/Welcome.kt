@@ -106,7 +106,7 @@ fun Welcome(
                 modifier = Modifier.padding(bottom = 80.dp)
             ) {
                 CookHeaderText(
-                    text = "Let's\nCooking",
+                    text = "Let's start Cooking",
                     color = Color.White,
                     modifier = Modifier.padding(bottom = 24.dp)
                 )

@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 
 interface Navigator {
-    val currentBackStackEntryFlow: MutableSharedFlow<Destination>
     fun navigate(
         destination: Destination,
         popUpToRoute: Destination? = null,

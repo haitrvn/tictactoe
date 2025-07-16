@@ -3,30 +3,23 @@ package com.haitrvn.navigation
 import kotlinx.serialization.Serializable
 
 sealed interface Destination {
-    val isBackable: Boolean
-        get() = false
     val deeplinkPattern: String?
         get() = null
-}
-
-sealed interface BackableDestination : Destination {
-    override val isBackable: Boolean
-        get() = true
 }
 
 @Serializable
 data object Auth : Destination {
     @Serializable
-    data object Welcome : BackableDestination
+    data object Welcome : Destination
 
     @Serializable
-    data object Login : BackableDestination
+    data object Login : Destination
 
     @Serializable
-    data object LoginWithEmail : BackableDestination
+    data object LoginWithEmail : Destination
 
     @Serializable
-    data class Register(val email: String = "") : BackableDestination
+    data class Register(val email: String = "") : Destination
 }
 
 

@@ -13,16 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.imageloader.initImageLoader
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.home.BottomNavigationBar
 import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.BackableDestination
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
-import com.haitrvn.navigation.currentDestinationAsState
 import cookapp.resources.app.Res
 import cookapp.resources.app.ic_home_main
 import cookapp.resources.app.presentation_bottom_main_title
@@ -36,21 +33,16 @@ internal fun App(
     modifier: Modifier = Modifier
 ) = CookTheme {
     initImageLoader()
-//    val navController: NavHostController = rememberNavController()
-//    val navigator = koinInject<Navigator> { parametersOf(navController) }
     val navController = rememberNavController()
     val navigator: Navigator by remember(navController) {
         mutableStateOf(getKoin().get<Navigator>(parameters = { parametersOf(navController) }))
     }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val currentDestination = navigator.currentDestinationAsState()
+    val isShowScaffold = currentRoute?.contains(Home::class.qualifiedName.toString()) == true
     Scaffold(
-        topBar = {
-            Header(isBackable = currentDestination.value?.isBackable == true, title = currentDestination.value.toString() + currentDestination.value?.isBackable)
-        },
         bottomBar = {
-            if (currentRoute?.contains(Home::class.qualifiedName.toString()) == true) {
+            if (isShowScaffold) {
                 BottomNavigationBar(
                     items = navigationItemsLists,
                     currentRoute = currentRoute,
