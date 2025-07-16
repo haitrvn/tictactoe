@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package com.haitrvn.features.home
+package com.haitrvn.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

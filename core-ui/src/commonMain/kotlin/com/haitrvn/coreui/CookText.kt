@@ -56,7 +56,7 @@ fun CookSubTitleText(
 }
 
 @Composable
-fun CookLabelText(
+fun CookLabel1Text(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = CookTheme.colors.textPrimary,
@@ -104,7 +104,7 @@ fun CookSmallText(
 }
 
 @Composable
-fun CookSmallBodyText(
+fun CookLabel2Text(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = CookTheme.colors.textPrimary,

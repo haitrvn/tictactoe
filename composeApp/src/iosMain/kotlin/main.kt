@@ -7,8 +7,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.ComposeUIViewController
 import com.haitrvn.cookapp.App
 import com.haitrvn.data.di.dataModule
-import com.haitrvn.features.home.di.homeModule
-import com.haitrvn.features.login.di.loginModule
+import com.haitrvn.home.di.homeModule
+import com.haitrvn.login.di.loginModule
 import com.haitrvn.navigation.di.navigationMode
 import org.koin.core.context.startKoin
 import platform.UIKit.UIViewController

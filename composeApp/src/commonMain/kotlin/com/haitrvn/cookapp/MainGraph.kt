@@ -17,15 +17,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.haitrvn.coreui.CookParagraphText
-import com.haitrvn.features.home.DiscoverScreen
-import com.haitrvn.features.login.Login
-import com.haitrvn.features.login.LoginWithEmail
-import com.haitrvn.features.login.Welcome2
+import com.haitrvn.login.Login
+import com.haitrvn.login.LoginViewModel
+import com.haitrvn.login.LoginWithEmail
+import com.haitrvn.login.Welcome
 import com.haitrvn.features.setting.Setting
+import com.haitrvn.home.DiscoverScreen
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
+import org.koin.compose.koinInject
 
 @Composable
 internal fun MainGraph(
@@ -58,7 +60,7 @@ internal fun NavGraphBuilder.homeGraph(
 ) {
     navigation<Home>(startDestination = Home.Search) {
         composable<Home.Main> {
-            CookParagraphText(text = "Main")
+            com.haitrvn.home.Home()
         }
         composable<Home.Search> {
             DiscoverScreen()
@@ -81,19 +83,15 @@ internal fun NavGraphBuilder.authGraph(
             popEnterTransition = { EnterTransition.None },
             popExitTransition = { ExitTransition.None }
         ) {
-//            Welcome(
-//                modifier = modifier,
-//                navigator = navigator,
-//                sharedTransitionScope = sharedTransitionScope,
-//                animatedVisibilityScope = this@composable,
-//            )
-            Welcome2     {
+            Welcome {
                 navigator.navigate(Auth.Login)
             }
         }
         composable<Auth.Login> {
+            val viewmodel = koinInject<LoginViewModel>()
             Login(
                 navigator = navigator,
+                viewmodel = viewmodel,
                 sharedTransitionScope = sharedTransitionScope,
                 animatedVisibilityScope = this@composable,
             )

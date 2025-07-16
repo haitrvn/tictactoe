@@ -24,6 +24,7 @@ kotlin {
         }.configure {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
+        experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
     }
 
     jvm()
@@ -76,7 +77,6 @@ kotlin {
 
         jvmMain.dependencies {
             implementation(libs.ktor.client.okhttp)
-            implementation("com.github.tkuenneth:nativeparameterstoreaccess:0.1.3")
             implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.8.0")
         }
 

@@ -69,6 +69,10 @@ kotlin {
             }
         }
 
+        jvmMain.dependencies {
+            implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.8.0")
+        }
+
         getByName("androidDeviceTest") {
             dependencies {
                 implementation(libs.androidx.runner)

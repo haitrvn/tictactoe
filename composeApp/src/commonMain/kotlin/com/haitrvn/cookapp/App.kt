@@ -10,24 +10,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.haitrvn.core.Log
 import com.haitrvn.coreui.CookSurface
+import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.imageloader.initImageLoader
 import com.haitrvn.coreui.theme.CookTheme
-import com.haitrvn.features.home.BottomNavigationBar
+import com.haitrvn.home.BottomNavigationBar
 import com.haitrvn.navigation.Auth
+import com.haitrvn.navigation.BackableDestination
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
+import com.haitrvn.navigation.currentDestinationAsState
 import cookapp.resources.app.Res
 import cookapp.resources.app.ic_home_main
 import cookapp.resources.app.presentation_bottom_main_title
 import cookapp.resources.app.presentation_bottom_search_title
 import cookapp.resources.app.presentation_bottom_setting_title
-import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -40,12 +40,15 @@ internal fun App(
 //    val navigator = koinInject<Navigator> { parametersOf(navController) }
     val navController = rememberNavController()
     val navigator: Navigator by remember(navController) {
-        Log.d("nav: $navController")
         mutableStateOf(getKoin().get<Navigator>(parameters = { parametersOf(navController) }))
     }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val currentDestination = navigator.currentDestinationAsState()
     Scaffold(
+        topBar = {
+            Header(isBackable = currentDestination.value?.isBackable == true, title = currentDestination.value.toString() + currentDestination.value?.isBackable)
+        },
         bottomBar = {
             if (currentRoute?.contains(Home::class.qualifiedName.toString()) == true) {
                 BottomNavigationBar(

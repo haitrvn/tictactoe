@@ -8,12 +8,16 @@ import androidx.compose.ui.graphics.Color
 
 val darkPrimary = Color(0xFFFF6A00)
 val darkBackground = Color(0xcc000000)
+
+val darkSecondaryBackground = Color(0xff707070)
 val darkTextPrimary = Color(0xffffffff)
 val darkOnPrimary = Color(0xFF000000)
 val darkOnBackground = Color(0xffffffff)
 
 val lightPrimary = Color(0xFFFF6A00)
 val lightBackground = Color(0xfffefefe)
+
+val lightSecondaryBackground = Color(0xff7f7f7f)
 val lightTextPrimary = Color(0xcc000000)
 val lightOnPrimary = Color(0xccffffff)
 val lightOnBackground = Color(0xFF000000)
@@ -21,6 +25,7 @@ val lightOnBackground = Color(0xFF000000)
 class CookColor(
     primary: Color,
     background: Color,
+    secondaryBackground: Color,
     textPrimary: Color,
     onPrimary: Color,
     onBackground: Color,
@@ -29,6 +34,8 @@ class CookColor(
     var primary by mutableStateOf(primary)
         private set
     var background by mutableStateOf(background)
+        private set
+    var secondaryBackground by mutableStateOf(secondaryBackground)
         private set
     var textPrimary by mutableStateOf(textPrimary)
         private set
@@ -40,12 +47,14 @@ class CookColor(
     fun copy(
         primary: Color = this.primary,
         background: Color = this.background,
+        secondaryBackground: Color = this.secondaryBackground,
         textPrimary: Color = this.textPrimary,
         onPrimary: Color = this.onPrimary,
         onBackground: Color = this.onBackground,
     ): CookColor = CookColor(
         primary,
         background,
+        secondaryBackground,
         textPrimary,
         onPrimary,
         onBackground,
@@ -54,6 +63,7 @@ class CookColor(
     fun updateColorsFrom(other: CookColor) {
         primary = other.primary
         background = other.background
+        secondaryBackground = other.secondaryBackground
         textPrimary = other.textPrimary
         onPrimary = other.onPrimary
         onBackground = other.onBackground

@@ -1,9 +1,13 @@
 package com.haitrvn.navigation
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+
 interface Navigator {
+    val currentBackStackEntryFlow: MutableSharedFlow<Destination>
     fun navigate(
         destination: Destination,
-        popUpToRoute: String? = null,
+        popUpToRoute: Destination? = null,
         popUpToInclusive: Boolean = false,
         popUpToSaveState: Boolean = false,
         launchSingleTop: Boolean = false,

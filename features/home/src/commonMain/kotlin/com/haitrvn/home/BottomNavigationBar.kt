@@ -1,4 +1,4 @@
-package com.haitrvn.features.home
+package com.haitrvn.home
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon

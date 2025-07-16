@@ -12,6 +12,7 @@ import com.haitrvn.coreui.CookSurface
 val LightColors = CookColor(
     primary = lightPrimary,
     background = lightBackground,
+    secondaryBackground = lightSecondaryBackground,
     textPrimary = lightTextPrimary,
     onPrimary = lightOnPrimary,
     onBackground = lightOnBackground,
@@ -20,6 +21,7 @@ val LightColors = CookColor(
 val DarkColors = CookColor(
     primary = darkPrimary,
     background = darkBackground,
+    secondaryBackground = darkSecondaryBackground,
     textPrimary = darkTextPrimary,
     onPrimary = darkOnPrimary,
     onBackground = darkOnBackground,
