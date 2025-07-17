@@ -3,8 +3,13 @@ package com.haitrvn.coreui
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withLink
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.base.CookText as BaseCookText
 
@@ -12,14 +17,13 @@ import com.haitrvn.coreui.base.CookText as BaseCookText
 fun CookHeaderText(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.primary,
 ) {
     BaseCookText(
         modifier = modifier,
         text = text,
         style = CookTheme.typography.header,
         textAlign = TextAlign.Center,
-        color = color
+        color = CookTheme.colors.primary
     )
 }
 
@@ -27,15 +31,13 @@ fun CookHeaderText(
 fun CookTitleText(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.textPrimary,
-    style: TextStyle = CookTheme.typography.title,
 ) {
     BaseCookText(
         modifier = modifier,
         text = text,
         style = CookTheme.typography.title,
         textAlign = TextAlign.Center,
-        color = color
+        color = CookTheme.colors.textPrimary
     )
 }
 
@@ -43,15 +45,13 @@ fun CookTitleText(
 fun CookSubTitleText(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.textPrimary,
-    style: TextStyle = CookTheme.typography.subtitle,
 ) {
     BaseCookText(
         modifier = modifier,
         text = text,
         textAlign = TextAlign.Center,
-        color = color,
-        style = style,
+        color = CookTheme.colors.textPrimary,
+        style = CookTheme.typography.subtitle,
     )
 }
 
@@ -59,15 +59,13 @@ fun CookSubTitleText(
 fun CookLabel1Text(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.textPrimary,
-    style: TextStyle = CookTheme.typography.label,
 ) {
     BaseCookText(
         modifier = modifier,
         text = text,
-        style = style,
+        style = CookTheme.typography.label,
         textAlign = TextAlign.Center,
-        color = color
+        color = CookTheme.colors.textPrimary
     )
 }
 
@@ -75,15 +73,13 @@ fun CookLabel1Text(
 fun CookParagraphText(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.textPrimary,
-    style: TextStyle = CookTheme.typography.paragraph,
 ) {
     BaseCookText(
         modifier = modifier,
         text = text,
-        style = style,
+        style = CookTheme.typography.paragraph,
         textAlign = TextAlign.Center,
-        color = color
+        color = CookTheme.colors.textPrimary
     )
 }
 
@@ -91,15 +87,27 @@ fun CookParagraphText(
 fun CookSmallText(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.textPrimary,
-    style: TextStyle = CookTheme.typography.small,
-    ) {
+) {
     BaseCookText(
         modifier = modifier,
         text = text,
-        style = style,
+        style = CookTheme.typography.small,
         textAlign = TextAlign.Center,
-        color = color
+        color = CookTheme.colors.textPrimary
+    )
+}
+
+@Composable
+fun CookSmallText(
+    modifier: Modifier = Modifier,
+    text: AnnotatedString,
+) {
+    BaseCookText(
+        modifier = modifier,
+        text = text,
+        style = CookTheme.typography.small,
+        textAlign = TextAlign.Center,
+        color = CookTheme.colors.textPrimary
     )
 }
 
@@ -107,15 +115,13 @@ fun CookSmallText(
 fun CookLabel2Text(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.textPrimary,
-    style: TextStyle = CookTheme.typography.smallBold,
-    ) {
+) {
     BaseCookText(
         modifier = modifier,
         text = text,
-        style = style,
+        style = CookTheme.typography.smallBold,
         textAlign = TextAlign.Center,
-        color = color
+        color = CookTheme.colors.textPrimary
     )
 }
 
@@ -123,14 +129,12 @@ fun CookLabel2Text(
 fun CookTinyText(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = CookTheme.colors.textPrimary,
-    style: TextStyle = CookTheme.typography.tiny,
 ) {
     BaseCookText(
         modifier = modifier,
         text = text,
-        style = style,
+        style = CookTheme.typography.tiny,
         textAlign = TextAlign.Center,
-        color = color
+        color = CookTheme.colors.textPrimary
     )
 }

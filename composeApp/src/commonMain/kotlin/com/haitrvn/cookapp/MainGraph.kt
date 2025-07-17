@@ -17,10 +17,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.haitrvn.coreui.CookParagraphText
-import com.haitrvn.login.Login
-import com.haitrvn.login.LoginViewModel
-import com.haitrvn.login.LoginWithEmail
-import com.haitrvn.login.Welcome
+import com.haitrvn.auth.Login
+import com.haitrvn.auth.LoginViewModel
+import com.haitrvn.auth.LoginWithEmail
+import com.haitrvn.auth.Welcome
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.home.DiscoverScreen
 import com.haitrvn.navigation.Auth
@@ -89,12 +89,9 @@ internal fun NavGraphBuilder.authGraph(
         }
         composable<Auth.Login> {
             val viewmodel = koinInject<LoginViewModel>()
-            Login(
-                navigator = navigator,
-                viewmodel = viewmodel,
-                sharedTransitionScope = sharedTransitionScope,
-                animatedVisibilityScope = this@composable,
-            )
+            Login { action ->
+                viewmodel.dispatch(action)
+            }
         }
         composable<Auth.LoginWithEmail> {
             LoginWithEmail(navigator = navigator)

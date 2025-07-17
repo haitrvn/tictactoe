@@ -1,4 +1,4 @@
-package com.haitrvn.login
+package com.haitrvn.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

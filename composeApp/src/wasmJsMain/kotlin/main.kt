@@ -3,7 +3,7 @@ import androidx.compose.ui.window.ComposeViewport
 import com.haitrvn.cookapp.App
 import com.haitrvn.data.di.dataModule
 import com.haitrvn.home.di.homeModule
-import com.haitrvn.login.di.loginModule
+import com.haitrvn.auth.di.loginModule
 import com.haitrvn.navigation.di.navigationMode
 import kotlinx.browser.document
 import org.koin.core.context.startKoin

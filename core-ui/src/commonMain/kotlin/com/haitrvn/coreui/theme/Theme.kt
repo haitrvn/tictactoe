@@ -1,13 +1,14 @@
 package com.haitrvn.coreui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
+import com.haitrvn.coreui.CookSpaceDimensions
 import com.haitrvn.coreui.CookSurface
+import com.haitrvn.coreui.LocalSpace
 
 val LightColors = CookColor(
     primary = lightPrimary,
@@ -16,6 +17,7 @@ val LightColors = CookColor(
     textPrimary = lightTextPrimary,
     onPrimary = lightOnPrimary,
     onBackground = lightOnBackground,
+    link = lightLink,
 )
 
 val DarkColors = CookColor(
@@ -25,6 +27,7 @@ val DarkColors = CookColor(
     textPrimary = darkTextPrimary,
     onPrimary = darkOnPrimary,
     onBackground = darkOnBackground,
+    link = darkLink,
 )
 
 @Composable
@@ -71,4 +74,9 @@ object CookTheme {
         @ReadOnlyComposable
         @Composable
         get() = LocalContentPadding.current
+
+    val space: CookSpaceDimensions
+        @ReadOnlyComposable
+        @Composable
+        get() = LocalSpace.current
 }

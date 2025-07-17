@@ -6,7 +6,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.haitrvn.data.di.dataModule
 import com.haitrvn.home.di.homeModule
-import com.haitrvn.login.di.loginModule
+import com.haitrvn.auth.di.loginModule
 import com.haitrvn.navigation.di.navigationMode
 import org.koin.core.context.startKoin
 

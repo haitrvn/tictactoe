@@ -14,6 +14,8 @@ val darkTextPrimary = Color(0xffffffff)
 val darkOnPrimary = Color(0xFF000000)
 val darkOnBackground = Color(0xffffffff)
 
+val darkLink = Color(0xff0048ff)
+
 val lightPrimary = Color(0xFFFF6A00)
 val lightBackground = Color(0xfffefefe)
 
@@ -22,6 +24,8 @@ val lightTextPrimary = Color(0xcc000000)
 val lightOnPrimary = Color(0xccffffff)
 val lightOnBackground = Color(0xFF000000)
 
+val lightLink = Color(0xff0048ff)
+
 class CookColor(
     primary: Color,
     background: Color,
@@ -29,6 +33,7 @@ class CookColor(
     textPrimary: Color,
     onPrimary: Color,
     onBackground: Color,
+    link: Color,
 ) {
 
     var primary by mutableStateOf(primary)
@@ -44,6 +49,9 @@ class CookColor(
     var onBackground by mutableStateOf(onBackground)
         private set
 
+    var link by mutableStateOf(link)
+        private set
+
     fun copy(
         primary: Color = this.primary,
         background: Color = this.background,
@@ -51,6 +59,7 @@ class CookColor(
         textPrimary: Color = this.textPrimary,
         onPrimary: Color = this.onPrimary,
         onBackground: Color = this.onBackground,
+        link: Color = this.link,
     ): CookColor = CookColor(
         primary,
         background,
@@ -58,6 +67,7 @@ class CookColor(
         textPrimary,
         onPrimary,
         onBackground,
+        link
     )
 
     fun updateColorsFrom(other: CookColor) {
@@ -67,6 +77,7 @@ class CookColor(
         textPrimary = other.textPrimary
         onPrimary = other.onPrimary
         onBackground = other.onBackground
+        link = other.link
     }
 }
 

@@ -1,4 +1,4 @@
-package com.haitrvn.login
+package com.haitrvn.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,15 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.CookBigPrimaryButton
 import com.haitrvn.coreui.CookHeaderText
 import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookLabel1Text
-import com.haitrvn.coreui.theme.CookTheme
 import androidx.compose.material3.Icon
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_cyclone1
@@ -91,12 +88,10 @@ fun Welcome(
                 Spacer(modifier = Modifier.width(8.dp))
                 CookLabel1Text(
                     text = "60k+",
-                    color = Color.White
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 CookParagraphText(
                     text = "Premium recipes",
-                    color = Color.White
                 )
             }
             
@@ -107,13 +102,11 @@ fun Welcome(
             ) {
                 CookHeaderText(
                     text = "Let's start Cooking",
-                    color = Color.White,
                     modifier = Modifier.padding(bottom = 24.dp)
                 )
                 
                 CookParagraphText(
                     text = "Find best recipes for cooking",
-                    color = Color.White,
                     modifier = Modifier.padding(bottom = 40.dp)
                 )
                 
