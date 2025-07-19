@@ -10,26 +10,6 @@ import com.haitrvn.coreui.CookSpaceDimensions
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.LocalSpace
 
-val LightColors = CookColor(
-    primary = lightPrimary,
-    background = lightBackground,
-    secondaryBackground = lightSecondaryBackground,
-    textPrimary = lightTextPrimary,
-    onPrimary = lightOnPrimary,
-    onBackground = lightOnBackground,
-    link = lightLink,
-)
-
-val DarkColors = CookColor(
-    primary = darkPrimary,
-    background = darkBackground,
-    secondaryBackground = darkSecondaryBackground,
-    textPrimary = darkTextPrimary,
-    onPrimary = darkOnPrimary,
-    onBackground = darkOnBackground,
-    link = darkLink,
-)
-
 @Composable
 fun CookTheme(
     typography: CookTypography = CookTypography.withFontFamily(),

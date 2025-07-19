@@ -32,6 +32,8 @@ import com.haitrvn.coreui.CookSpace
 import com.haitrvn.coreui.CookTitleText
 import com.haitrvn.coreui.SpaceSize
 import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.navigation.Auth
+import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_cyclone1
 import cookapp.resources.auth.login_button_login_with_apple
@@ -43,13 +45,34 @@ import cookapp.resources.auth.login_text_signup
 import cookapp.resources.auth.login_welcome_quote
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 
 const val TAG_SIGNUP = "signup"
+
+@Composable
+fun LoginWrapper(
+    navigator: Navigator
+) {
+    val loginViewModel = koinInject<LoginViewModel>()
+    Login(
+        sentEvent = loginViewModel::dispatch,
+        loginEmail = { navigator.navigate(Auth.LoginWithEmail) },
+        loginGoogle = {},
+        loginFacebook = {},
+        loginApple = {},
+        gotoSignup = { navigator.navigate(Auth.Register) }
+    )
+}
 
 @Composable
 fun Login(
     modifier: Modifier = Modifier,
     sentEvent: (LoginAction) -> Unit = {},
+    gotoSignup: () -> Unit = {},
+    loginGoogle: () -> Unit = {},
+    loginFacebook: () -> Unit = {},
+    loginApple: () -> Unit = {},
+    loginEmail: () -> Unit = {},
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -64,52 +87,82 @@ fun Login(
         CookSpace(SpaceSize.SMALL)
         CookSmallText(text = stringResource(Res.string.login_welcome_quote))
         CookSpace(SpaceSize.SMALL)
-        LoginWithSocial()
-        CookSpace(SpaceSize.MEDIUM)
-
-        CookSmallText(text = stringResource(Res.string.login_welcome_quote))
-        val textSegments = listOf(
-            SegmentText(text = stringResource(Res.string.login_text_no_account)),
-            SegmentText(text = " "),
-            SegmentText(
-                text = stringResource(Res.string.login_text_signup),
-                isClickable = true,
-                tag = TAG_SIGNUP
-            ),
+        LoginWithSocial(
+            loginGoogle = loginGoogle,
+            loginFacebook = loginFacebook,
+            loginApple = loginApple,
+            loginEmail = loginEmail
         )
-        MultiClickableText(textSegments = textSegments, onClick = { tag ->
-            when (tag) {
-                TAG_SIGNUP -> {}
-                else -> {}
-            }
-        }) { text ->
-            CookSmallText(text = text)
-        }
+        CookSpace(SpaceSize.MEDIUM)
+        CookSmallText(text = stringResource(Res.string.login_welcome_quote))
+        LoginQuestion { gotoSignup() }
+
     }
 }
 
 @Composable
-private fun LoginWithSocial() {
+private fun LoginQuestion(
+    modifier: Modifier = Modifier,
+    gotoSignup: () -> Unit
+) {
+    val textSegments = listOf(
+        SegmentText(text = stringResource(Res.string.login_text_no_account)),
+        SegmentText(text = " "),
+        SegmentText(
+            text = stringResource(Res.string.login_text_signup),
+            isClickable = true,
+            tag = TAG_SIGNUP
+        ),
+    )
+    MultiClickableText(textSegments = textSegments, onClick = { tag ->
+        when (tag) {
+            TAG_SIGNUP -> {
+                gotoSignup()
+            }
+
+            else -> {}
+        }
+    }) { text ->
+        CookSmallText(modifier = modifier, text = text)
+    }
+}
+
+@Composable
+private fun LoginWithSocial(
+    modifier: Modifier = Modifier,
+    loginGoogle: () -> Unit = {},
+    loginFacebook: () -> Unit = {},
+    loginApple: () -> Unit = {},
+    loginEmail: () -> Unit = {},
+) {
     SocialButton(
-        modifier = Modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
+        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
         text = stringResource(Res.string.login_button_login_with_google),
         icon = Res.drawable.ic_cyclone1
-    ) {}
+    ) {
+        loginGoogle()
+    }
     SocialButton(
-        modifier = Modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
+        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
         text = stringResource(Res.string.login_button_login_with_facebook),
         icon = Res.drawable.ic_cyclone1
-    ) {}
+    ) {
+        loginFacebook()
+    }
     SocialButton(
-        modifier = Modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
+        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
         text = stringResource(Res.string.login_button_login_with_apple),
         icon = Res.drawable.ic_cyclone1
-    ) {}
+    ) {
+        loginApple()
+    }
     SocialButton(
-        modifier = Modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
+        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
         text = stringResource(Res.string.login_button_login_with_email),
         icon = Res.drawable.ic_cyclone1
-    ) {}
+    ) {
+        loginEmail()
+    }
 }
 
 @Composable

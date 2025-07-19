@@ -16,18 +16,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.haitrvn.coreui.CookParagraphText
-import com.haitrvn.auth.Login
-import com.haitrvn.auth.LoginViewModel
 import com.haitrvn.auth.LoginWithEmail
+import com.haitrvn.auth.LoginWithEmailWrapper
+import com.haitrvn.auth.LoginWrapper
 import com.haitrvn.auth.Welcome
+import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.home.DiscoverScreen
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
-import org.koin.compose.koinInject
 
 @Composable
 internal fun MainGraph(
@@ -88,13 +87,10 @@ internal fun NavGraphBuilder.authGraph(
             }
         }
         composable<Auth.Login> {
-            val viewmodel = koinInject<LoginViewModel>()
-            Login { action ->
-                viewmodel.dispatch(action)
-            }
+            LoginWrapper(navigator = navigator)
         }
         composable<Auth.LoginWithEmail> {
-            LoginWithEmail(navigator = navigator)
+            LoginWithEmailWrapper(navigator = navigator)
         }
         composable<Auth.Register> {
             CookParagraphText(text = "Register")

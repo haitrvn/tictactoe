@@ -1,29 +1,38 @@
 package com.haitrvn.auth
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookParagraphText
 import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.CookParagraphText
+import com.haitrvn.coreui.CookSmallPrimaryButton
+import com.haitrvn.coreui.CookSubTitleText
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.CookBigPrimaryButton
 import com.haitrvn.coreui.CookTextInput
+import com.haitrvn.coreui.CookTitleText
 import com.haitrvn.coreui.theme.CookTheme
-import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_cyclone1
+import cookapp.resources.auth.login_button_login
 import cookapp.resources.auth.login_hint_email_or_username
 import cookapp.resources.auth.login_hint_password
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+
+@Composable
+fun LoginWithEmailWrapper(
+    navigator: Navigator
+) {
+    LoginWithEmail(navigator = navigator)
+}
 
 @Composable
 fun LoginWithEmail(
@@ -31,33 +40,25 @@ fun LoginWithEmail(
     viewmodel: LoginViewModel = koinInject<LoginViewModel>(),
     navigator: Navigator,
 ) {
-    val loginState by viewmodel.uiState.collectAsState()
-    CookSurface(modifier = Modifier.fillMaxSize().then(modifier)) {
-        Background()
-        Column(
-            modifier = Modifier.fillMaxSize().padding(horizontal = 30.dp).then(modifier),
-            verticalArrangement = Arrangement.Center
+    Column(
+        modifier = modifier.fillMaxSize().padding(horizontal = 30.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CookImage(
+            modifier = Modifier.fillMaxWidth().aspectRatio(1f),
+            drawableResource = Res.drawable.ic_cyclone1
+        )
+        CookSubTitleText(text = stringResource(Res.string.login_hint_email_or_username))
+        CookTextInput(value = "") {}
+        CookTextInput(value = "") {}
+        CookSmallPrimaryButton(
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResource(Res.string.login_button_login)
         ) {
-            Header()
-            InputUserName(
-                value = loginState.username, errorMessage = loginState.usernameErrorMessage
-            ) {
-                viewmodel.dispatch(LoginAction.UsernameChanged(it))
-            }
-            InputPassword(
-                value = loginState.password,
-                errorMessage = loginState.passwordErrorMessage,
-            ) {
-                viewmodel.dispatch(LoginAction.PasswordChanged(it))
-            }
-            ErrorMessages(errorMessage = loginState.errorMessage)
-            CookBigPrimaryButton("Login") {
-                viewmodel.dispatch(LoginAction.LoginClicked)
-            }
-            CookBigPrimaryButton("Register") {
-                navigator.navigate(Home.Setting)
-            }
+
         }
+        CookTitleText(text = stringResource(Res.string.login_hint_email_or_username))
+        CookTitleText(text = stringResource(Res.string.login_hint_email_or_username))
     }
 }
 

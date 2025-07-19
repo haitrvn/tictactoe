@@ -19,7 +19,7 @@ data object Auth : Destination {
     data object LoginWithEmail : Destination
 
     @Serializable
-    data class Register(val email: String = "") : Destination
+    data object Register : Destination
 }
 
 
