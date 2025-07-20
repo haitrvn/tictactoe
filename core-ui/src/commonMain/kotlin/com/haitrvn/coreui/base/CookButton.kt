@@ -1,7 +1,6 @@
 package com.haitrvn.coreui.base
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -67,45 +66,5 @@ internal fun CookButton(
             verticalAlignment = Alignment.CenterVertically,
             content = content
         )
-    }
-}
-
-@Composable
-internal fun CookOutlineButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    shape: Shape = CookTheme.shapes.small,
-    outlineColor: Color = CookTheme.colors.primary,
-    contentColor: Color = CookTheme.colors.primary,
-    elevation: ButtonElevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = 0.dp),
-    contentPadding: PaddingValues = CookTheme.contentPadding.small,
-    enabled: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    Box(
-        modifier = modifier
-            .padding(CookTheme.contentPadding.default)
-            .border(
-                width = 1.dp,
-                color = if (enabled) outlineColor else outlineColor.copy(alpha = 0.2f),
-                shape = shape
-            )
-            .clip(shape)
-            .background(Color.Transparent)
-            .then(
-                if (enabled) {
-                    Modifier
-                        .clickable(
-                            interactionSource = interactionSource,
-                            indication = ripple(),
-                            onClick = onClick
-                        )
-                } else Modifier
-            )
-            .padding(contentPadding),
-        contentAlignment = Alignment.Center
-    ) {
-        content()
     }
 }

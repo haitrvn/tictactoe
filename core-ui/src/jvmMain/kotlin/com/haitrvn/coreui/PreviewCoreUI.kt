@@ -27,19 +27,20 @@ fun PreviewCoreUi() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column {
-                    CookHeaderText(text = "CookHeaderText")
-                    CookTitleText(text = "CookTitleText")
-                    CookSubTitleText(text = "CookSubTitleText")
-                    CookLabel1Text(text = "CookLabelText")
-                    CookLabel2Text(text = "CookSmallBodyText")
-                    CookParagraphText(text = "CookParagraphText")
-                    CookSmallText(text = "CookSmallText")
-                    CookTinyText(text = "CookTinyText")
-                    CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
-                    CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
-                    CookBigSecondaryButton(text = "CookSecondaryButton") {}
-                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
-                    Card(modifier = Modifier.size(50.dp)) { }
+                    TextApp(text = "TextApp")
+                    TextHeader(text = "TextHeader")
+                    TextSubHeader(text = "TextSubHeader")
+                    TextBigTitle(text = "TextBigTitle")
+                    TextTitle(text = "TextTitle")
+                    TextSmallTitle(text = "TextSmallTitle")
+                    TextParagraph(text = "TextParagraph")
+                    TextError(text = "TextError")
+                    TextSmall(text = "TextSmall")
+                    TextTiny(text = "TextTiny")
+                    CookPrimaryButton("CookPrimaryButton"){
+                    }
+                    CookSecondaryButton("CookSecondaryButton") {
+                    }
                 }
             }
         }
@@ -47,19 +48,20 @@ fun PreviewCoreUi() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column {
-                    CookHeaderText(text = "CookHeaderText")
-                    CookTitleText(text = "CookTitleText")
-                    CookSubTitleText(text = "CookSubTitleText")
-                    CookLabel1Text(text = "CookLabelText")
-                    CookLabel2Text(text = "CookSmallBodyText")
-                    CookParagraphText(text = "CookParagraphText")
-                    CookSmallText(text = "CookSmallText")
-                    CookTinyText(text = "CookTinyText")
-                    CookBigPrimaryButton(text = "CookBigPrimaryButton") {}
-                    CookSmallPrimaryButton(text = "CookSmallPrimaryButton") {}
-                    CookBigSecondaryButton(text = "CookSecondaryButton") {}
-                    CookSmallSecondaryButton(text = "CookSmallSecondaryButton") {}
-                    Card(modifier = Modifier.size(50.dp)) { }
+                    TextApp(text = "TextApp")
+                    TextHeader(text = "TextHeader")
+                    TextSubHeader(text = "TextSubHeader")
+                    TextBigTitle(text = "TextBigTitle")
+                    TextTitle(text = "TextTitle")
+                    TextSmallTitle(text = "TextSmallTitle")
+                    TextParagraph(text = "TextParagraph")
+                    TextError(text = "TextError")
+                    TextSmall(text = "TextSmall")
+                    TextTiny(text = "TextTiny")
+                    CookPrimaryButton("CookPrimaryButton"){
+                    }
+                    CookSecondaryButton("CookSecondaryButton") {
+                    }
                 }
             }
         }

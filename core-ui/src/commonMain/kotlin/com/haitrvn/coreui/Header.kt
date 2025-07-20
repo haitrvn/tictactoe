@@ -25,6 +25,6 @@ fun Header(
                 drawableResource = Res.drawable.core_ui_icon_back
             )
         }
-        CookTitleText(text = title)
+        TextTitle(text = title)
     }
 }

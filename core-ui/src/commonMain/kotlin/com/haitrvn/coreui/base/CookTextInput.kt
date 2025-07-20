@@ -29,12 +29,12 @@ internal fun CookTextInput(
         visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
         shape = RoundedCornerShape(8.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedBorderColor = CookTheme.colors.textPrimary,
-            unfocusedBorderColor = CookTheme.colors.textPrimary,
-            disabledBorderColor = CookTheme.colors.textPrimary,
-            cursorColor = CookTheme.colors.textPrimary,
-            focusedTextColor = CookTheme.colors.textPrimary,
-            unfocusedTextColor = CookTheme.colors.textPrimary,
+            focusedBorderColor = CookTheme.colors.primary,
+            unfocusedBorderColor = CookTheme.colors.primary,
+            disabledBorderColor = CookTheme.colors.primary,
+            cursorColor = CookTheme.colors.primary,
+            focusedTextColor = CookTheme.colors.primary,
+            unfocusedTextColor = CookTheme.colors.primary,
         )
     )
 }

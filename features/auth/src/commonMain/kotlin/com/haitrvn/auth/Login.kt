@@ -27,10 +27,10 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CookSmallText
 import com.haitrvn.coreui.CookSpace
-import com.haitrvn.coreui.CookTitleText
 import com.haitrvn.coreui.SpaceSize
+import com.haitrvn.coreui.TextSmall
+import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
@@ -83,9 +83,9 @@ fun Login(
             drawableResource = Res.drawable.ic_cyclone1
         )
         CookSpace(SpaceSize.MEDIUM)
-        CookTitleText(text = stringResource(Res.string.login_welcome_quote))
+        TextTitle(text = stringResource(Res.string.login_welcome_quote))
         CookSpace(SpaceSize.SMALL)
-        CookSmallText(text = stringResource(Res.string.login_welcome_quote))
+        TextSmall(text = stringResource(Res.string.login_welcome_quote))
         CookSpace(SpaceSize.SMALL)
         LoginWithSocial(
             loginGoogle = loginGoogle,
@@ -94,7 +94,7 @@ fun Login(
             loginEmail = loginEmail
         )
         CookSpace(SpaceSize.MEDIUM)
-        CookSmallText(text = stringResource(Res.string.login_welcome_quote))
+        TextSmall(text = stringResource(Res.string.login_welcome_quote))
         LoginQuestion { gotoSignup() }
 
     }
@@ -123,7 +123,7 @@ private fun LoginQuestion(
             else -> {}
         }
     }) { text ->
-        CookSmallText(modifier = modifier, text = text)
+        TextSmall(modifier = modifier, text = text)
     }
 }
 
@@ -189,7 +189,7 @@ fun SocialButton(
             drawableResource = icon
         )
         CookSpace(SpaceSize.MEDIUM)
-        CookSmallText(modifier = Modifier.fillMaxWidth(), text = text)
+        TextSmall(modifier = Modifier.fillMaxWidth(), text = text)
     }
 }
 

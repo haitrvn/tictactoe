@@ -16,11 +16,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.haitrvn.auth.LoginWithEmail
 import com.haitrvn.auth.LoginWithEmailWrapper
 import com.haitrvn.auth.LoginWrapper
 import com.haitrvn.auth.Welcome
-import com.haitrvn.coreui.CookParagraphText
+import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.home.DiscoverScreen
 import com.haitrvn.navigation.Auth
@@ -93,7 +92,7 @@ internal fun NavGraphBuilder.authGraph(
             LoginWithEmailWrapper(navigator = navigator)
         }
         composable<Auth.Register> {
-            CookParagraphText(text = "Register")
+            TextParagraph(text = "Register")
         }
     }
 }

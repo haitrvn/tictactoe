@@ -11,12 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CookParagraphText
-import com.haitrvn.coreui.CookSmallPrimaryButton
-import com.haitrvn.coreui.CookSubTitleText
+import com.haitrvn.coreui.CookPrimaryButton
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.CookTextInput
-import com.haitrvn.coreui.CookTitleText
+import com.haitrvn.coreui.TextParagraph
+import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
@@ -48,17 +47,17 @@ fun LoginWithEmail(
             modifier = Modifier.fillMaxWidth().aspectRatio(1f),
             drawableResource = Res.drawable.ic_cyclone1
         )
-        CookSubTitleText(text = stringResource(Res.string.login_hint_email_or_username))
+        TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
         CookTextInput(value = "") {}
         CookTextInput(value = "") {}
-        CookSmallPrimaryButton(
+        CookPrimaryButton(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(Res.string.login_button_login)
         ) {
 
         }
-        CookTitleText(text = stringResource(Res.string.login_hint_email_or_username))
-        CookTitleText(text = stringResource(Res.string.login_hint_email_or_username))
+        TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
+        TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
     }
 }
 
@@ -78,7 +77,7 @@ private fun Background(modifier: Modifier = Modifier) {
 
 @Composable
 private fun Header(modifier: Modifier = Modifier) {
-    CookParagraphText(text = "Login")
+    TextParagraph(text = "Login")
 }
 
 @Composable
@@ -134,7 +133,7 @@ private fun ErrorMessages(
     errorMessage: String,
 ) {
     if (errorMessage.isNotEmpty()) {
-        CookParagraphText(text = errorMessage)
+        TextParagraph(text = errorMessage)
     }
 }
 

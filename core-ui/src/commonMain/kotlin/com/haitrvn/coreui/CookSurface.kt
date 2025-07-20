@@ -17,7 +17,7 @@ import com.haitrvn.coreui.theme.CookTheme
 fun CookSurface(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
-    color: Color = CookTheme.colors.background,
+    color: Color = CookTheme.colors.background1,
     contentColor: Color = contentColorFor(color),
     tonalElevation: Dp = 0.dp,
     shadowElevation: Dp = 0.dp,
@@ -41,7 +41,7 @@ fun CookSurface(
 fun Card(
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(10.dp),
-    color: Color = CookTheme.colors.secondaryBackground,
+    color: Color = CookTheme.colors.background1,
     contentColor: Color = contentColorFor(color),
     tonalElevation: Dp = 0.dp,
     shadowElevation: Dp = 0.dp,

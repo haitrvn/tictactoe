@@ -20,11 +20,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CookBigPrimaryButton
-import com.haitrvn.coreui.CookHeaderText
-import com.haitrvn.coreui.CookParagraphText
-import com.haitrvn.coreui.CookLabel1Text
 import androidx.compose.material3.Icon
+import com.haitrvn.coreui.CookPrimaryButton
+import com.haitrvn.coreui.CookSecondaryButton
+import com.haitrvn.coreui.TextHeader
+import com.haitrvn.coreui.TextParagraph
+import com.haitrvn.coreui.TextSubHeader
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_cyclone1
 import org.jetbrains.compose.resources.vectorResource
@@ -86,11 +87,11 @@ fun Welcome(
                     modifier = Modifier.size(16.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                CookLabel1Text(
+                TextSubHeader(
                     text = "60k+",
                 )
                 Spacer(modifier = Modifier.width(4.dp))
-                CookParagraphText(
+                TextParagraph(
                     text = "Premium recipes",
                 )
             }
@@ -100,17 +101,17 @@ fun Welcome(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(bottom = 80.dp)
             ) {
-                CookHeaderText(
+                TextHeader(
                     text = "Let's start Cooking",
                     modifier = Modifier.padding(bottom = 24.dp)
                 )
-                
-                CookParagraphText(
+
+                TextParagraph(
                     text = "Find best recipes for cooking",
                     modifier = Modifier.padding(bottom = 40.dp)
                 )
-                
-                CookBigPrimaryButton(
+
+                CookSecondaryButton(
                     text = "Start cooking",
                     modifier = Modifier.fillMaxWidth(),
                     onClick = onStartCookingClick

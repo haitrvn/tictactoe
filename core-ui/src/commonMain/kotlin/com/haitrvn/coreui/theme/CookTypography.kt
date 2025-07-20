@@ -15,31 +15,49 @@ import org.jetbrains.compose.resources.Font
 
 @Immutable
 data class CookTypography(
-    val header: TextStyle = TextStyle(
+    val app: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
-        fontSize = 40.sp,
-        lineHeight = 67.sp,
+        fontSize = 30.sp,
+        lineHeight = 34.sp,
+        fontStyle = FontStyle.Normal,
+    ),
+    val header: TextStyle = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        lineHeight = 26.sp,
+        fontStyle = FontStyle.Normal,
+    ),
+    val subHeader: TextStyle = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 18.sp,
+        lineHeight = 20.sp,
+        fontStyle = FontStyle.Normal,
+    ),
+    val bigTitle: TextStyle = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        lineHeight = 22.sp,
         fontStyle = FontStyle.Normal,
     ),
     val title: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 28.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 18.sp,
+        lineHeight = 20.sp,
         fontStyle = FontStyle.Normal,
     ),
-    val subtitle: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        lineHeight = 24.sp,
-        fontStyle = FontStyle.Normal,
-    ),
-    val label: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp,
-        lineHeight = 16.sp,
+    val smallTitle: TextStyle = TextStyle(
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp,
+        lineHeight = 18.sp,
         fontStyle = FontStyle.Normal,
     ),
     val paragraph: TextStyle = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 18.sp,
+        fontStyle = FontStyle.Normal,
+    ),
+    val error: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 16.sp,
@@ -47,22 +65,16 @@ data class CookTypography(
     ),
     val small: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 14.sp,
-        fontStyle = FontStyle.Normal,
-    ),
-    val smallBold: TextStyle = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 12.sp,
-        lineHeight = 14.sp,
+        fontSize = 14.sp,
+        lineHeight = 16.sp,
         fontStyle = FontStyle.Normal,
     ),
     val tiny: TextStyle = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 10.sp,
-        lineHeight = 12.sp,
-        fontStyle = FontStyle.Italic,
-    ),
+        lineHeight = 16.sp,
+        fontStyle = FontStyle.Normal,
+    )
 ) {
     private val fontFamilyNormal: FontFamily
         @Composable
@@ -76,14 +88,17 @@ data class CookTypography(
         fun withFontFamily(): CookTypography {
             return CookTypography().run {
                 copy(
-                    header = header.copy(fontFamily = fontFamilyNormal),
-                    title = title.copy(fontFamily = fontFamilyNormal),
-                    subtitle = subtitle.copy(fontFamily = fontFamilyNormal),
-                    label = label.copy(fontFamily = fontFamilyNormal),
-                    paragraph = paragraph.copy(fontFamily = fontFamilyNormal),
-                    small = small.copy(fontFamily = fontFamilyNormal),
-                    smallBold = smallBold.copy(fontFamily = fontFamilyNormal),
-                    tiny = tiny.copy(fontFamily = fontFamilyNormal),
+//                    app = app.copy(fontFamily = fontFamilyNormal),
+//                    header = header.copy(fontFamily = fontFamilyNormal),
+//                    subHeader = subHeader.copy(fontFamily = fontFamilyNormal),
+//                    title = title.copy(fontFamily = fontFamilyNormal),
+//                    smallTitle = smallTitle.copy(fontFamily = fontFamilyNormal),
+//                    bigTitle = bigTitle.copy(fontFamily = fontFamilyNormal),
+//                    paragraph = paragraph.copy(fontFamily = fontFamilyNormal),
+//                    description = description.copy(fontFamily = fontFamilyNormal),
+//                    error = error.copy(fontFamily = fontFamilyNormal),
+//                    small = small.copy(fontFamily = fontFamilyNormal),
+//                    tiny = tiny.copy(fontFamily = fontFamilyNormal),
                 )
             }
         }

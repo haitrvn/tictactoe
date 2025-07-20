@@ -71,25 +71,25 @@ class CookColor(
     }
 }
 
-val lightPrimary: Color = Color(0xFF000000)
+val lightPrimary: Color = Color(0xFFff6e41)
 val lightOnPrimary: Color = Color(0xFFFFFFFF)
-val lightParagraph: Color = Color(0xFF2E3E5C)
-val lightSecondParagraph: Color = Color(0xFF9FA5C0)
-val lightError: Color = Color(0xFFFF0000)
-val lightLink: Color = Color(0xFF1FCC79)
+val lightParagraph: Color = Color(0xff000000)
+val lightSecondParagraph: Color = Color(0xff292929)
+val lightError: Color = Color(0xfffb0909)
+val lightLink: Color = Color(0xccff6e41)
 val lightBackground1: Color = Color(0xFFFFFFFF)
-val lightBackground2: Color = Color(0xFFF4F5F7)
-val lightBackground3: Color = Color(0xFFE0E0E0)
+val lightBackground2: Color = Color(0xFFf5f5f5)
+val lightBackground3: Color = Color(0xFFfff2eb)
 
-val darkPrimary: Color = Color(0xFF000000)
+val darkPrimary: Color = Color(0xFFff6e41)
 val darkOnPrimary: Color = Color(0xFFFFFFFF)
 val darkParagraph: Color = Color(0xFFFFFFFF)
-val darkSecondParagraph: Color = Color(0xFFA9A9A9)
-val darkError: Color = Color(0xFFFF0000)
-val darkLink: Color = Color(0xFF1FCC79)
-val darkBackground1: Color = Color(0xFF121212)
-val darkBackground2: Color = Color(0xFF1E1E1E)
-val darkBackground3: Color = Color(0xFF2C2C2C)
+val darkSecondParagraph: Color = Color(0xffd6d6d6)
+val darkError: Color = Color(0xffe40303)
+val darkLink: Color = Color(0xccff6e41)
+val darkBackground1: Color = Color(0xFF090d19)
+val darkBackground2: Color = Color(0xFF161c2c)
+val darkBackground3: Color = Color(0xFF161c2c)
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }
 
