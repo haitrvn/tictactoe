@@ -4,6 +4,7 @@ package com.haitrvn.cookapp
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,6 +42,7 @@ internal fun App(
     val currentRoute = navBackStackEntry?.destination?.route
     val isShowScaffold = currentRoute?.contains(Home::class.qualifiedName.toString()) == true
     Scaffold(
+        modifier = modifier.fillMaxSize(),
         bottomBar = {
             if (isShowScaffold) {
                 BottomNavigationBar(

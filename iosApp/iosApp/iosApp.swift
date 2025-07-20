@@ -3,24 +3,41 @@ import ComposeApp
 
 @main
 struct ComposeApp: App {
-    init() {
-        MainKt.doInitInjection()
-    }
+  init() {
+    MainKt.doInitInjection()
+  }
 
-    var body: some Scene {
-        WindowGroup {
-            ContentView().ignoresSafeArea(.all)
-                .ignoresSafeArea(.keyboard)
-        }
+  var body: some Scene {
+    WindowGroup {
+      GeometryReader { geo in
+        ContentView(
+          top: Float(geo.safeAreaInsets.top),
+          bottom: Float(geo.safeAreaInsets.bottom),
+          start: Float(geo.safeAreaInsets.leading),
+          end: Float(geo.safeAreaInsets.trailing)
+        )
+        .ignoresSafeArea(.all)
+      }
     }
+  }
 }
 
 struct ContentView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
-        return MainKt.MainViewController()
-    }
+  var top: Float
+  var bottom: Float
+  var start: Float
+  var end: Float
 
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Updates will be handled by Compose
-    }
+  init(top: Float, bottom: Float, start: Float, end: Float) {
+    self.top = top
+    self.bottom = bottom
+    self.start = start
+    self.end = end
+  }
+
+  func makeUIViewController(context: Context) -> UIViewController {
+    return MainKt.MainViewController(topPadding: top, bottomPadding: bottom, startPadding: start, endPadding: end)
+  }
+
+  func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
