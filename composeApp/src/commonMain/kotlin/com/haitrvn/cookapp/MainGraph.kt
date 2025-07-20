@@ -81,9 +81,7 @@ internal fun NavGraphBuilder.authGraph(
             popEnterTransition = { EnterTransition.None },
             popExitTransition = { ExitTransition.None }
         ) {
-            Welcome {
-                navigator.navigate(Auth.Login)
-            }
+            Welcome(navigator = navigator)
         }
         composable<Auth.Login> {
             LoginWrapper(navigator = navigator)

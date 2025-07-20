@@ -1,124 +1,99 @@
 package com.haitrvn.auth
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
-import androidx.compose.material3.Icon
 import com.haitrvn.coreui.CookPrimaryButton
-import com.haitrvn.coreui.CookSecondaryButton
+import com.haitrvn.coreui.CookSpace
+import com.haitrvn.coreui.CookSurface
+import com.haitrvn.coreui.SpaceSize
+import com.haitrvn.coreui.TextApp
 import com.haitrvn.coreui.TextHeader
 import com.haitrvn.coreui.TextParagraph
-import com.haitrvn.coreui.TextSubHeader
+import com.haitrvn.coreui.TextSmall
+import com.haitrvn.navigation.Auth
+import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
-import cookapp.resources.auth.ic_cyclone1
-import org.jetbrains.compose.resources.vectorResource
+import cookapp.resources.auth.login_button_start_cooking
+import cookapp.resources.auth.login_welcome_app_name
+import cookapp.resources.auth.login_welcome_description
+import cookapp.resources.auth.login_welcome_quote
+import cookapp.resources.auth.login_welcome_quote_question
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun Welcome(
     modifier: Modifier = Modifier,
+    navigator: Navigator
+) {
+    WelcomeWrapper(
+        modifier = modifier.fillMaxSize()
+    ) { navigator.navigate(Auth.Login) }
+}
+
+@Composable
+fun WelcomeWrapper(
+    modifier: Modifier = Modifier,
     onStartCookingClick: () -> Unit = {},
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .then(modifier)
-    ) {
-        // Background image with gradient overlay
-        CookImage(
+    Column(modifier = modifier.fillMaxSize()) {
+        Header(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.6f))
+        Footer(
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop,
-            url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg"
+            onStartCookingClick = onStartCookingClick
         )
-        
-        // Gradient overlay
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Black.copy(alpha = 0.6f),
-                            Color.Transparent,
-                            Color.Black.copy(alpha = 0.8f)
-                        ),
-                        startY = 0f,
-                        endY = Float.POSITIVE_INFINITY
-                    )
+    }
+}
+
+@Composable
+private fun Header(modifier: Modifier = Modifier) {
+    CookSurface(
+        modifier = modifier,
+        background = {
+            CookSurface(shape = RoundedCornerShape(bottomStart = 40.dp)) {
+                CookImage(
+                    contentScale = ContentScale.Crop,
+                    url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg"
                 )
-        )
-        
-        // Content
+            }
+        })
+    {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(60.dp))
-            
-            // Premium recipes label with star icon
-            Row(
-                modifier = Modifier.padding(top = 40.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Icon(
-                    imageVector = vectorResource(Res.drawable.ic_cyclone1),
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(16.dp)
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                TextSubHeader(
-                    text = "60k+",
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                TextParagraph(
-                    text = "Premium recipes",
-                )
-            }
-            
-            // Main content
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(bottom = 80.dp)
-            ) {
-                TextHeader(
-                    text = "Let's start Cooking",
-                    modifier = Modifier.padding(bottom = 24.dp)
-                )
-
-                TextParagraph(
-                    text = "Find best recipes for cooking",
-                    modifier = Modifier.padding(bottom = 40.dp)
-                )
-
-                CookSecondaryButton(
-                    text = "Start cooking",
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = onStartCookingClick
-                )
-            }
-            
-            Spacer(modifier = Modifier.height(40.dp))
+            CookSpace(SpaceSize.LARGE)
+            TextApp(text = stringResource(Res.string.login_welcome_app_name))
+            TextSmall(text = stringResource(Res.string.login_welcome_quote))
         }
     }
-} 
+}
+
+@Composable
+private fun Footer(
+    modifier: Modifier = Modifier,
+    onStartCookingClick: () -> Unit
+) {
+    Column(
+        modifier = modifier.fillMaxSize().padding(horizontal = 24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CookSpace(SpaceSize.LARGE)
+        TextHeader(text = stringResource(Res.string.login_welcome_quote_question))
+        CookSpace(SpaceSize.SMALL)
+        TextParagraph(text = stringResource(Res.string.login_welcome_description))
+        CookSpace(SpaceSize.MEDIUM)
+        CookPrimaryButton(text = stringResource(Res.string.login_button_start_cooking)) {
+            onStartCookingClick()
+        }
+    }
+}

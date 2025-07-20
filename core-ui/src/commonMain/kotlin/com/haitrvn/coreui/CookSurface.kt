@@ -22,6 +22,7 @@ fun CookSurface(
     tonalElevation: Dp = 0.dp,
     shadowElevation: Dp = 0.dp,
     border: BorderStroke? = null,
+    background: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     Surface(
@@ -33,6 +34,7 @@ fun CookSurface(
         shadowElevation = shadowElevation,
         border = border,
     ) {
+        background()
         content()
     }
 }
