@@ -11,8 +11,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -135,33 +135,35 @@ private fun LoginWithSocial(
     loginApple: () -> Unit = {},
     loginEmail: () -> Unit = {},
 ) {
-    SocialButton(
-        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
-        text = stringResource(Res.string.login_button_login_with_google),
-        icon = Res.drawable.ic_cyclone1
-    ) {
-        loginGoogle()
-    }
-    SocialButton(
-        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
-        text = stringResource(Res.string.login_button_login_with_facebook),
-        icon = Res.drawable.ic_cyclone1
-    ) {
-        loginFacebook()
-    }
-    SocialButton(
-        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
-        text = stringResource(Res.string.login_button_login_with_apple),
-        icon = Res.drawable.ic_cyclone1
-    ) {
-        loginApple()
-    }
-    SocialButton(
-        modifier = modifier.fillMaxWidth(0.6f).heightIn(20.dp, 30.dp),
-        text = stringResource(Res.string.login_button_login_with_email),
-        icon = Res.drawable.ic_cyclone1
-    ) {
-        loginEmail()
+    Column(modifier = modifier.fillMaxWidth().padding(horizontal = 30.dp)) {
+
+        SocialButton(
+            text = stringResource(Res.string.login_button_login_with_google),
+            icon = Res.drawable.ic_cyclone1
+        ) {
+            loginGoogle()
+        }
+        CookSpace(SpaceSize.SMALL)
+        SocialButton(
+            text = stringResource(Res.string.login_button_login_with_facebook),
+            icon = Res.drawable.ic_cyclone1
+        ) {
+            loginFacebook()
+        }
+        CookSpace(SpaceSize.SMALL)
+        SocialButton(
+            text = stringResource(Res.string.login_button_login_with_apple),
+            icon = Res.drawable.ic_cyclone1
+        ) {
+            loginApple()
+        }
+        CookSpace(SpaceSize.SMALL)
+        SocialButton(
+            text = stringResource(Res.string.login_button_login_with_email),
+            icon = Res.drawable.ic_cyclone1
+        ) {
+            loginEmail()
+        }
     }
 }
 
@@ -175,21 +177,20 @@ fun SocialButton(
     val shape = CookTheme.shapes.medium
     Row(
         modifier
-            .padding(all = 2.dp)
-            .fillMaxWidth()
             .wrapContentHeight()
+            .fillMaxWidth()
             .clip(shape)
             .background(CookTheme.colors.primary)
             .clickable { onClick() }
-            .padding(horizontal = 10.dp),
+            .padding(horizontal = 10.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         CookImage(
-            modifier = Modifier.padding(5.dp).fillMaxHeight().aspectRatio(1f),
+            modifier = Modifier.size(30.dp).aspectRatio(1f),
             drawableResource = icon
         )
         CookSpace(SpaceSize.MEDIUM)
-        TextSmall(modifier = Modifier.fillMaxWidth(), text = text)
+        TextTitle(modifier = Modifier.fillMaxWidth(), text = text)
     }
 }
 

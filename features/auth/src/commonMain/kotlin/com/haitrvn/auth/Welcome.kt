@@ -78,9 +78,7 @@ private fun Header(modifier: Modifier = Modifier) {
                                 end = Offset(0f, Float.POSITIVE_INFINITY)
                             )
                         )
-                ) {
-
-                }
+                )
             }
         })
     {

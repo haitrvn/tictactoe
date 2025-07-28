@@ -9,5 +9,5 @@ import androidx.compose.runtime.Composable
 @Preview
 @Composable
 fun PreviewWelcome() {
-    Welcome()
+    WelcomeWrapper()
 }

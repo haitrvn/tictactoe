@@ -16,7 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.haitrvn.auth.LoginWithEmailWrapper
+import com.haitrvn.auth.LoginWithEmail
 import com.haitrvn.auth.LoginWrapper
 import com.haitrvn.auth.Welcome
 import com.haitrvn.coreui.TextParagraph
@@ -87,7 +87,7 @@ internal fun NavGraphBuilder.authGraph(
             LoginWrapper(navigator = navigator)
         }
         composable<Auth.LoginWithEmail> {
-            LoginWithEmailWrapper(navigator = navigator)
+            LoginWithEmail(navigator = navigator)
         }
         composable<Auth.Register> {
             TextParagraph(text = "Register")

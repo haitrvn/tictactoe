@@ -17,6 +17,7 @@ import com.haitrvn.coreui.CookTextInput
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_cyclone1
@@ -27,14 +28,14 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
 @Composable
-fun LoginWithEmailWrapper(
+fun LoginWithEmail(
     navigator: Navigator
 ) {
-    LoginWithEmail(navigator = navigator)
+    LoginWithEmailWrapper(navigator = navigator)
 }
 
 @Composable
-fun LoginWithEmail(
+fun LoginWithEmailWrapper(
     modifier: Modifier = Modifier,
     viewmodel: LoginViewModel = koinInject<LoginViewModel>(),
     navigator: Navigator,
@@ -54,7 +55,7 @@ fun LoginWithEmail(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(Res.string.login_button_login)
         ) {
-
+            navigator.navigate(Home)
         }
         TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
         TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
