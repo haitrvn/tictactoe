@@ -22,7 +22,9 @@ import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.app.Res
-import cookapp.resources.app.ic_home_main
+import cookapp.resources.app.ic_app_home
+import cookapp.resources.app.ic_app_search
+import cookapp.resources.app.ic_app_setting
 import cookapp.resources.app.presentation_bottom_main_title
 import cookapp.resources.app.presentation_bottom_search_title
 import cookapp.resources.app.presentation_bottom_setting_title
@@ -50,7 +52,7 @@ internal fun App(
                     currentRoute = currentRoute,
                     onItemClick = { item ->
                         navigator.navigate(
-                            destination = item.destination, launchSingleTop = true
+                            destination = item.destination, launchSingleTop = true, popUpToSaveState = true
                         )
                     })
             }
@@ -71,20 +73,20 @@ internal fun App(
 val navigationItemsLists by lazy {
     listOf(
         NavigationItem(
-            unSelectedIcon = Res.drawable.ic_home_main,
-            selectedIcon = Res.drawable.ic_home_main,
+            unSelectedIcon = Res.drawable.ic_app_home,
+            selectedIcon = Res.drawable.ic_app_home,
             title = Res.string.presentation_bottom_main_title,
             destination = Home.Main,
         ),
         NavigationItem(
-            unSelectedIcon = Res.drawable.ic_home_main,
-            selectedIcon = Res.drawable.ic_home_main,
+            unSelectedIcon = Res.drawable.ic_app_search,
+            selectedIcon = Res.drawable.ic_app_search,
             title = Res.string.presentation_bottom_search_title,
             destination = Home.Search,
         ),
         NavigationItem(
-            unSelectedIcon = Res.drawable.ic_home_main,
-            selectedIcon = Res.drawable.ic_home_main,
+            unSelectedIcon = Res.drawable.ic_app_setting,
+            selectedIcon = Res.drawable.ic_app_setting,
             title = Res.string.presentation_bottom_setting_title,
             destination = Home.Setting,
         ),

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.utils.clickableSingle
 import cookapp.resources.coreui.Res
 import cookapp.resources.coreui.core_ui_icon_back
 
@@ -19,7 +20,7 @@ fun Header(
     Column(modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
         if (isBackable) {
             CookImage(
-                modifier = Modifier.clickable {
+                modifier = Modifier.clickableSingle() {
                     onBack()
                 },
                 drawableResource = Res.drawable.core_ui_icon_back

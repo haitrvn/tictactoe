@@ -71,6 +71,11 @@ class CookColor(
     }
 }
 
+val appleLoginBackground: Color = Color(0xFF1a1a1a)
+val facebookLoginBackground: Color = Color(0xFF0866ff)
+val googleLoginBackground: Color = Color(0xFFf0f4f8)
+val googleLoginText: Color = Color(0xff000000)
+
 val lightPrimary: Color = Color(0xFFff6e41)
 val lightOnPrimary: Color = Color(0xFFFFFFFF)
 val lightParagraph: Color = Color(0xff000000)
@@ -93,7 +98,7 @@ val darkBackground3: Color = Color(0xFF161c2c)
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }
 
- val LightColors = CookColor(
+val LightColors = CookColor(
     primary = lightPrimary,
     onPrimary = lightOnPrimary,
     paragraph = lightParagraph,
@@ -105,7 +110,7 @@ internal val LocalColors = staticCompositionLocalOf { LightColors }
     background3 = lightBackground3
 )
 
- val DarkColors = CookColor(
+val DarkColors = CookColor(
     primary = darkPrimary,
     onPrimary = darkOnPrimary,
     paragraph = darkParagraph,

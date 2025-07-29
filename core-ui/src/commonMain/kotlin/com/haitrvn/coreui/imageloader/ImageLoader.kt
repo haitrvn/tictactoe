@@ -3,11 +3,16 @@
 package com.haitrvn.coreui.imageloader
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.toArgb
+import coil3.ColorImage
 import coil3.ImageLoader
 import coil3.PlatformContext
+import coil3.SingletonImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.disk.DiskCache
 import coil3.memory.MemoryCache
+import com.haitrvn.coreui.theme.DarkColors
+import cookapp.resources.coreui.Res
 import okio.Path
 
 @Composable
@@ -32,4 +37,16 @@ fun initImageLoader() {
 
 expect object CoilDiskCache {
     fun path(context: PlatformContext): Path
+}
+
+@Composable
+fun initPreviewImageLoader() {
+    val color = DarkColors.link.toArgb()
+    SingletonImageLoader.setSafe {
+        ImageLoader.Builder(it)
+            .placeholder(ColorImage(color = color))
+            .error(ColorImage(color = color))
+            .fallback(ColorImage(color = color))
+            .build()
+    }
 }

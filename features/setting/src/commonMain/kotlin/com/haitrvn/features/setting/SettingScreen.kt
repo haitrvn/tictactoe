@@ -1,7 +1,5 @@
 package com.haitrvn.features.setting
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
+import com.haitrvn.coreui.utils.clickableSingle
 
 @Composable
 private fun Avatar(
@@ -71,7 +70,7 @@ private fun SettingsList(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onSettingClick(title) }
+                    .clickableSingle { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
                 TextParagraph(text = title)
@@ -87,7 +86,7 @@ private fun SettingsList(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onSettingClick(title) }
+                    .clickableSingle { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
                 TextParagraph(text = title)
@@ -119,7 +118,7 @@ private fun Privacy(
         Spacer(modifier = Modifier.height(4.dp))
         TextParagraph(
             text = "Terms of Service",
-            modifier = Modifier.clickable(onClick = onTermsClick),
+            modifier = Modifier.clickableSingle(onClick = onTermsClick),
         )
     }
 }

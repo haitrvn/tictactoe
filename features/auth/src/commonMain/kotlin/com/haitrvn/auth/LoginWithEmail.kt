@@ -17,6 +17,8 @@ import com.haitrvn.coreui.CookTextInput
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.utils.toText
+import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Home
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
@@ -24,21 +26,22 @@ import cookapp.resources.auth.ic_cyclone1
 import cookapp.resources.auth.login_button_login
 import cookapp.resources.auth.login_hint_email_or_username
 import cookapp.resources.auth.login_hint_password
-import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.koinInject
 
 @Composable
 fun LoginWithEmail(
     navigator: Navigator
 ) {
-    LoginWithEmailWrapper(navigator = navigator)
+    LoginWithEmailWrapper(
+        goToHome = {
+            navigator.navigate(Home, Auth, popUpToInclusive = true)
+        }
+    )
 }
 
 @Composable
 fun LoginWithEmailWrapper(
     modifier: Modifier = Modifier,
-    viewmodel: LoginViewModel = koinInject<LoginViewModel>(),
-    navigator: Navigator,
+    goToHome: () -> Unit = {},
 ) {
     Column(
         modifier = modifier.fillMaxSize().padding(horizontal = 30.dp),
@@ -48,16 +51,16 @@ fun LoginWithEmailWrapper(
             modifier = Modifier.fillMaxWidth().aspectRatio(1f),
             drawableResource = Res.drawable.ic_cyclone1
         )
-        TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
+        TextTitle(text = Res.string.login_hint_email_or_username.toText())
         CookTextInput(value = "") {}
         CookTextInput(value = "") {}
         CookPrimaryButton(
-            text = stringResource(Res.string.login_button_login)
+            text = Res.string.login_button_login.toText()
         ) {
-            navigator.navigate(Home)
+            goToHome()
         }
-        TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
-        TextTitle(text = stringResource(Res.string.login_hint_email_or_username))
+        TextTitle(text = Res.string.login_hint_email_or_username.toText())
+        TextTitle(text = Res.string.login_hint_email_or_username.toText())
     }
 }
 
@@ -107,7 +110,7 @@ private fun InputUserName(
 ) = BaseInput(
     modifier = modifier,
     value = value,
-    hint = stringResource(Res.string.login_hint_email_or_username),
+    hint = Res.string.login_hint_email_or_username.toText(),
     errorMessage = errorMessage,
     onValueChange = onValueChange,
 )
@@ -121,7 +124,7 @@ private fun InputPassword(
 ) = BaseInput(
     modifier = modifier,
     value = value,
-    hint = stringResource(Res.string.login_hint_password),
+    hint = Res.string.login_hint_password.toText(),
     errorMessage = errorMessage,
     onValueChange = onValueChange,
     isPassword = true

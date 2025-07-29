@@ -16,8 +16,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.haitrvn.auth.Login
 import com.haitrvn.auth.LoginWithEmail
-import com.haitrvn.auth.LoginWrapper
 import com.haitrvn.auth.Welcome
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.features.setting.Setting
@@ -75,16 +75,11 @@ internal fun NavGraphBuilder.authGraph(
     sharedTransitionScope: SharedTransitionScope,
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
-        composable<Auth.Welcome>(
-            enterTransition = { EnterTransition.None },
-            exitTransition = { ExitTransition.None },
-            popEnterTransition = { EnterTransition.None },
-            popExitTransition = { ExitTransition.None }
-        ) {
+        composable<Auth.Welcome> {
             Welcome(navigator = navigator)
         }
         composable<Auth.Login> {
-            LoginWrapper(navigator = navigator)
+            Login(navigator = navigator)
         }
         composable<Auth.LoginWithEmail> {
             LoginWithEmail(navigator = navigator)

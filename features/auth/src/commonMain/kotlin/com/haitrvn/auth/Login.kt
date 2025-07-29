@@ -3,40 +3,36 @@
 package com.haitrvn.auth
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLinkStyles
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookSpace
+import com.haitrvn.coreui.MultiClickableText
+import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.SocialButton
 import com.haitrvn.coreui.SpaceSize
+import com.haitrvn.coreui.TextBigTitle
 import com.haitrvn.coreui.TextSmall
-import com.haitrvn.coreui.TextTitle
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.DarkColors
+import com.haitrvn.coreui.theme.appleLoginBackground
+import com.haitrvn.coreui.theme.facebookLoginBackground
+import com.haitrvn.coreui.theme.googleLoginBackground
+import com.haitrvn.coreui.theme.googleLoginText
+import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_cyclone1
+import cookapp.resources.auth.ic_login_socical_apple
+import cookapp.resources.auth.ic_login_socical_facebook
+import cookapp.resources.auth.ic_login_socical_google
 import cookapp.resources.auth.login_button_login_with_apple
 import cookapp.resources.auth.login_button_login_with_email
 import cookapp.resources.auth.login_button_login_with_facebook
@@ -44,18 +40,16 @@ import cookapp.resources.auth.login_button_login_with_google
 import cookapp.resources.auth.login_text_no_account
 import cookapp.resources.auth.login_text_signup
 import cookapp.resources.auth.login_welcome_quote
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 
 const val TAG_SIGNUP = "signup"
 
 @Composable
-fun LoginWrapper(
+fun Login(
     navigator: Navigator
 ) {
     val loginViewModel = koinInject<LoginViewModel>()
-    Login(
+    LoginWrapper(
         sentEvent = loginViewModel::dispatch,
         loginEmail = { navigator.navigate(Auth.LoginWithEmail) },
         loginGoogle = {},
@@ -66,7 +60,7 @@ fun LoginWrapper(
 }
 
 @Composable
-fun Login(
+internal fun LoginWrapper(
     modifier: Modifier = Modifier,
     sentEvent: (LoginAction) -> Unit = {},
     gotoSignup: () -> Unit = {},
@@ -84,9 +78,9 @@ fun Login(
             drawableResource = Res.drawable.ic_cyclone1
         )
         CookSpace(SpaceSize.MEDIUM)
-        TextTitle(text = stringResource(Res.string.login_welcome_quote))
+        TextBigTitle(text = Res.string.login_welcome_quote.toText())
         CookSpace(SpaceSize.SMALL)
-        TextSmall(text = stringResource(Res.string.login_welcome_quote))
+        TextSmall(text = Res.string.login_welcome_quote.toText())
         CookSpace(SpaceSize.SMALL)
         LoginWithSocial(
             loginGoogle = loginGoogle,
@@ -95,22 +89,65 @@ fun Login(
             loginEmail = loginEmail
         )
         CookSpace(SpaceSize.MEDIUM)
-        TextSmall(text = stringResource(Res.string.login_welcome_quote))
+        TextSmall(text = Res.string.login_welcome_quote.toText())
         LoginQuestion { gotoSignup() }
 
     }
 }
 
 @Composable
-private fun LoginQuestion(
+internal fun LoginWithSocial(
+    modifier: Modifier = Modifier,
+    loginGoogle: () -> Unit = {},
+    loginFacebook: () -> Unit = {},
+    loginApple: () -> Unit = {},
+    loginEmail: () -> Unit = {},
+) {
+    Column(modifier = modifier.fillMaxWidth().padding(horizontal = 30.dp)) {
+        SocialButton(
+            text = Res.string.login_button_login_with_google.toText(),
+            icon = Res.drawable.ic_login_socical_google,
+            background = googleLoginBackground,
+            textColor = googleLoginText,
+        ) {
+            loginGoogle()
+        }
+        CookSpace(SpaceSize.SMALL)
+        SocialButton(
+            text = Res.string.login_button_login_with_facebook.toText(),
+            icon = Res.drawable.ic_login_socical_facebook,
+            background = facebookLoginBackground,
+        ) {
+            loginFacebook()
+        }
+        CookSpace(SpaceSize.SMALL)
+        SocialButton(
+            text = Res.string.login_button_login_with_apple.toText(),
+            icon = Res.drawable.ic_login_socical_apple,
+            background = appleLoginBackground,
+        ) {
+            loginApple()
+        }
+        CookSpace(SpaceSize.SMALL)
+        SocialButton(
+            text = Res.string.login_button_login_with_email.toText(),
+            icon = Res.drawable.ic_cyclone1,
+        ) {
+            loginEmail()
+        }
+    }
+}
+
+@Composable
+internal fun LoginQuestion(
     modifier: Modifier = Modifier,
     gotoSignup: () -> Unit
 ) {
     val textSegments = listOf(
-        SegmentText(text = stringResource(Res.string.login_text_no_account)),
+        SegmentText(text = Res.string.login_text_no_account.toText()),
         SegmentText(text = " "),
         SegmentText(
-            text = stringResource(Res.string.login_text_signup),
+            text = Res.string.login_text_signup.toText(),
             isClickable = true,
             tag = TAG_SIGNUP
         ),
@@ -123,79 +160,7 @@ private fun LoginQuestion(
 
             else -> {}
         }
-    }) { text ->
+    }) { _, text ->
         TextSmall(modifier = modifier, text = text)
     }
 }
-
-@Composable
-private fun LoginWithSocial(
-    modifier: Modifier = Modifier,
-    loginGoogle: () -> Unit = {},
-    loginFacebook: () -> Unit = {},
-    loginApple: () -> Unit = {},
-    loginEmail: () -> Unit = {},
-) {
-    Column(modifier = modifier.fillMaxWidth().padding(horizontal = 30.dp)) {
-        SocialButton(
-            text = stringResource(Res.string.login_button_login_with_google),
-            icon = Res.drawable.ic_cyclone1
-        ) {
-            loginGoogle()
-        }
-        CookSpace(SpaceSize.SMALL)
-        SocialButton(
-            text = stringResource(Res.string.login_button_login_with_facebook),
-            icon = Res.drawable.ic_cyclone1
-        ) {
-            loginFacebook()
-        }
-        CookSpace(SpaceSize.SMALL)
-        SocialButton(
-            text = stringResource(Res.string.login_button_login_with_apple),
-            icon = Res.drawable.ic_cyclone1
-        ) {
-            loginApple()
-        }
-        CookSpace(SpaceSize.SMALL)
-        SocialButton(
-            text = stringResource(Res.string.login_button_login_with_email),
-            icon = Res.drawable.ic_cyclone1
-        ) {
-            loginEmail()
-        }
-    }
-}
-
-@Composable
-fun MultiClickableText(
-    modifier: Modifier = Modifier,
-    textSegments: List<SegmentText>,
-    onClick: (tag: String) -> Unit,
-    content: @Composable (text: AnnotatedString) -> Unit
-) {
-    val annotatedString = buildAnnotatedString {
-        textSegments.forEach { segment ->
-            if (segment.isClickable) {
-                val link = LinkAnnotation.Clickable(
-                    tag = segment.tag,
-                    styles = TextLinkStyles(style = SpanStyle(color = Color.Blue))
-                ) {
-                    onClick(segment.tag)
-                }
-                withLink(link = link) {
-                    append(segment.text)
-                }
-            } else {
-                append(segment.text)
-            }
-        }
-    }
-    content(annotatedString)
-}
-
-data class SegmentText(
-    val text: String,
-    val tag: String = "",
-    val isClickable: Boolean = false,
-)

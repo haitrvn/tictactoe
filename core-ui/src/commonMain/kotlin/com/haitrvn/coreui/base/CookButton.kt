@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ripple
@@ -21,6 +20,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.utils.MultipleEventsCutter
+import com.haitrvn.coreui.utils.clickableSingle
+import com.haitrvn.coreui.utils.get
 
 @Composable
 fun BaseButton(
@@ -67,16 +69,7 @@ fun SecondaryButton(
             .clip(shape)
             .background(Color.Transparent)
             .border(BorderStroke(borderWidth, color), shape)
-            .then(
-                if (enabled) {
-                    Modifier.clickable(
-                        indication = null,
-                        interactionSource = remember { MutableInteractionSource() }
-                    ) { onClick() }
-                } else {
-                    Modifier
-                }
-            )
+            .clickableWithRipple(onClick = onClick, enabled = enabled)
             .padding(horizontal = 16.dp, vertical = 10.dp)
     ) {
         content()
@@ -104,11 +97,12 @@ fun Modifier.clickableWithRipple(
     onClick: () -> Unit,
 ): Modifier {
     val interactionSource = remember { MutableInteractionSource() }
+    val multipleEventsCutter = remember { MultipleEventsCutter.get() }
     return if (enabled) {
         this.clickable(
             interactionSource = interactionSource,
             indication = ripple(color = contentColor.copy(alpha = 0.24f)),
-            onClick = onClick
+            onClick = { multipleEventsCutter.processEvent { onClick() } }
         )
     } else {
         this

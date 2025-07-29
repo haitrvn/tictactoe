@@ -9,7 +9,7 @@ interface Navigator {
         popUpToRoute: Destination? = null,
         popUpToInclusive: Boolean = false,
         popUpToSaveState: Boolean = false,
-        launchSingleTop: Boolean = false,
+        launchSingleTop: Boolean = true,
         restoreState: Boolean = false,
     )
 

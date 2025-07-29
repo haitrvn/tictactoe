@@ -1,14 +1,27 @@
 package com.haitrvn.navigation
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
+import com.haitrvn.core.Log
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 internal class NavigatorImpl(
     private val navigator: NavController,
 ) : Navigator {
+
+    init {
+        CoroutineScope(Dispatchers.Default).launch {
+            navigator.currentBackStack.collect { backStackEntry ->
+                Log.d(
+                    "Navigator",
+                    "currentBackStackEntryFlow: ${backStackEntry.map { it.destination.route }}"
+                )
+            }
+        }
+    }
+
     override fun navigate(
         destination: Destination,
         popUpToRoute: Destination?,

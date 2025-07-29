@@ -17,8 +17,8 @@ import org.jetbrains.compose.resources.Font
 data class CookTypography(
     val app: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
-        fontSize = 30.sp,
-        lineHeight = 34.sp,
+        fontSize = 36.sp,
+        lineHeight = 40.sp,
         fontStyle = FontStyle.Normal,
     ),
     val header: TextStyle = TextStyle(

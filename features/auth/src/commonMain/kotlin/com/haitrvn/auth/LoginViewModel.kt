@@ -59,7 +59,6 @@ class LoginViewModel(
             }.launchIn(viewModelScope)
 
         action<LoginAction.LoginClicked>().onEach {
-            println("Login clicked")
         }.flatMapFirst {
             flow {
                 _uiState.update { it.copy(isLoading = true) }
@@ -71,7 +70,6 @@ class LoginViewModel(
                     }
             }
         }.onEach {
-            println("Login clicked after flatmap")
             val loginSuccessful =
                 (_uiState.value.username == "admin" && _uiState.value.password == "password")
             _uiState.update {

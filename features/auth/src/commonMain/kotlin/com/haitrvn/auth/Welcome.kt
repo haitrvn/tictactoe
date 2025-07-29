@@ -25,6 +25,7 @@ import com.haitrvn.coreui.TextApp
 import com.haitrvn.coreui.TextHeader
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextSmall
+import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
@@ -87,8 +88,8 @@ private fun Header(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CookSpace(SpaceSize.LARGE)
-            TextApp(text = stringResource(Res.string.login_welcome_app_name))
-            TextSmall(text = stringResource(Res.string.login_welcome_quote))
+            TextApp(text = Res.string.login_welcome_app_name.toText())
+            TextSmall(text = Res.string.login_welcome_quote.toText())
         }
     }
 }
@@ -103,11 +104,11 @@ private fun Footer(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CookSpace(SpaceSize.LARGE)
-        TextHeader(text = stringResource(Res.string.login_welcome_quote_question))
+        TextHeader(text = Res.string.login_welcome_quote_question.toText())
         CookSpace(SpaceSize.SMALL)
-        TextParagraph(text = stringResource(Res.string.login_welcome_description))
+        TextParagraph(text = Res.string.login_welcome_description.toText())
         CookSpace(SpaceSize.MEDIUM)
-        CookPrimaryButton(text = stringResource(Res.string.login_button_start_cooking)) {
+        CookPrimaryButton(text = Res.string.login_button_start_cooking.toText()) {
             onStartCookingClick()
         }
     }
