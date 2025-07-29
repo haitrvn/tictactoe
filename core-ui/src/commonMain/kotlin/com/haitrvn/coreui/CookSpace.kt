@@ -2,6 +2,7 @@ package com.haitrvn.coreui
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
@@ -37,6 +38,6 @@ fun CookSpace(size: SpaceSize) {
         SpaceSize.MEDIUM -> CookTheme.space.medium
         SpaceSize.LARGE -> CookTheme.space.large
     }
-    Spacer(Modifier.height(height))
+    Spacer(Modifier.size(height))
 }
 

@@ -52,7 +52,6 @@ fun LoginWithEmailWrapper(
         CookTextInput(value = "") {}
         CookTextInput(value = "") {}
         CookPrimaryButton(
-            modifier = Modifier.fillMaxWidth(),
             text = stringResource(Res.string.login_button_login)
         ) {
             navigator.navigate(Home)

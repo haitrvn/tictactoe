@@ -28,6 +28,7 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookSpace
+import com.haitrvn.coreui.SocialButton
 import com.haitrvn.coreui.SpaceSize
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.TextTitle
@@ -136,7 +137,6 @@ private fun LoginWithSocial(
     loginEmail: () -> Unit = {},
 ) {
     Column(modifier = modifier.fillMaxWidth().padding(horizontal = 30.dp)) {
-
         SocialButton(
             text = stringResource(Res.string.login_button_login_with_google),
             icon = Res.drawable.ic_cyclone1
@@ -164,33 +164,6 @@ private fun LoginWithSocial(
         ) {
             loginEmail()
         }
-    }
-}
-
-@Composable
-fun SocialButton(
-    modifier: Modifier = Modifier,
-    text: String,
-    icon: DrawableResource,
-    onClick: () -> Unit,
-) {
-    val shape = CookTheme.shapes.medium
-    Row(
-        modifier
-            .wrapContentHeight()
-            .fillMaxWidth()
-            .clip(shape)
-            .background(CookTheme.colors.primary)
-            .clickable { onClick() }
-            .padding(horizontal = 10.dp, vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        CookImage(
-            modifier = Modifier.size(30.dp).aspectRatio(1f),
-            drawableResource = icon
-        )
-        CookSpace(SpaceSize.MEDIUM)
-        TextTitle(modifier = Modifier.fillMaxWidth(), text = text)
     }
 }
 

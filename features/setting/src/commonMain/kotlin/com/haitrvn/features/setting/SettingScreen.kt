@@ -46,6 +46,7 @@ private fun Avatar(
             TextParagraph(text = userEmail)
         }
         CookPrimaryButton(
+            modifier = Modifier,
             text = "Edit",
             onClick = onEditAvatar
         )
@@ -98,6 +99,7 @@ private fun SettingsList(
                 text = "Log Out",
                 onClick = onLogout
             )
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
