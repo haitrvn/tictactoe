@@ -34,7 +34,6 @@ import cookapp.resources.auth.login_welcome_app_name
 import cookapp.resources.auth.login_welcome_description
 import cookapp.resources.auth.login_welcome_quote
 import cookapp.resources.auth.login_welcome_quote_question
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun Welcome(

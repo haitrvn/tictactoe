@@ -1,11 +1,13 @@
 package com.haitrvn.coreui
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Surface
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
@@ -18,47 +20,42 @@ fun CookSurface(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
     color: Color = CookTheme.colors.background1,
-    contentColor: Color = contentColorFor(color),
-    tonalElevation: Dp = 0.dp,
     shadowElevation: Dp = 0.dp,
-    border: BorderStroke? = null,
     background: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
-    Surface(
-        modifier = modifier,
-        shape = shape,
-        color = color,
-        contentColor = contentColor,
-        tonalElevation = tonalElevation,
-        shadowElevation = shadowElevation,
-        border = border,
+    Box(
+        modifier = modifier
+            .shadow(elevation = shadowElevation, shape = shape, clip = true)
+            .background(color),
+        contentAlignment = Alignment.Center
     ) {
         background()
-        content()
+        Box(
+            modifier = Modifier.padding(CookTheme.contentPadding.medium),
+            contentAlignment = Alignment.Center
+        ) {
+            content()
+        }
     }
 }
 
 @Composable
-fun Card(
+fun CookRoundSurface(
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(10.dp),
     color: Color = CookTheme.colors.background1,
-    contentColor: Color = contentColorFor(color),
-    tonalElevation: Dp = 0.dp,
-    shadowElevation: Dp = 0.dp,
-    border: BorderStroke? = null,
+    shadowElevation: Dp = 10.dp,
     content: @Composable () -> Unit
 ) {
-    Surface(
-        modifier = modifier,
-        shape = shape,
-        color = color,
-        contentColor = contentColor,
-        tonalElevation = tonalElevation,
-        shadowElevation = shadowElevation,
-        border = border,
+    Box(
+        modifier = modifier
+            .shadow(elevation = shadowElevation, shape = shape, clip = true)
+            .background(color),
+        contentAlignment = Alignment.Center
     ) {
-        content()
+        Box(modifier = Modifier.padding(CookTheme.contentPadding.medium)) {
+            content()
+        }
     }
 }
