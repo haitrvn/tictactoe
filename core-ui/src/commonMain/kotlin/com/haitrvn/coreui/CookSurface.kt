@@ -2,6 +2,8 @@ package com.haitrvn.coreui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -21,19 +23,16 @@ fun CookSurface(
     shape: Shape = RectangleShape,
     color: Color = CookTheme.colors.background1,
     shadowElevation: Dp = 0.dp,
-    background: @Composable () -> Unit = {},
+    paddingValues: PaddingValues = PaddingValues(0.dp),
     content: @Composable () -> Unit,
 ) {
     Box(
         modifier = modifier
             .shadow(elevation = shadowElevation, shape = shape, clip = true)
             .background(color),
-        contentAlignment = Alignment.Center
     ) {
-        background()
         Box(
-            modifier = Modifier.padding(CookTheme.contentPadding.medium),
-            contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxSize().padding(paddingValues),
         ) {
             content()
         }
@@ -46,6 +45,7 @@ fun CookRoundSurface(
     shape: Shape = RoundedCornerShape(10.dp),
     color: Color = CookTheme.colors.background1,
     shadowElevation: Dp = 10.dp,
+    paddingValues: PaddingValues = CookTheme.contentPadding.medium,
     content: @Composable () -> Unit
 ) {
     Box(
@@ -54,7 +54,7 @@ fun CookRoundSurface(
             .background(color),
         contentAlignment = Alignment.Center
     ) {
-        Box(modifier = Modifier.padding(CookTheme.contentPadding.medium)) {
+        Box(modifier = Modifier.padding(paddingValues)) {
             content()
         }
     }

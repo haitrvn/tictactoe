@@ -63,25 +63,22 @@ fun WelcomeWrapper(
 private fun Header(modifier: Modifier = Modifier) {
     CookSurface(
         modifier = modifier,
-        background = {
-            CookSurface(shape = RoundedCornerShape(bottomStart = 40.dp)) {
-                CookImage(
-                    contentScale = ContentScale.Crop,
-                    url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg"
+    ) {
+        CookImage(
+            modifier= Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop,
+            url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg"
+        )
+        Box(
+            Modifier.fillMaxWidth().fillMaxHeight(0.5f)
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(Color.White, Color.Transparent),
+                        start = Offset(0f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY)
+                    )
                 )
-                Box(
-                    Modifier.fillMaxWidth().fillMaxHeight(0.5f)
-                        .background(
-                            brush = Brush.linearGradient(
-                                colors = listOf(Color.White, Color.Transparent),
-                                start = Offset(0f, 0f),
-                                end = Offset(0f, Float.POSITIVE_INFINITY)
-                            )
-                        )
-                )
-            }
-        })
-    {
+        )
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
