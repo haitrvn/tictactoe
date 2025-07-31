@@ -4,11 +4,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ComposeUIViewController
-import com.haitrvn.auth.di.loginModule
 import com.haitrvn.cookapp.App
-import com.haitrvn.data.di.dataModule
-import com.haitrvn.home.di.homeModule
-import com.haitrvn.navigation.di.navigationMode
+import com.haitrvn.cookapp.appModule
 import org.koin.core.context.startKoin
 import platform.UIKit.UIViewController
 
@@ -32,6 +29,6 @@ fun MainViewController(
 
 fun initInjection() {
     startKoin {
-        modules(homeModule, loginModule, dataModule, navigationMode)
+        modules(appModule)
     }
 }

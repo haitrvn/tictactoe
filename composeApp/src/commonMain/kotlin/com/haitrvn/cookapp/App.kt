@@ -21,6 +21,7 @@ import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
+import com.haitrvn.navigation.ReloadViewModel
 import cookapp.resources.app.Res
 import cookapp.resources.app.ic_app_home
 import cookapp.resources.app.ic_app_search
@@ -28,6 +29,7 @@ import cookapp.resources.app.ic_app_setting
 import cookapp.resources.app.presentation_bottom_main_title
 import cookapp.resources.app.presentation_bottom_search_title
 import cookapp.resources.app.presentation_bottom_setting_title
+import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -54,18 +56,15 @@ internal fun App(
                         navigator.navigate(
                             destination = item.destination,
                             popUpToRoute = Main,
-                            launchSingleTop = true,
                             restoreState = true,
                             popUpToSaveState = true
                         )
                     },
-                    onItemReClick = { item ->
+                    onItemReClick = { shouldReload, item ->
                         navigator.navigate(
                             destination = item.destination,
                             popUpToRoute = item.destination,
                             popUpToInclusive = true,
-                            launchSingleTop = true,
-                            restoreState = false,
                             popUpToSaveState = true
                         )
                     })
@@ -91,18 +90,21 @@ val navigationItemsLists by lazy {
             selectedIcon = Res.drawable.ic_app_home,
             title = Res.string.presentation_bottom_main_title,
             destination = Main.Home,
+            startDestination = Main.Home.Home1,
         ),
         NavigationItem(
             unSelectedIcon = Res.drawable.ic_app_search,
             selectedIcon = Res.drawable.ic_app_search,
             title = Res.string.presentation_bottom_search_title,
             destination = Main.Search,
+            startDestination = Main.Search.Search1,
         ),
         NavigationItem(
             unSelectedIcon = Res.drawable.ic_app_setting,
             selectedIcon = Res.drawable.ic_app_setting,
             title = Res.string.presentation_bottom_setting_title,
             destination = Main.Setting,
+            startDestination = Main.Setting.Setting1,
         ),
     )
 }

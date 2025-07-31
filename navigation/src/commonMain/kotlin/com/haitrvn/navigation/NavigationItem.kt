@@ -7,5 +7,6 @@ data class NavigationItem(
     val unSelectedIcon: DrawableResource,
     val selectedIcon: DrawableResource,
     val title: StringResource,
-    val destination: Destination
+    val destination: Destination,
+    val startDestination: Destination,
 )
