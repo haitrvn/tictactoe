@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalSharedTransitionApi::class)
+
 package com.haitrvn.auth
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +27,6 @@ import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.SpaceSize
 import com.haitrvn.coreui.TextApp
 import com.haitrvn.coreui.TextHeader
-import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
@@ -38,20 +41,34 @@ import cookapp.resources.auth.login_welcome_quote_question
 @Composable
 fun Welcome(
     modifier: Modifier = Modifier,
-    navigator: Navigator
+    navigator: Navigator,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
 ) {
-    WelcomeWrapper(
-        modifier = modifier.fillMaxSize()
-    ) { navigator.navigate(Auth.Login) }
+    with(sharedTransitionScope) {
+        val sharedImageModifier = Modifier.sharedElement(
+            sharedContentState = rememberSharedContentState("IMAGE_HEADER"),
+            animatedVisibilityScope = animatedVisibilityScope
+        )
+        WelcomeWrapper(
+            modifier = modifier.fillMaxSize(),
+            sharedImageModifier = sharedImageModifier,
+            onStartCookingClick = { navigator.navigate(Auth.Login) },
+        )
+    }
 }
 
 @Composable
 fun WelcomeWrapper(
     modifier: Modifier = Modifier,
+    sharedImageModifier: Modifier = Modifier,
     onStartCookingClick: () -> Unit = {},
 ) {
     Column(modifier = modifier.fillMaxSize()) {
-        Header(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.6f))
+        Header(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.6f),
+            sharedImageModifier = sharedImageModifier
+        )
         Footer(
             modifier = Modifier.fillMaxSize(),
             onStartCookingClick = onStartCookingClick
@@ -60,24 +77,35 @@ fun WelcomeWrapper(
 }
 
 @Composable
-private fun Header(modifier: Modifier = Modifier) {
+private fun Header(
+    modifier: Modifier = Modifier,
+    sharedImageModifier: Modifier = Modifier,
+) {
     CookSurface(
         modifier = modifier,
-    ) {
-        CookImage(
-            modifier= Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop,
-            url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg"
-        )
-        Box(
-            Modifier.fillMaxWidth().fillMaxHeight(0.5f)
+
+        ) {
+        CookSurface(
+            modifier = Modifier.then(sharedImageModifier),
+            shape = RoundedCornerShape(bottomStart = 30.dp)
+        ) {
+            CookImage(
+                modifier = Modifier.fillMaxSize(),
+                url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.BottomCenter,
+            )
+        }
+        CookSurface(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f)
                 .background(
                     brush = Brush.linearGradient(
                         colors = listOf(Color.White, Color.Transparent),
                         start = Offset(0f, 0f),
                         end = Offset(0f, Float.POSITIVE_INFINITY)
                     )
-                )
+                ),
+            color = Color.Transparent,
         )
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -102,7 +130,7 @@ private fun Footer(
         CookSpace(SpaceSize.LARGE)
         TextHeader(text = Res.string.login_welcome_quote_question.toText())
         CookSpace(SpaceSize.SMALL)
-        TextParagraph(text = Res.string.login_welcome_description.toText())
+        TextSmall(text = Res.string.login_welcome_description.toText())
         CookSpace(SpaceSize.MEDIUM)
         CookPrimaryButton(text = Res.string.login_button_start_cooking.toText()) {
             onStartCookingClick()

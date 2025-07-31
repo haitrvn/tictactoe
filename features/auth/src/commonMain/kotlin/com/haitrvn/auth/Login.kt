@@ -2,25 +2,29 @@
 
 package com.haitrvn.auth
 
+import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookSpace
+import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.SocialButton
 import com.haitrvn.coreui.SpaceSize
 import com.haitrvn.coreui.TextBigTitle
 import com.haitrvn.coreui.TextSmall
-import com.haitrvn.coreui.theme.DarkColors
 import com.haitrvn.coreui.theme.appleLoginBackground
 import com.haitrvn.coreui.theme.facebookLoginBackground
 import com.haitrvn.coreui.theme.googleLoginBackground
@@ -46,22 +50,33 @@ const val TAG_SIGNUP = "signup"
 
 @Composable
 fun Login(
-    navigator: Navigator
+    navigator: Navigator,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
 ) {
     val loginViewModel = koinInject<LoginViewModel>()
-    LoginWrapper(
-        sentEvent = loginViewModel::dispatch,
-        loginEmail = { navigator.navigate(Auth.LoginWithEmail) },
-        loginGoogle = {},
-        loginFacebook = {},
-        loginApple = {},
-        gotoSignup = { navigator.navigate(Auth.Register) }
-    )
+    with(sharedTransitionScope) {
+        val sharedImageModifier = Modifier.sharedElement(
+            sharedContentState = rememberSharedContentState("IMAGE_HEADER"),
+            animatedVisibilityScope = animatedVisibilityScope
+        )
+        LoginWrapper(
+            modifier = Modifier.fillMaxSize(),
+            sharedImageModifier = sharedImageModifier,
+            sentEvent = loginViewModel::dispatch,
+            loginEmail = { navigator.navigate(Auth.LoginWithEmail) },
+            loginGoogle = {},
+            loginFacebook = {},
+            loginApple = {},
+            gotoSignup = { navigator.navigate(Auth.Register) },
+        )
+    }
 }
 
 @Composable
 internal fun LoginWrapper(
     modifier: Modifier = Modifier,
+    sharedImageModifier: Modifier = Modifier,
     sentEvent: (LoginAction) -> Unit = {},
     gotoSignup: () -> Unit = {},
     loginGoogle: () -> Unit = {},
@@ -73,10 +88,17 @@ internal fun LoginWrapper(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        CookImage(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.4f),
-            drawableResource = Res.drawable.ic_cyclone1
-        )
+        CookSurface(
+            modifier = Modifier.then(sharedImageModifier),
+            shape = RoundedCornerShape(bottomStart = 30.dp)
+        ) {
+            CookImage(
+                modifier = Modifier.fillMaxWidth().fillMaxHeight(0.4f),
+                url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.BottomCenter,
+            )
+        }
         CookSpace(SpaceSize.MEDIUM)
         TextBigTitle(text = Res.string.login_welcome_quote.toText())
         CookSpace(SpaceSize.SMALL)

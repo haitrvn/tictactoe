@@ -21,7 +21,6 @@ import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
-import com.haitrvn.navigation.ReloadViewModel
 import cookapp.resources.app.Res
 import cookapp.resources.app.ic_app_home
 import cookapp.resources.app.ic_app_search
@@ -29,7 +28,6 @@ import cookapp.resources.app.ic_app_setting
 import cookapp.resources.app.presentation_bottom_main_title
 import cookapp.resources.app.presentation_bottom_search_title
 import cookapp.resources.app.presentation_bottom_setting_title
-import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.mp.KoinPlatform.getKoin
 

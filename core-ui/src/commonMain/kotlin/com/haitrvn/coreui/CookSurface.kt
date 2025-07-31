@@ -3,12 +3,10 @@ package com.haitrvn.coreui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -25,7 +23,7 @@ fun CookSurface(
     color: Color = CookTheme.colors.background1,
     shadowElevation: Dp = 0.dp,
     paddingValues: PaddingValues = PaddingValues(0.dp),
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit = {},
 ) {
     Box(
         modifier = modifier
