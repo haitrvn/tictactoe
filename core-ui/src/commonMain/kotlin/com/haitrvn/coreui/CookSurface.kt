@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,7 +33,7 @@ fun CookSurface(
             .background(color),
     ) {
         Box(
-            modifier = Modifier.fillMaxSize().padding(paddingValues),
+            modifier = Modifier.wrapContentSize().padding(paddingValues),
         ) {
             content()
         }
@@ -43,7 +44,7 @@ fun CookSurface(
 fun CookRoundSurface(
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(10.dp),
-    color: Color = CookTheme.colors.background1,
+    color: Color = CookTheme.colors.primary,
     shadowElevation: Dp = 10.dp,
     paddingValues: PaddingValues = CookTheme.contentPadding.medium,
     content: @Composable () -> Unit
@@ -52,7 +53,6 @@ fun CookRoundSurface(
         modifier = modifier
             .shadow(elevation = shadowElevation, shape = shape, clip = true)
             .background(color),
-        contentAlignment = Alignment.Center
     ) {
         Box(modifier = Modifier.padding(paddingValues)) {
             content()

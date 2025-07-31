@@ -3,7 +3,7 @@ package com.haitrvn.coreui.imageloader
 import coil3.util.Logger
 import com.haitrvn.core.Log
 
-class LoggerImpl : Logger {
+class ImageLoggerImpl : Logger {
     override var minLevel: Logger.Level = Logger.Level.Debug
 
     override fun log(

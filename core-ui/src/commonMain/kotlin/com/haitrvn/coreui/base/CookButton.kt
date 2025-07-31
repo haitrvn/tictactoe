@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ripple
@@ -19,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.CookRoundSurface
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.utils.MultipleEventsCutter
-import com.haitrvn.coreui.utils.clickableSingle
 import com.haitrvn.coreui.utils.get
 
 @Composable
@@ -34,17 +35,11 @@ fun BaseButton(
     cornerRadius: Dp = 12.dp,
     content: @Composable () -> Unit,
 ) {
-    val shape = RoundedCornerShape(cornerRadius)
-    val bgColor = if (enabled) backgroundColor else disabledBackgroundColor
-
-    Box(
+    CookRoundSurface(
         modifier = modifier
-            .defaultShadow()
-            .clip(shape)
-            .background(bgColor)
-            .clickableWithRipple(onClick = onClick, enabled = enabled)
-            .padding(horizontal = 30.dp, vertical = 16.dp),
-        contentAlignment = Alignment.Center
+            .clickableWithRipple(onClick = onClick, enabled = enabled),
+        shape = RoundedCornerShape(cornerRadius),
+        color = if (enabled) backgroundColor else disabledBackgroundColor,
     ) {
         content()
     }
@@ -53,7 +48,7 @@ fun BaseButton(
 @Composable
 fun SecondaryButton(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.fillMaxWidth(),
     enabled: Boolean = true,
     borderColor: Color = CookTheme.colors.primary,
     disabledBorderColor: Color = CookTheme.colors.primary,
@@ -70,14 +65,16 @@ fun SecondaryButton(
             .background(Color.Transparent)
             .border(BorderStroke(borderWidth, color), shape)
             .clickableWithRipple(onClick = onClick, enabled = enabled)
-            .padding(horizontal = 16.dp, vertical = 10.dp)
+            .padding(horizontal = 16.dp, vertical = 10.dp),
+        contentAlignment = Alignment.Center
+
     ) {
         content()
     }
 }
 
 @Composable
-fun Modifier.defaultShadow(
+private fun Modifier.defaultShadow(
     shape: Shape = CookTheme.shapes.large,
     elevation: Dp = 6.dp,
     isClip: Boolean = false
@@ -91,7 +88,7 @@ fun Modifier.defaultShadow(
 }
 
 @Composable
-fun Modifier.clickableWithRipple(
+private fun Modifier.clickableWithRipple(
     enabled: Boolean,
     contentColor: Color = CookTheme.colors.onPrimary,
     onClick: () -> Unit,

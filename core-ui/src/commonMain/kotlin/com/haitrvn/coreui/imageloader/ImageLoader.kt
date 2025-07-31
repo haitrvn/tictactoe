@@ -12,7 +12,6 @@ import coil3.compose.setSingletonImageLoaderFactory
 import coil3.disk.DiskCache
 import coil3.memory.MemoryCache
 import com.haitrvn.coreui.theme.DarkColors
-import cookapp.resources.coreui.Res
 import okio.Path
 
 @Composable
@@ -30,7 +29,7 @@ fun initImageLoader() {
                     .maxSizePercent(0.02)
                     .build()
             }
-            .logger(LoggerImpl())
+            .logger(ImageLoggerImpl())
             .build()
     }
 }
