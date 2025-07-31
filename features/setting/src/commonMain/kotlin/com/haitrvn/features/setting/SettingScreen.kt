@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
-import com.haitrvn.coreui.utils.clickableSingle
+import com.haitrvn.coreui.base.debouncedClickable
 
 @Composable
 private fun Avatar(
@@ -70,7 +70,7 @@ private fun SettingsList(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickableSingle { onSettingClick(title) }
+                    .debouncedClickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
                 TextParagraph(text = title)
@@ -86,7 +86,7 @@ private fun SettingsList(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickableSingle { onSettingClick(title) }
+                    .debouncedClickable { onSettingClick(title) }
                     .padding(vertical = 12.dp)
             ) {
                 TextParagraph(text = title)
@@ -118,7 +118,7 @@ private fun Privacy(
         Spacer(modifier = Modifier.height(4.dp))
         TextParagraph(
             text = "Terms of Service",
-            modifier = Modifier.clickableSingle(onClick = onTermsClick),
+            modifier = Modifier.debouncedClickable(onClick = onTermsClick),
         )
     }
 }

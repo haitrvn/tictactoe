@@ -58,9 +58,11 @@ internal fun NavGraphBuilder.homeGraph(
 ) {
     navigation<Home>(startDestination = Home.Search) {
         composable<Home.Main> {
+            BackPressSample()
             com.haitrvn.home.Home()
         }
         composable<Home.Search> {
+            BackPressSample()
             DiscoverScreen()
         }
         composable<Home.Setting> {

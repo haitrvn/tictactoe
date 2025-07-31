@@ -6,27 +6,31 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookRoundSurface
 import com.haitrvn.coreui.theme.CookTheme
-import com.haitrvn.coreui.utils.MultipleEventsCutter
-import com.haitrvn.coreui.utils.get
+import kotlinx.datetime.Clock
+import kotlin.math.abs
 
 @Composable
-fun BaseButton(
+internal fun BaseButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -46,26 +50,25 @@ fun BaseButton(
 }
 
 @Composable
-fun SecondaryButton(
+internal fun BaseSecondaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier.fillMaxWidth(),
     enabled: Boolean = true,
     borderColor: Color = CookTheme.colors.primary,
     disabledBorderColor: Color = CookTheme.colors.primary,
-    cornerRadius: Dp = 12.dp,
     borderWidth: Dp = 2.dp,
+    shape: Shape = RoundedCornerShape(10.dp),
+    paddingValues: PaddingValues = CookTheme.contentPadding.medium,
     content: @Composable () -> Unit,
 ) {
-    val shape = RoundedCornerShape(cornerRadius)
     val color = if (enabled) borderColor else disabledBorderColor
-
     Box(
         modifier = modifier
             .clip(shape)
             .background(Color.Transparent)
             .border(BorderStroke(borderWidth, color), shape)
             .clickableWithRipple(onClick = onClick, enabled = enabled)
-            .padding(horizontal = 16.dp, vertical = 10.dp),
+            .padding(paddingValues),
         contentAlignment = Alignment.Center
 
     ) {
@@ -74,34 +77,61 @@ fun SecondaryButton(
 }
 
 @Composable
-private fun Modifier.defaultShadow(
-    shape: Shape = CookTheme.shapes.large,
-    elevation: Dp = 6.dp,
-    isClip: Boolean = false
-): Modifier {
-    if (elevation <= 0.dp) return this
-    return this.shadow(
-        elevation = elevation,
-        shape = shape,
-        isClip,
-    )
-}
-
-@Composable
 private fun Modifier.clickableWithRipple(
     enabled: Boolean,
     contentColor: Color = CookTheme.colors.onPrimary,
+    debounceTime: Long = 1000L,
     onClick: () -> Unit,
 ): Modifier {
     val interactionSource = remember { MutableInteractionSource() }
-    val multipleEventsCutter = remember { MultipleEventsCutter.get() }
     return if (enabled) {
-        this.clickable(
-            interactionSource = interactionSource,
-            indication = ripple(color = contentColor.copy(alpha = 0.24f)),
-            onClick = { multipleEventsCutter.processEvent { onClick() } }
-        )
+        this.composed {
+            val clickable = debouncedComposable(debounceTime = debounceTime, onClick = { onClick() })
+            this.clickable(
+                interactionSource = interactionSource,
+                indication = ripple(color = contentColor.copy(alpha = 0.24f)),
+                onClick = clickable
+            )
+        }
     } else {
         this
+    }
+}
+
+@Composable
+inline fun debouncedComposable(crossinline onClick: () -> Unit, debounceTime: Long = 1000L): () -> Unit {
+    var lastTimeClicked by remember { mutableStateOf(0L) }
+    val onClickLambda: () -> Unit = {
+        val now = Clock.System.now().toEpochMilliseconds()
+        if (now - lastTimeClicked > debounceTime) {
+            onClick()
+        }
+        lastTimeClicked = now
+    }
+    return onClickLambda
+}
+
+object DebouncedClickable {
+    private const val DEFAULT_DELAY_TIME = 500
+    private var lastClickTime: Long = 0
+
+    internal fun preform(timeDelay: Int = DEFAULT_DELAY_TIME, action: () -> Unit) {
+        if (abs(Clock.System.now().toEpochMilliseconds() - lastClickTime) > timeDelay) {
+            action.invoke()
+            lastClickTime = Clock.System.now().toEpochMilliseconds()
+        }
+    }
+}
+
+/**
+ * The same as [Modifier.clickable] with support to debouncing.
+ */
+fun Modifier.debouncedClickable(
+    debounceTime: Long = 1000L,
+    onClick: () -> Unit
+): Modifier {
+    return this.composed {
+        val clickable = debouncedComposable(debounceTime = debounceTime, onClick = { onClick() })
+        this.clickable { clickable() }
     }
 }

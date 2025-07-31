@@ -14,6 +14,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.base.BaseButton
+import com.haitrvn.coreui.base.BaseSecondaryButton
 import com.haitrvn.coreui.theme.CookTheme
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -37,6 +38,28 @@ fun CookPrimaryButton(
             style = CookTheme.typography.title,
             textAlign = TextAlign.Center,
             color = CookTheme.colors.onPrimary
+        )
+    }
+}
+
+@Composable
+fun CookSecondaryButton(
+    text: String,
+    modifier: Modifier = Modifier.fillMaxWidth(),
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
+    BaseSecondaryButton(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+    ) {
+        BaseCookText(
+            modifier = modifier,
+            text = text,
+            style = CookTheme.typography.title,
+            textAlign = TextAlign.Center,
+            color = CookTheme.colors.paragraph
         )
     }
 }

@@ -14,6 +14,7 @@ import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.CookTextInput
+import com.haitrvn.coreui.EmailInputField
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
@@ -52,8 +53,8 @@ fun LoginWithEmailWrapper(
             drawableResource = Res.drawable.ic_cyclone1
         )
         TextTitle(text = Res.string.login_hint_email_or_username.toText())
-        CookTextInput(value = "") {}
-        CookTextInput(value = "") {}
+        EmailInputField(value = "") {}
+        EmailInputField(value = "") {}
         CookPrimaryButton(
             text = Res.string.login_button_login.toText()
         ) {
@@ -92,10 +93,9 @@ private fun BaseInput(
     onValueChange: (String) -> Unit,
     isPassword: Boolean = false,
 ) {
-    CookTextInput(
+    EmailInputField(
         modifier = Modifier.then(modifier),
         value = value,
-        isPassword = isPassword
     ) {
         onValueChange(it)
     }

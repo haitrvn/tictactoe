@@ -46,10 +46,10 @@ fun CookTextInput(
 @Composable
 fun EmailInputField(
     value: String,
-    onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     isValid: Boolean = false,
-    textStyle: TextStyle = CookTheme.typography.paragraph
+    textStyle: TextStyle = CookTheme.typography.paragraph,
+    onValueChange: (String) -> Unit,
 ) {
     val shape = RoundedCornerShape(50) // bo góc oval
     val background = Color(0xFFF5F5F5) // màu xám nhạt
