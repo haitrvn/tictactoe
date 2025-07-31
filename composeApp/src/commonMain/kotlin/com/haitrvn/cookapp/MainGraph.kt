@@ -20,11 +20,13 @@ import com.haitrvn.auth.Login
 import com.haitrvn.auth.LoginWithEmail
 import com.haitrvn.auth.Welcome
 import com.haitrvn.coreui.TextParagraph
+import com.haitrvn.coreui.TextSmall
 import com.haitrvn.features.setting.Setting
 import com.haitrvn.home.DiscoverScreen
+import com.haitrvn.home.Home
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
-import com.haitrvn.navigation.Home
+import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
 
 @Composable
@@ -56,17 +58,28 @@ internal fun NavGraphBuilder.homeGraph(
     navigator: Navigator,
     sharedTransitionScope: SharedTransitionScope,
 ) {
-    navigation<Home>(startDestination = Home.Search) {
-        composable<Home.Main> {
-            BackPressSample()
-            com.haitrvn.home.Home()
+    navigation<Main>(startDestination = Main.Home) {
+        navigation<Main.Home>(startDestination = Main.Home.Home1) {
+            composable<Main.Home.Home1> {
+                BackPressSample()
+                Home()
+            }
         }
-        composable<Home.Search> {
-            BackPressSample()
-            DiscoverScreen()
+        navigation<Main.Search>(startDestination = Main.Search.Search1) {
+            composable<Main.Search.Search1> {
+                BackPressSample()
+                DiscoverScreen()
+            }
         }
-        composable<Home.Setting> {
-            Setting(onLogout = { navigator.navigate(Auth) })
+        navigation<Main.Setting>(startDestination = Main.Setting.Setting1) {
+            composable<Main.Setting.Setting1> {
+                Setting(
+                    onEditAvatar = { navigator.navigate(Main.Setting.Setting2) },
+                    onLogout = { navigator.navigate(Auth) })
+            }
+            composable<Main.Setting.Setting2> {
+                TextSmall(text = "Setting2")
+            }
         }
     }
 }

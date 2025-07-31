@@ -16,7 +16,7 @@ internal class NavigatorImpl(
             navigator.currentBackStack.collect { backStackEntry ->
                 Log.d(
                     "Navigator",
-                    "currentBackStackEntryFlow: ${backStackEntry.map { it.destination.route }}"
+                    "currentBackStack: ${backStackEntry.map { it.destination.route }}"
                 )
             }
         }
@@ -30,6 +30,7 @@ internal class NavigatorImpl(
         launchSingleTop: Boolean,
         restoreState: Boolean,
     ) {
+        Log.d("Navigator", "navigate: $destination")
         navigator.navigate(destination) {
             popUpToRoute?.let { route ->
                 popUpTo(route) {

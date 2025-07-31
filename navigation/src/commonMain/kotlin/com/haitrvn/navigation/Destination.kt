@@ -24,13 +24,26 @@ data object Auth : Destination {
 
 
 @Serializable
-data object Home : Destination {
+data object Main : Destination {
     @Serializable
-    data object Main : Destination
+    data object Home : Destination {
+        @Serializable
+        data object Home1 : Destination
+        @Serializable
+        data object Home2 : Destination
+    }
 
     @Serializable
-    data object Search : Destination
+    data object Search : Destination {
+        @Serializable
+        data object Search1 : Destination
+    }
 
     @Serializable
-    data object Setting : Destination
+    data object Setting : Destination {
+        @Serializable
+        data object Setting1 : Destination
+        @Serializable
+        data object Setting2 : Destination
+    }
 }

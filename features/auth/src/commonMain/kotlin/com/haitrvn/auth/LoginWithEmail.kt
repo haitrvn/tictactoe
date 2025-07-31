@@ -13,14 +13,13 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.CookTextInput
 import com.haitrvn.coreui.EmailInputField
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Home
+import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_cyclone1
@@ -34,7 +33,7 @@ fun LoginWithEmail(
 ) {
     LoginWithEmailWrapper(
         goToHome = {
-            navigator.navigate(Home, Auth, popUpToInclusive = true)
+            navigator.navigate(Main, Auth, popUpToInclusive = true)
         }
     )
 }

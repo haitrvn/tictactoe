@@ -6,6 +6,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.haitrvn.core.Log
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.NavigationItem
@@ -22,11 +23,14 @@ fun BottomNavigationBar(
         modifier = Modifier.fillMaxWidth(),
     ) {
         items.forEach { navigationItem ->
-            val isSelected = currentRoute == navigationItem.destination::class.qualifiedName
+            val isSelected = currentRoute?.contains(navigationItem.destination::class.qualifiedName ?: "") ?: false
+            val isShouldCallReload = currentRoute == navigationItem.destination::class.qualifiedName
             NavigationBarItem(
                 selected = isSelected,
                 onClick = {
+                    Log.d("BottomNavigationBar", "onClick: $currentRoute ${navigationItem.destination::class.qualifiedName}")
                         if (isSelected) {
+
                             onItemReClick(navigationItem)
                         } else {
                             onItemClick(navigationItem)

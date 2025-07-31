@@ -18,7 +18,7 @@ import com.haitrvn.coreui.imageloader.initImageLoader
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.home.BottomNavigationBar
 import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Home
+import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.app.Res
@@ -42,7 +42,7 @@ internal fun App(
     }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val isShowScaffold = currentRoute?.contains(Home::class.qualifiedName.toString()) == true
+    val isShowScaffold = currentRoute?.contains(Main::class.qualifiedName.toString()) == true
     Scaffold(
         modifier = modifier.fillMaxSize(),
         bottomBar = {
@@ -52,7 +52,21 @@ internal fun App(
                     currentRoute = currentRoute,
                     onItemClick = { item ->
                         navigator.navigate(
-                            destination = item.destination, launchSingleTop = true, popUpToSaveState = true
+                            destination = item.destination,
+                            popUpToRoute = Main,
+                            launchSingleTop = true,
+                            restoreState = true,
+                            popUpToSaveState = true
+                        )
+                    },
+                    onItemReClick = { item ->
+                        navigator.navigate(
+                            destination = item.destination,
+                            popUpToRoute = item.destination,
+                            popUpToInclusive = true,
+                            launchSingleTop = true,
+                            restoreState = false,
+                            popUpToSaveState = true
                         )
                     })
             }
@@ -76,19 +90,19 @@ val navigationItemsLists by lazy {
             unSelectedIcon = Res.drawable.ic_app_home,
             selectedIcon = Res.drawable.ic_app_home,
             title = Res.string.presentation_bottom_main_title,
-            destination = Home.Main,
+            destination = Main.Home,
         ),
         NavigationItem(
             unSelectedIcon = Res.drawable.ic_app_search,
             selectedIcon = Res.drawable.ic_app_search,
             title = Res.string.presentation_bottom_search_title,
-            destination = Home.Search,
+            destination = Main.Search,
         ),
         NavigationItem(
             unSelectedIcon = Res.drawable.ic_app_setting,
             selectedIcon = Res.drawable.ic_app_setting,
             title = Res.string.presentation_bottom_setting_title,
-            destination = Home.Setting,
+            destination = Main.Setting,
         ),
     )
 }
