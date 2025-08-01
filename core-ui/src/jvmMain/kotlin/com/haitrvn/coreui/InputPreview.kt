@@ -18,8 +18,7 @@ fun PreviewInput() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                    EmailInputField(value = "input", onValueChange = {}, isValid = true)
-                    EmailInputField(value = "input", onValueChange = {}, isValid = false)
+
                 }
             }
         }
@@ -27,8 +26,7 @@ fun PreviewInput() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                    EmailInputField(value = "input", onValueChange = {}, isValid = true)
-                    EmailInputField(value = "input", onValueChange = {}, isValid = false)
+
                 }
             }
         }

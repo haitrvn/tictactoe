@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.EmailInputField
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
@@ -52,8 +51,8 @@ fun LoginWithEmailWrapper(
             drawableResource = Res.drawable.ic_cyclone1
         )
         TextTitle(text = Res.string.login_hint_email_or_username.toText())
-        EmailInputField(value = "") {}
-        EmailInputField(value = "") {}
+//        EmailInputField(value = "") {}
+//        EmailInputField(value = "") {}
         CookPrimaryButton(
             text = Res.string.login_button_login.toText()
         ) {
@@ -92,12 +91,12 @@ private fun BaseInput(
     onValueChange: (String) -> Unit,
     isPassword: Boolean = false,
 ) {
-    EmailInputField(
-        modifier = Modifier.then(modifier),
-        value = value,
-    ) {
-        onValueChange(it)
-    }
+//    EmailInputField(
+//        modifier = Modifier.then(modifier),
+//        value = value,
+//    ) {
+//        onValueChange(it)
+//    }
 }
 
 @Composable
