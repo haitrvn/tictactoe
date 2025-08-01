@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -46,9 +47,9 @@ fun Welcome(
     animatedVisibilityScope: AnimatedVisibilityScope,
 ) {
     with(sharedTransitionScope) {
-        val sharedImageModifier = Modifier.sharedElement(
-            sharedContentState = rememberSharedContentState("IMAGE_HEADER"),
-            animatedVisibilityScope = animatedVisibilityScope
+        val sharedImageModifier = Modifier.sharedBounds(
+            sharedContentState = rememberSharedContentState(key = "mainImage"),
+            animatedVisibilityScope = animatedVisibilityScope,
         )
         WelcomeWrapper(
             modifier = modifier.fillMaxSize(),
@@ -85,17 +86,13 @@ private fun Header(
         modifier = modifier,
 
         ) {
-        CookSurface(
-            modifier = Modifier.then(sharedImageModifier),
-            shape = RoundedCornerShape(bottomStart = 30.dp)
-        ) {
-            CookImage(
-                modifier = Modifier.fillMaxSize(),
-                url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
-                contentScale = ContentScale.Crop,
-                alignment = Alignment.BottomCenter,
-            )
-        }
+        CookImage(
+            modifier = Modifier.fillMaxSize().then(sharedImageModifier)
+                .clip(RoundedCornerShape(bottomStart = 30.dp)),
+            url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
+            contentScale = ContentScale.Crop,
+            alignment = Alignment.BottomCenter,
+        )
         CookSurface(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f)
                 .background(

@@ -3,8 +3,13 @@
 package com.haitrvn.auth
 
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.BoundsTransform
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.SharedTransitionScope.ResizeMode.Companion.RemeasureToBounds
+import androidx.compose.animation.core.ArcMode
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.keyframes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
@@ -56,9 +62,9 @@ fun Login(
 ) {
     val loginViewModel = koinInject<LoginViewModel>()
     with(sharedTransitionScope) {
-        val sharedImageModifier = Modifier.sharedElement(
-            sharedContentState = rememberSharedContentState("IMAGE_HEADER"),
-            animatedVisibilityScope = animatedVisibilityScope
+        val sharedImageModifier = Modifier.sharedBounds(
+            sharedContentState = rememberSharedContentState(key = "mainImage"),
+            animatedVisibilityScope = animatedVisibilityScope,
         )
         LoginWrapper(
             modifier = Modifier.fillMaxSize(),
@@ -88,17 +94,13 @@ internal fun LoginWrapper(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        CookSurface(
-            modifier = Modifier.then(sharedImageModifier),
-            shape = RoundedCornerShape(bottomStart = 30.dp)
-        ) {
-            CookImage(
-                modifier = Modifier.fillMaxWidth().fillMaxHeight(0.4f),
-                url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
-                contentScale = ContentScale.Crop,
-                alignment = Alignment.BottomCenter,
-            )
-        }
+        CookImage(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.4f).then(sharedImageModifier)
+                .clip(RoundedCornerShape(bottomStart = 30.dp)),
+            url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
+            contentScale = ContentScale.Crop,
+            alignment = Alignment.BottomCenter,
+        )
         CookSpace(SpaceSize.MEDIUM)
         TextBigTitle(text = Res.string.login_welcome_quote.toText())
         CookSpace(SpaceSize.SMALL)

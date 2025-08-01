@@ -60,6 +60,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            implementation("io.insert-koin:koin-core-viewmodel:4.1.0")
         }
 
         commonTest.dependencies {
