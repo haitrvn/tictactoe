@@ -10,6 +10,9 @@ plugins {
 }
 
 kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-parameters")
+    }
 
     androidLibrary {
         namespace = "com.haitrvn.core"

@@ -8,6 +8,9 @@ plugins {
 }
 
 kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-parameters")
+    }
     androidLibrary {
         namespace = "com.haitrvn.domain"
         compileSdk = 35
