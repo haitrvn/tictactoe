@@ -1,108 +1,162 @@
 package com.haitrvn.coreui.theme
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import cookapp.resources.coreui.Res
-import cookapp.resources.coreui.nunito_italic
-import cookapp.resources.coreui.nunito_normal
-import org.jetbrains.compose.resources.Font
 
 @Immutable
-data class CookTypography(
-    val app: TextStyle = TextStyle(
+class CookTypography(
+    val app: TextStyle = CookTypographyTokens.app,
+    val header: TextStyle = CookTypographyTokens.header,
+    val subHeader: TextStyle = CookTypographyTokens.subHeader,
+    val bigTitle: TextStyle = CookTypographyTokens.bigTitle,
+    val title: TextStyle = CookTypographyTokens.title,
+    val smallTitle: TextStyle = CookTypographyTokens.smallTitle,
+    val paragraph: TextStyle = CookTypographyTokens.paragraph,
+    val error: TextStyle = CookTypographyTokens.error,
+    val small: TextStyle = CookTypographyTokens.small,
+    val tiny: TextStyle = CookTypographyTokens.tiny,
+) {
+    fun copy(
+        app: TextStyle = this.app,
+        header: TextStyle = this.header,
+        subHeader: TextStyle = this.subHeader,
+        bigTitle: TextStyle = this.bigTitle,
+        title: TextStyle = this.title,
+        smallTitle: TextStyle = this.smallTitle,
+        paragraph: TextStyle = this.paragraph,
+        error: TextStyle = this.error,
+        small: TextStyle = this.small,
+        tiny: TextStyle = this.tiny,
+    ): CookTypography = CookTypography(
+        app, header, subHeader, bigTitle, title, smallTitle, paragraph, error, small, tiny
+    )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is CookTypography) return false
+        if (app != other.app) return false
+        if (header != other.header) return false
+        if (subHeader != other.subHeader) return false
+        if (bigTitle != other.bigTitle) return false
+        if (title != other.title) return false
+        if (smallTitle != other.smallTitle) return false
+        if (paragraph != other.paragraph) return false
+        if (error != other.error) return false
+        if (small != other.small) return false
+        if (tiny != other.tiny) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = app.hashCode()
+        result = 31 * result + header.hashCode()
+        result = 31 * result + subHeader.hashCode()
+        result = 31 * result + bigTitle.hashCode()
+        result = 31 * result + title.hashCode()
+        result = 31 * result + smallTitle.hashCode()
+        result = 31 * result + paragraph.hashCode()
+        result = 31 * result + error.hashCode()
+        result = 31 * result + small.hashCode()
+        result = 31 * result + tiny.hashCode()
+        return result
+    }
+
+    override fun toString(): String {
+        return "CookTypography(app=$app, header=$header, subHeader=$subHeader, bigTitle=$bigTitle, title=$title, smallTitle=$smallTitle, paragraph=$paragraph, error=$error, small=$small, tiny=$tiny)"
+    }
+
+    fun fromColors(
+        defaultColor: androidx.compose.ui.graphics.Color,
+        app: TextStyle = CookTypographyTokens.app.copy(color = defaultColor),
+        header: TextStyle = CookTypographyTokens.header.copy(color = defaultColor),
+        subHeader: TextStyle = CookTypographyTokens.subHeader.copy(color = defaultColor),
+        bigTitle: TextStyle = CookTypographyTokens.bigTitle.copy(color = defaultColor),
+        title: TextStyle = CookTypographyTokens.title.copy(color = defaultColor),
+        smallTitle: TextStyle = CookTypographyTokens.smallTitle.copy(color = defaultColor),
+        paragraph: TextStyle = CookTypographyTokens.paragraph.copy(color = defaultColor),
+        error: TextStyle = CookTypographyTokens.error.copy(color = defaultColor),
+        small: TextStyle = CookTypographyTokens.small.copy(color = defaultColor),
+        tiny: TextStyle = CookTypographyTokens.tiny.copy(color = defaultColor),
+    ): CookTypography = CookTypography(
+        app = app,
+        header = header,
+        subHeader = subHeader,
+        bigTitle = bigTitle,
+        title = title,
+        smallTitle = smallTitle,
+        paragraph = paragraph,
+        error = error,
+        small = small,
+        tiny = tiny,
+    )
+}
+
+internal val LocalTypography = staticCompositionLocalOf { CookTypography() }
+
+
+object CookTypographyTokens {
+    val app = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
         lineHeight = 40.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val header: TextStyle = TextStyle(
+    )
+    val header = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,
         lineHeight = 26.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val subHeader: TextStyle = TextStyle(
+    )
+    val subHeader = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 18.sp,
         lineHeight = 20.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val bigTitle: TextStyle = TextStyle(
+    )
+    val bigTitle = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,
         lineHeight = 22.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val title: TextStyle = TextStyle(
+    )
+    val title = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 18.sp,
         lineHeight = 20.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val smallTitle: TextStyle = TextStyle(
+    )
+    val smallTitle = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
         lineHeight = 18.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val paragraph: TextStyle = TextStyle(
+    )
+    val paragraph = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 18.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val error: TextStyle = TextStyle(
+    )
+    val error = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 16.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val small: TextStyle = TextStyle(
+    )
+    val small = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
         lineHeight = 16.sp,
         fontStyle = FontStyle.Normal,
-    ),
-    val tiny: TextStyle = TextStyle(
+    )
+    val tiny = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 10.sp,
         lineHeight = 16.sp,
         fontStyle = FontStyle.Normal,
     )
-) {
-    private val fontFamilyNormal: FontFamily
-        @Composable
-        get() = FontFamily(
-            Font(Res.font.nunito_normal, FontWeight.Normal),
-            Font(Res.font.nunito_italic, FontWeight.Normal),
-        )
-
-    companion object {
-        @Composable
-        fun withFontFamily(): CookTypography {
-            return CookTypography().run {
-                copy(
-//                    app = app.copy(fontFamily = fontFamilyNormal),
-//                    header = header.copy(fontFamily = fontFamilyNormal),
-//                    subHeader = subHeader.copy(fontFamily = fontFamilyNormal),
-//                    title = title.copy(fontFamily = fontFamilyNormal),
-//                    smallTitle = smallTitle.copy(fontFamily = fontFamilyNormal),
-//                    bigTitle = bigTitle.copy(fontFamily = fontFamilyNormal),
-//                    paragraph = paragraph.copy(fontFamily = fontFamilyNormal),
-//                    description = description.copy(fontFamily = fontFamilyNormal),
-//                    error = error.copy(fontFamily = fontFamilyNormal),
-//                    small = small.copy(fontFamily = fontFamilyNormal),
-//                    tiny = tiny.copy(fontFamily = fontFamilyNormal),
-                )
-            }
-        }
-    }
 }
-
-internal val LocalTypography = staticCompositionLocalOf { CookTypography() }

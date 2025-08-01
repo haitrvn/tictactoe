@@ -24,7 +24,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookSpace
-import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.SocialButton
@@ -112,10 +111,8 @@ internal fun LoginWrapper(
             loginApple = loginApple,
             loginEmail = loginEmail
         )
-        CookSpace(SpaceSize.MEDIUM)
-        TextSmall(text = Res.string.login_welcome_quote.toText())
+        CookSpace(SpaceSize.LARGE)
         LoginQuestion { gotoSignup() }
-
     }
 }
 
