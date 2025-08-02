@@ -1,11 +1,13 @@
 package com.haitrvn.coreui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -42,13 +44,23 @@ fun AuthInput(
     value: String,
     onValueChange: (String) -> Unit,
 ) {
-    Row(modifier = modifier) {
-        Column {
-            CookBasicTextField(value = value, onValueChange = onValueChange)
+    CookRoundSurface(
+        color = Color.Red,
+        modifier = modifier, paddingValues = CookTheme.contentPadding.medium
+    ) {
+        Row(
+            modifier = modifier,
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Column {
+                TextSmall(text = "label")
+                CookBasicTextField(value = value, onValueChange = onValueChange)
+            }
+            Icon(
+                imageVector = vectorResource(Res.drawable.core_ui_icon_back),
+                contentDescription = null
+            )
         }
-        Icon(
-            imageVector = vectorResource(Res.drawable.core_ui_icon_back),
-            contentDescription = null
-        )
     }
 }

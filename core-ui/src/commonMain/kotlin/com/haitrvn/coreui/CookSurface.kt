@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -41,7 +40,7 @@ fun CookSurface(
 @Composable
 fun CookRoundSurface(
     modifier: Modifier = Modifier,
-    shape: Shape = RoundedCornerShape(10.dp),
+    shape: Shape = CookTheme.shapes.large,
     color: Color = CookTheme.colors.primary,
     shadowElevation: Dp = 10.dp,
     paddingValues: PaddingValues = CookTheme.contentPadding.medium,

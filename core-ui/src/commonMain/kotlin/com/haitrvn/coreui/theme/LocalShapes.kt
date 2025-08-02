@@ -9,8 +9,8 @@ import androidx.compose.ui.unit.dp
 internal val LocalShapes = staticCompositionLocalOf {
     Shapes(
         small = RoundedCornerShape(size = 15.dp),
-        medium = RoundedCornerShape(size = 20.dp),
-        large = RoundedCornerShape(size = 20.dp)
+        medium = RoundedCornerShape(size = 30.dp),
+        large = RoundedCornerShape(size = 40.dp)
     )
 }
 

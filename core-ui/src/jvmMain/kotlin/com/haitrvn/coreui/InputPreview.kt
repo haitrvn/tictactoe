@@ -18,7 +18,9 @@ fun PreviewInput() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                    AuthInput(value = "ahdh") {
 
+                    }
                 }
             }
         }
@@ -26,7 +28,9 @@ fun PreviewInput() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                    AuthInput(value = "ahdh") {
 
+                    }
                 }
             }
         }
