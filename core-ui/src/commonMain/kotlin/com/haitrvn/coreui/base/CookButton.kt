@@ -36,13 +36,13 @@ internal fun BaseButton(
     enabled: Boolean = true,
     backgroundColor: Color = CookTheme.colors.primary,
     disabledBackgroundColor: Color = CookTheme.colors.primary,
-    cornerRadius: Dp = 12.dp,
+    shape: Shape = CookTheme.shapes.large,
     content: @Composable () -> Unit,
 ) {
     CookRoundSurface(
         modifier = modifier
             .clickableWithRipple(onClick = onClick, enabled = enabled),
-        shape = RoundedCornerShape(cornerRadius),
+        shape = shape,
         color = if (enabled) backgroundColor else disabledBackgroundColor,
     ) {
         content()
@@ -57,7 +57,7 @@ internal fun BaseSecondaryButton(
     borderColor: Color = CookTheme.colors.primary,
     disabledBorderColor: Color = CookTheme.colors.primary,
     borderWidth: Dp = 2.dp,
-    shape: Shape = RoundedCornerShape(10.dp),
+    shape: Shape = CookTheme.shapes.large,
     paddingValues: PaddingValues = CookTheme.contentPadding.medium,
     content: @Composable () -> Unit,
 ) {

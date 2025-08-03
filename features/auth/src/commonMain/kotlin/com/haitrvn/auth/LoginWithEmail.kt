@@ -7,12 +7,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.AuthInput
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
+import com.haitrvn.coreui.CookSpace
 import com.haitrvn.coreui.CookSurface
+import com.haitrvn.coreui.SpaceSize
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextTitle
 import com.haitrvn.coreui.theme.CookTheme
@@ -42,6 +49,9 @@ fun LoginWithEmailWrapper(
     modifier: Modifier = Modifier,
     goToHome: () -> Unit = {},
 ) {
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
     Column(
         modifier = modifier.fillMaxSize().padding(horizontal = 30.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -50,9 +60,16 @@ fun LoginWithEmailWrapper(
             modifier = Modifier.fillMaxWidth().aspectRatio(1f),
             drawableResource = Res.drawable.ic_cyclone1
         )
-        TextTitle(text = Res.string.login_hint_email_or_username.toText())
-//        EmailInputField(value = "") {}
-//        EmailInputField(value = "") {}
+        AuthInput(
+            value = username,
+            label = Res.string.login_hint_email_or_username.toText(),
+            onValueChange = { username = it })
+        CookSpace(SpaceSize.SMALL)
+        AuthInput(
+            value = password,
+            label = Res.string.login_hint_password.toText(),
+            onValueChange = { password = it },
+        )
         CookPrimaryButton(
             text = Res.string.login_button_login.toText()
         ) {
@@ -91,12 +108,6 @@ private fun BaseInput(
     onValueChange: (String) -> Unit,
     isPassword: Boolean = false,
 ) {
-//    EmailInputField(
-//        modifier = Modifier.then(modifier),
-//        value = value,
-//    ) {
-//        onValueChange(it)
-//    }
 }
 
 @Composable
