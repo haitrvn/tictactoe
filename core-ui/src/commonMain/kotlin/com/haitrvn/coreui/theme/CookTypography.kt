@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.sp
 class CookTypography(
     val app: TextStyle = CookTypographyTokens.app,
     val header: TextStyle = CookTypographyTokens.header,
-    val subHeader: TextStyle = CookTypographyTokens.subHeader,
     val bigTitle: TextStyle = CookTypographyTokens.bigTitle,
     val title: TextStyle = CookTypographyTokens.title,
     val smallTitle: TextStyle = CookTypographyTokens.smallTitle,
@@ -23,7 +22,6 @@ class CookTypography(
     fun copy(
         app: TextStyle = this.app,
         header: TextStyle = this.header,
-        subHeader: TextStyle = this.subHeader,
         bigTitle: TextStyle = this.bigTitle,
         title: TextStyle = this.title,
         smallTitle: TextStyle = this.smallTitle,
@@ -32,7 +30,7 @@ class CookTypography(
         small: TextStyle = this.small,
         tiny: TextStyle = this.tiny,
     ): CookTypography = CookTypography(
-        app, header, subHeader, bigTitle, title, smallTitle, paragraph, error, small, tiny
+        app, header, bigTitle, title, smallTitle, paragraph, error, small, tiny
     )
 
     override fun equals(other: Any?): Boolean {
@@ -40,7 +38,6 @@ class CookTypography(
         if (other !is CookTypography) return false
         if (app != other.app) return false
         if (header != other.header) return false
-        if (subHeader != other.subHeader) return false
         if (bigTitle != other.bigTitle) return false
         if (title != other.title) return false
         if (smallTitle != other.smallTitle) return false
@@ -54,7 +51,6 @@ class CookTypography(
     override fun hashCode(): Int {
         var result = app.hashCode()
         result = 31 * result + header.hashCode()
-        result = 31 * result + subHeader.hashCode()
         result = 31 * result + bigTitle.hashCode()
         result = 31 * result + title.hashCode()
         result = 31 * result + smallTitle.hashCode()
@@ -66,14 +62,13 @@ class CookTypography(
     }
 
     override fun toString(): String {
-        return "CookTypography(app=$app, header=$header, subHeader=$subHeader, bigTitle=$bigTitle, title=$title, smallTitle=$smallTitle, paragraph=$paragraph, error=$error, small=$small, tiny=$tiny)"
+        return "CookTypography(app=$app, header=$header, bigTitle=$bigTitle, title=$title, smallTitle=$smallTitle, paragraph=$paragraph, error=$error, small=$small, tiny=$tiny)"
     }
 
     fun fromColors(
         defaultColor: androidx.compose.ui.graphics.Color,
         app: TextStyle = CookTypographyTokens.app.copy(color = defaultColor),
         header: TextStyle = CookTypographyTokens.header.copy(color = defaultColor),
-        subHeader: TextStyle = CookTypographyTokens.subHeader.copy(color = defaultColor),
         bigTitle: TextStyle = CookTypographyTokens.bigTitle.copy(color = defaultColor),
         title: TextStyle = CookTypographyTokens.title.copy(color = defaultColor),
         smallTitle: TextStyle = CookTypographyTokens.smallTitle.copy(color = defaultColor),
@@ -84,7 +79,6 @@ class CookTypography(
     ): CookTypography = CookTypography(
         app = app,
         header = header,
-        subHeader = subHeader,
         bigTitle = bigTitle,
         title = title,
         smallTitle = smallTitle,
@@ -101,62 +95,64 @@ internal val LocalTypography = staticCompositionLocalOf { CookTypography() }
 object CookTypographyTokens {
     val app = TextStyle(
         fontWeight = FontWeight.Bold,
-        fontSize = 36.sp,
-        lineHeight = 40.sp,
+        fontSize = 32.sp,        // từ 40 → 32
+        lineHeight = 40.sp,      // từ 44 → 40
         fontStyle = FontStyle.Normal,
     )
+
     val header = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
-        lineHeight = 26.sp,
+        fontSize = 24.sp,        // từ 26 → 24
+        lineHeight = 32.sp,
         fontStyle = FontStyle.Normal,
     )
-    val subHeader = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
-        lineHeight = 20.sp,
-        fontStyle = FontStyle.Normal,
-    )
+
     val bigTitle = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
-        lineHeight = 22.sp,
+        fontSize = 20.sp,        // từ 24 → 20
+        lineHeight = 28.sp,      // giữ nguyên
         fontStyle = FontStyle.Normal,
     )
+
     val title = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
-        lineHeight = 20.sp,
+        fontSize = 18.sp,        // từ 20 → 18
+        lineHeight = 24.sp,
         fontStyle = FontStyle.Normal,
     )
+
     val smallTitle = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
-        lineHeight = 18.sp,
+        fontSize = 16.sp,        // giữ nguyên
+        lineHeight = 24.sp,      // từ 18 → 24
         fontStyle = FontStyle.Normal,
     )
+
     val paragraph = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 18.sp,
+        fontSize = 14.sp,
+        lineHeight = 20.sp,      // từ 16 → 20 (giúp dễ đọc hơn)
         fontStyle = FontStyle.Normal,
     )
+
     val error = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 16.sp,
+        fontSize = 12.sp,        // từ 10 → 12
+        lineHeight = 16.sp,      // từ 12 → 16
         fontStyle = FontStyle.Normal,
     )
+
     val small = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
+        fontSize = 12.sp,
         lineHeight = 16.sp,
         fontStyle = FontStyle.Normal,
     )
+
     val tiny = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 10.sp,
-        lineHeight = 16.sp,
+        lineHeight = 14.sp,      // từ 16 → 14 (cho cân đối hơn)
         fontStyle = FontStyle.Normal,
     )
 }

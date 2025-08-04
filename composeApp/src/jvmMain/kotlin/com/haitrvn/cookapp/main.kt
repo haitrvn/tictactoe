@@ -13,7 +13,7 @@ fun main() = application {
     Window(
         title = "VietCook",
         alwaysOnTop = true,
-        state = rememberWindowState(width = 412.dp, height = 915.dp),
+        state = rememberWindowState(width = 350.dp, height = 650.dp),
         onCloseRequest = ::exitApplication,
     ) {
         App()

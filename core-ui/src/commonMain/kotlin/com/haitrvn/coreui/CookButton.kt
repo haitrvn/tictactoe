@@ -11,6 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.base.BaseButton
@@ -35,7 +37,7 @@ fun CookPrimaryButton(
         BaseCookText(
             modifier = modifier,
             text = text,
-            style = CookTheme.typography.title,
+            style = CookTheme.typography.paragraph.copy(fontWeight = FontWeight.Bold),
             textAlign = TextAlign.Center,
             color = CookTheme.colors.onPrimary
         )

@@ -36,20 +36,6 @@ fun TextHeader(
 }
 
 @Composable
-fun TextSubHeader(
-    modifier: Modifier = Modifier,
-    text: String,
-) {
-    BaseCookText(
-        modifier = modifier,
-        text = text,
-        style = CookTheme.typography.subHeader,
-        textAlign = TextAlign.Center,
-        color = CookTheme.colors.paragraph
-    )
-}
-
-@Composable
 fun TextTitle(
     modifier: Modifier = Modifier,
     text: String,

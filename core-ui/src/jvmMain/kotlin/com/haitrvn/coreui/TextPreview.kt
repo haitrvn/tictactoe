@@ -16,16 +16,15 @@ fun PreviewText() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column {
-                    TextApp(text = "TextApp")
-                    TextHeader(text = "TextHeader")
-                    TextSubHeader(text = "TextSubHeader")
-                    TextBigTitle(text = "TextBigTitle")
-                    TextTitle(text = "TextTitle")
-                    TextSmallTitle(text = "TextSmallTitle")
-                    TextParagraph(text = "TextParagraph")
-                    TextError(text = "TextError")
-                    TextSmall(text = "TextSmall")
-                    TextTiny(text = "TextTiny")
+                    TextApp(text = "Abcdefghiklmn (TextApp)")
+                    TextHeader(text = "Abcdefghiklmn (TextHeader)")
+                    TextBigTitle(text = "Abcdefghiklmn (TextBigTitle)")
+                    TextTitle(text = "Abcdefghiklmn (TextTitle)")
+                    TextSmallTitle(text = "Abcdefghiklmn (TextSmallTitle)")
+                    TextParagraph(text = "Abcdefghiklmn (TextParagraph)")
+                    TextError(text = "Abcdefghiklmn (TextError)")
+                    TextSmall(text = "Abcdefghiklmn (TextSmall)")
+                    TextTiny(text = "Abcdefghiklmn (TextTiny)")
                 }
             }
         }
@@ -33,16 +32,15 @@ fun PreviewText() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column {
-                    TextApp(text = "TextApp")
-                    TextHeader(text = "TextHeader")
-                    TextSubHeader(text = "TextSubHeader")
-                    TextBigTitle(text = "TextBigTitle")
-                    TextTitle(text = "TextTitle")
-                    TextSmallTitle(text = "TextSmallTitle")
-                    TextParagraph(text = "TextParagraph")
-                    TextError(text = "TextError")
-                    TextSmall(text = "TextSmall")
-                    TextTiny(text = "TextTiny")
+                    TextApp(text = "Abcdefghiklmn (TextApp)")
+                    TextHeader(text = "Abcdefghiklmn (TextHeader)")
+                    TextBigTitle(text = "Abcdefghiklmn (TextBigTitle)")
+                    TextTitle(text = "Abcdefghiklmn (TextTitle)")
+                    TextSmallTitle(text = "Abcdefghiklmn (TextSmallTitle)")
+                    TextParagraph(text = "Abcdefghiklmn (TextParagraph)")
+                    TextError(text = "Abcdefghiklmn (TextError)")
+                    TextSmall(text = "Abcdefghiklmn (TextSmall)")
+                    TextTiny(text = "Abcdefghiklmn (TextTiny)")
                 }
             }
         }

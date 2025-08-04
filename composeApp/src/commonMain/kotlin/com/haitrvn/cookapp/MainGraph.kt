@@ -61,13 +61,11 @@ internal fun NavGraphBuilder.homeGraph(
     navigation<Main>(startDestination = Main.Home) {
         navigation<Main.Home>(startDestination = Main.Home.Home1) {
             composable<Main.Home.Home1> {
-                BackPressSample()
                 Home()
             }
         }
         navigation<Main.Search>(startDestination = Main.Search.Search1) {
             composable<Main.Search.Search1> {
-                BackPressSample()
                 DiscoverScreen()
             }
         }

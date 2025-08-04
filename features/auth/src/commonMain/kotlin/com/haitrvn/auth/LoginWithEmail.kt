@@ -19,9 +19,12 @@ import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
 import com.haitrvn.coreui.CookSpace
 import com.haitrvn.coreui.CookSurface
+import com.haitrvn.coreui.MultiClickableText
+import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.SpaceSize
+import com.haitrvn.coreui.TextHeader
 import com.haitrvn.coreui.TextParagraph
-import com.haitrvn.coreui.TextTitle
+import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
@@ -32,6 +35,7 @@ import cookapp.resources.auth.ic_cyclone1
 import cookapp.resources.auth.login_button_login
 import cookapp.resources.auth.login_hint_email_or_username
 import cookapp.resources.auth.login_hint_password
+import cookapp.resources.auth.login_text_forgot_password
 
 @Composable
 fun LoginWithEmail(
@@ -48,6 +52,8 @@ fun LoginWithEmail(
 fun LoginWithEmailWrapper(
     modifier: Modifier = Modifier,
     goToHome: () -> Unit = {},
+    gotoSignup: () -> Unit = {},
+    gotoForgotPassword: () -> Unit = {},
 ) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -60,23 +66,29 @@ fun LoginWithEmailWrapper(
             modifier = Modifier.fillMaxWidth().aspectRatio(1f),
             drawableResource = Res.drawable.ic_cyclone1
         )
+        TextHeader(text = Res.string.login_hint_email_or_username.toText())
+        CookSpace(SpaceSize.LARGE)
         AuthInput(
             value = username,
             label = Res.string.login_hint_email_or_username.toText(),
+            error = "This is mock error",
             onValueChange = { username = it })
         CookSpace(SpaceSize.SMALL)
         AuthInput(
             value = password,
             label = Res.string.login_hint_password.toText(),
+            isPasswordVisible = false,
             onValueChange = { password = it },
         )
+        CookSpace(SpaceSize.SMALL)
         CookPrimaryButton(
             text = Res.string.login_button_login.toText()
         ) {
             goToHome()
         }
-        TextTitle(text = Res.string.login_hint_email_or_username.toText())
-        TextTitle(text = Res.string.login_hint_email_or_username.toText())
+        CookSpace(SpaceSize.LARGE)
+        ForgotPassword { gotoForgotPassword }
+        LoginQuestion { gotoSignup() }
     }
 }
 
@@ -100,46 +112,6 @@ private fun Header(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun BaseInput(
-    modifier: Modifier = Modifier,
-    value: String,
-    hint: String,
-    errorMessage: String,
-    onValueChange: (String) -> Unit,
-    isPassword: Boolean = false,
-) {
-}
-
-@Composable
-private fun InputUserName(
-    modifier: Modifier = Modifier,
-    value: String,
-    errorMessage: String,
-    onValueChange: (String) -> Unit,
-) = BaseInput(
-    modifier = modifier,
-    value = value,
-    hint = Res.string.login_hint_email_or_username.toText(),
-    errorMessage = errorMessage,
-    onValueChange = onValueChange,
-)
-
-@Composable
-private fun InputPassword(
-    modifier: Modifier = Modifier,
-    value: String,
-    errorMessage: String,
-    onValueChange: (String) -> Unit,
-) = BaseInput(
-    modifier = modifier,
-    value = value,
-    hint = Res.string.login_hint_password.toText(),
-    errorMessage = errorMessage,
-    onValueChange = onValueChange,
-    isPassword = true
-)
-
-@Composable
 private fun ErrorMessages(
     modifier: Modifier = Modifier,
     errorMessage: String,
@@ -152,4 +124,31 @@ private fun ErrorMessages(
 @Composable
 private fun LoginButtons() {
 
+}
+
+const val TAG_FORGOT_PASSWORD = "forgot_password"
+
+@Composable
+internal fun ForgotPassword(
+    modifier: Modifier = Modifier,
+    gotoForgotPassword: () -> Unit
+) {
+    val textSegments = listOf(
+        SegmentText(
+            text = Res.string.login_text_forgot_password.toText(),
+            tag = TAG_FORGOT_PASSWORD,
+            isClickable = true
+        ),
+    )
+    MultiClickableText(textSegments = textSegments, onClick = { tag ->
+        when (tag) {
+            TAG_FORGOT_PASSWORD -> {
+                gotoForgotPassword()
+            }
+
+            else -> {}
+        }
+    }) { _, text ->
+        TextSmall(modifier = modifier, text = text)
+    }
 }

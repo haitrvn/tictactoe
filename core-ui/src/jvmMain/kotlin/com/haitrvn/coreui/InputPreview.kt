@@ -18,7 +18,13 @@ fun PreviewInput() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                    AuthInput(value = "ahdh", label = "label") {
+                    AuthInput(value = "userName", label = "label", error = "mock error") {
+
+                    }
+                    AuthInput(value = "passwordShown", label = "label", isPasswordVisible = true) {
+
+                    }
+                    AuthInput(value = "passwordHide", label = "label") {
 
                     }
                 }
@@ -28,7 +34,18 @@ fun PreviewInput() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                    AuthInput(value = "ahdh", label = "label") {
+                    AuthInput(value = "userName", label = "label", error = "mock error") {
+
+                    }
+                    AuthInput(
+                        value = "passwordShown",
+                        label = "label",
+                        isPassword = true,
+                        isPasswordVisible = false
+                    ) {
+
+                    }
+                    AuthInput(value = "passwordHide", label = "label") {
 
                     }
                 }
