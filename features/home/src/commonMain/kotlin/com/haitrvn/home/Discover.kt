@@ -134,7 +134,6 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 )
                 CookSurface(
                     modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
                         .clip(CircleShape)
                         .background(CookTheme.colors.primary)
                         .padding(12.dp)
