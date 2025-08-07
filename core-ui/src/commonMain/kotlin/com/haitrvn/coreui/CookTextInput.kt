@@ -22,7 +22,6 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.CookTheme
 import cookapp.resources.coreui.Res
 import cookapp.resources.coreui.core_ui_icon_back
@@ -33,13 +32,13 @@ import org.jetbrains.compose.resources.vectorResource
 fun CookBasicTextField(
     modifier: Modifier = Modifier,
     value: String,
-    onValueChange: (String) -> Unit,
     placeholder: String = "",
     textStyle: TextStyle = CookTheme.typography.paragraph,
     background: Color = CookTheme.colors.background2,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     singleLine: Boolean = true,
     enabled: Boolean = true,
+    onValueChange: (String) -> Unit,
 ) {
     BasicTextField(
         value = value,

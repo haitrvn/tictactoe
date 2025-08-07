@@ -22,7 +22,7 @@ import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.SpaceSize
-import com.haitrvn.coreui.TextHeader
+import com.haitrvn.coreui.HeaderText
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.theme.CookTheme
@@ -66,7 +66,7 @@ fun LoginWithEmailWrapper(
             modifier = Modifier.fillMaxWidth().aspectRatio(1f),
             drawableResource = Res.drawable.ic_cyclone1
         )
-        TextHeader(text = Res.string.login_hint_email_or_username.toText())
+        HeaderText(text = Res.string.login_hint_email_or_username.toText())
         CookSpace(SpaceSize.LARGE)
         AuthInput(
             value = username,

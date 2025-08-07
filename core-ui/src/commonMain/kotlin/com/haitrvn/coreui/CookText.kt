@@ -24,7 +24,7 @@ fun TextApp(
 }
 
 @Composable
-fun TextHeader(
+fun HeaderText(
     modifier: Modifier = Modifier,
     textAlign: TextAlign = TextAlign.Start,
     text: String,

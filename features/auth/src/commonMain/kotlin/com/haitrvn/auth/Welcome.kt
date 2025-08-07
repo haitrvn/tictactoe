@@ -27,7 +27,7 @@ import com.haitrvn.coreui.CookSpace
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.SpaceSize
 import com.haitrvn.coreui.TextApp
-import com.haitrvn.coreui.TextHeader
+import com.haitrvn.coreui.HeaderText
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
@@ -125,7 +125,7 @@ private fun Footer(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CookSpace(SpaceSize.LARGE)
-        TextHeader(text = Res.string.login_welcome_quote_question.toText())
+        HeaderText(text = Res.string.login_welcome_quote_question.toText())
         CookSpace(SpaceSize.SMALL)
         TextSmall(text = Res.string.login_welcome_description.toText())
         CookSpace(SpaceSize.MEDIUM)
