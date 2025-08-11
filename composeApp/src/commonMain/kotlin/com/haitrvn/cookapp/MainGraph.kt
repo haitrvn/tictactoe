@@ -28,6 +28,8 @@ import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
+import com.haitrvn.splash.SharedYourRecipesScreen
+import com.haitrvn.splash.SplashScreen
 
 @Composable
 internal fun MainGraph(
@@ -89,11 +91,12 @@ internal fun NavGraphBuilder.authGraph(
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
         composable<Auth.Welcome> {
-            Welcome(
-                navigator = navigator,
-                sharedTransitionScope = sharedTransitionScope,
-                animatedVisibilityScope = this@composable
-            )
+            SharedYourRecipesScreen()
+//            Welcome(
+//                navigator = navigator,
+//                sharedTransitionScope = sharedTransitionScope,
+//                animatedVisibilityScope = this@composable
+//            )
         }
         composable<Auth.Login> {
             Login(
