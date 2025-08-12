@@ -14,7 +14,7 @@ kotlin {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
     androidLibrary {
-        namespace = "com.haitrvn.features.splash"
+        namespace = "com.haitrvn.features.login"
         compileSdk = 35
         minSdk = 24
         withHostTestBuilder {
@@ -26,7 +26,7 @@ kotlin {
         }
         experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
     }
-    val xcfName = "splash"
+    val xcfName = "login"
 
     jvm()
     wasmJs {
@@ -55,7 +55,6 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.components.resources)
-                implementation(compose.animation)
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.koin.compose)
