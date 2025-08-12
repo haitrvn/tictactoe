@@ -1,13 +1,12 @@
 package com.haitrvn.splash
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import com.haitrvn.coreui.imageloader.initPreviewImageLoader
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.Composable
+import com.haitrvn.coreui.imageloader.initPreviewImageLoader
 
 @Preview
 @Composable
-fun ShareYourRecipesPreview(modifier: Modifier = Modifier) {
+private fun ShareYourRecipesPreview() {
     initPreviewImageLoader()
-    SharedYourRecipesScreen(modifier = modifier)
+    SharedYourRecipesScreen()
 }
