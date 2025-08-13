@@ -43,8 +43,8 @@ fun HeaderText(
 fun TextTitle(
     modifier: Modifier = Modifier,
     text: String,
-    textAlign: TextAlign = TextAlign.Start,
     color: Color = CookTheme.colors.paragraph,
+    textAlign: TextAlign = TextAlign.Start,
 ) {
     BaseCookText(
         modifier = modifier,
@@ -91,8 +91,8 @@ fun TextBigTitle(
 fun TextParagraph(
     modifier: Modifier = Modifier,
     text: String,
-    textAlign: TextAlign = TextAlign.Start,
     color: Color = CookTheme.colors.paragraph,
+    textAlign: TextAlign = TextAlign.Start,
 ) {
     BaseCookText(
         modifier = modifier,

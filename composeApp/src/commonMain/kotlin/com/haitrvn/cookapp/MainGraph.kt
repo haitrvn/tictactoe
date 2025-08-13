@@ -91,7 +91,9 @@ internal fun NavGraphBuilder.authGraph(
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
         composable<Auth.Welcome> {
-            SharedYourRecipesScreen()
+            SharedYourRecipesScreen(){
+                navigator.navigate(Auth.Login)
+            }
 //            Welcome(
 //                navigator = navigator,
 //                sharedTransitionScope = sharedTransitionScope,

@@ -1,236 +1,130 @@
 package com.haitrvn.splash
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathFillType
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.ImageRecipe
+import com.haitrvn.coreui.TextHeader2
+import com.haitrvn.coreui.TextParagraph2
+import kotlinx.coroutines.launch
+
+val fakeData =
+    listOf(
+        PageContent(
+            "Share Your Recipes",
+            "Share your favorite recipes with the world!",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsK8g4zhtM_TszTYUho3dMZ2r3uwS-WLL4mA&s"
+        ),
+        PageContent(
+            "Discover New Flavors",
+            "Explore a wide variety of cuisines and dishes.",
+            "https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg"
+        ),
+        PageContent(
+            "Cook Like a Pro",
+            "Learn new cooking techniques and tips.",
+            "https://vietop.edu.vn/wp-content/uploads/2023/07/idioms-chu-de-food.jpg"
+        ),
+    )
 
 @Composable
 fun SharedYourRecipesScreen(
     modifier: Modifier = Modifier,
-    pageCount: Int = 5,
-    frameCornerRadius: Dp = 28.dp,
-    frameStrokeWidth: Dp = 28.dp
+    listData: List<PageContent> = fakeData,
+    goToLogin: () -> Unit = {},
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
-        val pagerState = rememberPagerState { pageCount }
-
-        Box(modifier = Modifier.fillMaxSize()) {
-
-            // Lớp 1 (dưới cùng): ViewPager
-            HorizontalPager(
-                state = pagerState,
-                modifier = Modifier.fillMaxSize()
-            ) { page ->
-                // demo nội dung trang — sau này bạn thay bằng nội dung thật
+    val pagerState = rememberPagerState { listData.size }
+    val scope = rememberCoroutineScope()
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxSize()
+        ) { page ->
+            Box(
+                Modifier
+                    .fillMaxSize()
+            ) {
+                ImageRecipe(
+                    modifier.fillMaxSize(),
+                    source = listData[pagerState.currentPage].imageUrl
+                )
                 Box(
-                    Modifier
+                    modifier = Modifier
                         .fillMaxSize()
-                        .background(
-                            when (page % 5) {
-                                0 -> Color(0xFF3B82F6)
-                                1 -> Color(0xFF10B981)
-                                2 -> Color(0xFFF59E0B)
-                                3 -> Color(0xFF8B5CF6)
-                                else -> Color(0xFFEF4444)
-                            }
-                        )
+                        .background(Color.Black.copy(alpha = 0.8f))
                 )
             }
-
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .drawRoundedStrokeFrame(
-                        color = Color.White,
-                        innerCornerRadius = frameCornerRadius,
-                        frameThickness = frameStrokeWidth
-                    )
-            )
         }
-    }
-}
-
-private fun Modifier.drawRoundedStrokeFrame(
-    color: Color,
-    innerCornerRadius: Dp,
-    frameThickness: Dp,
-    dropWith: Dp = 30.dp,
-    dropHeight: Dp = 30.dp
-): Modifier = this.then(
-    Modifier.drawBehind {
-        val fw = frameThickness.toPx()
-        val outer = Rect(0f, 0f, size.width, size.height)
-        val inner = Rect(fw, fw, size.width - fw, size.height - fw)
-        val r = innerCornerRadius.toPx()
-            .coerceAtMost(inner.width / 6f)
-            .coerceAtMost(inner.height / 6f)
-        val path2 = buildDrop(
-            rectWidth = size.width,
-            rectHeight = size.height,
-            padding = fw,
-            rectBorderWidth = size.width / 4,
-            rectBorderHeight = size.width / 4,
-            dropWith = size.width / 8,
-            dropHeight = size.width / 8,
-        )
-        val path = Path().apply {
-            fillType = PathFillType.EvenOdd
-            addRect(outer)
-            addPath(
-                buildRectWithProtrudingSquarePathCompose(
-                    rectWidth = size.width,
-                    rectHeight = size.height,
-                    padding = fw,
-                    rectBorderWidth = size.width / 4,
-                    rectBorderHeight = size.width / 4,
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .drawRoundedStrokeFrame(
+                    color = Color.White,
+                    frameThickness = 20.dp,
+                    dropWith = 70.dp,
+                    dropHeight = 45.dp,
+                    rectWith = 80.dp,
+                    rectHeight = 80.dp,
                 )
+        )
+        Column(modifier = Modifier.fillMaxSize().padding(40.dp).padding(bottom = 105.dp)) {
+            TextHeader2(
+                modifier = Modifier.fillMaxWidth(),
+                text = "Appetit",
+                textAlign = TextAlign.Center,
+                color = Color.White,
             )
-            addPath(path2)
+            Spacer(modifier = Modifier.weight(1f))
+            TextHeader2(
+                modifier = Modifier.fillMaxWidth(),
+                text = listData[pagerState.currentPage].title,
+                color = Color.White,
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            TextParagraph2(
+                modifier = Modifier.fillMaxWidth(),
+                text = listData[pagerState.currentPage].description,
+                color = Color.White,
+            )
         }
-        drawPath(path = path, color = color)
-    }
-)
-
-fun buildDrop(
-    rectWidth: Float,
-    rectHeight: Float,
-    padding: Float,
-    rectBorderWidth: Float,
-    rectBorderHeight: Float,
-    dropWith: Float,
-    dropHeight: Float,
-): Path {
-    return Path().apply {
-        moveTo(rectWidth - padding - rectBorderWidth / 2, rectHeight - padding)
-        arcTo(
-            rect = Rect(
-                rectWidth - padding - rectBorderWidth,
-                rectHeight - padding - rectBorderHeight,
-                rectWidth - padding,
-                rectHeight - padding
-            ),
-            startAngleDegrees = 90f,
-            sweepAngleDegrees = 90f,
-            forceMoveTo = false
+        LinearProgressIndicator(
+            modifier = Modifier
+                .height(80.dp)
+                .align(Alignment.BottomStart)
+                .padding(start = 30.dp, bottom = 50.dp),
+            progress = {
+                (pagerState.currentPage + 1) / listData.size.toFloat()
+            })
+        TextHeader2(
+            modifier = Modifier.align(Alignment.BottomEnd)
+                .padding(end = 50.dp, bottom = 50.dp)
+                .clickable {
+                    scope.launch {
+                        if (pagerState.currentPage == listData.size - 1) {
+                            goToLogin()
+                        } else {
+                            pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                        }
+                    }
+                },
+            text = ">",
+            color = Color.White,
         )
-        arcTo(
-            rect = Rect(
-                rectWidth - padding - rectBorderWidth - dropWith,
-                rectHeight - padding - rectBorderHeight / 2 - dropHeight,
-                rectWidth - padding - rectBorderWidth,
-                rectHeight - padding - rectBorderHeight / 2,
-            ),
-            startAngleDegrees = 0f,
-            sweepAngleDegrees = -90f,
-            forceMoveTo = false
-        )
-        lineTo(
-            padding + rectBorderWidth,
-            rectHeight - padding - rectBorderHeight / 2 - dropHeight
-        )
-        arcTo(
-            rect = Rect(
-                padding,
-                rectHeight -padding - rectBorderHeight * 2,
-                padding + rectBorderWidth,
-                rectHeight - padding - rectBorderHeight
-            ),
-            startAngleDegrees = 90f,
-            sweepAngleDegrees = 90f,
-            forceMoveTo = false
-        )
-        lineTo(
-            padding,
-            rectHeight - padding - rectBorderHeight / 2
-        )
-        arcTo(
-            rect = Rect(
-                padding,
-                rectHeight - padding - rectBorderHeight,
-                padding + rectBorderWidth,
-                rectHeight - padding
-            ),
-            startAngleDegrees = 180f,
-            sweepAngleDegrees = -90f,
-            forceMoveTo = false
-        )
-        close()
-    }
-}
-
-fun buildRectWithProtrudingSquarePathCompose(
-    rectWidth: Float,
-    rectHeight: Float,
-    padding: Float,
-    rectBorderWidth: Float,
-    rectBorderHeight: Float,
-): Path {
-    return Path().apply {
-        moveTo(padding + rectBorderWidth, padding)
-        lineTo(rectWidth - padding - rectBorderWidth, padding)
-        //BorderTopRight
-        arcTo(
-            rect = Rect(
-                rectWidth - padding - rectBorderWidth,
-                padding,
-                rectWidth - padding,
-                padding + rectBorderHeight
-            ),
-            startAngleDegrees = -90f,
-            sweepAngleDegrees = 90f,
-            forceMoveTo = false
-        )
-        lineTo(rectWidth - padding, rectHeight - padding - rectBorderHeight)
-        //BorderBottomRight
-        arcTo(
-            rect = Rect(
-                rectWidth - padding - rectBorderWidth,
-                rectHeight - padding - rectBorderHeight,
-                rectWidth - padding,
-                rectHeight - padding
-            ),
-            startAngleDegrees = 0f,
-            sweepAngleDegrees = 90f,
-            forceMoveTo = false
-        )
-        lineTo(padding + rectBorderWidth, rectHeight - padding)
-        //BorderBottomLeft
-        arcTo(
-            rect = Rect(
-                padding,
-                rectHeight - padding - rectBorderHeight,
-                padding + rectBorderWidth,
-                rectHeight - padding
-            ),
-            startAngleDegrees = 90f,
-            sweepAngleDegrees = 90f,
-            forceMoveTo = false
-        )
-        lineTo(padding, padding + rectBorderHeight)
-        //BorderTopLeft
-        arcTo(
-            rect = Rect(
-                padding,
-                padding,
-                padding + rectBorderWidth,
-                padding + rectBorderHeight
-            ),
-            startAngleDegrees = 180f,
-            sweepAngleDegrees = 90f,
-            forceMoveTo = false
-        )
-        close()
-
     }
 }
