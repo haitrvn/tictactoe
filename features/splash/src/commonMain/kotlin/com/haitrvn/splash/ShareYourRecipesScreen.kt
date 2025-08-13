@@ -75,7 +75,15 @@ private fun Modifier.drawRoundedStrokeFrame(
         val r = innerCornerRadius.toPx()
             .coerceAtMost(inner.width / 6f)
             .coerceAtMost(inner.height / 6f)
-
+        val path2 = buildDrop(
+            rectWidth = size.width,
+            rectHeight = size.height,
+            padding = fw,
+            rectBorderWidth = size.width / 4,
+            rectBorderHeight = size.width / 4,
+            dropWith = size.width / 8,
+            dropHeight = size.width / 8,
+        )
         val path = Path().apply {
             fillType = PathFillType.EvenOdd
             addRect(outer)
@@ -88,18 +96,9 @@ private fun Modifier.drawRoundedStrokeFrame(
                     rectBorderHeight = size.width / 4,
                 )
             )
+            addPath(path2)
         }
         drawPath(path = path, color = color)
-        val path2 = buildDrop(
-            rectWidth = size.width,
-            rectHeight = size.height,
-            padding = fw,
-            rectBorderWidth = size.width / 4,
-            rectBorderHeight = size.width / 4,
-            dropWith = size.width / 15,
-            dropHeight = size.width / 15,
-        )
-        drawPath(path = path2, color = Color.Red)
     }
 )
 
@@ -128,15 +127,44 @@ fun buildDrop(
         arcTo(
             rect = Rect(
                 rectWidth - padding - rectBorderWidth - dropWith,
-                rectHeight - padding - rectBorderHeight - dropHeight,
+                rectHeight - padding - rectBorderHeight / 2 - dropHeight,
                 rectWidth - padding - rectBorderWidth,
-                rectHeight - padding - rectBorderHeight,
+                rectHeight - padding - rectBorderHeight / 2,
             ),
             startAngleDegrees = 0f,
             sweepAngleDegrees = -90f,
             forceMoveTo = false
         )
-        lineTo(rectWidth - padding - dropWith - rectBorderWidth, rectHeight - padding - dropHeight)
+        lineTo(
+            padding + rectBorderWidth,
+            rectHeight - padding - rectBorderHeight / 2 - dropHeight
+        )
+        arcTo(
+            rect = Rect(
+                padding,
+                rectHeight -padding - rectBorderHeight * 2,
+                padding + rectBorderWidth,
+                rectHeight - padding - rectBorderHeight
+            ),
+            startAngleDegrees = 90f,
+            sweepAngleDegrees = 90f,
+            forceMoveTo = false
+        )
+        lineTo(
+            padding,
+            rectHeight - padding - rectBorderHeight / 2
+        )
+        arcTo(
+            rect = Rect(
+                padding,
+                rectHeight - padding - rectBorderHeight,
+                padding + rectBorderWidth,
+                rectHeight - padding
+            ),
+            startAngleDegrees = 180f,
+            sweepAngleDegrees = -90f,
+            forceMoveTo = false
+        )
         close()
     }
 }
