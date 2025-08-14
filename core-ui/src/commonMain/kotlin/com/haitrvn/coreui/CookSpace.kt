@@ -1,7 +1,9 @@
 package com.haitrvn.coreui
 
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -14,30 +16,68 @@ internal val LocalSpace = staticCompositionLocalOf {
     CookSpaceDimensions()
 }
 
+/**
+ * Data class defining the standard spacing dimensions used in CookTheme.
+ *
+ * @property small The smallest spacing dimension.
+ * @property medium The medium spacing dimension.
+ * @property large The largest spacing dimension.
+ */
 data class CookSpaceDimensions(
     val small: Dp = 8.dp,
     val medium: Dp = 16.dp,
     val large: Dp = 24.dp
 )
 
-enum class SpaceSize {
-    SMALL,
-    MEDIUM,
-    LARGE
+/**
+ * Composable function to create a spacer with a "small" dimension (height for Column, width for Row),
+ * as defined in [CookTheme.space].
+ *
+ * @param modifier Optional [Modifier] to be applied to the spacer.
+ */
+@Composable
+fun SmallSpace(modifier: Modifier = Modifier) {
+    Spacer(modifier.size(CookTheme.space.small))
+}
+
+/**
+ * Composable function to create a spacer with a "medium" dimension (height for Column, width for Row),
+ * as defined in [CookTheme.space].
+ *
+ * @param modifier Optional [Modifier] to be applied to the spacer.
+ */
+@Composable
+fun MediumSpace(modifier: Modifier = Modifier) {
+    Spacer(modifier.size(CookTheme.space.medium))
+}
+/**
+ * Composable function to create a spacer with a "large" dimension (height for Column, width for Row),
+ * as defined in [CookTheme.space].
+ *
+ * @param modifier Optional [Modifier] to be applied to the spacer.
+ */
+@Composable
+fun LargeSpace(modifier: Modifier = Modifier) {
+    Spacer(modifier.size(CookTheme.space.large))
+}
+
+/**
+ * Composable function to create a custom-sized spacer.
+ *
+ * @param size The desired size (height and width) of the spacer.
+ * @param modifier Optional [Modifier] to be applied to the spacer.
+ */
+@Composable
+fun CustomSpace(size: Dp, modifier: Modifier = Modifier) {
+    Spacer(modifier.size(size))
 }
 
 @Composable
-fun CookSpace(modifier: Modifier = Modifier) {
-    Spacer(modifier)
+fun ColumnScope.FillSpace() {
+    Spacer(modifier = Modifier.weight(1f))
 }
 
 @Composable
-fun CookSpace(size: SpaceSize) {
-    val height = when (size) {
-        SpaceSize.SMALL -> CookTheme.space.small
-        SpaceSize.MEDIUM -> CookTheme.space.medium
-        SpaceSize.LARGE -> CookTheme.space.large
-    }
-    Spacer(Modifier.size(height))
+fun RowScope.FillSpace() {
+    Spacer(modifier = Modifier.weight(1f))
 }
-

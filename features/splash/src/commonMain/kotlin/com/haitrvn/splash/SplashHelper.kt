@@ -9,6 +9,18 @@ import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+data class DrawPosition(
+    val x: Float,
+    val y: Float,
+    val width: Float,
+    val height: Float,
+    val startAngel: Float,
+    val sweepAngel: Float,
+)
+
+fun DrawPosition.toRect() {
+    Rect(x - width / 2, y - height / 2, x + width / 2, y + height / 2)
+}
 
 fun Modifier.drawRoundedStrokeFrame(
     color: Color,
@@ -82,10 +94,6 @@ fun buildDrop(
             sweepAngleDegrees = -90f,
             forceMoveTo = false
         )
-        lineTo(
-            padding + rectBorderWidth,
-            rectHeight - padding - rectBorderHeight / 2 - dropHeight
-        )
         arcTo(
             rect = Rect(
                 padding,
@@ -96,10 +104,6 @@ fun buildDrop(
             startAngleDegrees = 90f,
             sweepAngleDegrees = 90f,
             forceMoveTo = false
-        )
-        lineTo(
-            padding,
-            rectHeight - padding - rectBorderHeight / 2
         )
         arcTo(
             rect = Rect(
@@ -125,8 +129,6 @@ fun buildRectWithProtrudingSquarePathCompose(
 ): Path {
     return Path().apply {
         moveTo(padding + rectBorderWidth, padding)
-        lineTo(rectWidth - padding - rectBorderWidth, padding)
-        //BorderTopRight
         arcTo(
             rect = Rect(
                 rectWidth - padding - rectBorderWidth,
@@ -138,8 +140,6 @@ fun buildRectWithProtrudingSquarePathCompose(
             sweepAngleDegrees = 90f,
             forceMoveTo = false
         )
-        lineTo(rectWidth - padding, rectHeight - padding - rectBorderHeight)
-        //BorderBottomRight
         arcTo(
             rect = Rect(
                 rectWidth - padding - rectBorderWidth,
@@ -151,8 +151,6 @@ fun buildRectWithProtrudingSquarePathCompose(
             sweepAngleDegrees = 90f,
             forceMoveTo = false
         )
-        lineTo(padding + rectBorderWidth, rectHeight - padding)
-        //BorderBottomLeft
         arcTo(
             rect = Rect(
                 padding,
@@ -164,8 +162,6 @@ fun buildRectWithProtrudingSquarePathCompose(
             sweepAngleDegrees = 90f,
             forceMoveTo = false
         )
-        lineTo(padding, padding + rectBorderHeight)
-        //BorderTopLeft
         arcTo(
             rect = Rect(
                 padding,

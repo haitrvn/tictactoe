@@ -17,12 +17,12 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.AuthInput
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
-import com.haitrvn.coreui.CookSpace
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.SegmentText
-import com.haitrvn.coreui.SpaceSize
-import com.haitrvn.coreui.HeaderText
+import com.haitrvn.coreui.HeaderText2
+import com.haitrvn.coreui.LargeSpace
+import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.theme.CookTheme
@@ -66,27 +66,27 @@ fun LoginWithEmailWrapper(
             modifier = Modifier.fillMaxWidth().aspectRatio(1f),
             drawableResource = Res.drawable.ic_cyclone1
         )
-        HeaderText(text = Res.string.login_hint_email_or_username.toText())
-        CookSpace(SpaceSize.LARGE)
+        HeaderText2(text = Res.string.login_hint_email_or_username.toText())
+        LargeSpace()
         AuthInput(
             value = username,
             label = Res.string.login_hint_email_or_username.toText(),
             error = "This is mock error",
             onValueChange = { username = it })
-        CookSpace(SpaceSize.SMALL)
+        SmallSpace()
         AuthInput(
             value = password,
             label = Res.string.login_hint_password.toText(),
             isPasswordVisible = false,
             onValueChange = { password = it },
         )
-        CookSpace(SpaceSize.SMALL)
+        SmallSpace()
         CookPrimaryButton(
             text = Res.string.login_button_login.toText()
         ) {
             goToHome()
         }
-        CookSpace(SpaceSize.LARGE)
+        LargeSpace()
         ForgotPassword { gotoForgotPassword }
         LoginQuestion { gotoSignup() }
     }

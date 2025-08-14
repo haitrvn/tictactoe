@@ -10,10 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.haitrvn.coreui.AuthInput
-import com.haitrvn.coreui.CookSpace
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.HeaderText
-import com.haitrvn.coreui.SpaceSize
+import com.haitrvn.coreui.HeaderText2
+import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.TextTitle
 import org.koin.compose.koinInject
@@ -32,10 +31,10 @@ fun HomeWrapper(
 ) {
     LazyColumn {
         item {
-            HeaderText(text = "Find best recipees for cooking")
+            HeaderText2(text = "Find best recipees for cooking")
         }
         item {
-            CookSpace(SpaceSize.MEDIUM)
+            MediumSpace()
             Search()
         }
         item {
@@ -67,7 +66,7 @@ fun Trending(modifier: Modifier = Modifier) {
     ) {
         Row {
             TextTitle(text = "Trending now (fire)")
-            CookSpace(SpaceSize.MEDIUM)
+            MediumSpace()
             TextSmall(text = "See all")
         }
         LazyRow {

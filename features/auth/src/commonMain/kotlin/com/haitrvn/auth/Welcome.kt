@@ -23,11 +23,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CookPrimaryButton
-import com.haitrvn.coreui.CookSpace
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.SpaceSize
 import com.haitrvn.coreui.TextApp
-import com.haitrvn.coreui.HeaderText
+import com.haitrvn.coreui.HeaderText2
+import com.haitrvn.coreui.LargeSpace
+import com.haitrvn.coreui.MediumSpace
+import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
@@ -108,7 +109,7 @@ private fun Header(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CookSpace(SpaceSize.LARGE)
+            LargeSpace()
             TextApp(text = Res.string.login_welcome_app_name.toText())
             TextSmall(text = Res.string.login_welcome_quote.toText())
         }
@@ -124,11 +125,11 @@ private fun Footer(
         modifier = modifier.fillMaxSize().padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CookSpace(SpaceSize.LARGE)
-        HeaderText(text = Res.string.login_welcome_quote_question.toText())
-        CookSpace(SpaceSize.SMALL)
+        LargeSpace()
+        HeaderText2(text = Res.string.login_welcome_quote_question.toText())
+        SmallSpace()
         TextSmall(text = Res.string.login_welcome_description.toText())
-        CookSpace(SpaceSize.MEDIUM)
+        MediumSpace()
         CookPrimaryButton(text = Res.string.login_button_start_cooking.toText()) {
             onStartCookingClick()
         }

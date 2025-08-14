@@ -86,7 +86,7 @@ fun SocialButton(
                 painter = painterResource(icon),
                 contentScale = ContentScale.Fit
             )
-            CookSpace(SpaceSize.SMALL)
+            SmallSpace()
             BaseCookText(
                 text = text,
                 style = CookTheme.typography.title,

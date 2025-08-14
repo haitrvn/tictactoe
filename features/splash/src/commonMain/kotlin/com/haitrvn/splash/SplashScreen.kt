@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.haitrvn.coreui.ImageRecipe
-import com.haitrvn.coreui.TextHeader2
+import com.haitrvn.coreui.HeaderText2
 import com.haitrvn.coreui.utils.toText
 import cookapp.resources.splash.Res
 import cookapp.resources.splash.splash_welcome
@@ -15,7 +15,7 @@ import cookapp.resources.splash.splash_welcome
 fun SplashScreen(modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         ImageRecipe(modifier = Modifier.fillMaxSize(), source = "https://picsum.photos/200/300")
-        TextHeader2(
+        HeaderText2(
             text = Res.string.splash_welcome.toText(),
         )
     }

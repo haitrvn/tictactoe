@@ -4,12 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
@@ -17,13 +17,28 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.haitrvn.core.round
+import com.haitrvn.coreui.AppIcon
+import com.haitrvn.coreui.FillSpace
+import com.haitrvn.coreui.HeaderText
+import com.haitrvn.coreui.HeaderText2
 import com.haitrvn.coreui.ImageRecipe
-import com.haitrvn.coreui.TextHeader2
+import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.TextParagraph2
 import kotlinx.coroutines.launch
 
+private const val BACKGROUND_ALPHA = 0.8f
+private val FRAME_THICKNESS = 20.dp
+private val DROP_WIDTH = 90.dp
+private val DROP_HEIGHT = 80.dp
+private val RECT_WIDTH = 90.dp
+private val RECT_HEIGHT = 80.dp
+private val PADDING_ALL_SIDES = 40.dp
+private val PADDING_BOTTOM_COLUMN = 105.dp
+private val PROGRESS_INDICATOR_HEIGHT = 80.dp
+private val PADDING_START_PROGRESS_INDICATOR = 30.dp
+private val PADDING_BOTTOM_PROGRESS_INDICATOR = 50.dp
 val fakeData =
     listOf(
         PageContent(
@@ -43,6 +58,9 @@ val fakeData =
         ),
     )
 
+val PagerState.currentPageIndex: Int
+    get() = this.currentPage + 1
+
 @Composable
 fun SharedYourRecipesScreen(
     modifier: Modifier = Modifier,
@@ -56,47 +74,40 @@ fun SharedYourRecipesScreen(
             state = pagerState,
             modifier = Modifier.fillMaxSize()
         ) { page ->
-            Box(
-                Modifier
-                    .fillMaxSize()
-            ) {
-                ImageRecipe(
-                    modifier.fillMaxSize(),
-                    source = listData[pagerState.currentPage].imageUrl
-                )
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.8f))
-                )
-            }
+            ImageRecipe(
+                modifier.fillMaxSize(),
+                source = listData[page].imageUrl
+            )
         }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
+        )
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .drawRoundedStrokeFrame(
                     color = Color.White,
-                    frameThickness = 20.dp,
-                    dropWith = 70.dp,
-                    dropHeight = 45.dp,
-                    rectWith = 80.dp,
-                    rectHeight = 80.dp,
+                    frameThickness = FRAME_THICKNESS,
+                    dropWith = DROP_WIDTH,
+                    dropHeight = DROP_HEIGHT,
+                    rectWith = RECT_WIDTH,
+                    rectHeight = RECT_HEIGHT,
                 )
         )
-        Column(modifier = Modifier.fillMaxSize().padding(40.dp).padding(bottom = 105.dp)) {
-            TextHeader2(
-                modifier = Modifier.fillMaxWidth(),
-                text = "Appetit",
-                textAlign = TextAlign.Center,
-                color = Color.White,
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            TextHeader2(
+        Column(
+            modifier = Modifier.fillMaxSize().padding(PADDING_ALL_SIDES)
+                .padding(bottom = PADDING_BOTTOM_COLUMN)
+        ) {
+            AppIcon(modifier = Modifier.fillMaxWidth())
+            FillSpace()
+            HeaderText(
                 modifier = Modifier.fillMaxWidth(),
                 text = listData[pagerState.currentPage].title,
                 color = Color.White,
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            MediumSpace(modifier = Modifier.height(10.dp))
             TextParagraph2(
                 modifier = Modifier.fillMaxWidth(),
                 text = listData[pagerState.currentPage].description,
@@ -105,21 +116,27 @@ fun SharedYourRecipesScreen(
         }
         LinearProgressIndicator(
             modifier = Modifier
-                .height(80.dp)
+                .height(PROGRESS_INDICATOR_HEIGHT)
                 .align(Alignment.BottomStart)
-                .padding(start = 30.dp, bottom = 50.dp),
+                .padding(
+                    start = PADDING_START_PROGRESS_INDICATOR,
+                    bottom = PADDING_BOTTOM_PROGRESS_INDICATOR
+                ),
             progress = {
-                (pagerState.currentPage + 1) / listData.size.toFloat()
+                (pagerState.currentPageIndex / listData.size.toFloat()).round(1)
             })
-        TextHeader2(
+        HeaderText2(
             modifier = Modifier.align(Alignment.BottomEnd)
-                .padding(end = 50.dp, bottom = 50.dp)
+                .padding(
+                    end = PADDING_BOTTOM_PROGRESS_INDICATOR,
+                    bottom = PADDING_BOTTOM_PROGRESS_INDICATOR
+                )
                 .clickable {
                     scope.launch {
-                        if (pagerState.currentPage == listData.size - 1) {
+                        if (pagerState.currentPageIndex == listData.size) {
                             goToLogin()
                         } else {
-                            pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                            pagerState.animateScrollToPage(pagerState.currentPageIndex)
                         }
                     }
                 },

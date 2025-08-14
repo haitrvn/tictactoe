@@ -17,7 +17,7 @@ fun PreviewText() {
             CookSurface {
                 Column {
                     TextApp(text = "Abcdefghiklmn (TextApp)")
-                    HeaderText(text = "Abcdefghiklmn (TextHeader)")
+                    HeaderText2(text = "Abcdefghiklmn (TextHeader)")
                     TextBigTitle(text = "Abcdefghiklmn (TextBigTitle)")
                     TextTitle(text = "Abcdefghiklmn (TextTitle)")
                     TextSmallTitle(text = "Abcdefghiklmn (TextSmallTitle)")
@@ -33,7 +33,7 @@ fun PreviewText() {
             CookSurface {
                 Column {
                     TextApp(text = "Abcdefghiklmn (TextApp)")
-                    HeaderText(text = "Abcdefghiklmn (TextHeader)")
+                    HeaderText2(text = "Abcdefghiklmn (TextHeader)")
                     TextBigTitle(text = "Abcdefghiklmn (TextBigTitle)")
                     TextTitle(text = "Abcdefghiklmn (TextTitle)")
                     TextSmallTitle(text = "Abcdefghiklmn (TextSmallTitle)")

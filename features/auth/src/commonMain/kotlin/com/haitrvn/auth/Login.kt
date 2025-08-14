@@ -23,12 +23,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CookSpace
+import com.haitrvn.coreui.HeaderText
+import com.haitrvn.coreui.LargeSpace
+import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.SegmentText
+import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.SocialButton
-import com.haitrvn.coreui.SpaceSize
-import com.haitrvn.coreui.TextBigTitle
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.theme.appleLoginBackground
 import com.haitrvn.coreui.theme.facebookLoginBackground
@@ -100,18 +101,18 @@ internal fun LoginWrapper(
             contentScale = ContentScale.Crop,
             alignment = Alignment.BottomCenter,
         )
-        CookSpace(SpaceSize.MEDIUM)
-        TextBigTitle(text = Res.string.login_welcome_quote.toText())
-        CookSpace(SpaceSize.SMALL)
+        MediumSpace()
+        HeaderText(text = Res.string.login_welcome_quote.toText())
+        SmallSpace()
         TextSmall(text = Res.string.login_welcome_quote.toText())
-        CookSpace(SpaceSize.SMALL)
+        SmallSpace()
         LoginWithSocial(
             loginGoogle = loginGoogle,
             loginFacebook = loginFacebook,
             loginApple = loginApple,
             loginEmail = loginEmail
         )
-        CookSpace(SpaceSize.LARGE)
+        LargeSpace()
         LoginQuestion { gotoSignup() }
     }
 }
@@ -133,7 +134,7 @@ internal fun LoginWithSocial(
         ) {
             loginGoogle()
         }
-        CookSpace(SpaceSize.SMALL)
+        SmallSpace()
         SocialButton(
             text = Res.string.login_button_login_with_facebook.toText(),
             icon = Res.drawable.ic_login_socical_facebook,
@@ -141,7 +142,7 @@ internal fun LoginWithSocial(
         ) {
             loginFacebook()
         }
-        CookSpace(SpaceSize.SMALL)
+        SmallSpace()
         SocialButton(
             text = Res.string.login_button_login_with_apple.toText(),
             icon = Res.drawable.ic_login_socical_apple,
@@ -149,7 +150,7 @@ internal fun LoginWithSocial(
         ) {
             loginApple()
         }
-        CookSpace(SpaceSize.SMALL)
+        SmallSpace()
         SocialButton(
             text = Res.string.login_button_login_with_email.toText(),
             icon = Res.drawable.ic_cyclone1,
