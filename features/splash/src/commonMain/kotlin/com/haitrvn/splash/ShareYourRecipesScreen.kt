@@ -1,5 +1,6 @@
 package com.haitrvn.splash
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -16,7 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathFillType
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.unit.dp
 import com.haitrvn.core.round
 import com.haitrvn.coreui.AppIcon
@@ -32,8 +37,8 @@ private const val BACKGROUND_ALPHA = 0.8f
 private val FRAME_THICKNESS = 20.dp
 private val DROP_WIDTH = 90.dp
 private val DROP_HEIGHT = 80.dp
-private val RECT_WIDTH = 90.dp
-private val RECT_HEIGHT = 80.dp
+private val DROP_OFFSET = 80.dp
+private val RECT_SIZE = 80.dp
 private val PADDING_ALL_SIDES = 40.dp
 private val PADDING_BOTTOM_COLUMN = 105.dp
 private val PROGRESS_INDICATOR_HEIGHT = 80.dp
@@ -84,18 +89,25 @@ fun SharedYourRecipesScreen(
                 .fillMaxSize()
                 .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
         )
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .drawRoundedStrokeFrame(
-                    color = Color.White,
-                    frameThickness = FRAME_THICKNESS,
-                    dropWith = DROP_WIDTH,
-                    dropHeight = DROP_HEIGHT,
-                    rectWith = RECT_WIDTH,
-                    rectHeight = RECT_HEIGHT,
-                )
-        )
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            rotate(0f) {
+                drawPath(Path().apply {
+                    addRect(Rect(0f, 0f, size.width, size.height))
+                    moveTo(RECT_SIZE.toPx(), FRAME_THICKNESS.toPx())
+                    createRects(
+                        canvasWidth = size.width,
+                        canvasHeight = size.height,
+                        cornerRectSize = RECT_SIZE.toPx(),
+                        padding = FRAME_THICKNESS.toPx(),
+                        offset = 100.dp.toPx(),
+                    ).forEach {
+                        addRect(it.toRect())
+//                        arcTo(it.toRect(), it.startAngel, it.sweepAngle, false)
+                        fillType = PathFillType.EvenOdd
+                    }
+                }, color = Color.Red)
+            }
+        }
         Column(
             modifier = Modifier.fillMaxSize().padding(PADDING_ALL_SIDES)
                 .padding(bottom = PADDING_BOTTOM_COLUMN)
