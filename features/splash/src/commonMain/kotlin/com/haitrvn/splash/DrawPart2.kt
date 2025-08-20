@@ -43,40 +43,33 @@ fun createRects(
     val bottomWithOffset = canvasHeight - padding - halfRectSize
 
     val maxOffSetSize = offset.coerceAtMost(cornerRectSize)
-    val maxSmallRectSize = offset.coerceAtMost(maxOffSetSize / 2)
     val rectList = mutableListOf(
         CornerRect(
-            centerX = rightWithOffset + cornerRectSize / 2 - maxOffSetSize / 2,
-            centerY = topWithOffset - cornerRectSize / 2 + maxOffSetSize / 2,
-            width = maxOffSetSize,
-            height = maxOffSetSize,
+            centerX = canvasWidth - padding - cornerRectSize - offset.coerceAtMost(cornerRectSize) / 2,
+            centerY = padding + offset.coerceAtMost(cornerRectSize) / 2,
+            width = offset.coerceAtMost(cornerRectSize),
+            height = offset.coerceAtMost(cornerRectSize),
+            startAngel = 0f,
+            sweepAngle = 90f,
+        ),  // bottom-right
+        CornerRect(
+            centerX = canvasWidth - padding - cornerRectSize + offset.coerceAtMost(halfRectSize) / 2,
+            centerY = padding + maxOffSetSize + offset.coerceAtMost(halfRectSize) / 2,
+            width = offset.coerceAtMost(halfRectSize),
+            height = offset.coerceAtMost(halfRectSize),
             startAngel = 270f,
             sweepAngle = 90f,
-        ), // top-right
-        CornerRect(
-            centerX = (rightWithOffset + cornerRectSize / 2 - maxOffSetSize / 2) - maxOffSetSize / 2 + maxSmallRectSize / 2 + maxOffSetSize,
-            centerY = (topWithOffset - cornerRectSize / 2 + maxOffSetSize / 2) - maxOffSetSize / 2 + maxSmallRectSize / 2 + maxOffSetSize,
-            width = maxSmallRectSize,
-            height = maxSmallRectSize,
-            startAngel = 180f,
-            sweepAngle = -90f,
-        ),
+        ), //1
         CornerRect(
             centerX = rightWithOffset + cornerRectSize,
-            centerY = topWithOffset + +maxOffSetSize + maxSmallRectSize,
+            centerY = padding + halfRectSize + offset.coerceAtMost(cornerRectSize) + offset.coerceAtMost(
+                halfRectSize
+            ),
             width = cornerRectSize,
             height = cornerRectSize,
             startAngel = 270f,
-            sweepAngle = 180f,
-        ),
-        CornerRect(
-            centerX = (rightWithOffset + cornerRectSize / 2 - maxOffSetSize / 2) - maxOffSetSize / 2 + maxSmallRectSize / 2 + maxOffSetSize,
-            centerY = (topWithOffset - cornerRectSize / 2 + maxOffSetSize / 2) - maxOffSetSize / 2 + maxSmallRectSize / 2 + maxOffSetSize + cornerRectSize + maxSmallRectSize,
-            width = maxSmallRectSize,
-            height = maxSmallRectSize,
-            startAngel = 270f,
-            sweepAngle = -90f,
-        ),
+            sweepAngle = 90f,
+        ),//2
         CornerRect(
             centerX = rightWithOffset,
             centerY = bottomWithOffset,

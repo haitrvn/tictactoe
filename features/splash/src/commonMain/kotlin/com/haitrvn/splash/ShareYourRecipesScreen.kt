@@ -93,18 +93,28 @@ fun SharedYourRecipesScreen(
             rotate(0f) {
                 drawPath(Path().apply {
                     addRect(Rect(0f, 0f, size.width, size.height))
+                    createRects(
+                        canvasWidth = size.width,
+                        canvasHeight = size.height,
+                        cornerRectSize = RECT_SIZE.toPx(),
+                        padding = 10.dp.toPx(),
+                        offset = 10.dp.toPx(),
+                    ).forEach {
+                        addRect(it.toRect())
+                        fillType = PathFillType.EvenOdd
+                    }
                     addPath(Path().apply {
-                        createRects(
-                            canvasWidth = size.width,
-                            canvasHeight = size.height,
-                            cornerRectSize = RECT_SIZE.toPx(),
-                            padding = 10.dp.toPx(),
-                            offset = 100.dp.toPx(),
-                        ).forEach {
+//                        createRects(
+//                            canvasWidth = size.width,
+//                            canvasHeight = size.height,
+//                            cornerRectSize = RECT_SIZE.toPx(),
+//                            padding = 10.dp.toPx(),
+//                            offset = 100.dp.toPx(),
+//                        ).forEach {
 //                        addRect(it.toRect())
-                            arcTo(it.toRect(), it.startAngel, it.sweepAngle, false)
-                            fillType = PathFillType.EvenOdd
-                        }
+//                            arcTo(it.toRect(), it.startAngel, it.sweepAngle, false)
+//                            fillType = PathFillType.EvenOdd
+//                        }
                     })
                 }, color = Color.Red)
             }
