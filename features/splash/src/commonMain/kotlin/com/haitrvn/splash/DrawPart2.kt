@@ -1,99 +1,288 @@
 package com.haitrvn.splash
 
-import androidx.compose.ui.geometry.Rect
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
-data class CornerRect(
-    val centerX: Float,
-    val centerY: Float,
-    val width: Float,
-    val height: Float,
-    val startAngel: Float,
-    val sweepAngle: Float,
+@Composable
+fun Drop(
+    modifier: Modifier = Modifier,
+    padding: Dp
 ) {
-    fun toRect(): Rect = Rect(
-        left = centerX - width / 2f,
-        top = centerY - height / 2f,
-        right = centerX + width / 2f,
-        bottom = centerY + height / 2f
-    )
+    Canvas(modifier = Modifier.fillMaxSize()) {
+        val padding = padding.toPx()
+        drawRect(Color.Red)
+        drawPath(
+            color = Color.Black,
+//            blendMode = BlendMode.Clear,
+            path = Path().apply {
+                val width = size.width - padding
+                val height = size.height - padding
+                translate(Offset(padding, padding))
+                createCubicList(
+                    width = width,
+                    height = height,
+                    dropSize = 40.dp.toPx(),
+                    cornerSize = 40.dp.toPx(),
+                    offset = 80.dp.toPx(),
+                    side = Side.TOP,
+                ).forEach {
+                    moveToAndCubicTo(it)
+                }
+            }
+        )
+    }
 }
 
-enum class Direction {
-    TOP, BOTTOM, START, END
-}
-
-fun topRect(
-
-): List<CornerRect> {
-
-    return emptyList()
-}
-
-fun createRects(
-    canvasWidth: Float,
-    canvasHeight: Float,
-    cornerRectSize: Float,
-    padding: Float,
+fun createCubicList(
+    width: Float,
+    height: Float,
+    dropSize: Float,
+    cornerSize: Float,
     offset: Float,
-): List<CornerRect> {
-    val halfRectSize = cornerRectSize / 2f
-    val leftWithOffset = padding + halfRectSize
-    val rightWithOffset = canvasWidth - padding - halfRectSize - cornerRectSize
-    val topWithOffset = padding + halfRectSize
-    val bottomWithOffset = canvasHeight - padding - halfRectSize
+    side: Side,
+): List<Cubic> {
+    //Top lines
+    val topCornerOutside = if (side == Side.TOP) dropSize else 0f
+    val topCornerInside = (if (side == Side.TOP) dropSize else 0f) + cornerSize
+    val topDrop = if (side == Side.TOP) dropSize / 2 else 0f
 
-    val maxOffSetSize = offset.coerceAtMost(cornerRectSize)
-    val rectList = mutableListOf(
-        CornerRect(
-            centerX = canvasWidth - padding - cornerRectSize - offset.coerceAtMost(cornerRectSize) / 2,
-            centerY = padding + offset.coerceAtMost(cornerRectSize) / 2,
-            width = offset.coerceAtMost(cornerRectSize),
-            height = offset.coerceAtMost(cornerRectSize),
-            startAngel = 0f,
-            sweepAngle = 90f,
-        ),  // bottom-right
-        CornerRect(
-            centerX = canvasWidth - padding - cornerRectSize + offset.coerceAtMost(halfRectSize) / 2,
-            centerY = padding + maxOffSetSize + offset.coerceAtMost(halfRectSize) / 2,
-            width = offset.coerceAtMost(halfRectSize),
-            height = offset.coerceAtMost(halfRectSize),
-            startAngel = 270f,
-            sweepAngle = 90f,
-        ), //1
-        CornerRect(
-            centerX = rightWithOffset + cornerRectSize,
-            centerY = padding + halfRectSize + offset.coerceAtMost(cornerRectSize) + offset.coerceAtMost(
-                halfRectSize
-            ),
-            width = cornerRectSize,
-            height = cornerRectSize,
-            startAngel = 270f,
-            sweepAngle = 90f,
-        ),//2
-        CornerRect(
-            centerX = rightWithOffset,
-            centerY = bottomWithOffset,
-            width = cornerRectSize,
-            height = cornerRectSize,
-            startAngel = 0f,
-            sweepAngle = 90f,
-        ),  // bottom-right
-        CornerRect(
-            centerX = leftWithOffset,
-            centerY = bottomWithOffset,
-            width = cornerRectSize,
-            height = cornerRectSize,
-            startAngel = 90f,
-            sweepAngle = 90f,
-        ), // bottom-left
-        CornerRect(
-            centerX = leftWithOffset,
-            centerY = topWithOffset,
-            width = cornerRectSize,
-            height = cornerRectSize,
-            startAngel = 180f,
-            sweepAngle = 90f,
-        ), // top-left
+    //Left lines
+    val leftCornerOutside = if (side == Side.LEFT) dropSize else 0f
+    val leftCornerInside = (if (side == Side.LEFT) dropSize else 0f) + cornerSize
+    val leftDrop = if (side == Side.LEFT) dropSize / 2 else 0f
+
+    //Right lines
+    val rightCornerOutside = if (side == Side.RIGHT) width - dropSize else width
+    val rightCornerInside = (if (side == Side.RIGHT) width - dropSize else width) - cornerSize
+    val rightDrop = if (side == Side.RIGHT) width - dropSize / 2 else width
+
+    //Bottom lines
+    val bottomCornerOutside = if (side == Side.BOTTOM) height - dropSize else height
+    val bottomCornerInside = (if (side == Side.BOTTOM) height - dropSize else height) - cornerSize
+    val bottomDrop = if (side == Side.BOTTOM) height - dropSize / 2 else height
+
+    //Offset lines
+    val (offset1, offset2, offset3, offset4) = when (side) {
+        Side.TOP, Side.BOTTOM -> Quadruple(
+            offset1 = (offset / 2),
+            offset2 = offset,
+            offset3 = offset + dropSize,
+            offset4 = offset + dropSize + (width - offset - dropSize) / 2,
+        )
+
+        Side.LEFT, Side.RIGHT -> Quadruple(
+            offset1 = (offset / 2),
+            offset2 = offset,
+            offset3 = offset + dropSize,
+            offset4 = offset + dropSize + (height - offset - dropSize) / 2,
+        )
+    }
+
+
+
+    return listOf(
+        Cubic.BottomRight(
+            startPoint = Point(offset1, topCornerOutside),
+            endPoint = Point(offset2, topDrop),
+        ),
+        Cubic.Top(
+            startPoint = Point(offset2, topDrop),
+            endPoint = Point(offset3, topDrop),
+        ),
+        Cubic.BottomLeft(
+            startPoint = Point(offset3, topDrop),
+            endPoint = Point(offset4, topCornerOutside),
+        ),
+        Cubic.TopRight(
+            startPoint = Point(offset3, topDrop),
+            endPoint = Point(offset4, topCornerOutside),
+        )
     )
-    return rectList
+}
+
+data class Quadruple(
+    val offset1: Float,
+    val offset2: Float,
+    val offset3: Float,
+    val offset4: Float,
+)
+
+fun Path.moveToAndCubicTo(cubic: Cubic) {
+    moveTo(cubic.startPoint.x, cubic.startPoint.y)
+    cubicTo(
+        cubic.endPoint.x,
+        cubic.endPoint.y,
+        cubic.controlPoint1.x,
+        cubic.controlPoint1.y,
+        cubic.controlPoint2.x,
+        cubic.controlPoint2.y,
+    )
+}
+
+data class Point(val x: Float, val y: Float)
+
+enum class Side {
+    TOP,
+    BOTTOM,
+    LEFT,
+    RIGHT,
+}
+
+sealed class Cubic(
+    open val startPoint: Point,
+    open val endPoint: Point,
+    open val controlPoint1: Point,
+    open val controlPoint2: Point,
+) {
+    data class TopLeft(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+        override val controlPoint2: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
+
+    data class TopRight(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+        override val controlPoint2: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
+
+    data class BottomLeft(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+        override val controlPoint2: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
+
+    data class BottomRight(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+        override val controlPoint2: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
+
+    data class Top(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+        override val controlPoint2: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
+
+    data class Bottom(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+        override val controlPoint2: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
+
+    data class Left(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+        override val controlPoint2: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
+
+    data class Right(
+        override val startPoint: Point,
+        override val endPoint: Point,
+        override val controlPoint1: Point = Point(
+            x = startPoint.x,
+            y = (startPoint.y + endPoint.y) / 2
+        ),
+        override val controlPoint2: Point = Point(
+            x = (startPoint.x + endPoint.x) / 2,
+            y = startPoint.y
+        ),
+    ) : Cubic(
+        startPoint = startPoint,
+        endPoint = endPoint,
+        controlPoint1 = controlPoint1,
+        controlPoint2 = controlPoint2,
+    )
 }

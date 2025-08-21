@@ -17,11 +17,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathFillType
-import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.unit.dp
 import com.haitrvn.core.round
 import com.haitrvn.coreui.AppIcon
@@ -90,34 +87,14 @@ fun SharedYourRecipesScreen(
                 .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
         )
         Canvas(modifier = Modifier.fillMaxSize()) {
-            rotate(0f) {
-                drawPath(Path().apply {
-                    addRect(Rect(0f, 0f, size.width, size.height))
-                    createRects(
-                        canvasWidth = size.width,
-                        canvasHeight = size.height,
-                        cornerRectSize = RECT_SIZE.toPx(),
-                        padding = 10.dp.toPx(),
-                        offset = 10.dp.toPx(),
-                    ).forEach {
-                        addRect(it.toRect())
-                        fillType = PathFillType.EvenOdd
-                    }
-                    addPath(Path().apply {
-//                        createRects(
-//                            canvasWidth = size.width,
-//                            canvasHeight = size.height,
-//                            cornerRectSize = RECT_SIZE.toPx(),
-//                            padding = 10.dp.toPx(),
-//                            offset = 100.dp.toPx(),
-//                        ).forEach {
-//                        addRect(it.toRect())
-//                            arcTo(it.toRect(), it.startAngel, it.sweepAngle, false)
-//                            fillType = PathFillType.EvenOdd
-//                        }
-                    })
-                }, color = Color.Red)
-            }
+            drawPath(Path().apply {
+                moveTo(100f, 100f)
+                cubicTo(
+                    100f, 200f,
+                    100f, 200f,
+                    120f, 200f,
+                )
+            }, Color.Red)
         }
         Column(
             modifier = Modifier.fillMaxSize().padding(PADDING_ALL_SIDES)
