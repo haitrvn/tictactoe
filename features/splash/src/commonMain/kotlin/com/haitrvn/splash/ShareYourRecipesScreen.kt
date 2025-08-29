@@ -17,8 +17,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathFillType
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.unit.dp
 import com.haitrvn.core.round
 import com.haitrvn.coreui.AppIcon
@@ -87,14 +90,26 @@ fun SharedYourRecipesScreen(
                 .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
         )
         Canvas(modifier = Modifier.fillMaxSize()) {
-            drawPath(Path().apply {
-                moveTo(100f, 100f)
-                cubicTo(
-                    100f, 200f,
-                    100f, 200f,
-                    120f, 200f,
-                )
-            }, Color.Red)
+            val path = Path().apply {
+                fillType = PathFillType.EvenOdd
+                addRect(rect = Rect(0f, 0f, size.width, size.height))
+                translate(left = FRAME_THICKNESS.toPx(), top = FRAME_THICKNESS.toPx()) {
+                    generateCubic(
+                        side = Side.TOP,
+                        width = size.width - FRAME_THICKNESS.toPx() * 2,
+                        height = size.height - FRAME_THICKNESS.toPx() * 2,
+                        dropSize = 40.dp.toPx(),
+                        cornerSize = 60.dp.toPx(),
+                        offset = size.width - FRAME_THICKNESS.toPx() * 2 - 40.dp.toPx(),
+                    ).apply {
+                        moveTo(first().startPoint.x, first().startPoint.y)
+                    }.forEach {
+                        cubicToPath(it)
+                    }
+                    close()
+                }
+            }
+            drawPath(path, Color.Red)
         }
         Column(
             modifier = Modifier.fillMaxSize().padding(PADDING_ALL_SIDES)

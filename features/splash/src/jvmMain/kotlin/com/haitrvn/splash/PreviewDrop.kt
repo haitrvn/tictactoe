@@ -16,3 +16,14 @@ fun PreviewDrop() {
         padding = 30.dp
     )
 }
+
+@Preview
+@Composable
+fun PreviewDropDot() {
+    initPreviewImageLoader()
+    Drop(
+        modifier = Modifier.fillMaxSize(),
+        padding = 30.dp,
+        isShowDot = true
+    )
+}
