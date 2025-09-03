@@ -3,45 +3,101 @@ package com.haitrvn.splash
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathFillType
-import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.graphics.drawscope.inset
+import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun Drop(
     modifier: Modifier = Modifier,
-    padding: Dp,
-    isShowDot: Boolean = false
+    padding: Dp = 20.dp,
+    side: Side = Side.BOTTOM,
+    dropSize: Dp = 50.dp,
+    cornerSize: Dp = 50.dp,
+    offset: Dp = 40.dp,
 ) {
     Canvas(modifier = modifier) {
-        val path = Path().apply {
-            fillType = PathFillType.EvenOdd
-            addRect(rect = Rect(0f, 0f, size.width, size.height))
-            translate(left = padding.toPx(), top = padding.toPx()) {
+        val paddingPx = padding.toPx()
+        val dropSizePx = dropSize.toPx()
+        val cornerSizePx = cornerSize.toPx()
+        val offsetPx = offset.toPx()
+        drawRect(Color.White)
+        inset(paddingPx) {
+            val path = Path().apply {
+                fillType = PathFillType.EvenOdd
                 generateCubic(
-                    side = Side.TOP,
-                    width = size.width - padding.toPx() * 2,
-                    height = size.height - padding.toPx() * 2,
-                    dropSize = 40.dp.toPx(),
-                    cornerSize = 60.dp.toPx(),
-                    offset = size.width - padding.toPx() * 2 - 40.dp.toPx(),
+                    side = side,
+                    width = size.width,
+                    height = size.height,
+                    dropSize = dropSizePx,
+                    cornerSize = cornerSizePx,
+                    offset = offsetPx,
                 ).apply {
                     moveTo(first().startPoint.x, first().startPoint.y)
-                }.forEach {
-                    if (isShowDot) {
-                        cubicPoint(it)
-                    } else {
-                        cubicToPath(it)
-                    }
+                }.forEach { cubic ->
+                    cubicToPath(cubic)
                 }
                 close()
             }
+            drawPath(path, Color.Red)
         }
-        drawPath(path, Color.Red)
+
+        inset(paddingPx) {
+            val left = if (side == Side.RIGHT) {
+                size.width - dropSizePx
+            } else {
+                0f
+            }
+            val right = if (side == Side.LEFT) {
+                size.width - dropSizePx
+            } else {
+                0f
+            }
+            val top = if (side == Side.BOTTOM) {
+                size.height - dropSizePx
+            } else {
+                0f
+            }
+            val bottom = if (side == Side.TOP) {
+                size.height - dropSizePx
+            } else {
+                0f
+            }
+            inset(left = left, right = right, top = top, bottom = bottom) {
+                scale(
+                    scaleX = if (side == Side.RIGHT) -1f else 1f,
+                    scaleY = if (side == Side.TOP) -1f else 1f
+                ) {
+                    rotate(
+                        degrees = if (side == Side.RIGHT || side == Side.LEFT) 90f else 0f,
+                        pivot = Offset(dropSizePx / 2, dropSizePx / 2)
+                    ) {
+                        val path = Path().apply {
+                            fillType = PathFillType.EvenOdd
+                            generateDropCubic(
+                                dropSize = dropSizePx,
+                                offset = offsetPx,
+                                cornerSize = cornerSizePx,
+                                width = size.width,
+                            ).apply {
+                                moveTo(first().startPoint.x, first().startPoint.y)
+                            }.forEach {
+                                cubicToPath(it)
+                            }
+                            close()
+                        }
+                        drawPath(path, Color.Red)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -49,6 +105,52 @@ enum class Side {
     TOP, BOTTOM, LEFT, RIGHT
 }
 
+fun generateDropCubic(
+    dropSize: Float,
+    offset: Float,
+    cornerSize: Float,
+    width: Float,
+): List<Cubic> {
+    val smallDropSize = dropSize / 2
+    val corner = if (offset >= cornerSize + dropSize) {
+        cornerSize
+    } else {
+        offset * (cornerSize / (cornerSize + dropSize))
+    }
+    val drop1 = if (offset >= cornerSize + dropSize) {
+        offset - smallDropSize
+    } else {
+        corner
+    }
+    return listOf(
+        bottomLeftCubic(
+            startPoint = Point(0f, -cornerSize),
+            endPoint = Point(corner, 0f),
+            scale1 = 1f,
+            scale2 = 0.1f,
+        ),
+        topRightCubic(
+            startPoint = Point(drop1, 0f),
+            endPoint = Point(offset, smallDropSize),
+            scale1 = 1f,
+            scale2 = 0.1f,
+        ),
+        Cubic(
+            startPoint = Point(offset, smallDropSize),
+            endPoint = Point(offset + dropSize, smallDropSize),
+            controlPoint1 = Point(offset, dropSize * 1.2f),
+            controlPoint2 = Point(offset + dropSize, dropSize * 1.2f),
+        ),
+        topLeftCubic(
+            startPoint = Point(offset + dropSize, smallDropSize),
+            endPoint = Point(offset + dropSize + smallDropSize, 0f),
+        ),
+        bottomRightCubic(
+            startPoint = Point(offset + dropSize + smallDropSize, 0f),
+            endPoint = Point(offset + dropSize + smallDropSize + corner, -cornerSize),
+        )
+    )
+}
 
 /**
  * Sample path:
@@ -65,164 +167,39 @@ fun generateCubic(
     cornerSize: Float,
     offset: Float,
 ): List<Cubic> {
-    val dropXY1 = offset
-    val dropXY2 = offset + dropSize
-    val halfDropSize = dropSize / 2
-    val topDropY = if (side == Side.TOP) halfDropSize else 0f
-    val topY = if (side == Side.TOP) dropSize else 0f
-    val topCornerX1 = if (offset >= dropSize + cornerSize && side == Side.TOP) {
-        cornerSize
-    } else {
-        offset * (cornerSize / (cornerSize + dropSize))
+    val start = when (side) {
+        Side.LEFT -> dropSize
+        else -> 0f
     }
-    val topDropX1 = if (offset > dropSize + cornerSize) {
-        offset - halfDropSize
-    } else {
-        topCornerX1
+    val end = when (side) {
+        Side.RIGHT -> width - dropSize
+        else -> width
     }
-
-    val topCornerX2 =
-        if (width - offset - dropSize >= cornerSize + dropSize && side == Side.TOP || side != Side.TOP) {
-            if (side == Side.RIGHT) {
-                width - cornerSize - dropSize
-            } else {
-                width - cornerSize
-            }
-        } else {
-            (width - offset - dropSize) * (cornerSize / (cornerSize + dropSize))
-        }
-    val topDropX2 = if (width - offset - dropSize > cornerSize + dropSize && side == Side.TOP) {
-        offset + dropSize + halfDropSize
-    } else {
-        topCornerX2
+    val top = when (side) {
+        Side.TOP -> dropSize
+        else -> 0f
     }
-
-    //Bottom
-    val bottomDropY = if (side == Side.BOTTOM) height - halfDropSize else height
-    val bottomY = if (side == Side.BOTTOM) height - dropSize else height
-    val bottomCornerX1 = if (offset >= dropSize + cornerSize && side == Side.BOTTOM) {
-        cornerSize
-    } else {
-        offset * (cornerSize / (cornerSize + dropSize))
-    }
-    val bottomDropX1 = if (offset > dropSize + cornerSize && side == Side.BOTTOM) {
-        offset - halfDropSize
-    } else {
-        bottomCornerX1
-    }
-
-    val bottomCornerX2 =
-        if (width - offset - dropSize >= cornerSize + dropSize && side == Side.BOTTOM || side != Side.BOTTOM) {
-            width - cornerSize
-        } else {
-            (width - offset - dropSize) * (cornerSize / (cornerSize + dropSize))
-        }
-    val bottomDropX2 =
-        if (width - offset - dropSize > cornerSize + dropSize && side == Side.BOTTOM) {
-            offset + dropSize + halfDropSize
-        } else {
-            bottomCornerX2
-        }
-
-    //Right
-    val rightDropX = if (side == Side.RIGHT) width - halfDropSize else width
-    val rightX = if (side == Side.RIGHT) width - dropSize else width
-
-    val rightCornerY1 =
-        if (offset >= dropSize + cornerSize && side == Side.RIGHT || side != Side.RIGHT) {
-            topY + cornerSize
-        } else {
-            offset * (cornerSize / (cornerSize + dropSize))
-        }
-    val rightDropY1 = if (offset > dropSize + cornerSize && side == Side.RIGHT) {
-        offset - halfDropSize
-    } else {
-        rightCornerY1
-    }
-
-    val rightCornerY2 =
-        if (width - offset - dropSize >= cornerSize + dropSize && side == Side.RIGHT || side != Side.RIGHT) {
-            if (side == Side.BOTTOM) {
-                height - cornerSize - dropSize
-            } else {
-                height - cornerSize
-            }
-        } else {
-            (height - offset - dropSize) * (cornerSize / (cornerSize + dropSize))
-        }
-    val rightDropY2 = if (width - offset - dropSize > cornerSize + dropSize && side == Side.RIGHT) {
-        offset + dropSize + halfDropSize
-    } else {
-        rightCornerY2
-    }
-
-    //Left
-    val leftDropX = if (side == Side.LEFT) halfDropSize else 0f
-    val leftX = if (side == Side.LEFT) dropSize else 0f
-
-    val leftCornerY1 = if (side != Side.LEFT || offset >= dropSize + cornerSize) {
-        topY + cornerSize
-    } else {
-        offset * (cornerSize / (cornerSize + dropSize))
-    }
-    val leftDropY1 = if (offset > dropSize + cornerSize && side == Side.LEFT) {
-        offset - halfDropSize
-    } else {
-        leftCornerY1
-    }
-
-    val leftCornerY2 =
-        if (width - offset - dropSize >= cornerSize + dropSize && side == Side.LEFT || side != Side.LEFT) {
-            if (side == Side.BOTTOM) {
-                height - cornerSize - dropSize
-            } else {
-                height - cornerSize
-            }
-        } else {
-            (height - offset - dropSize) * (cornerSize / (cornerSize + dropSize))
-        }
-    val leftDropY2 = if (width - offset - dropSize > cornerSize + dropSize && side == Side.LEFT) {
-        offset + dropSize + halfDropSize
-    } else {
-        leftCornerY2
+    val bottom = when (side) {
+        Side.BOTTOM -> height - dropSize
+        else -> height
     }
     return listOf(
-        topLeftCubic(Point(leftX, leftCornerY1), Point(topCornerX1, topY)),
-//        bottomRightCubic(Point(topDropX1, topY), Point(dropXY1, topDropY)),
-//        Cubic(
-//            Point(dropXY1, topDropY),
-//            Point(dropXY2, topDropY),
-//            Point(dropXY1, topDropY - dropSize * 3 / 4),
-//            Point(dropXY2, topDropY - dropSize * 3 / 4),
-//        ),
-//        bottomLeftCubic(Point(dropXY2, topDropY), Point(topDropX2, topY)),
-        topRightCubic(Point(topCornerX2, topY), Point(rightX, rightCornerY1)),
-//        bottomLeftCubic(Point(rightX, rightDropY1), Point(rightDropX, dropXY1)),
-//        Cubic(
-//            Point(rightDropX, dropXY1),
-//            Point(rightDropX, dropXY2),
-//            Point(rightDropX + dropSize * 3 / 4, dropXY1),
-//            Point(rightDropX + dropSize * 3 / 4, dropXY2),
-//        ),
-//        topLeftCubic(Point(rightDropX, dropXY2), Point(rightX, rightDropY2)),
-        bottomRightCubic(Point(rightX, rightCornerY2), Point(bottomCornerX2, bottomY)),
-//        topLeftCubic(Point(bottomDropX2, bottomY), Point(dropXY2, bottomDropY)),
-//        Cubic(
-//            Point(dropXY2, bottomDropY),
-//            Point(dropXY1, bottomDropY),
-//            Point(dropXY2, bottomDropY + dropSize * 3 / 4),
-//            Point(dropXY1, bottomDropY + dropSize * 3 / 4),
-//        ),
-//        topRightCubic(Point(dropXY1, bottomDropY), Point(bottomDropX1, bottomY)),
-        bottomLeftCubic(Point(bottomCornerX1, bottomY), Point(leftX, leftCornerY2)),
-//        topRightCubic(Point(leftX,leftDropY2), Point(leftDropX,dropXY2)),
-//        Cubic(
-//            Point(leftDropX, dropXY2),
-//            Point(leftDropX, dropXY1),
-//            Point(leftDropX - dropSize * 3 / 4, dropXY2),
-//            Point(leftDropX - dropSize * 3 / 4, dropXY1),
-//        ),
-//        bottomRightCubic(Point(leftDropX, dropXY1), Point(leftX, leftDropY1)),
+        topLeftCubic(
+            startPoint = Point(start, top + cornerSize),
+            endPoint = Point(start + cornerSize, top),
+        ),
+        topRightCubic(
+            startPoint = Point(end - cornerSize, top),
+            endPoint = Point(end, top + cornerSize),
+        ),
+        bottomRightCubic(
+            startPoint = Point(end, bottom - cornerSize),
+            endPoint = Point(end - cornerSize, bottom),
+        ),
+        bottomLeftCubic(
+            startPoint = Point(start + cornerSize, bottom),
+            endPoint = Point(start, bottom - cornerSize),
+        ),
     )
 }
 

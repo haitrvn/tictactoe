@@ -12,18 +12,8 @@ import com.haitrvn.coreui.imageloader.initPreviewImageLoader
 fun PreviewDrop() {
     initPreviewImageLoader()
     Drop(
+        side = Side.LEFT,
         modifier = Modifier.fillMaxSize(),
-        padding = 30.dp
-    )
-}
-
-@Preview
-@Composable
-fun PreviewDropDot() {
-    initPreviewImageLoader()
-    Drop(
-        modifier = Modifier.fillMaxSize(),
-        padding = 30.dp,
-        isShowDot = true
+        offset = 100.dp
     )
 }

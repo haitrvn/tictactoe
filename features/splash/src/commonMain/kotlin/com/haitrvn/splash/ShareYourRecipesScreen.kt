@@ -90,26 +90,6 @@ fun SharedYourRecipesScreen(
                 .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
         )
         Canvas(modifier = Modifier.fillMaxSize()) {
-            val path = Path().apply {
-                fillType = PathFillType.EvenOdd
-                addRect(rect = Rect(0f, 0f, size.width, size.height))
-                translate(left = FRAME_THICKNESS.toPx(), top = FRAME_THICKNESS.toPx()) {
-                    generateCubic(
-                        side = Side.TOP,
-                        width = size.width - FRAME_THICKNESS.toPx() * 2,
-                        height = size.height - FRAME_THICKNESS.toPx() * 2,
-                        dropSize = 40.dp.toPx(),
-                        cornerSize = 60.dp.toPx(),
-                        offset = size.width - FRAME_THICKNESS.toPx() * 2 - 40.dp.toPx(),
-                    ).apply {
-                        moveTo(first().startPoint.x, first().startPoint.y)
-                    }.forEach {
-                        cubicToPath(it)
-                    }
-                    close()
-                }
-            }
-            drawPath(path, Color.Red)
         }
         Column(
             modifier = Modifier.fillMaxSize().padding(PADDING_ALL_SIDES)
