@@ -1,6 +1,5 @@
 package com.haitrvn.splash
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -12,16 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathFillType
-import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.unit.dp
 import com.haitrvn.core.round
 import com.haitrvn.coreui.AppIcon
@@ -32,6 +26,19 @@ import com.haitrvn.coreui.ImageRecipe
 import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.TextParagraph2
 import kotlinx.coroutines.launch
+import androidx.compose.foundation.Canvas
+import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.snap
+import androidx.compose.animation.core.tween
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.unit.Dp
 
 private const val BACKGROUND_ALPHA = 0.8f
 private val FRAME_THICKNESS = 20.dp
@@ -65,6 +72,50 @@ val fakeData =
 
 val PagerState.currentPageIndex: Int
     get() = this.currentPage + 1
+
+@Composable
+fun SmoothLinearProgressBar(
+    progress: Float,
+    modifier: Modifier = Modifier.height(12.dp),
+    trackColor: Color = Color(0x33000000),
+    progressColor: Color = Color(0xFF4CAF50),
+    cornerRadius: Dp = 999.dp, // 999.dp -> effectively pill shape; we clamp at half-height
+    animate: Boolean = true,
+    animationSpec: AnimationSpec<Float> = tween(durationMillis = 600, easing = FastOutSlowInEasing),
+) {
+    val coerced = progress.coerceIn(0f, 1f)
+    val animated by animateFloatAsState(
+        targetValue = coerced,
+        animationSpec = if (animate) animationSpec else snap(),
+        label = "smoothProgressAnim"
+    )
+
+    Canvas(modifier = modifier) {
+        val w = size.width
+        val h = size.height
+        val r = minOf(h / 2f, cornerRadius.toPx())
+
+        // Track (unreached segment)
+        drawRoundRect(
+            color = trackColor,
+            size = Size(w, h),
+            cornerRadius = CornerRadius(r, r)
+        )
+
+        // Fill (reached segment) — keep rounded ends by clipping to the same rounded rect
+        val clip = Path().apply {
+            addRoundRect(RoundRect(0f, 0f, w, h, CornerRadius(r, r)))
+        }
+        val reachedW = w * animated
+        clipPath(clip) {
+            drawRoundRect(
+                color = progressColor,
+                size = Size(reachedW, h),
+                cornerRadius = CornerRadius(r, r)
+            )
+        }
+    }
+}
 
 @Composable
 fun SharedYourRecipesScreen(
@@ -108,17 +159,20 @@ fun SharedYourRecipesScreen(
                 color = Color.White,
             )
         }
-        LinearProgressIndicator(
+        SmoothLinearProgressBar(
             modifier = Modifier
                 .height(PROGRESS_INDICATOR_HEIGHT)
+                .fillMaxWidth()
                 .align(Alignment.BottomStart)
                 .padding(
                     start = PADDING_START_PROGRESS_INDICATOR,
                     bottom = PADDING_BOTTOM_PROGRESS_INDICATOR
                 ),
-            progress = {
-                (pagerState.currentPageIndex / listData.size.toFloat()).round(1)
-            })
+            progress = (pagerState.currentPageIndex / listData.size.toFloat()).round(1),
+            trackColor = Color.Red.copy(alpha = 0.25f),
+            progressColor = Color.Red,
+            cornerRadius = 999.dp,
+        )
         HeaderText2(
             modifier = Modifier.align(Alignment.BottomEnd)
                 .padding(
