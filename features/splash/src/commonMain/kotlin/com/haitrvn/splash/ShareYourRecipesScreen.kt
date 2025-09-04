@@ -89,8 +89,7 @@ fun SharedYourRecipesScreen(
                 .fillMaxSize()
                 .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
         )
-        Canvas(modifier = Modifier.fillMaxSize()) {
-        }
+        Drop(modifier = Modifier.fillMaxSize())
         Column(
             modifier = Modifier.fillMaxSize().padding(PADDING_ALL_SIDES)
                 .padding(bottom = PADDING_BOTTOM_COLUMN)

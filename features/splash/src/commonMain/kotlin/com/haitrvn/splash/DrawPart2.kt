@@ -3,13 +3,11 @@ package com.haitrvn.splash
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.drawscope.inset
-import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -18,16 +16,17 @@ import androidx.compose.ui.unit.dp
 fun Drop(
     modifier: Modifier = Modifier,
     padding: Dp = 20.dp,
-    side: Side = Side.BOTTOM,
-    dropSize: Dp = 50.dp,
-    cornerSize: Dp = 50.dp,
-    offset: Dp = 40.dp,
+    side: Side = Side.RIGHT,
+    dropSize: Dp = 60.dp,
+    cornerSize: Dp = 60.dp,
+    offset: Dp? = null,
 ) {
     Canvas(modifier = modifier) {
         val paddingPx = padding.toPx()
         val dropSizePx = dropSize.toPx()
         val cornerSizePx = cornerSize.toPx()
-        val offsetPx = offset.toPx()
+        val offsetPx = offset?.toPx()
+            ?: if (side == Side.RIGHT || side == Side.LEFT) size.height else size.width
         drawRect(Color.White)
         inset(paddingPx) {
             val path = Path().apply {
@@ -51,50 +50,49 @@ fun Drop(
 
         inset(paddingPx) {
             val left = if (side == Side.RIGHT) {
-                size.width - dropSizePx
+                size.width - dropSizePx - cornerSizePx
             } else {
                 0f
             }
             val right = if (side == Side.LEFT) {
-                size.width - dropSizePx
+                size.width - dropSizePx - cornerSizePx
             } else {
                 0f
             }
             val top = if (side == Side.BOTTOM) {
-                size.height - dropSizePx
+                size.height - dropSizePx - cornerSizePx
             } else {
                 0f
             }
             val bottom = if (side == Side.TOP) {
-                size.height - dropSizePx
+                size.height - dropSizePx - cornerSizePx
             } else {
                 0f
             }
             inset(left = left, right = right, top = top, bottom = bottom) {
                 scale(
-                    scaleX = if (side == Side.RIGHT) -1f else 1f,
-                    scaleY = if (side == Side.TOP) -1f else 1f
+                    scaleX = if (side == Side.LEFT) -1f else 1f,
+                    scaleY = if (side == Side.TOP) -1f else 1f,
                 ) {
-                    rotate(
-                        degrees = if (side == Side.RIGHT || side == Side.LEFT) 90f else 0f,
-                        pivot = Offset(dropSizePx / 2, dropSizePx / 2)
-                    ) {
-                        val path = Path().apply {
-                            fillType = PathFillType.EvenOdd
-                            generateDropCubic(
-                                dropSize = dropSizePx,
-                                offset = offsetPx,
-                                cornerSize = cornerSizePx,
-                                width = size.width,
-                            ).apply {
-                                moveTo(first().startPoint.x, first().startPoint.y)
-                            }.forEach {
-                                cubicToPath(it)
+                    val path = Path().apply {
+                        fillType = PathFillType.EvenOdd
+                        generateDropCubic(
+                            side = side,
+                            dropSize = dropSizePx,
+                            offset = offsetPx,
+                            cornerSize = cornerSizePx,
+                            width = size.width,
+                            height = size.height,
+                        ).apply {
+                            (firstOrNull() as? Cubic)?.let {
+                                moveTo(it.startPoint.x, it.startPoint.y)
                             }
-                            close()
+                        }.forEach {
+                            cubicToPath(it)
                         }
-                        drawPath(path, Color.Red)
+                        close()
                     }
+                    drawPath(path, Color.Red)
                 }
             }
         }
@@ -106,48 +104,154 @@ enum class Side {
 }
 
 fun generateDropCubic(
+    side: Side,
+    dropSize: Float,
+    offset: Float,
+    cornerSize: Float,
+    width: Float,
+    height: Float,
+): List<Cubic> {
+    return when (side) {
+        Side.LEFT, Side.RIGHT -> {
+            generateHorizontalDropCubic(
+                dropSize,
+                offset,
+                cornerSize,
+                height,
+            )
+        }
+
+        Side.TOP, Side.BOTTOM -> {
+            generateVerticalDropCubic(
+                side,
+                dropSize,
+                offset,
+                cornerSize,
+                width,
+            )
+        }
+    }
+}
+
+private fun generateHorizontalDropCubic(
+    dropSize: Float,
+    offset: Float,
+    cornerSize: Float,
+    height: Float,
+): List<Cubic> {
+    val offset = offset.coerceAtMost(height - dropSize)
+    val smallDropSize = dropSize / 3
+    val x1 = 0f
+    val x2 = cornerSize
+    val x3 = cornerSize + smallDropSize
+    val y1 = 0f
+    val y2 = if (offset > cornerSize + dropSize) {
+        cornerSize
+    } else {
+        offset * (cornerSize / (cornerSize + dropSize))
+    }
+    val y3 = if (offset > cornerSize + dropSize) {
+        offset - smallDropSize
+    } else {
+        y2
+    }
+    val y4 = offset
+    val y5 = offset + dropSize
+    val y6 = if (height - offset - dropSize > cornerSize + dropSize) {
+        y5 + smallDropSize
+    } else {
+        height - (height - offset - dropSize) * (cornerSize / (cornerSize + dropSize))
+    }
+    val y7 = if (height - offset - dropSize > cornerSize + dropSize) {
+        height - cornerSize
+    } else {
+        y6
+    }
+    val y8 = height
+    return listOf(
+        topRightCubic(
+            startPoint = Point(x1, y1),
+            endPoint = Point(x2, y2)
+        ),
+        bottomLeftCubic(
+            startPoint = Point(x2, y3),
+            endPoint = Point(x3, y4),
+        ),
+        Cubic(
+            startPoint = Point(x3, y4),
+            endPoint = Point(x3, y5),
+            controlPoint1 = Point(x3 + dropSize * 3/4, y4),
+            controlPoint2 = Point(x3 + dropSize * 3/4, y5),
+        ),
+        topLeftCubic(
+            startPoint = Point(x3, y5),
+            endPoint = Point(x2, y6),
+        ),
+        bottomRightCubic(
+            startPoint = Point(x2, y7),
+            endPoint = Point(x1, y8),
+        )
+    )
+}
+
+private fun generateVerticalDropCubic(
+    side: Side,
     dropSize: Float,
     offset: Float,
     cornerSize: Float,
     width: Float,
 ): List<Cubic> {
-    val smallDropSize = dropSize / 2
-    val corner = if (offset >= cornerSize + dropSize) {
+    val offset = offset.coerceAtMost(width - dropSize)
+    val smallDropSize = dropSize / 3
+    val y1 = 0f
+    val y2 = cornerSize
+    val y3 = cornerSize + smallDropSize
+    val x1 = 0f
+    val x2 = if (offset > cornerSize + dropSize) {
         cornerSize
     } else {
         offset * (cornerSize / (cornerSize + dropSize))
     }
-    val drop1 = if (offset >= cornerSize + dropSize) {
+    val x3 = if (offset > cornerSize + dropSize) {
         offset - smallDropSize
     } else {
-        corner
+        x2
     }
+    val x4 = offset
+    val x5 = offset + dropSize
+    val x6 = if (width - offset - dropSize > cornerSize + dropSize) {
+        x5 + smallDropSize
+    } else {
+        width - (width - offset - dropSize) * (cornerSize / (cornerSize + dropSize))
+    }
+    val x7 = if (width - offset - dropSize > cornerSize + dropSize) {
+        width - cornerSize
+    } else {
+        x6
+    }
+    val x8 = width
     return listOf(
         bottomLeftCubic(
-            startPoint = Point(0f, -cornerSize),
-            endPoint = Point(corner, 0f),
-            scale1 = 1f,
-            scale2 = 0.1f,
+            startPoint = Point(x1, y1),
+            endPoint = Point(x2, y2)
         ),
         topRightCubic(
-            startPoint = Point(drop1, 0f),
-            endPoint = Point(offset, smallDropSize),
-            scale1 = 1f,
-            scale2 = 0.1f,
+            startPoint = Point(x3, y2),
+            endPoint = Point(x4, y3),
         ),
         Cubic(
-            startPoint = Point(offset, smallDropSize),
-            endPoint = Point(offset + dropSize, smallDropSize),
-            controlPoint1 = Point(offset, dropSize * 1.2f),
-            controlPoint2 = Point(offset + dropSize, dropSize * 1.2f),
+            startPoint = Point(x4, y3),
+            endPoint = Point(x5, y3),
+            controlPoint1 = Point(x4, y3 + dropSize),
+            controlPoint2 = Point(x5, y3 + dropSize),
         ),
         topLeftCubic(
-            startPoint = Point(offset + dropSize, smallDropSize),
-            endPoint = Point(offset + dropSize + smallDropSize, 0f),
+            startPoint = Point(x5, y3),
+            endPoint = Point(x6, y2),
         ),
         bottomRightCubic(
-            startPoint = Point(offset + dropSize + smallDropSize, 0f),
-            endPoint = Point(offset + dropSize + smallDropSize + corner, -cornerSize),
+            startPoint = Point(x7, y2),
+            endPoint = Point(x8, y1),
         )
     )
 }
@@ -208,12 +312,6 @@ fun Path.drawCircle(point: Point, radius: Float = 2f) {
     addOval(Rect(point.x - radius, point.y - radius, point.x + radius, point.y + radius))
 }
 
-fun Path.cubicPoint(cubic: Cubic) {
-    drawCircle(cubic.startPoint)
-    drawCircle(cubic.endPoint)
-    drawCircle(cubic.controlPoint1)
-    drawCircle(cubic.controlPoint2)
-}
 
 fun Path.cubicToPath(cubic: Cubic) {
     lineTo(cubic.startPoint.x, cubic.startPoint.y)
@@ -372,17 +470,9 @@ fun bottomRightCubic(
 
 data class Point(val x: Float, val y: Float)
 
-sealed interface Shape
 data class Cubic(
     val startPoint: Point,
     val endPoint: Point,
     val controlPoint1: Point,
     val controlPoint2: Point,
-) : Shape
-
-data class ARC(
-    val x: Float,
-    val y: Float,
-    val width: Float,
-    val height: Float,
 )

@@ -12,8 +12,8 @@ import com.haitrvn.coreui.imageloader.initPreviewImageLoader
 fun PreviewDrop() {
     initPreviewImageLoader()
     Drop(
-        side = Side.LEFT,
+        side = Side.RIGHT ,
         modifier = Modifier.fillMaxSize(),
-        offset = 100.dp
+        offset = 300.dp
     )
 }
