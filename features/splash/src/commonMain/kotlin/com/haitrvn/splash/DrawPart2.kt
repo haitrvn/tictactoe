@@ -4,11 +4,13 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.drawscope.inset
 import androidx.compose.ui.graphics.drawscope.scale
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -21,7 +23,7 @@ fun Drop(
     cornerSize: Dp = 60.dp,
     offset: Dp? = null,
 ) {
-    Canvas(modifier = modifier) {
+    Canvas(modifier = modifier.graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)) {
         val paddingPx = padding.toPx()
         val dropSizePx = dropSize.toPx()
         val cornerSizePx = cornerSize.toPx()
@@ -30,7 +32,6 @@ fun Drop(
         drawRect(Color.White)
         inset(paddingPx) {
             val path = Path().apply {
-                fillType = PathFillType.EvenOdd
                 generateCubic(
                     side = side,
                     width = size.width,
@@ -45,7 +46,7 @@ fun Drop(
                 }
                 close()
             }
-            drawPath(path, Color.Red)
+            drawPath(path, Color.Red, blendMode = BlendMode.Clear)
         }
 
         inset(paddingPx) {
@@ -75,7 +76,6 @@ fun Drop(
                     scaleY = if (side == Side.TOP) -1f else 1f,
                 ) {
                     val path = Path().apply {
-                        fillType = PathFillType.EvenOdd
                         generateDropCubic(
                             side = side,
                             dropSize = dropSizePx,
@@ -92,7 +92,7 @@ fun Drop(
                         }
                         close()
                     }
-                    drawPath(path, Color.Red)
+                    drawPath(path = path, color = Color.Transparent, blendMode = BlendMode.Clear)
                 }
             }
         }
@@ -180,8 +180,8 @@ private fun generateHorizontalDropCubic(
         Cubic(
             startPoint = Point(x3, y4),
             endPoint = Point(x3, y5),
-            controlPoint1 = Point(x3 + dropSize * 3/4, y4),
-            controlPoint2 = Point(x3 + dropSize * 3/4, y5),
+            controlPoint1 = Point(x3 + dropSize * 3 / 4, y4),
+            controlPoint2 = Point(x3 + dropSize * 3 / 4, y5),
         ),
         topLeftCubic(
             startPoint = Point(x3, y5),
