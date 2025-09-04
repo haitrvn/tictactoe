@@ -24,10 +24,10 @@ private const val DROP_SIZE_MULTIPLIER = 3 / 4f
 @Composable
 fun Drop(
     modifier: Modifier = Modifier,
-    padding: Dp = 20.dp,
-    side: Side = Side.RIGHT,
-    dropSize: Dp = 60.dp,
-    cornerSize: Dp = 60.dp,
+    padding: Dp = 16.dp,
+    side: Side = Side.BOTTOM,
+    dropSize: Dp = 100.dp,
+    cornerSize: Dp = 70.dp,
     offset: Dp? = null,
 ) {
     Canvas(modifier = modifier.graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)) {
@@ -250,8 +250,8 @@ private fun generateVerticalDropCubic(
         Cubic(
             startPoint = Point(x4, y3),
             endPoint = Point(x5, y3),
-            controlPoint1 = Point(x4, y3 + dropSize),
-            controlPoint2 = Point(x5, y3 + dropSize),
+            controlPoint1 = Point(x4, y3 + dropSize * DROP_SIZE_MULTIPLIER),
+            controlPoint2 = Point(x5, y3 + dropSize * DROP_SIZE_MULTIPLIER),
         ),
         topLeftCubic(
             startPoint = Point(x5, y3),
