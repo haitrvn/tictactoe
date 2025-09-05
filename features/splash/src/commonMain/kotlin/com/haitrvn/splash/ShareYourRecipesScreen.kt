@@ -12,6 +12,9 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +31,8 @@ import com.haitrvn.coreui.ImageRecipe
 import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.TextParagraph2
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
 private const val BACKGROUND_ALPHA = 0.8f
@@ -61,7 +66,7 @@ val PagerState.currentPageIndex: Int
 @Composable
 fun SharedYourRecipesScreen(
     modifier: Modifier = Modifier,
-    listData: List<PageContent> = fakeData,
+    listData: ImmutableList<PageContent> = fakeData.toImmutableList(),
     goToLogin: () -> Unit = {},
 ) {
     val pagerState = rememberPagerState { listData.size }
@@ -71,10 +76,10 @@ fun SharedYourRecipesScreen(
             state = pagerState,
             modifier = Modifier.fillMaxSize()
         ) { page ->
-            ImageRecipe(
-                modifier.fillMaxSize(),
-                source = listData[page].imageUrl
-            )
+//            ImageRecipe(
+//                modifier.fillMaxSize(),
+//                source = listData[page].imageUrl
+//            )
         }
         Box(
             modifier = Modifier
@@ -111,6 +116,7 @@ fun SharedYourRecipesScreen(
                 .align(Alignment.BottomStart),
             progress = (pagerState.currentPageIndex / listData.size.toFloat()).round(1),
         )
+        val isLastPage by remember { derivedStateOf { pagerState.currentPageIndex == listData.size } }
         HeaderText2(
             modifier = Modifier.align(Alignment.BottomEnd)
                 .padding(
@@ -119,7 +125,7 @@ fun SharedYourRecipesScreen(
                 )
                 .clickable {
                     scope.launch {
-                        if (pagerState.currentPageIndex == listData.size) {
+                        if (isLastPage) {
                             goToLogin()
                         } else {
                             pagerState.animateScrollToPage(pagerState.currentPageIndex)

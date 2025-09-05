@@ -1,6 +1,7 @@
 package com.haitrvn.coreui
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.BlendMode
@@ -23,16 +24,16 @@ private const val DROP_SIZE_MULTIPLIER = 3 / 4f
 
 @Composable
 fun Drop(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.fillMaxSize(),
     padding: Dp = 16.dp,
     side: Side = Side.BOTTOM,
-    dropSize: Dp = 100.dp,
+    dropSize: Dp? = null,
     cornerSize: Dp = 70.dp,
     offset: Dp? = null,
 ) {
     Canvas(modifier = modifier.graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)) {
         val paddingPx = padding.toPx()
-        val dropSizePx = dropSize.toPx()
+        val dropSizePx = dropSize?.toPx() ?: ((if (side.isHorizontal()) size.height else size.width) / 5f)
         val cornerSizePx = cornerSize.toPx()
         val offsetPx = offset?.toPx()
             ?: if (side.isHorizontal()) size.height else size.width

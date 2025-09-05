@@ -62,6 +62,7 @@ kotlin {
                     exclude(group = "org.jetbrains.androidx.core", module = "core-bundle")
                 }
                 implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
             }
         }
 

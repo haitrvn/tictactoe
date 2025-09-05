@@ -9,7 +9,7 @@ import androidx.compose.ui.text.style.TextAlign
 @Composable
 fun AppIcon(modifier: Modifier = Modifier) {
     HeaderText2(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         text = "Appetit",
         textAlign = TextAlign.Center,
         color = Color.White,

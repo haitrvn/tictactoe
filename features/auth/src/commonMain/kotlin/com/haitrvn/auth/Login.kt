@@ -3,31 +3,26 @@
 package com.haitrvn.auth
 
 import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.BoundsTransform
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
-import androidx.compose.animation.SharedTransitionScope.ResizeMode.Companion.RemeasureToBounds
-import androidx.compose.animation.core.ArcMode
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.keyframes
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.HeaderText
-import com.haitrvn.coreui.LargeSpace
-import com.haitrvn.coreui.MediumSpace
+import com.haitrvn.coreui.AppIcon
+import com.haitrvn.coreui.Drop
+import com.haitrvn.coreui.HeaderText2
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.SegmentText
+import com.haitrvn.coreui.Side
 import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.SocialButton
 import com.haitrvn.coreui.TextSmall
@@ -49,10 +44,13 @@ import cookapp.resources.auth.login_button_login_with_facebook
 import cookapp.resources.auth.login_button_login_with_google
 import cookapp.resources.auth.login_text_no_account
 import cookapp.resources.auth.login_text_signup
-import cookapp.resources.auth.login_welcome_quote
+import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 
 const val TAG_SIGNUP = "signup"
+private const val BACKGROUND_ALPHA = 0.8f
+private val PADDING_ALL_SIDES = 32.dp
+private val PADDING_BOTTOM_TEXT = 53.dp
 
 @Composable
 fun Login(
@@ -72,7 +70,6 @@ fun Login(
             sentEvent = loginViewModel::dispatch,
             loginEmail = { navigator.navigate(Auth.LoginWithEmail) },
             loginGoogle = {},
-            loginFacebook = {},
             loginApple = {},
             gotoSignup = { navigator.navigate(Auth.Register) },
         )
@@ -86,34 +83,29 @@ internal fun LoginWrapper(
     sentEvent: (LoginAction) -> Unit = {},
     gotoSignup: () -> Unit = {},
     loginGoogle: () -> Unit = {},
-    loginFacebook: () -> Unit = {},
     loginApple: () -> Unit = {},
     loginEmail: () -> Unit = {},
 ) {
-    Column(
-        modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        CookImage(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.4f).then(sharedImageModifier)
-                .clip(RoundedCornerShape(bottomStart = 30.dp)),
-            url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
-            contentScale = ContentScale.Crop,
-            alignment = Alignment.BottomCenter,
+    Box(modifier = Modifier.fillMaxSize().background(Color.Red)) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
         )
-        MediumSpace()
-        HeaderText(text = Res.string.login_welcome_quote.toText())
-        SmallSpace()
-        TextSmall(text = Res.string.login_welcome_quote.toText())
-        SmallSpace()
-        LoginWithSocial(
-            loginGoogle = loginGoogle,
-            loginFacebook = loginFacebook,
-            loginApple = loginApple,
-            loginEmail = loginEmail
+        Drop(modifier = modifier.fillMaxSize(), side = Side.TOP, offset = 0.dp)
+        AppIcon(modifier = Modifier.padding(top = PADDING_ALL_SIDES).fillMaxWidth())
+        HeaderText2(
+            modifier = Modifier.align(Alignment.TopStart)
+                .padding(
+                    start = PADDING_BOTTOM_TEXT,
+                    top = PADDING_BOTTOM_TEXT
+                )
+                .clickable {
+
+                },
+            text = ">",
+            color = Color.White,
         )
-        LargeSpace()
-        LoginQuestion { gotoSignup() }
     }
 }
 
