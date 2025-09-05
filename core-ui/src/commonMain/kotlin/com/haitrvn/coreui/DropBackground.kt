@@ -1,4 +1,4 @@
-package com.haitrvn.splash
+package com.haitrvn.coreui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable

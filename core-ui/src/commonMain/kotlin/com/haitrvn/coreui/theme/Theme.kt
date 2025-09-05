@@ -12,7 +12,7 @@ import com.haitrvn.coreui.LocalSpace
 
 @Composable
 fun CookTheme(
-    typography: CookTypography = CookTypography(),
+    typography: CookTypography = CreateCookTypography(),
     contentPadding: ContentPadding = CookTheme.contentPadding,
     shapes: Shapes = CookTheme.shapes,
     systemIsDark: Boolean = isSystemInDarkTheme(),
@@ -20,13 +20,10 @@ fun CookTheme(
 ) {
     val colors = if (systemIsDark) DarkColors else LightColors
     val rememberedColors = remember(systemIsDark) { colors }
-    val typographyWithColors = remember(rememberedColors) {
-        typography.fromColors(rememberedColors.paragraph)
-    }
     CompositionLocalProvider(
         LocalColors provides rememberedColors,
         LocalShapes provides shapes,
-        LocalTypography provides typographyWithColors,
+        LocalTypography provides typography,
         LocalContentPadding provides contentPadding,
     ) {
         CookSurface {

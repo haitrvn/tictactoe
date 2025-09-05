@@ -6,18 +6,32 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import coil3.compose.rememberAsyncImagePainter
+import com.haitrvn.coreui.theme.CookTheme
 
 @Composable
 fun HeaderText(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = Color.Black
+    color: Color = Color.Black,
+    fontSize: TextUnit = 30.sp
 ) {
-    Text(text = text, modifier = modifier, fontSize = 30.sp, textAlign = textAlign, color = color)
+    Text(
+        text = text,
+        modifier = modifier,
+        fontSize = fontSize,
+        textAlign = textAlign,
+        color = color,
+        fontFamily = CookTheme.typography.header.fontFamily,
+        fontWeight = FontWeight.Bold,
+        fontStyle = FontStyle.Normal,
+    )
 }
 
 @Composable
