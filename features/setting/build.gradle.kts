@@ -44,7 +44,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(projects.core)
-                implementation(projects.coreUi)
+                implementation(projects.core.ui)
 
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)

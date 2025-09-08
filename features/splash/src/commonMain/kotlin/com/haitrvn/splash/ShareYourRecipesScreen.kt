@@ -27,7 +27,6 @@ import com.haitrvn.coreui.Drop
 import com.haitrvn.coreui.FillSpace
 import com.haitrvn.coreui.HeaderText
 import com.haitrvn.coreui.HeaderText2
-import com.haitrvn.coreui.ImageRecipe
 import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.TextParagraph2

@@ -41,7 +41,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(projects.coreUi)
+                implementation(projects.core.ui)
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.navigation.compose)

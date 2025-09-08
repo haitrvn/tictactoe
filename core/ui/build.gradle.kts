@@ -14,11 +14,13 @@ kotlin {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
     androidLibrary {
-        namespace = "com.haitrvn.features.login"
+        namespace = "com.haitrvn.presentation"
         compileSdk = 35
         minSdk = 24
+
         withHostTestBuilder {
         }
+
         withDeviceTestBuilder {
             sourceSetTreeName = "test"
         }.configure {
@@ -26,12 +28,13 @@ kotlin {
         }
         experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
     }
-    val xcfName = "login"
 
     jvm()
     wasmJs {
         browser()
     }
+
+    val xcfName = "presentationKit"
 
     listOf(
         iosX64(),
@@ -46,9 +49,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(projects.navigation)
-                implementation(projects.domain)
-                implementation(projects.core.ui)
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)
@@ -58,11 +58,12 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.koin.compose)
-                implementation("io.insert-koin:koin-compose-viewmodel:4.0.4") {
-                    exclude(group = "org.jetbrains.androidx.core", module = "core-bundle")
-                }
-                implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.9.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
+                implementation(libs.coil.core)
+                implementation(libs.coil.compose)
+                implementation(libs.coil.network.core)
+                implementation(libs.coil.network.ktor)
+                implementation(libs.coil.network.cache.control)
+                implementation(libs.ktor.client.core)
             }
         }
 
@@ -72,10 +73,21 @@ kotlin {
             }
         }
 
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+
         jvmMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
             implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.8.0")
         }
 
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+        wasmJsMain.dependencies {
+            implementation("io.ktor:ktor-client-js:3.2.1")
+        }
         getByName("androidDeviceTest") {
             dependencies {
                 implementation(libs.androidx.runner)
@@ -88,6 +100,6 @@ kotlin {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "cookapp.resources.splash"
+    packageOfResClass = "cookapp.resources.config"
     generateResClass = auto
 }
