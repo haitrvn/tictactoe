@@ -100,6 +100,6 @@ kotlin {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "cookapp.resources.config"
+    packageOfResClass = "cookapp.resources.coreui"
     generateResClass = auto
 }

@@ -15,7 +15,6 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
@@ -80,6 +79,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.room.runtime)
+            implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
         }
 
         jvmMain.dependencies {
@@ -148,14 +148,6 @@ composeCompiler {
 }
 tasks.withType<ComposeHotRun>().configureEach {
     mainClass.set("com.haitrvn.cookapp.MainKt")
-}
-
-buildkonfig {
-    // BuildKonfig configuration here.
-    // https://github.com/yshrsmz/BuildKonfig#gradle-configuration
-    packageName = "com.haitrvn.cook"
-    defaultConfigs {
-    }
 }
 
 room {

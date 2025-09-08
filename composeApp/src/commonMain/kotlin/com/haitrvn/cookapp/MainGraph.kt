@@ -7,9 +7,20 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -19,6 +30,10 @@ import androidx.navigation.navigation
 import com.haitrvn.auth.Login
 import com.haitrvn.auth.LoginWithEmail
 import com.haitrvn.auth.Welcome
+import com.haitrvn.coreui.Drop
+import com.haitrvn.coreui.HeaderText
+import com.haitrvn.coreui.ImageRecipe
+import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.TextParagraph
 import com.haitrvn.coreui.TextSmall
 import com.haitrvn.features.setting.Setting
@@ -28,8 +43,17 @@ import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
+import com.haitrvn.splash.BACKGROUND_ALPHA
+import com.haitrvn.splash.PADDING_ALL_SIDES
+import com.haitrvn.splash.PADDING_BOTTOM_COLUMN
+import com.haitrvn.splash.PADDING_BOTTOM_PROGRESS_INDICATOR
+import com.haitrvn.splash.PADDING_BOTTOM_TEXT
+import com.haitrvn.splash.PADDING_START_PROGRESS_INDICATOR
+import com.haitrvn.splash.PageContent
 import com.haitrvn.splash.SharedYourRecipesScreen
+import com.haitrvn.splash.SplashInformation
 import com.haitrvn.splash.SplashScreen
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun MainGraph(
@@ -83,7 +107,23 @@ internal fun NavGraphBuilder.homeGraph(
         }
     }
 }
-
+val listData = persistentListOf(
+    PageContent(
+        "Share Your Recipes",
+        "Share your favorite recipes with the world!blablablablablablablablablablablablablablablablablabla",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsK8g4zhtM_TszTYUho3dMZ2r3uwS-WLL4mA&s"
+    ),
+    PageContent(
+        "Discover New Flavors",
+        "Explore a wide variety of cuisines and dishes.blablablablablablablablablablablablablablablablablablablablablabla",
+        "https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg"
+    ),
+    PageContent(
+        "Cook Like a Pro",
+        "Learn new cooking techniques and tips.blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla",
+        "https://vietop.edu.vn/wp-content/uploads/2023/07/idioms-chu-de-food.jpg"
+    ),
+)
 internal fun NavGraphBuilder.authGraph(
     modifier: Modifier = Modifier,
     navigator: Navigator,
@@ -91,14 +131,9 @@ internal fun NavGraphBuilder.authGraph(
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
         composable<Auth.Welcome> {
-            SharedYourRecipesScreen(){
+            SharedYourRecipesScreen(listData = listData){
                 navigator.navigate(Auth.Login)
             }
-//            Welcome(
-//                navigator = navigator,
-//                sharedTransitionScope = sharedTransitionScope,
-//                animatedVisibilityScope = this@composable
-//            )
         }
         composable<Auth.Login> {
             Login(

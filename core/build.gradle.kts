@@ -6,7 +6,6 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
-    alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
@@ -67,35 +66,6 @@ kotlin {
                 implementation(libs.androidx.core)
                 implementation(libs.androidx.junit)
             }
-        }
-    }
-}
-
-buildkonfig {
-    packageName = "com.haitrvn.cook"
-
-    // default config is required
-    defaultConfigs {
-        buildConfigField(STRING, "name", "value")
-    }
-    // flavor is passed as a first argument of defaultConfigs
-    defaultConfigs("dev") {
-        buildConfigField(STRING, "name", "devValue")
-    }
-
-    targetConfigs {
-        create("android") {
-            buildConfigField(STRING, "name2", "value2")
-        }
-
-        create("ios") {
-            buildConfigField(STRING, "name", "valueIos")
-        }
-    }
-    // flavor is passed as a first argument of targetConfigs
-    targetConfigs("dev") {
-        create("ios") {
-            buildConfigField(STRING, "name", "devValueIos")
         }
     }
 }

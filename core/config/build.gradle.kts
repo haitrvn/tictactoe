@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
+    alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
@@ -98,8 +99,8 @@ kotlin {
     }
 }
 
-compose.resources {
-    publicResClass = true
-    packageOfResClass = "cookapp.resources.config"
-    generateResClass = auto
+buildkonfig {
+    packageName = "com.haitrvn.cook"
+    defaultConfigs {
+    }
 }

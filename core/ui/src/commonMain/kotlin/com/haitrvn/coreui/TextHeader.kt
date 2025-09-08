@@ -1,6 +1,7 @@
 package com.haitrvn.coreui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,7 +25,7 @@ fun HeaderText(
 ) {
     Text(
         text = text,
-        modifier = modifier,
+        modifier = modifier.clickable{},
         fontSize = fontSize,
         textAlign = textAlign,
         color = color,
