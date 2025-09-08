@@ -49,7 +49,7 @@ import com.haitrvn.splash.PADDING_BOTTOM_COLUMN
 import com.haitrvn.splash.PADDING_BOTTOM_PROGRESS_INDICATOR
 import com.haitrvn.splash.PADDING_BOTTOM_TEXT
 import com.haitrvn.splash.PADDING_START_PROGRESS_INDICATOR
-import com.haitrvn.splash.PageContent
+import com.haitrvn.splash.model.PageContent
 import com.haitrvn.splash.SharedYourRecipesScreen
 import com.haitrvn.splash.SplashInformation
 import com.haitrvn.splash.SplashScreen

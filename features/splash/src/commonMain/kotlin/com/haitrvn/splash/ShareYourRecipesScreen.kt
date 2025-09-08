@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,8 +26,13 @@ import com.haitrvn.coreui.ImageRecipe
 import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.TextParagraph2
+import com.haitrvn.navigation.Auth
+import com.haitrvn.navigation.Navigator
+import com.haitrvn.splash.model.PageContent
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
+import org.koin.compose.viewmodel.koinViewModel
 
 const val BACKGROUND_ALPHA = 0.8f
 val PADDING_ALL_SIDES = 32.dp
@@ -34,29 +40,26 @@ val PADDING_BOTTOM_COLUMN = 130.dp
 val PADDING_START_PROGRESS_INDICATOR = 16.dp
 val PADDING_BOTTOM_PROGRESS_INDICATOR = 132.dp
 val PADDING_BOTTOM_TEXT = 58.dp
-val fakeData =
-    persistentListOf(
-        PageContent(
-            "Share Your Recipes",
-            "Share your favorite recipes with the world!blablablablablablablablablablablablablablablablablabla",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsK8g4zhtM_TszTYUho3dMZ2r3uwS-WLL4mA&s"
-        ),
-        PageContent(
-            "Discover New Flavors",
-            "Explore a wide variety of cuisines and dishes.blablablablablablablablablablablablablablablablablablablablablabla",
-            "https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg"
-        ),
-        PageContent(
-            "Cook Like a Pro",
-            "Learn new cooking techniques and tips.blablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla",
-            "https://vietop.edu.vn/wp-content/uploads/2023/07/idioms-chu-de-food.jpg"
-        ),
+
+@Composable
+fun SharedYourRecipesScreenWrapper(
+    modifier: Modifier = Modifier,
+    navigator: Navigator,
+) {
+    val viewmodel = koinViewModel<SplashViewModel>()
+    SharedYourRecipesScreen(
+        modifier = modifier,
+        listData = viewmodel.uiState.collectAsState().value.listPageContent.toImmutableList(),
+        goToLogin = {
+            navigator.navigate(Auth.Login)
+        }
     )
+}
 
 @Composable
 fun SharedYourRecipesScreen(
     modifier: Modifier = Modifier,
-    listData: ImmutableList<PageContent> = fakeData,
+    listData: ImmutableList<PageContent> = persistentListOf(),
     goToLogin: () -> Unit = {},
 ) {
     Box(modifier = Modifier.fillMaxSize().then(modifier), contentAlignment = Alignment.Center) {

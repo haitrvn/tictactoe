@@ -1,6 +1,10 @@
-package com.haitrvn.splash
+package com.haitrvn.splash.model
 
 import androidx.compose.runtime.Stable
+
+data class SplashState(
+    val listPageContent: List<PageContent> = emptyList(),
+)
 
 @Stable
 data class PageContent(
