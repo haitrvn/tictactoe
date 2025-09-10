@@ -19,6 +19,8 @@ private const val SCALE_FLOAT = 1f
 private const val INVERTED_SCALE_FLOAT = -1f
 private const val DEFAULT_SCALE_1 = 0.85f
 private const val DEFAULT_SCALE_2 = 0.85f
+private const val DROP_SCALE_1 = 0.55f
+private const val DROP_SCALE_2 = 0.55f
 private const val DROP_SIZE_DIVISOR = 3
 private const val DROP_SIZE_MULTIPLIER = 3 / 4f
 
@@ -186,6 +188,8 @@ private fun generateHorizontalDropCubic(
         bottomLeftCubic(
             startPoint = Point(x2, y3),
             endPoint = Point(x3, y4),
+            scale1 = DROP_SCALE_1,
+            scale2 = DROP_SCALE_2,
         ),
         Cubic(
             startPoint = Point(x3, y4),
@@ -196,6 +200,8 @@ private fun generateHorizontalDropCubic(
         topLeftCubic(
             startPoint = Point(x3, y5),
             endPoint = Point(x2, y6),
+            scale1 = DROP_SCALE_1,
+            scale2 = DROP_SCALE_2,
         ),
         bottomRightCubic(
             startPoint = Point(x2, y7),
@@ -247,6 +253,8 @@ private fun generateVerticalDropCubic(
         topRightCubic(
             startPoint = Point(x3, y2),
             endPoint = Point(x4, y3),
+            scale1 = DROP_SCALE_1,
+            scale2 = DROP_SCALE_2,
         ),
         Cubic(
             startPoint = Point(x4, y3),
@@ -257,6 +265,8 @@ private fun generateVerticalDropCubic(
         topLeftCubic(
             startPoint = Point(x5, y3),
             endPoint = Point(x6, y2),
+            scale1 = DROP_SCALE_1,
+            scale2 = DROP_SCALE_2,
         ),
         bottomRightCubic(
             startPoint = Point(x7, y2),

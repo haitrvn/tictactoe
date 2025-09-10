@@ -104,7 +104,7 @@ object CookTypographyTokens {
     val header = TextStyle(
         fontWeight = FontWeight.SemiBold,
         fontSize = 24.sp,
-        lineHeight = 32.sp,
+        lineHeight = 24.sp,
         fontStyle = FontStyle.Normal,
     )
 

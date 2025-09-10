@@ -45,6 +45,7 @@ kotlin {
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.koin.core)
             }
         }
 

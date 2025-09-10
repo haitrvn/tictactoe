@@ -25,7 +25,7 @@ fun HeaderText(
 ) {
     Text(
         text = text,
-        modifier = modifier.clickable{},
+        modifier = modifier,
         fontSize = fontSize,
         textAlign = textAlign,
         color = color,
