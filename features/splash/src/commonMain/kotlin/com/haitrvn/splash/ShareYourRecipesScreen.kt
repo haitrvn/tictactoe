@@ -29,7 +29,6 @@ import com.haitrvn.coreui.ImageRecipe
 import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.TextParagraph2
-import com.haitrvn.coreui.utils.paddingStartHalfWidth
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import com.haitrvn.splash.model.PageContentUi
@@ -42,9 +41,6 @@ const val BACKGROUND_ALPHA = 0.8f
 val PADDING_IN_SIDES = 40.dp
 val PADDING_OUT_SIDES = 16.dp
 val PADDING_BOTTOM_BONUS = 30.dp
-val PADDING_START_PROGRESS_INDICATOR = 16.dp
-val PADDING_BOTTOM_PROGRESS_INDICATOR = 132.dp
-val PADDING_BOTTOM_TEXT = 58.dp
 
 @Composable
 fun SharedYourRecipesScreenWrapper(
@@ -103,25 +99,23 @@ fun SharedYourRecipesScreen(
                         end = PADDING_OUT_SIDES,
                         bottom = PADDING_OUT_SIDES,
                     )
-                    .size(maxWidth/5)
+                    .size(maxWidth / 5)
                     .align(Alignment.BottomEnd)
                     .clickable { goToLogin() },
                 text = ">",
                 textAlign = TextAlign.Center,
                 color = Color.White,
             )
+            SmoothLinearProgressBar(
+                modifier = Modifier.padding(
+                    start = PADDING_OUT_SIDES,
+                    bottom = maxWidth / 10 + PADDING_OUT_SIDES,
+                ).fillMaxWidth(0.4f)
+                    .height(10.dp)
+                    .align(Alignment.BottomStart),
+                progress = (pagerState.currentPage + 1).toFloat() / pagerState.pageCount.toFloat()
+            )
         }
-        SmoothLinearProgressBar(
-            modifier = Modifier.padding(
-                start = PADDING_START_PROGRESS_INDICATOR,
-                bottom = PADDING_BOTTOM_TEXT,
-                end = PADDING_BOTTOM_PROGRESS_INDICATOR
-            ).fillMaxWidth()
-                .height(10.dp)
-                .align(Alignment.BottomStart),
-            progress = (pagerState.currentPage + 1).toFloat() / pagerState.pageCount.toFloat()
-        )
-
     }
 }
 
