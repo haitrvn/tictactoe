@@ -1,7 +1,7 @@
 package com.haitrvn.splash
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -13,19 +13,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.AppIcon
+import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.Drop
 import com.haitrvn.coreui.FillSpace
 import com.haitrvn.coreui.HeaderText
-import com.haitrvn.coreui.ImageRecipe
 import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.TextParagraph2
@@ -38,9 +41,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.koin.compose.viewmodel.koinViewModel
 
 const val BACKGROUND_ALPHA = 0.8f
-val PADDING_IN_SIDES = 40.dp
 val PADDING_OUT_SIDES = 16.dp
-val PADDING_BOTTOM_BONUS = 30.dp
 
 @Composable
 fun SharedYourRecipesScreenWrapper(
@@ -65,51 +66,54 @@ fun SharedYourRecipesScreen(
 ) {
     Box(modifier = Modifier.fillMaxSize().then(modifier), contentAlignment = Alignment.Center) {
         val pagerState = rememberPagerState(pageCount = { listData.size })
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier.fillMaxSize()
-        ) { page ->
-            ImageRecipe(
-                modifier.fillMaxSize(),
-                source = listData[page].imageUrl
-            )
+        Drop(modifier = Modifier.fillMaxSize(), hasDrop = false) {
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier.fillMaxSize()
+            ) { page ->
+                CookImage(
+                    modifier.fillMaxSize(),
+                    source = listData[page].imageUrl
+                )
+            }
         }
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
-        )
         BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-            Drop(
-                modifier = Modifier.fillMaxSize(),
-                padding = PADDING_OUT_SIDES,
-            )
             SplashInformation(
                 modifier = Modifier.fillMaxSize().padding(
-                    top = PADDING_IN_SIDES,
-                    start = PADDING_IN_SIDES,
-                    end = PADDING_IN_SIDES,
-                    bottom = maxWidth / 5 + PADDING_IN_SIDES + PADDING_BOTTOM_BONUS
+                    top = 40.dp,
+                    start = 40.dp,
+                    end = 40.dp,
+                    bottom = 146.dp
                 ),
                 pageContentUi = listData[pagerState.currentPage]
             )
-            HeaderText(
+            Box(
                 modifier = Modifier
                     .padding(
-                        end = PADDING_OUT_SIDES,
-                        bottom = PADDING_OUT_SIDES,
+                        end = 16.dp,
+                        bottom = 22.dp,
                     )
-                    .size(maxWidth / 5)
+                    .size(100.dp)
                     .align(Alignment.BottomEnd)
-                    .clickable { goToLogin() },
-                text = ">",
-                textAlign = TextAlign.Center,
-                color = Color.White,
-            )
+                    .clip(CircleShape)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                        onClick = { goToLogin() }
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                HeaderText(
+                    modifier = Modifier,
+                    text = ">",
+                    textAlign = TextAlign.Center,
+                    color = Color.White,
+                )
+            }
             SmoothLinearProgressBar(
                 modifier = Modifier.padding(
-                    start = PADDING_OUT_SIDES,
-                    bottom = maxWidth / 10 + PADDING_OUT_SIDES,
+                    start = 16.dp,
+                    bottom = 60.dp,
                 ).fillMaxWidth(0.4f)
                     .height(10.dp)
                     .align(Alignment.BottomStart),

@@ -1,6 +1,8 @@
 package com.haitrvn.coreui
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,85 +25,113 @@ private const val DROP_SCALE_1 = 0.55f
 private const val DROP_SCALE_2 = 0.55f
 private const val DROP_SIZE_DIVISOR = 3
 private const val DROP_SIZE_MULTIPLIER = 3 / 4f
+private const val BACKGROUND_ALPHA = 0.8f
 
 @Composable
 fun Drop(
     modifier: Modifier = Modifier.fillMaxSize(),
     padding: Dp = 16.dp,
     side: Side = Side.BOTTOM,
-    dropSize: Dp? = null,
+    dropSize: Dp = 100.dp,
     cornerSize: Dp = 70.dp,
     offset: Dp? = null,
+    hasDrop: Boolean = true,
+    content: @Composable () -> Unit = {},
 ) {
-    Canvas(modifier = modifier.graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)) {
-        val paddingPx = padding.toPx()
-        val dropSizePx = dropSize?.toPx() ?: ((if (side.isHorizontal()) size.height else size.width) / 5f)
-        val cornerSizePx = cornerSize.toPx()
-        val offsetPx = offset?.toPx()
-            ?: if (side.isHorizontal()) size.height else size.width
-        drawRect(Color.White)
-        inset(paddingPx) {
-            val path = Path().apply {
-                generateCubic(
-                    side = side,
-                    width = size.width,
-                    height = size.height,
-                    dropSize = dropSizePx,
-                    cornerSize = cornerSizePx,
-                ).apply {
-                    moveTo(first().startPoint.x, first().startPoint.y)
-                }.forEach { cubic ->
-                    cubicToPath(cubic)
-                }
-                close()
+    Box(modifier = modifier.fillMaxSize()) {
+        content()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
+        )
+        Canvas(
+            modifier = Modifier.fillMaxSize()
+                .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
+        ) {
+            val paddingPx = padding.toPx()
+            val dropSizePx = if (hasDrop) {
+                dropSize.toPx()
+            } else {
+                0f
             }
-            drawPath(path, Color.Red, blendMode = BlendMode.Clear)
-        }
+            val cornerSizePx = cornerSize.toPx()
+            val offsetPx =
+                if (hasDrop) {
 
-        inset(paddingPx) {
-            val left = if (side == Side.RIGHT) {
-                size.width - dropSizePx - cornerSizePx
-            } else {
-                ZERO
-            }
-            val right = if (side == Side.LEFT) {
-                size.width - dropSizePx - cornerSizePx
-            } else {
-                ZERO
-            }
-            val top = if (side == Side.BOTTOM) {
-                size.height - dropSizePx - cornerSizePx
-            } else {
-                ZERO
-            }
-            val bottom = if (side == Side.TOP) {
-                size.height - dropSizePx - cornerSizePx
-            } else {
-                ZERO
-            }
-            inset(left = left, right = right, top = top, bottom = bottom) {
-                scale(
-                    scaleX = if (side == Side.LEFT) INVERTED_SCALE_FLOAT else SCALE_FLOAT,
-                    scaleY = if (side == Side.TOP) INVERTED_SCALE_FLOAT else SCALE_FLOAT,
-                ) {
-                    val path = Path().apply {
-                        generateDropCubic(
-                            side = side, // Fix: Use the provided side parameter
-                            dropSize = dropSizePx,
-                            offset = offsetPx,
-                            cornerSize = cornerSizePx,
-                            width = size.width,
-                            height = size.height,
-                        ).apply {
-                            (firstOrNull() as? Cubic)?.let {
-                                moveTo(it.startPoint.x, it.startPoint.y)
-                            }
-                        }.forEach {
-                            cubicToPath(it)
-                        }
-                        close()
+                    offset?.toPx()
+                        ?: if (side.isHorizontal()) size.height else size.width
+                } else {
+                    cornerSizePx
+                }
+            drawRect(Color.White)
+            inset(paddingPx) {
+                val path = Path().apply {
+                    generateCubic(
+                        side = side,
+                        width = size.width,
+                        height = size.height,
+                        dropSize = dropSizePx,
+                        cornerSize = cornerSizePx,
+                    ).apply {
+                        moveTo(first().startPoint.x, first().startPoint.y)
+                    }.forEach { cubic ->
+                        cubicToPath(cubic)
                     }
-                    drawPath(path = path, color = Color.Transparent, blendMode = BlendMode.Clear)
+                    close()
+                }
+                drawPath(path, Color.Red, blendMode = BlendMode.Clear)
+            }
+
+            inset(paddingPx) {
+                val left = if (side == Side.RIGHT) {
+                    size.width - dropSizePx - cornerSizePx
+                } else {
+                    ZERO
+                }
+                val right = if (side == Side.LEFT) {
+                    size.width - dropSizePx - cornerSizePx
+                } else {
+                    ZERO
+                }
+                val top = if (side == Side.BOTTOM) {
+                    size.height - dropSizePx - cornerSizePx
+                } else {
+                    ZERO
+                }
+                val bottom = if (side == Side.TOP) {
+                    size.height - dropSizePx - cornerSizePx
+                } else {
+                    ZERO
+                }
+                inset(left = left, right = right, top = top, bottom = bottom) {
+                    scale(
+                        scaleX = if (side == Side.LEFT) INVERTED_SCALE_FLOAT else SCALE_FLOAT,
+                        scaleY = if (side == Side.TOP) INVERTED_SCALE_FLOAT else SCALE_FLOAT,
+                    ) {
+                        val path = Path().apply {
+                            generateDropCubic(
+                                side = side, // Fix: Use the provided side parameter
+                                dropSize = dropSizePx,
+                                offset = offsetPx,
+                                cornerSize = cornerSizePx,
+                                width = size.width,
+                                height = size.height,
+                            ).apply {
+                                (firstOrNull() as? Cubic)?.let {
+                                    moveTo(it.startPoint.x, it.startPoint.y)
+                                }
+                            }.forEach {
+                                cubicToPath(it)
+                            }
+                            close()
+                        }
+                        drawPath(
+                            path = path,
+                            color = Color.Transparent,
+                            blendMode = BlendMode.Clear
+                        )
+                    }
                 }
             }
         }

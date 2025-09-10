@@ -64,7 +64,7 @@ fun LoginWithEmailWrapper(
     ) {
         CookImage(
             modifier = Modifier.fillMaxWidth().aspectRatio(1f),
-            drawableResource = Res.drawable.ic_cyclone1
+            source = Res.drawable.ic_cyclone1
         )
         HeaderText2(text = Res.string.login_hint_email_or_username.toText())
         LargeSpace()
@@ -101,7 +101,7 @@ private fun Background(modifier: Modifier = Modifier) {
     ) {
         CookImage(
             modifier = Modifier,
-            drawableResource = Res.drawable.ic_cyclone1,
+            source = Res.drawable.ic_cyclone1,
         )
     }
 }

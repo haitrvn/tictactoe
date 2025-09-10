@@ -37,7 +37,7 @@ private fun Avatar(
             modifier = Modifier
                 .size(64.dp)
                 .clip(CircleShape),
-            url = ""
+            source = ""
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column(modifier = Modifier.weight(1f)) {

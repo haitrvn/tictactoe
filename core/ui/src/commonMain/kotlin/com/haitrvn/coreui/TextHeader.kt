@@ -55,17 +55,3 @@ fun TextParagraph2(
     Text(text = text, modifier = modifier, fontSize = 16.sp, textAlign = textAlign, color = color)
 }
 
-@Composable
-fun ImageRecipe(
-    modifier: Modifier = Modifier,
-    source: Any,
-    contentScale: ContentScale = ContentScale.Crop,
-) {
-    val painter = rememberAsyncImagePainter(source)
-    Image(
-        modifier = modifier,
-        painter = painter,
-        contentDescription = null,
-        contentScale = contentScale,
-    )
-}

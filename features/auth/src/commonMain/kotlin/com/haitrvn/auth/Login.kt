@@ -5,21 +5,30 @@ package com.haitrvn.auth
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.AppIcon
+import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.CookPrimaryButton
 import com.haitrvn.coreui.Drop
-import com.haitrvn.coreui.HeaderText2
+import com.haitrvn.coreui.HeaderText
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.Side
@@ -44,11 +53,9 @@ import cookapp.resources.auth.login_button_login_with_facebook
 import cookapp.resources.auth.login_button_login_with_google
 import cookapp.resources.auth.login_text_no_account
 import cookapp.resources.auth.login_text_signup
-import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 
 const val TAG_SIGNUP = "signup"
-private const val BACKGROUND_ALPHA = 0.8f
 private val PADDING_ALL_SIDES = 32.dp
 private val PADDING_BOTTOM_TEXT = 53.dp
 
@@ -66,7 +73,6 @@ fun Login(
         )
         LoginWrapper(
             modifier = Modifier.fillMaxSize(),
-            sharedImageModifier = sharedImageModifier,
             sentEvent = loginViewModel::dispatch,
             loginEmail = { navigator.navigate(Auth.LoginWithEmail) },
             loginGoogle = {},
@@ -79,33 +85,58 @@ fun Login(
 @Composable
 internal fun LoginWrapper(
     modifier: Modifier = Modifier,
-    sharedImageModifier: Modifier = Modifier,
     sentEvent: (LoginAction) -> Unit = {},
+    goBack: () -> Unit = {},
     gotoSignup: () -> Unit = {},
     loginGoogle: () -> Unit = {},
     loginApple: () -> Unit = {},
     loginEmail: () -> Unit = {},
 ) {
-    Box(modifier = Modifier.fillMaxSize().background(Color.Red)) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black.copy(alpha = BACKGROUND_ALPHA))
-        )
-        Drop(modifier = modifier.fillMaxSize(), side = Side.TOP, offset = 0.dp)
-        AppIcon(modifier = Modifier.padding(top = PADDING_ALL_SIDES).fillMaxWidth())
-        HeaderText2(
-            modifier = Modifier.align(Alignment.TopStart)
-                .padding(
-                    start = PADDING_BOTTOM_TEXT,
-                    top = PADDING_BOTTOM_TEXT
+    Column(modifier = modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.75f)) {
+            Drop(modifier = modifier.fillMaxSize(), side = Side.TOP, offset = 0.dp) {
+                CookImage(
+                    modifier = Modifier.fillMaxSize(),
+                    source = Res.drawable.ic_login_socical_apple
                 )
-                .clickable {
+            }
+            AppIcon(
+                modifier = Modifier.padding(top = PADDING_ALL_SIDES).fillMaxWidth(),
+                color = Color.Black
+            )
+            Box(
+                modifier = Modifier
+                    .padding(
+                        start = 16.dp,
+                        top = 22.dp,
+                    )
+                    .size(100.dp)
+                    .align(Alignment.TopStart)
+                    .clip(CircleShape)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                        onClick = { goBack() }
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                HeaderText(
+                    modifier = Modifier,
+                    text = "<",
+                    textAlign = TextAlign.Center,
+                    color = Color.White,
+                )
+            }
+        }
+        Column(modifier = Modifier.fillMaxSize()) {
+            CookPrimaryButton("Login") {
 
-                },
-            text = ">",
-            color = Color.White,
-        )
+            }
+            Row(modifier = Modifier.fillMaxWidth()) {
+                CookPrimaryButton(modifier = Modifier.fillMaxWidth().weight(0.5f), text = "G") {}
+                CookPrimaryButton(modifier = Modifier.fillMaxWidth().weight(0.5f), text = "A") {}
+            }
+        }
     }
 }
 

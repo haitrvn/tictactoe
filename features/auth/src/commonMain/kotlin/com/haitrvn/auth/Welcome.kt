@@ -90,9 +90,8 @@ private fun Header(
         CookImage(
             modifier = Modifier.fillMaxSize().then(sharedImageModifier)
                 .clip(RoundedCornerShape(bottomStart = 30.dp)),
-            url = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
+            source = "https://wallpapers.com/images/featured/cute-food-vnp4s9nvgi2bmjnx.jpg",
             contentScale = ContentScale.Crop,
-            alignment = Alignment.BottomCenter,
         )
         CookSurface(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f)
