@@ -9,18 +9,5 @@ import com.haitrvn.coreui.theme.CookTheme
 @Composable
 @Preview
 fun ButtonPreview() {
-    Column {
-        CookTheme(systemIsDark = false) {
-            Column {
-                CookPrimaryButton("CookPrimaryButton") {}
-                CookSecondaryButton("CookSecondaryButton") {}
-            }
-        }
-        CookTheme(systemIsDark = true) {
-            Column {
-                CookPrimaryButton("CookPrimaryButton") {}
-                CookSecondaryButton("CookSecondaryButton") {}
-            }
-        }
-    }
+
 }

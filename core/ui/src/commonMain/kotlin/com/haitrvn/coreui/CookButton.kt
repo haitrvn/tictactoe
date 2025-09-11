@@ -1,97 +1,104 @@
 package com.haitrvn.coreui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.base.BaseButton
-import com.haitrvn.coreui.base.BaseSecondaryButton
 import com.haitrvn.coreui.theme.CookTheme
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
-import com.haitrvn.coreui.base.CookText as BaseCookText
 
 @Composable
-fun CookPrimaryButton(
+fun BaseButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    shape: Shape,
+    backgroundColor: Color = CookTheme.colors.primary,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    indication: Indication? = null,
+    content: @Composable () -> Unit,
+) {
+    Box(
+        modifier = Modifier.clip(shape).background(backgroundColor).then(modifier).clickable(
+            interactionSource = interactionSource, indication = indication, onClick = onClick
+        ),
+        contentAlignment = Alignment.Center,
+    ) {
+        content()
+    }
+}
+
+@Composable
+fun RoundButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    content: @Composable () -> Unit,
+) {
+    BaseButton(
+        modifier = modifier,
+        shape = CircleShape,
+        onClick = onClick,
+    ) {
+        content()
+    }
+}
+
+@Composable
+fun RoundButton(
+    modifier: Modifier = Modifier,
     text: String,
-    modifier: Modifier = Modifier.fillMaxWidth(),
-    enabled: Boolean = true,
+    onClick: () -> Unit = {},
+) {
+    BaseButton(
+        modifier = modifier,
+        shape = CircleShape,
+        onClick = onClick,
+    ) {
+        TextTitle(text = text, color = CookTheme.colors.onPrimary)
+    }
+}
+
+@Composable
+fun CurvedButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    backgroundColor: Color = CookTheme.colors.primary,
+    content: @Composable () -> Unit,
+) {
+    BaseButton(
+        modifier = modifier.wrapContentSize().padding(CookTheme.space.medium),
+        shape = CookTheme.shapes.medium,
+        onClick = onClick,
+        backgroundColor = backgroundColor,
+    ) {
+        content()
+    }
+}
+
+@Composable
+fun CurvedButton(
+    modifier: Modifier = Modifier,
+    backgroundColor: Color = CookTheme.colors.primary,
+    text: String,
     onClick: () -> Unit,
 ) {
     BaseButton(
+        modifier = modifier.padding(CookTheme.space.medium),
+        shape = CookTheme.shapes.medium,
         onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
+        backgroundColor = backgroundColor,
     ) {
-        BaseCookText(
-            modifier = modifier,
-            text = text,
-            style = CookTheme.typography.paragraph.copy(fontWeight = FontWeight.Bold),
-            textAlign = TextAlign.Center,
-            color = CookTheme.colors.onPrimary
-        )
-    }
-}
-
-@Composable
-fun CookSecondaryButton(
-    text: String,
-    modifier: Modifier = Modifier.fillMaxWidth(),
-    enabled: Boolean = true,
-    onClick: () -> Unit,
-) {
-    BaseSecondaryButton(
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-    ) {
-        BaseCookText(
-            modifier = modifier,
-            text = text,
-            style = CookTheme.typography.title,
-            textAlign = TextAlign.Center,
-            color = CookTheme.colors.paragraph
-        )
-    }
-}
-
-@Composable
-fun SocialButton(
-    modifier: Modifier = Modifier,
-    text: String,
-    icon: DrawableResource,
-    textColor: Color = CookTheme.colors.onPrimary,
-    background: Color = CookTheme.colors.primary,
-    onClick: () -> Unit,
-) {
-    BaseButton(modifier = modifier, onClick = onClick, backgroundColor = background) {
-        Row(
-            modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            CookImage(
-                modifier = Modifier.heightIn(max = CookTheme.typography.title.fontSize.value.dp * 1.2f),
-                source = painterResource(icon),
-                contentScale = ContentScale.Fit
-            )
-            SmallSpace()
-            BaseCookText(
-                text = text,
-                style = CookTheme.typography.title,
-                textAlign = TextAlign.Center,
-                color = textColor
-            )
-        }
+        TextTitle(text = text, color = CookTheme.colors.onPrimary)
     }
 }

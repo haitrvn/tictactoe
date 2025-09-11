@@ -26,7 +26,8 @@ internal val LocalSpace = staticCompositionLocalOf {
 data class CookSpaceDimensions(
     val small: Dp = 8.dp,
     val medium: Dp = 16.dp,
-    val large: Dp = 24.dp
+    val large: Dp = 32.dp,
+    val extraLarge: Dp = 50.dp,
 )
 
 /**
