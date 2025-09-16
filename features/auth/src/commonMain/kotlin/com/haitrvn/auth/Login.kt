@@ -20,24 +20,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.style.TextAlign
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CurvedButton
 import com.haitrvn.coreui.HeaderText2
+import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.RoundButton
+import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.TextParagraph
+import com.haitrvn.coreui.TextSmall
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_login_socical_apple
+import cookapp.resources.auth.ic_login_socical_google
 import cookapp.resources.auth.register_with_email
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    navigator: Navigator
+    navigator: Navigator,
 ) {
     val welcomeUiState = WelcomeUiState(
         login = WelcomePageUi(title = "Title", description = "Description", imageUrl = ""),
@@ -46,9 +51,10 @@ fun LoginScreen(
     LoginScreen(
         modifier = modifier,
         welcomeUiState = welcomeUiState,
-        loginWithEmail = { navigator.navigate(Auth.Login) },
-        loginWithGoogle = { navigator.navigate(Auth.Login) },
-        loginWithApple = { navigator.navigate(Auth.Login) },
+        registerWithEmail = { navigator.navigate(Auth.Register) },
+        loginWithEmail = { navigator.navigate(Auth.LoginWithEmail) },
+        loginWithGoogle = { },
+        loginWithApple = { },
     )
 }
 
@@ -57,13 +63,14 @@ fun LoginScreen(
     modifier: Modifier = Modifier,
     welcomeUiState: WelcomeUiState,
     goBack: () -> Unit = {},
+    registerWithEmail: () -> Unit = {},
     loginWithEmail: () -> Unit = {},
     loginWithGoogle: () -> Unit = {},
     loginWithApple: () -> Unit = {},
 ) {
     Column(
         modifier = modifier.fillMaxSize()
-            .padding(CookTheme.space.medium)
+            .padding(CookTheme.space.screenPadding)
     ) {
         RoundButton(
             modifier = Modifier.fillMaxHeight(0.09f).aspectRatio(1f),
@@ -100,19 +107,20 @@ fun LoginScreen(
         Column(
             modifier = Modifier.fillMaxWidth().weight(0.2f).padding(top = CookTheme.space.medium),
         ) {
+            val density = LocalDensity.current
+
+            val textHeight = with(density) {
+                CookTheme.typography.paragraph.fontSize.toDp()
+            }
             CurvedButton(
                 modifier = Modifier.fillMaxWidth(),
+                onClick = registerWithEmail
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    val density = LocalDensity.current
-
-                    val textHeight = with(density) {
-                        CookTheme.typography.paragraph.fontSize.toDp()
-                    }
                     CookImage(
                         modifier = Modifier.padding(end = CookTheme.space.small)
                             .height(textHeight)
@@ -131,14 +139,43 @@ fun LoginScreen(
             ) {
                 CurvedButton(
                     modifier = Modifier.weight(0.5f),
+                    backgroundColor = CookTheme.colors.secondParagraph,
+                    onClick = loginWithApple,
                 ) {
-
+                    CookImage(
+                        modifier = Modifier.height(textHeight * 1.5f).aspectRatio(1f),
+                        source = Res.drawable.ic_login_socical_apple
+                    )
                 }
                 CurvedButton(
                     modifier = Modifier.weight(0.5f),
+                    backgroundColor = CookTheme.colors.secondParagraph,
+                    onClick = loginWithGoogle,
                 ) {
-
+                    CookImage(
+                        modifier = Modifier.height(textHeight * 1.5f).aspectRatio(1f),
+                        source = Res.drawable.ic_login_socical_google
+                    )
                 }
+            }
+            MultiClickableText(
+                modifier = Modifier.fillMaxWidth(),
+                textSegments = persistentListOf(
+                    SegmentText("Have a account?"),
+                    SegmentText("Login", tag = "login", isClickable = true)
+                ),
+                onClick = {
+                    if (it == "login") {
+                        loginWithEmail()
+                    }
+                }
+            ) { modifier, text ->
+                TextSmall(
+                    modifier = modifier.fillMaxWidth(),
+                    text = text,
+                    textAlign = TextAlign.Center,
+                    color = CookTheme.colors.secondParagraph
+                )
             }
         }
     }

@@ -63,7 +63,7 @@ fun WelcomeScreen(
 }
 
 @Composable
-internal fun WelcomeScreen(
+fun WelcomeScreen(
     modifier: Modifier = Modifier,
     welcomeUiState: WelcomeUiState,
     goToLogin: () -> Unit = {},
@@ -75,7 +75,7 @@ internal fun WelcomeScreen(
     }
     val scope = rememberCoroutineScope()
     Column(
-        modifier = modifier.fillMaxSize().padding(CookTheme.space.medium)
+        modifier = modifier.fillMaxSize().padding(CookTheme.space.screenPadding)
     ) {
         Box(
             modifier = Modifier.fillMaxWidth().weight(0.85f)

@@ -47,7 +47,7 @@ kotlin {
             implementation(projects.domain)
             implementation(projects.navigation)
             implementation(projects.core)
-            implementation(projects.core.ui)
+            implementation(projects.coreui)
 
             implementation(projects.features.auth)
             implementation(projects.features.home)

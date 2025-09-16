@@ -53,7 +53,9 @@ kotlin {
                 implementation(libs.kotlin.test)
             }
         }
-
+        androidMain.dependencies {
+            implementation(projects.domain)
+        }
         getByName("androidDeviceTest") {
             dependencies {
                 implementation(libs.androidx.runner)

@@ -48,7 +48,7 @@ kotlin {
             dependencies {
                 implementation(projects.navigation)
                 implementation(projects.domain)
-                implementation(projects.core.ui)
+                implementation(projects.coreui)
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)

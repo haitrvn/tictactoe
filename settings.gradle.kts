@@ -2,7 +2,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "CookApp"
 
 pluginManagement {
-    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -45,7 +44,7 @@ include(":composeApp")
 include(":domain")
 include(":presentation")
 include(":data")
-include(":core:ui")
+include(":coreui")
 include(":core:config")
 include(":core")
 include(":navigation")

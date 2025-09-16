@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.haitrvn.auth.LoginScreen
+import com.haitrvn.auth.RegisterScreen
 import com.haitrvn.auth.WelcomeScreen
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
@@ -81,6 +82,7 @@ internal fun NavGraphBuilder.authGraph(
         composable<Auth.LoginWithEmail> {
         }
         composable<Auth.Register> {
+            RegisterScreen()
         }
     }
 }

@@ -14,7 +14,7 @@ kotlin {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
     androidLibrary {
-        namespace = "com.haitrvn.features.login"
+        namespace = "com.haitrvn.features.auth"
         compileSdk = 35
         minSdk = 24
         withHostTestBuilder {
@@ -44,11 +44,11 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation(projects.navigation)
                 implementation(projects.domain)
-                implementation(projects.core.ui)
+                implementation(projects.coreui)
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
                 implementation(compose.runtime)
