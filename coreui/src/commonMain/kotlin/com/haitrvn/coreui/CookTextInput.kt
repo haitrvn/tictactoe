@@ -23,8 +23,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import com.haitrvn.coreui.theme.CookTheme
-import cookapp.resources.coreui.Res
-import cookapp.resources.coreui.core_ui_icon_back
+import cookapp.resources.core.ui.Res
+import cookapp.resources.core.ui.core_ui_icon_back
 import org.jetbrains.compose.resources.vectorResource
 
 

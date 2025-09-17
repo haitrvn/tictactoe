@@ -9,11 +9,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import cookapp.resources.coreui.Res
-import cookapp.resources.coreui.nunito_italic
-import cookapp.resources.coreui.nunito_normal
-import cookapp.resources.coreui.oleo_script_bold
-import cookapp.resources.coreui.oleo_script_regular
+import cookapp.resources.core.ui.Res
+import cookapp.resources.core.ui.nunito_italic
+import cookapp.resources.core.ui.nunito_normal
+import cookapp.resources.core.ui.oleo_script_bold
+import cookapp.resources.core.ui.oleo_script_regular
 import org.jetbrains.compose.resources.Font
 
 @Immutable

@@ -4,28 +4,16 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose)
+    alias(libs.plugins.android.library)
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
-    androidLibrary {
-        namespace = "com.haitrvn.features.login"
-        compileSdk = 35
-        minSdk = 24
-        withHostTestBuilder {
-        }
-        withDeviceTestBuilder {
-            sourceSetTreeName = "test"
-        }.configure {
-            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
-        experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
-    }
+    androidTarget()
     val xcfName = "login"
 
     jvm()
@@ -76,13 +64,6 @@ kotlin {
             implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.8.0")
         }
 
-        getByName("androidDeviceTest") {
-            dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
-                implementation(libs.androidx.junit)
-            }
-        }
     }
 }
 

@@ -23,7 +23,6 @@ kotlin {
     }
     jvmToolchain(17)
     androidTarget()
-
     jvm()
     wasmJs {
         binaries.executable()

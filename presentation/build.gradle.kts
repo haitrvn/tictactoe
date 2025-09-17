@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.android.library)
 }
 
 kotlin {
@@ -8,23 +8,8 @@ kotlin {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
 
-    androidLibrary {
-        namespace = "com.haitrvn.presentation"
-        compileSdk = 35
-        minSdk = 24
-
-        withHostTestBuilder {
-        }
-
-        withDeviceTestBuilder {
-            sourceSetTreeName = "test"
-        }.configure {
-            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
-    }
-
     val xcfName = "presentationKit"
-
+    androidTarget()
     listOf(
         iosX64(),
         iosArm64(),
@@ -45,14 +30,6 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(libs.kotlin.test)
-            }
-        }
-
-        getByName("androidDeviceTest") {
-            dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
-                implementation(libs.androidx.junit)
             }
         }
     }
