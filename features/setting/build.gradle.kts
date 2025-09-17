@@ -52,6 +52,19 @@ kotlin {
     }
 }
 
+android {
+    compileSdk = 36
+    namespace = "com.haitrvn.feature.setting"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
+}
+
 compose.resources {
     publicResClass = true
     packageOfResClass = "cookapp.resources.setting"

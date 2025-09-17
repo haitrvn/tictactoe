@@ -47,3 +47,16 @@ kotlin {
         }
     }
 }
+
+android {
+    compileSdk = 36
+    namespace = "com.haitrvn.data"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
+}

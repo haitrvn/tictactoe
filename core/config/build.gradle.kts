@@ -77,6 +77,19 @@ kotlin {
     }
 }
 
+android {
+    compileSdk = 36
+    namespace = "com.haitrvn.core.config"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
+}
+
 buildkonfig {
     packageName = "com.haitrvn.cook"
     defaultConfigs {

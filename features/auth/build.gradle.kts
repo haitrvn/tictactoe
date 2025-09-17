@@ -66,6 +66,19 @@ kotlin {
     }
 }
 
+android {
+    compileSdk = 36
+    namespace = "com.haitrvn.feature.auth"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
+}
+
 compose.resources {
     publicResClass = true
     packageOfResClass = "cookapp.resources.auth"
