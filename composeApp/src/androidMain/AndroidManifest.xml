@@ -3,12 +3,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name=".MainApp"
+        android:name="com.haitrvn.cookapp.MainApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Material.NoActionBar">
         <activity
-            android:name=".AppActivity"
+            android:name="com.haitrvn.cookapp.AppActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true"
             android:launchMode="singleInstance"

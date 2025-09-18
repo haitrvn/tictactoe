@@ -13,7 +13,7 @@ fun Project.configureLibraryAndroidTarget(
 ) {
     extensions.configure(LibraryExtension::class) {
         this.compileSdk = compileSdk
-        sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+//        sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
         this.namespace = namespace ?: "com.haitrvn.${project.name.replace("-", ".")}"
         defaultConfig {
             this.minSdk = minSdk
@@ -29,8 +29,8 @@ fun Project.configureLibraryAndroidTarget(
 }
 
 fun BaseAppModuleExtension.configureApplicationAndroidTarget(
-    applicationId: String = "com.haitrvn.cook",
-    namespace: String = "com.haitrvn.cook",
+    applicationId: String = "com.haitrvn.cookapp",
+    namespace: String = "com.haitrvn.cookapp",
     versionCode: Int = 1,
     versionName: String = "1.0",
     minSdk: Int = 26,

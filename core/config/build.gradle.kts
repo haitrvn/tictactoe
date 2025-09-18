@@ -62,7 +62,7 @@ kotlin {
 configureLibraryAndroidTarget()
 
 buildkonfig {
-    packageName = "com.haitrvn.cook"
+    packageName = "com.haitrvn.cookapp"
     defaultConfigs {
     }
 }

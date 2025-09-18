@@ -8,7 +8,8 @@ import com.haitrvn.coreui.theme.CookTheme
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-@Preview
+@Preview(device = "id:4in WVGA (Nexus S)")
+@Preview(device = "id:pixel_9_pro")
 fun PreviewWelcomeScreen() {
     CookTheme {
         val welcomeUiState = WelcomeUiState(
