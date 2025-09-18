@@ -1,16 +1,17 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
-    alias(libs.plugins.multiplatform) apply false
-    alias(libs.plugins.compose.compiler) apply false
-    alias(libs.plugins.compose) apply false
-    alias(libs.plugins.android.application) apply false
+    id(libs.plugins.multiplatform.get().pluginId) apply false
+    id(libs.plugins.android.library.get().pluginId) apply false
+    id(libs.plugins.compose.get().pluginId) apply false
+    id(libs.plugins.android.application.get().pluginId) apply false
+
+    alias(libs.plugins.composecompiler) apply false
     alias(libs.plugins.hotReload) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
     alias(libs.plugins.room) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.buildKonfig) apply false
-    alias(libs.plugins.android.library) apply false
 }
 
 subprojects {

@@ -3,34 +3,19 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.compose)
+    id(libs.plugins.multiplatform.get().pluginId)
+    id(libs.plugins.android.library.get().pluginId)
+    id(libs.plugins.compose.get().pluginId)
+    alias(libs.plugins.composecompiler)
     alias(libs.plugins.buildKonfig)
-    alias(libs.plugins.android.library)
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
-    androidTarget()
-    jvm()
-    wasmJs {
-        browser()
-    }
-
-    val xcfName = "presentationKit"
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = xcfName
-        }
-    }
+    allTargets()
+    defaultConfig()
 
     sourceSets {
         commonMain {
@@ -77,18 +62,7 @@ kotlin {
     }
 }
 
-android {
-    compileSdk = 36
-    namespace = "com.haitrvn.core.config"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlin {
-        jvmToolchain(17)
-    }
-}
+configureLibraryAndroidTarget()
 
 buildkonfig {
     packageName = "com.haitrvn.cook"

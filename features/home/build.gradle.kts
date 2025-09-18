@@ -3,34 +3,15 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.compose)
-    alias(libs.plugins.android.library)
+    id(libs.plugins.multiplatform.get().pluginId)
+    id(libs.plugins.compose.get().pluginId)
+    id(libs.plugins.android.library.get().pluginId)
+    alias(libs.plugins.composecompiler)
 }
 
 kotlin {
-    compilerOptions {
-        freeCompilerArgs.add("-Xcontext-parameters")
-    }
-    androidTarget()
-    val xcfName = "login"
-
-    jvm()
-    wasmJs {
-        browser()
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = xcfName
-        }
-    }
-
+    allTargets()
+    defaultConfig()
     sourceSets {
         commonMain {
             dependencies {
@@ -67,18 +48,7 @@ kotlin {
     }
 }
 
-android {
-    compileSdk = 36
-    namespace = "com.haitrvn.feature.home"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlin {
-        jvmToolchain(17)
-    }
-}
+configureLibraryAndroidTarget()
 
 compose.resources {
     publicResClass = true

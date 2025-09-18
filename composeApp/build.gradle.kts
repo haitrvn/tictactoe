@@ -7,10 +7,11 @@ import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.compose)
-    alias(libs.plugins.android.application)
+    id(libs.plugins.multiplatform.get().pluginId)
+    id(libs.plugins.compose.get().pluginId)
+    id(libs.plugins.android.application.get().pluginId)
+
+    alias(libs.plugins.composecompiler)
     alias(libs.plugins.hotReload)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.room)
@@ -22,24 +23,8 @@ kotlin {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
     jvmToolchain(17)
-    androidTarget()
-    jvm()
-    wasmJs {
-        binaries.executable()
-        browser()
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-
+    allTargets()
+    defaultConfig()
     sourceSets {
         commonMain.dependencies {
             implementation(projects.data)
@@ -98,19 +83,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.haitrvn.cookapp"
-    compileSdk = 35
-
-    defaultConfig {
-        minSdk = 24
-        targetSdk = 35
-
-        applicationId = "com.haitrvn.cookapp"
-        versionCode = 1
-        versionName = "1.0.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+    configureApplicationAndroidTarget()
 }
 
 //https://developer.android.com/develop/ui/compose/testing#setup

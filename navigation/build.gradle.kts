@@ -1,32 +1,17 @@
 plugins {
-    alias(libs.plugins.multiplatform)
+    id(libs.plugins.multiplatform.get().pluginId)
+    id(libs.plugins.compose.get().pluginId)
+    id(libs.plugins.android.library.get().pluginId)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.compose)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.composecompiler)
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
-    androidTarget()
-    jvm()
-    wasmJs {
-        browser()
-    }
-
-    val xcfName = "navigationKit"
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = xcfName
-        }
-    }
-
+    allTargets()
+    defaultConfig()
     sourceSets {
         commonMain {
             dependencies {
@@ -55,15 +40,4 @@ kotlin {
     }
 }
 
-android {
-    compileSdk = 36
-    namespace = "com.haitrvn.navigation"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlin {
-        jvmToolchain(17)
-    }
-}
+configureLibraryAndroidTarget()

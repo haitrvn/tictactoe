@@ -3,14 +3,7 @@ rootProject.name = "CookApp"
 
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-                includeGroupByRegex("android.*")
-            }
-        }
+        google()
         gradlePluginPortal()
         mavenCentral()
     }
@@ -18,20 +11,8 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-                includeGroupByRegex("android.*")
-            }
-        }
+        google()
         mavenCentral()
-    }
-    versionCatalogs {
-        create("haitrvn") {
-            from(files("./build-logic/building.versions.toml"))
-        }
     }
 }
 plugins {

@@ -3,31 +3,16 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
+    id(libs.plugins.multiplatform.get().pluginId)
+    id(libs.plugins.android.library.get().pluginId)
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xcontext-parameters")
     }
-    androidTarget()
-    jvm()
-    wasmJs {
-        browser()
-    }
-    val xcfName = "domainKit"
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = xcfName
-        }
-    }
-
+    allTargets()
+    defaultConfig()
     sourceSets {
         commonMain {
             dependencies {
@@ -47,15 +32,4 @@ kotlin {
     }
 }
 
-android {
-    compileSdk = 36
-    namespace = "com.haitrvn.domain"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlin {
-        jvmToolchain(17)
-    }
-}
+configureLibraryAndroidTarget()
