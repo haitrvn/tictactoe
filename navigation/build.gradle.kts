@@ -7,9 +7,6 @@ plugins {
 }
 
 kotlin {
-    compilerOptions {
-        freeCompilerArgs.add("-Xcontext-parameters")
-    }
     allTargets()
     defaultConfig()
     sourceSets {
