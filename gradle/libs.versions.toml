@@ -28,6 +28,8 @@ androidx-navigation = "2.9.0-beta03"
 dokka = "2.0.0"
 detekt = "1.23.8"
 maven-publish = "0.34.0"
+uiTooling = "1.9.1"
+navigation3 = "1.0.0-alpha09"
 [libraries]
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -78,7 +80,7 @@ detekt-gradle = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", v
 dokka-gradle = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 publishing-gradle = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 compose-gradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose" }
-
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
