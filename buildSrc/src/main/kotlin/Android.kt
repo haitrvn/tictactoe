@@ -3,7 +3,6 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.get
 
 fun Project.configureLibraryAndroidTarget(
     namespace: String? = null,

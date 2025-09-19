@@ -47,12 +47,12 @@ class CookTypography(
 fun CreateCookTypography(
     defaultColor: Color = CookTheme.colors.paragraph,
     nunitoFontFamily: FontFamily = FontFamily(
-        Font(Res.font.nunito_italic),
-        Font(Res.font.nunito_normal),
+        Font(Res.font.nunito_italic, style = FontStyle.Italic),
+        Font(Res.font.nunito_normal, style = FontStyle.Normal),
     ),
     oleoscriptFontFamily: FontFamily = FontFamily(
-        Font(Res.font.oleo_script_bold),
-        Font(Res.font.oleo_script_regular),
+        Font(Res.font.oleo_script_bold, style = FontStyle.Normal),
+        Font(Res.font.oleo_script_regular, style = FontStyle.Normal),
     ),
 ): CookTypography = CookTypography(
     app = CookTypographyTokens.app.copy(
@@ -61,7 +61,6 @@ fun CreateCookTypography(
     ),
     header = CookTypographyTokens.header.copy(
         color = defaultColor,
-        fontFamily = nunitoFontFamily
     ),
     bigTitle = CookTypographyTokens.bigTitle.copy(
         color = defaultColor,

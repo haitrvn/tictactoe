@@ -23,12 +23,13 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.CurvedButton
-import com.haitrvn.coreui.HeaderText2
+import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.MultiClickableText
+import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.RoundButton
 import com.haitrvn.coreui.SegmentText
-import com.haitrvn.coreui.TextParagraph
-import com.haitrvn.coreui.TextSmall
+import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.Title
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
@@ -95,10 +96,10 @@ fun LoginScreen(
                     modifier = Modifier.padding(CookTheme.space.medium).fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
                 ) {
-                    HeaderText2(
+                    Text.Header(
                         text = welcomeUiState.login.title,
                     )
-                    TextParagraph(
+                    Text.Paragraph(
                         text = welcomeUiState.login.description,
                     )
                 }
@@ -127,7 +128,7 @@ fun LoginScreen(
                             .aspectRatio(1f),
                         source = Res.drawable.ic_login_socical_apple
                     )
-                    TextParagraph(
+                    Text.Paragraph(
                         text = Res.string.register_with_email.toText(),
                     )
                 }
@@ -170,11 +171,9 @@ fun LoginScreen(
                     }
                 }
             ) { modifier, text ->
-                TextSmall(
+                Text.Title(
                     modifier = modifier.fillMaxWidth(),
                     text = text,
-                    textAlign = TextAlign.Center,
-                    color = CookTheme.colors.secondParagraph
                 )
             }
         }

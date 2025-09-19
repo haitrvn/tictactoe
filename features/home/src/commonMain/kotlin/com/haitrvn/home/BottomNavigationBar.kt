@@ -6,7 +6,8 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.haitrvn.coreui.TextParagraph
+import com.haitrvn.coreui.Paragraph
+import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.NavigationItem
 import org.jetbrains.compose.resources.vectorResource
@@ -43,7 +44,7 @@ fun BottomNavigationBar(
                     )
                 },
                 label = {
-                    TextParagraph(
+                    Text.Paragraph(
                         text = navigationItem.title.toText(),
                     )
                 },

@@ -16,15 +16,7 @@ fun PreviewText() {
         CookTheme(systemIsDark = true) {
             CookSurface {
                 Column {
-                    TextApp(text = "Abcdefghiklmn (TextApp)")
-                    HeaderText2(text = "Abcdefghiklmn (TextHeader)")
-                    TextBigTitle(text = "Abcdefghiklmn (TextBigTitle)")
-                    TextTitle(text = "Abcdefghiklmn (TextTitle)")
-                    TextSmallTitle(text = "Abcdefghiklmn (TextSmallTitle)")
-                    TextParagraph(text = "Abcdefghiklmn (TextParagraph)")
-                    TextError(text = "Abcdefghiklmn (TextError)")
-                    TextSmall(text = "Abcdefghiklmn (TextSmall)")
-                    TextTiny(text = "Abcdefghiklmn (TextTiny)")
+
                 }
             }
         }
@@ -32,15 +24,7 @@ fun PreviewText() {
         CookTheme(systemIsDark = false) {
             CookSurface {
                 Column {
-                    TextApp(text = "Abcdefghiklmn (TextApp)")
-                    HeaderText2(text = "Abcdefghiklmn (TextHeader)")
-                    TextBigTitle(text = "Abcdefghiklmn (TextBigTitle)")
-                    TextTitle(text = "Abcdefghiklmn (TextTitle)")
-                    TextSmallTitle(text = "Abcdefghiklmn (TextSmallTitle)")
-                    TextParagraph(text = "Abcdefghiklmn (TextParagraph)")
-                    TextError(text = "Abcdefghiklmn (TextError)")
-                    TextSmall(text = "Abcdefghiklmn (TextSmall)")
-                    TextTiny(text = "Abcdefghiklmn (TextTiny)")
+
                 }
             }
         }

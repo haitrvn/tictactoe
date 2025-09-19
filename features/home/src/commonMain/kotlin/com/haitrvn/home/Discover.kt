@@ -23,7 +23,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.TextParagraph
+import com.haitrvn.coreui.Paragraph
+import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.theme.CookTheme
 import cookapp.resources.home.Res
 import cookapp.resources.home.card_image_1
@@ -60,7 +61,7 @@ fun Heading(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth()
     ) {
-        TextParagraph(
+        Text.Paragraph(
             text = "Saved recipes",
         )
     }

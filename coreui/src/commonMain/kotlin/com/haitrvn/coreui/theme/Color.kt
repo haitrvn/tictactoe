@@ -10,6 +10,7 @@ class CookColor(
     primary: Color,
     onPrimary: Color,
     paragraph: Color,
+    paragraphReversed: Color,
     secondParagraph: Color,
     error: Color,
     link: Color,
@@ -22,6 +23,8 @@ class CookColor(
     var onPrimary by mutableStateOf(onPrimary)
         private set
     var paragraph by mutableStateOf(paragraph)
+        private set
+    var paragraphReversed by mutableStateOf(paragraph)
         private set
     var secondParagraph by mutableStateOf(secondParagraph)
         private set
@@ -40,6 +43,7 @@ class CookColor(
         primary: Color = this.primary,
         onPrimary: Color = this.onPrimary,
         paragraph: Color = this.paragraph,
+        paragraphReversed: Color = this.paragraphReversed,
         secondParagraph: Color = this.secondParagraph,
         error: Color = this.error,
         link: Color = this.link,
@@ -50,6 +54,7 @@ class CookColor(
         primary = primary,
         onPrimary = onPrimary,
         paragraph = paragraph,
+        paragraphReversed = paragraphReversed,
         secondParagraph = secondParagraph,
         error = error,
         link = link,
@@ -62,6 +67,7 @@ class CookColor(
         primary = other.primary
         onPrimary = other.onPrimary
         paragraph = other.paragraph
+        paragraphReversed = other.paragraphReversed
         secondParagraph = other.secondParagraph
         error = other.error
         link = other.link
@@ -78,7 +84,8 @@ val googleLoginText: Color = Color(0xff000000)
 
 val lightPrimary: Color = Color(0xFFff6e41)
 val lightOnPrimary: Color = Color(0xFFFFFFFF)
-val lightParagraph: Color = Color(0xff000000)
+val lightParagraph: Color = Color(0xfffff3eb)
+val lightParagraphReversed: Color = Color(0xff47304d)
 val lightSecondParagraph: Color = Color(0xff292929)
 val lightError: Color = Color(0xfffb0909)
 val lightLink: Color = Color(0xccff6e41)
@@ -88,7 +95,8 @@ val lightBackground3: Color = Color(0xFFfff2eb)
 
 val darkPrimary: Color = Color(0xFFff6e41)
 val darkOnPrimary: Color = Color(0xFFFFFFFF)
-val darkParagraph: Color = Color(0xFFFFFFFF)
+val darkParagraph: Color = Color(0xffffeee2)
+val darkParagraphReversed: Color = Color(0xffffeee2)
 val darkSecondParagraph: Color = Color(0xffd6d6d6)
 val darkError: Color = Color(0xffe40303)
 val darkLink: Color = Color(0xccff6e41)
@@ -102,6 +110,7 @@ val LightColors = CookColor(
     primary = lightPrimary,
     onPrimary = lightOnPrimary,
     paragraph = lightParagraph,
+    paragraphReversed = lightParagraphReversed,
     secondParagraph = lightSecondParagraph,
     error = lightError,
     link = lightLink,
@@ -114,6 +123,7 @@ val DarkColors = CookColor(
     primary = darkPrimary,
     onPrimary = darkOnPrimary,
     paragraph = darkParagraph,
+    paragraphReversed = darkParagraphReversed,
     secondParagraph = darkSecondParagraph,
     error = darkError,
     link = darkLink,

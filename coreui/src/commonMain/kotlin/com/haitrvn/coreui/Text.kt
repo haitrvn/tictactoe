@@ -1,27 +1,28 @@
 package com.haitrvn.coreui
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import coil3.compose.rememberAsyncImagePainter
 import com.haitrvn.coreui.theme.CookTheme
 
+object Text
+
 @Composable
-fun HeaderText(
+fun Text.Header(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = Color.Black,
-    fontSize: TextUnit = 30.sp
+    color: Color = CookTheme.colors.paragraph,
+    fontSize: TextUnit = 60.sp,
+    fontFamily: FontFamily? = CookTheme.typography.header.fontFamily
 ) {
     Text(
         text = text,
@@ -29,14 +30,14 @@ fun HeaderText(
         fontSize = fontSize,
         textAlign = textAlign,
         color = color,
-        fontFamily = CookTheme.typography.header.fontFamily,
+        fontFamily = fontFamily,
         fontWeight = FontWeight.Bold,
         fontStyle = FontStyle.Normal,
     )
 }
 
 @Composable
-fun TextTitle2(
+fun Text.Title(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
@@ -46,7 +47,27 @@ fun TextTitle2(
 }
 
 @Composable
-fun TextParagraph2(
+fun Text.Title(
+    modifier: Modifier = Modifier,
+    text: AnnotatedString,
+    textAlign: TextAlign = TextAlign.Left,
+    color: Color = Color.Black
+) {
+    Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
+}
+
+@Composable
+fun Text.Paragraph(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Left,
+    color: Color = CookTheme.colors.paragraph
+) {
+    Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
+}
+
+@Composable
+fun Text.Error(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,

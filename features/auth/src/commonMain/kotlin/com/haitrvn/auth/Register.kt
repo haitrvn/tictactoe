@@ -16,7 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.RoundButton
-import com.haitrvn.coreui.TextTitle
+import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.Title
 import com.haitrvn.coreui.theme.CookTheme
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_login_socical_google
@@ -48,9 +49,9 @@ fun RegisterScreen(
             ) {
                 goBack()
             }
-            TextTitle(modifier = Modifier.padding(CookTheme.space.medium).clickable {
+            Text.Title(modifier = Modifier.padding(CookTheme.space.medium).clickable {
                 goToLogin()
-            }, text = "Login")
+            },text = "Login")
         }
         Column(modifier = Modifier.fillMaxWidth()) {
         }

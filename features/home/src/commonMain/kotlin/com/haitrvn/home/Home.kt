@@ -9,12 +9,10 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.haitrvn.coreui.AuthInput
 import com.haitrvn.coreui.CookSurface
-import com.haitrvn.coreui.HeaderText2
 import com.haitrvn.coreui.MediumSpace
-import com.haitrvn.coreui.TextSmall
-import com.haitrvn.coreui.TextTitle
+import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.Title
 import org.koin.compose.koinInject
 
 @Composable
@@ -31,11 +29,9 @@ fun HomeWrapper(
 ) {
     LazyColumn {
         item {
-            HeaderText2(text = "Find best recipees for cooking")
         }
         item {
             MediumSpace()
-            Search()
         }
         item {
             Trending()
@@ -53,21 +49,13 @@ fun HomeWrapper(
 }
 
 @Composable
-fun Search(modifier: Modifier = Modifier) {
-    AuthInput(value = "Search Recipes", label = "") {
-
-    }
-}
-
-@Composable
 fun Trending(modifier: Modifier = Modifier) {
     Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight(0.3f)
     ) {
         Row {
-            TextTitle(text = "Trending now (fire)")
+            Text.Title(text = "Trending now (fire)")
             MediumSpace()
-            TextSmall(text = "See all")
         }
         LazyRow {
             items(10) {
@@ -84,8 +72,8 @@ fun Trending(modifier: Modifier = Modifier) {
 @Composable
 fun TrendingItem(modifier: Modifier = Modifier) {
     CookSurface {
-        TextTitle(modifier = Modifier.align(Alignment.TopStart), text = "4*")
-        TextTitle(modifier = Modifier.align(Alignment.TopEnd), text = "10:10")
+        Text.Title(modifier = Modifier.align(Alignment.TopStart), text = "4*")
+        Text.Title(modifier = Modifier.align(Alignment.TopEnd), text = "10:10")
     }
 }
 
