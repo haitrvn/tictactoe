@@ -5,9 +5,15 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 fun KotlinMultiplatformExtension.iosTargets() {
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+        }
+    }
 }
 
 fun KotlinMultiplatformExtension.configuredJvmTarget(jvmTarget: JvmTarget = JvmTarget.JVM_1_8) {
