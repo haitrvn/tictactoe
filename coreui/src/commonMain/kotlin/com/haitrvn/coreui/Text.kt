@@ -49,11 +49,11 @@ fun Text.Title(
 @Composable
 fun Text.Title(
     modifier: Modifier = Modifier,
-    text: AnnotatedString,
+    string: AnnotatedString,
     textAlign: TextAlign = TextAlign.Left,
     color: Color = Color.Black
 ) {
-    Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
+    Text(text = string, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
 }
 
 @Composable

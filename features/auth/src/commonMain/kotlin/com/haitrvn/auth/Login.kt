@@ -173,7 +173,7 @@ fun LoginScreen(
             ) { modifier, text ->
                 Text.Title(
                     modifier = modifier.fillMaxWidth(),
-                    text = text,
+                    string = text,
                 )
             }
         }
