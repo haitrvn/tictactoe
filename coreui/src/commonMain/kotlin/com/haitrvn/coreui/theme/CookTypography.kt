@@ -12,147 +12,129 @@ import androidx.compose.ui.unit.sp
 import cookapp.resources.core.ui.Res
 import cookapp.resources.core.ui.nunito_italic
 import cookapp.resources.core.ui.nunito_normal
-import cookapp.resources.core.ui.oleo_script_bold
-import cookapp.resources.core.ui.oleo_script_regular
 import org.jetbrains.compose.resources.Font
 
 @Immutable
 class CookTypography(
-    val app: TextStyle = CookTypographyTokens.app,
-    val header: TextStyle = CookTypographyTokens.header,
-    val bigTitle: TextStyle = CookTypographyTokens.bigTitle,
-    val title: TextStyle = CookTypographyTokens.title,
-    val smallTitle: TextStyle = CookTypographyTokens.smallTitle,
-    val paragraph: TextStyle = CookTypographyTokens.paragraph,
-    val error: TextStyle = CookTypographyTokens.error,
-    val small: TextStyle = CookTypographyTokens.small,
-    val tiny: TextStyle = CookTypographyTokens.tiny,
+    val headingBold: TextStyle = CookTypographyTokens.headingBold,
+    val h4Bold: TextStyle = CookTypographyTokens.h4Bold,
+    val h5Bold: TextStyle = CookTypographyTokens.h5Bold,
+    val paragraphBold: TextStyle = CookTypographyTokens.paragraphBold,
+    val paragraphRegular: TextStyle = CookTypographyTokens.paragraphRegular,
+    val labelBold: TextStyle = CookTypographyTokens.labelBold,
+    val labelRegular: TextStyle = CookTypographyTokens.labelRegular,
+    val smallBold: TextStyle = CookTypographyTokens.smallBold,
+    val smallRegular: TextStyle = CookTypographyTokens.smallRegular,
+    val tinyRegular: TextStyle = CookTypographyTokens.tinyRegular,
+    val timeStatusBar: TextStyle = CookTypographyTokens.timeStatusBar,
 ) {
     fun copy(
-        app: TextStyle = this.app,
-        header: TextStyle = this.header,
-        bigTitle: TextStyle = this.bigTitle,
-        title: TextStyle = this.title,
-        smallTitle: TextStyle = this.smallTitle,
-        paragraph: TextStyle = this.paragraph,
-        error: TextStyle = this.error,
-        small: TextStyle = this.small,
-        tiny: TextStyle = this.tiny,
+        headingBold: TextStyle = this.headingBold,
+        h4Bold: TextStyle = this.h4Bold,
+        h5Bold: TextStyle = this.h5Bold,
+        paragraphBold: TextStyle = this.paragraphBold,
+        paragraphRegular: TextStyle = this.paragraphRegular,
+        labelBold: TextStyle = this.labelBold,
+        labelRegular: TextStyle = this.labelRegular,
+        smallBold: TextStyle = this.smallBold,
+        smallRegular: TextStyle = this.smallRegular,
+        tinyRegular: TextStyle = this.tinyRegular,
+        timeStatusBar: TextStyle = this.timeStatusBar,
     ): CookTypography = CookTypography(
-        app, header, bigTitle, title, smallTitle, paragraph, error, small, tiny
+        headingBold, h4Bold, h5Bold, paragraphBold, paragraphRegular, labelBold, labelRegular, smallBold, smallRegular, tinyRegular, timeStatusBar
     )
 }
 
 @Composable
 fun CreateCookTypography(
     defaultColor: Color = CookTheme.colors.paragraph,
-    nunitoFontFamily: FontFamily = FontFamily(
-        Font(Res.font.nunito_italic, style = FontStyle.Italic),
-        Font(Res.font.nunito_normal, style = FontStyle.Normal),
+    poppinsFontFamily: FontFamily = FontFamily(
+        Font(Res.font.nunito_italic, weight = FontWeight.W400, style = FontStyle.Normal),
+        Font(Res.font.nunito_normal, weight = FontWeight.W600, style = FontStyle.Normal),
+        Font(Res.font.nunito_normal, weight = FontWeight.W700, style = FontStyle.Normal),
     ),
-    oleoscriptFontFamily: FontFamily = FontFamily(
-        Font(Res.font.oleo_script_bold, style = FontStyle.Normal),
-        Font(Res.font.oleo_script_regular, style = FontStyle.Normal),
-    ),
+    sfProTextFontFamily: FontFamily = FontFamily.Default // fallback, hoặc thêm nếu có file
 ): CookTypography = CookTypography(
-    app = CookTypographyTokens.app.copy(
-        color = defaultColor,
-        fontFamily = oleoscriptFontFamily
-    ),
-    header = CookTypographyTokens.header.copy(
-        color = defaultColor,
-    ),
-    bigTitle = CookTypographyTokens.bigTitle.copy(
-        color = defaultColor,
-        fontFamily = nunitoFontFamily
-    ),
-    title = CookTypographyTokens.title.copy(
-        color = defaultColor,
-        fontFamily = nunitoFontFamily
-    ),
-    smallTitle = CookTypographyTokens.smallTitle.copy(
-        color = defaultColor,
-        fontFamily = nunitoFontFamily
-    ),
-    paragraph = CookTypographyTokens.paragraph.copy(
-        color = defaultColor,
-        fontFamily = nunitoFontFamily
-    ),
-    error = CookTypographyTokens.error.copy(
-        color = defaultColor,
-        fontFamily = nunitoFontFamily
-    ),
-    small = CookTypographyTokens.small.copy(
-        color = defaultColor,
-        fontFamily = nunitoFontFamily
-    ),
-    tiny = CookTypographyTokens.tiny.copy(color = defaultColor, fontFamily = nunitoFontFamily),
+    headingBold = CookTypographyTokens.headingBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    h4Bold = CookTypographyTokens.h4Bold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    h5Bold = CookTypographyTokens.h5Bold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    paragraphBold = CookTypographyTokens.paragraphBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    paragraphRegular = CookTypographyTokens.paragraphRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    labelBold = CookTypographyTokens.labelBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    labelRegular = CookTypographyTokens.labelRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    smallBold = CookTypographyTokens.smallBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    smallRegular = CookTypographyTokens.smallRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    tinyRegular = CookTypographyTokens.tinyRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    timeStatusBar = CookTypographyTokens.timeStatusBar.copy(color = defaultColor, fontFamily = sfProTextFontFamily),
 )
 
 internal val LocalTypography = staticCompositionLocalOf { CookTypography() }
 
-
 object CookTypographyTokens {
-    val app = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 32.sp,
-        lineHeight = 40.sp,
+    val headingBold = TextStyle(
+        fontWeight = FontWeight.W600,
+        fontSize = 56.sp,
+        lineHeight = (56 * 1.2).sp,
         fontStyle = FontStyle.Normal,
     )
-
-    val header = TextStyle(
-        fontWeight = FontWeight.SemiBold,
+    val h4Bold = TextStyle(
+        fontWeight = FontWeight.W600,
         fontSize = 24.sp,
-        lineHeight = 24.sp,
+        lineHeight = (24 * 1.2).sp,
         fontStyle = FontStyle.Normal,
     )
-
-    val bigTitle = TextStyle(
-        fontWeight = FontWeight.SemiBold,
+    val h5Bold = TextStyle(
+        fontWeight = FontWeight.W600,
         fontSize = 20.sp,
-        lineHeight = 28.sp,
+        lineHeight = (20 * 1.4).sp,
         fontStyle = FontStyle.Normal,
     )
-
-    val title = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
-        lineHeight = 24.sp,
-        fontStyle = FontStyle.Normal,
-    )
-
-    val smallTitle = TextStyle(
-        fontWeight = FontWeight.SemiBold,
+    val paragraphBold = TextStyle(
+        fontWeight = FontWeight.W600,
         fontSize = 16.sp,
-        lineHeight = 24.sp,
+        lineHeight = (16 * 1.4).sp,
         fontStyle = FontStyle.Normal,
     )
-
-    val paragraph = TextStyle(
-        fontWeight = FontWeight.Normal,
+    val paragraphRegular = TextStyle(
+        fontWeight = FontWeight.W400,
+        fontSize = 16.sp,
+        lineHeight = (16 * 1.4).sp,
+        fontStyle = FontStyle.Normal,
+    )
+    val labelBold = TextStyle(
+        fontWeight = FontWeight.W600,
         fontSize = 14.sp,
-        lineHeight = 20.sp,
+        lineHeight = (14 * 1.4).sp,
         fontStyle = FontStyle.Normal,
     )
-
-    val error = TextStyle(
-        fontWeight = FontWeight.Normal,
+    val labelRegular = TextStyle(
+        fontWeight = FontWeight.W400,
+        fontSize = 14.sp,
+        lineHeight = (14 * 1.4).sp,
+        fontStyle = FontStyle.Normal,
+    )
+    val smallBold = TextStyle(
+        fontWeight = FontWeight.W600,
         fontSize = 12.sp,
-        lineHeight = 16.sp,
+        lineHeight = (12 * 1.5).sp,
         fontStyle = FontStyle.Normal,
     )
-
-    val small = TextStyle(
-        fontWeight = FontWeight.Normal,
+    val smallRegular = TextStyle(
+        fontWeight = FontWeight.W400,
         fontSize = 12.sp,
-        lineHeight = 16.sp,
+        lineHeight = (12 * 1.5).sp,
         fontStyle = FontStyle.Normal,
     )
-
-    val tiny = TextStyle(
-        fontWeight = FontWeight.Normal,
+    val tinyRegular = TextStyle(
+        fontWeight = FontWeight.W400,
         fontSize = 10.sp,
-        lineHeight = 14.sp,
+        lineHeight = (10 * 1.5).sp,
+        fontStyle = FontStyle.Normal,
+    )
+    val timeStatusBar = TextStyle(
+        fontWeight = FontWeight.W600,
+        fontSize = 15.sp,
+        lineHeight = (15 * 1.19).sp,
         fontStyle = FontStyle.Normal,
     )
 }

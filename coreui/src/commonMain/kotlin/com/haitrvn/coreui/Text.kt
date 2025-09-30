@@ -22,7 +22,7 @@ fun Text.Header(
     textAlign: TextAlign = TextAlign.Left,
     color: Color = CookTheme.colors.paragraph,
     fontSize: TextUnit = 60.sp,
-    fontFamily: FontFamily? = CookTheme.typography.header.fontFamily
+    fontFamily: FontFamily? = CookTheme.typography.headingBold.fontFamily
 ) {
     Text(
         text = text,

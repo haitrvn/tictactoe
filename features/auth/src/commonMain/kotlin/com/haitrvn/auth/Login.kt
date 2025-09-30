@@ -111,7 +111,7 @@ fun LoginScreen(
             val density = LocalDensity.current
 
             val textHeight = with(density) {
-                CookTheme.typography.paragraph.fontSize.toDp()
+                CookTheme.typography.paragraphRegular.fontSize.toDp()
             }
             Button.Curved(
                 modifier = Modifier.fillMaxWidth(),
