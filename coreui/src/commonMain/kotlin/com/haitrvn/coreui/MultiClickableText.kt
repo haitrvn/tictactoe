@@ -25,7 +25,7 @@ fun MultiClickableText(
                     tag = segment.tag,
                     styles = TextLinkStyles(style = SpanStyle(color = Color.Blue))
                 ) {
-                    DebouncedClickable.preform{ onClick(segment.tag) }
+                    DebouncedClickable.preform { onClick(segment.tag) }
                 }
                 withLink(link = link) {
                     append(segment.text)
@@ -35,7 +35,7 @@ fun MultiClickableText(
             }
         }
     }
-    content(modifier,annotatedString)
+    content(modifier, annotatedString)
 }
 
 data class SegmentText(

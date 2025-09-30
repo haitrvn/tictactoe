@@ -67,8 +67,8 @@ class HomeViewModel(
                     .onSuccess {
                         emit(true)
                     }.onFailure {
-                    emit(false)
-                }
+                        emit(false)
+                    }
             }
         }.onEach {
             println("Login clicked after flatmap")

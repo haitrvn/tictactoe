@@ -11,10 +11,12 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 @Preview(device = "id:4in WVGA (Nexus S)")
 @Preview(device = "id:pixel_9_pro")
-@Preview(device = "id:4in WVGA (Nexus S)",
+@Preview(
+    device = "id:4in WVGA (Nexus S)",
     uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
 )
-@Preview(device = "id:pixel_9_pro", showSystemUi = false, showBackground = false,
+@Preview(
+    device = "id:pixel_9_pro", showSystemUi = false, showBackground = false,
     uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
 )
 fun PreviewWelcomeScreen() {

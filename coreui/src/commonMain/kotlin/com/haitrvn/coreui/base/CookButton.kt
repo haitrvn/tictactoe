@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -86,7 +85,8 @@ private fun Modifier.clickableWithRipple(
     val interactionSource = remember { MutableInteractionSource() }
     return if (enabled) {
         this.composed {
-            val clickable = debouncedComposable(debounceTime = debounceTime, onClick = { onClick() })
+            val clickable =
+                debouncedComposable(debounceTime = debounceTime, onClick = { onClick() })
             this.clickable(
                 interactionSource = interactionSource,
                 indication = ripple(color = contentColor.copy(alpha = 0.24f)),
@@ -99,7 +99,10 @@ private fun Modifier.clickableWithRipple(
 }
 
 @Composable
-inline fun debouncedComposable(crossinline onClick: () -> Unit, debounceTime: Long = 1000L): () -> Unit {
+inline fun debouncedComposable(
+    crossinline onClick: () -> Unit,
+    debounceTime: Long = 1000L
+): () -> Unit {
     var lastTimeClicked by remember { mutableStateOf(0L) }
     val onClickLambda: () -> Unit = {
         val now = Clock.System.now().toEpochMilliseconds()

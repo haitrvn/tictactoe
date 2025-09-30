@@ -14,7 +14,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.haitrvn.auth.LoginScreen
 import com.haitrvn.auth.RegisterScreen
-import com.haitrvn.auth.WelcomeScreen
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
@@ -75,7 +74,7 @@ internal fun NavGraphBuilder.authGraph(
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
         composable<Auth.Welcome> {
-            SplashScreen {  }
+            SplashScreen { }
         }
         composable<Auth.Login> {
             LoginScreen(modifier = modifier, navigator = navigator)

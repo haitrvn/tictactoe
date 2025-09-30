@@ -1,7 +1,7 @@
 package com.haitrvn.domain.usecase
 
 class UserLoginValidationUseCase {
-    
+
     companion object {
         private const val MIN_USERNAME_LENGTH = 3
         private const val MAX_USERNAME_LENGTH = 20
@@ -11,15 +11,15 @@ class UserLoginValidationUseCase {
         private val UPPERCASE_REGEX = Regex(".*[A-Z].*")
         private val SPECIAL_CHAR_REGEX = Regex(".*[!@#\$%^&*()_+\\-=\\[\\]{}|;:,.<>?].*")
     }
-    
+
     suspend fun validatePassword(password: String): List<PasswordValidationError> {
         val errors = mutableListOf<PasswordValidationError>()
-        
+
         when {
             password.isEmpty() -> errors.add(PasswordValidationError.Empty)
             password.length < MIN_PASSWORD_LENGTH -> errors.add(PasswordValidationError.TooShort)
         }
-        
+
         if (password.isNotEmpty()) {
             if (!DIGIT_REGEX.matches(password)) {
                 errors.add(PasswordValidationError.NoDigit)
@@ -31,19 +31,19 @@ class UserLoginValidationUseCase {
                 errors.add(PasswordValidationError.NoSpecialCharacter)
             }
         }
-        
+
         return errors
     }
 
     suspend fun validateUserName(username: String): List<UsernameValidationError> {
         val errors = mutableListOf<UsernameValidationError>()
-        
+
         when {
             username.isEmpty() -> errors.add(UsernameValidationError.Empty)
             username.length < MIN_USERNAME_LENGTH -> errors.add(UsernameValidationError.TooShort)
             username.length > MAX_USERNAME_LENGTH -> errors.add(UsernameValidationError.TooLong)
         }
-        
+
         if (username.isNotEmpty()) {
             if (!USERNAME_REGEX.matches(username)) {
                 errors.add(UsernameValidationError.InvalidCharacter)
@@ -55,7 +55,7 @@ class UserLoginValidationUseCase {
                 errors.add(UsernameValidationError.ConsecutiveDots)
             }
         }
-        
+
         return errors
     }
 }

@@ -29,6 +29,7 @@ data object Main : Destination {
     data object Home : Destination {
         @Serializable
         data object Home1 : Destination
+
         @Serializable
         data object Home2 : Destination
     }
@@ -43,6 +44,7 @@ data object Main : Destination {
     data object Setting : Destination {
         @Serializable
         data object Setting1 : Destination
+
         @Serializable
         data object Setting2 : Destination
     }

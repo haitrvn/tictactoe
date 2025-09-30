@@ -23,11 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.CookImage
 import com.haitrvn.coreui.Drop
+import com.haitrvn.coreui.Float
 import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.Paragraph
-import com.haitrvn.coreui.RoundButton
 import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.theme.CookTheme
@@ -129,7 +130,7 @@ fun WelcomeScreen(
                     .fillMaxWidth()
                     .weight(1f),
             )
-            RoundButton(
+            Button.Float(
                 modifier = Modifier.height(60.dp).aspectRatio(1f),
                 text = ">"
             ) {

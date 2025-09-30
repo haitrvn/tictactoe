@@ -1,6 +1,5 @@
 package com.haitrvn.coreui
 
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -52,6 +51,7 @@ fun SmallSpace(modifier: Modifier = Modifier) {
 fun MediumSpace(modifier: Modifier = Modifier) {
     Spacer(modifier.size(CookTheme.space.medium))
 }
+
 /**
  * Composable function to create a spacer with a "large" dimension (height for Column, width for Row),
  * as defined in [CookTheme.space].

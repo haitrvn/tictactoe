@@ -1,8 +1,5 @@
 package com.haitrvn.navigation
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-
 interface Navigator {
     fun navigate(
         destination: Destination,

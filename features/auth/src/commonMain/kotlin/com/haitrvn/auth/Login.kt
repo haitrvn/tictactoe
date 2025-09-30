@@ -20,13 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.style.TextAlign
+import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.CookImage
-import com.haitrvn.coreui.CurvedButton
+import com.haitrvn.coreui.Curved
+import com.haitrvn.coreui.Float
 import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.Paragraph
-import com.haitrvn.coreui.RoundButton
 import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
@@ -73,7 +73,7 @@ fun LoginScreen(
         modifier = modifier.fillMaxSize()
             .padding(CookTheme.space.screenPadding)
     ) {
-        RoundButton(
+        Button.Float(
             modifier = Modifier.fillMaxHeight(0.09f).aspectRatio(1f),
             text = "<"
         ) {
@@ -113,7 +113,7 @@ fun LoginScreen(
             val textHeight = with(density) {
                 CookTheme.typography.paragraph.fontSize.toDp()
             }
-            CurvedButton(
+            Button.Curved(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = registerWithEmail
             ) {
@@ -138,7 +138,7 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.spacedBy(CookTheme.space.small),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                CurvedButton(
+                Button.Curved(
                     modifier = Modifier.weight(0.5f),
                     backgroundColor = CookTheme.colors.secondParagraph,
                     onClick = loginWithApple,
@@ -148,7 +148,7 @@ fun LoginScreen(
                         source = Res.drawable.ic_login_socical_apple
                     )
                 }
-                CurvedButton(
+                Button.Curved(
                     modifier = Modifier.weight(0.5f),
                     backgroundColor = CookTheme.colors.secondParagraph,
                     onClick = loginWithGoogle,

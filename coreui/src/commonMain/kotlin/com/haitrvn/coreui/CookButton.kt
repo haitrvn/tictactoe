@@ -17,9 +17,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import com.haitrvn.coreui.theme.CookTheme
 
+object Button
 
 @Composable
-fun BaseButton(
+internal fun BaseButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     shape: Shape,
@@ -39,7 +40,7 @@ fun BaseButton(
 }
 
 @Composable
-fun RoundButton(
+fun Button.Float(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     content: @Composable () -> Unit,
@@ -54,7 +55,7 @@ fun RoundButton(
 }
 
 @Composable
-fun RoundButton(
+fun Button.Float(
     modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit = {},
@@ -69,7 +70,7 @@ fun RoundButton(
 }
 
 @Composable
-fun CurvedButton(
+fun Button.Curved(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     backgroundColor: Color = CookTheme.colors.primary,
@@ -86,7 +87,7 @@ fun CurvedButton(
 }
 
 @Composable
-fun CurvedButton(
+fun Button.Curved(
     modifier: Modifier = Modifier,
     backgroundColor: Color = CookTheme.colors.primary,
     text: String,
