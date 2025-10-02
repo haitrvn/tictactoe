@@ -41,30 +41,6 @@ fun CookSurface(
 }
 
 @Composable
-fun CookBrushSurface(
-    modifier: Modifier = Modifier,
-    shape: Shape = RectangleShape,
-    brush: Brush = Brush.horizontalGradient(listOf(Color.Red, Color.Blue)),
-    shadowElevation: Dp = 0.dp,
-    paddingValues: PaddingValues = PaddingValues(0.dp),
-    contentAlignment: Alignment = Alignment.TopStart,
-    content: @Composable BoxScope.() -> Unit = {},
-) {
-    Box(
-        modifier = modifier
-            .shadow(elevation = shadowElevation, shape = shape, clip = true)
-            .background(brush),
-        contentAlignment = contentAlignment
-    ) {
-        Box(
-            modifier = Modifier.wrapContentSize().padding(paddingValues),
-        ) {
-            content()
-        }
-    } // BoxScope
-}
-
-@Composable
 fun CookRoundSurface(
     modifier: Modifier = Modifier,
     shape: Shape = CookTheme.shapes.large,
