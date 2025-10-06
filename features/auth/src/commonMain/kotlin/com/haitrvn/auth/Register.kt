@@ -16,7 +16,7 @@ import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Curved
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Space
 
 @Composable
 fun RegisterScreen(modifier: Modifier = Modifier) {
@@ -31,7 +31,7 @@ fun RegisterScreen(
     goToLogin: () -> Unit = {},
 ) {
     Column(
-        modifier = Modifier.padding(CookTheme.space.screenPadding).fillMaxSize(),
+        modifier = Modifier.padding(Space.screenPadding).fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Row(
@@ -45,7 +45,7 @@ fun RegisterScreen(
             ) {
                 goBack()
             }
-            Text.Title(modifier = Modifier.padding(CookTheme.space.medium).clickable {
+            Text.Title(modifier = Modifier.padding(Space.medium).clickable {
                 goToLogin()
             }, text = "Login")
         }

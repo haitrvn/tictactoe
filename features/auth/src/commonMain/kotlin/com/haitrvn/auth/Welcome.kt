@@ -31,7 +31,9 @@ import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.SmoothLinearProgressBar
 import com.haitrvn.coreui.Text
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Colors
+import com.haitrvn.coreui.theme.Shapes
+import com.haitrvn.coreui.theme.Space
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import kotlinx.collections.immutable.ImmutableList
@@ -80,13 +82,13 @@ fun WelcomeScreen(
     }
     val scope = rememberCoroutineScope()
     Column(
-        modifier = modifier.fillMaxSize().padding(CookTheme.space.screenPadding)
+        modifier = modifier.fillMaxSize().padding(Space.screenPadding)
     ) {
         Box(
             modifier = Modifier.fillMaxWidth().weight(1f)
         ) {
             HorizontalPager(
-                modifier = Modifier.fillMaxSize().clip(shape = CookTheme.shapes.medium),
+                modifier = Modifier.fillMaxSize().clip(shape = Shapes.medium),
                 state = pagerState,
             ) { page ->
                 Drop {
@@ -97,27 +99,27 @@ fun WelcomeScreen(
                 }
             }
             Box(
-                modifier = Modifier.fillMaxSize().clip(shape = CookTheme.shapes.medium)
+                modifier = Modifier.fillMaxSize().clip(shape = Shapes.medium)
                     .background(Color.Black.copy(0.5f))
             ) {
                 Column(
-                    modifier = Modifier.padding(CookTheme.space.large).fillMaxSize(),
+                    modifier = Modifier.padding(Space.large).fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
                 ) {
                     Text.Header(
                         text = welcomePages[pagerState.currentPage].title,
-                        color = CookTheme.colors.paragraphReversed,
+                        color = Colors.paragraphReversed,
                     )
                     Text.Paragraph(
                         text = welcomePages[pagerState.currentPage].description,
-                        color = CookTheme.colors.paragraphReversed,
+                        color = Colors.paragraphReversed,
                     )
                 }
             }
         }
         Row(
             modifier = Modifier.fillMaxWidth().wrapContentHeight()
-                .padding(top = CookTheme.space.medium),
+                .padding(top = Space.medium),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -125,7 +127,7 @@ fun WelcomeScreen(
                 progress = ((pagerState.currentPage + 1).toFloat() / pagerState.pageCount.toFloat()).coerceIn(
                     0f, 1f
                 ),
-                modifier = Modifier.padding(end = CookTheme.space.medium)
+                modifier = Modifier.padding(end = Space.medium)
                     .height(20.dp)
                     .fillMaxWidth()
                     .weight(1f),

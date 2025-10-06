@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.Text
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Colors
 import cookapp.resources.home.Res
 import cookapp.resources.home.card_image_1
 import cookapp.resources.home.play_icon
@@ -83,7 +83,7 @@ fun Tabs(modifier: Modifier = Modifier) {
                 text = "Video",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = CookTheme.colors.primary,
+                color = Colors.primary,
                 textAlign = TextAlign.Center
             )
         }
@@ -95,7 +95,7 @@ fun Tabs(modifier: Modifier = Modifier) {
                 text = "Recipes",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = CookTheme.colors.primary,
+                color = Colors.primary,
                 textAlign = TextAlign.Center
             )
         }
@@ -136,7 +136,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 CookSurface(
                     modifier = Modifier
                         .clip(CircleShape)
-                        .background(CookTheme.colors.primary)
+                        .background(Colors.primary)
                         .padding(12.dp)
                 ) {
                     Image(
@@ -147,7 +147,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 CookSurface(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
-                        .background(CookTheme.colors.primary)
+                        .background(Colors.primary)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -160,7 +160,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                             text = "4,7",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
-                            color = CookTheme.colors.primary,
+                            color = Colors.primary,
                             modifier = Modifier.padding(start = 3.dp)
                         )
                     }
@@ -168,13 +168,13 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 CookSurface(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
-                        .background(CookTheme.colors.primary)
+                        .background(Colors.primary)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Text(
                         text = "8:12",
                         fontSize = 12.sp,
-                        color = CookTheme.colors.primary
+                        color = Colors.primary
                     )
                 }
             }
@@ -183,7 +183,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 text = "How to make sandwich",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = CookTheme.colors.primary,
+                color = Colors.primary,
                 modifier = Modifier.padding(start = 0.dp, top = 0.dp)
             )
             Row(
@@ -193,7 +193,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 CookSurface(
                     modifier = Modifier
                         .clip(CircleShape)
-                        .background(CookTheme.colors.primary)
+                        .background(Colors.primary)
                         .padding(12.dp)
                 ) {
                     // Avatar image placeholder
@@ -201,7 +201,7 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 Text(
                     text = "By Robert hurtson",
                     fontSize = 12.sp,
-                    color = CookTheme.colors.primary,
+                    color = Colors.primary,
                     modifier = Modifier.padding(start = 8.dp)
                 )
             }

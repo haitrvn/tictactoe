@@ -13,8 +13,8 @@ import com.haitrvn.coreui.LocalSpace
 @Composable
 fun CookTheme(
     typography: CookTypography = CreateCookTypography(),
-    contentPadding: ContentPadding = CookTheme.contentPadding,
-    shapes: Shapes = CookTheme.shapes,
+    contentPadding: ContentPadding = ContentsPadding,
+    shapes: Shapes = Shapes,
     systemIsDark: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
@@ -31,62 +31,28 @@ fun CookTheme(
         }
     }
 }
-object Colors {
+
+val Colors: CookColor
     @Composable
     @ReadOnlyComposable
-    operator fun invoke() = LocalColors.current
-}
+    get() = LocalColors.current
 
-object Typography {
+val Typo: CookTypography
     @Composable
     @ReadOnlyComposable
-    operator fun invoke() = LocalTypography.current
-}
+    get() = LocalTypography.current
 
-object Shapes {
+val Shapes: Shapes
     @Composable
     @ReadOnlyComposable
-    operator fun invoke() = LocalShapes.current
-}
+    get() = LocalShapes.current
 
-object ContentsPadding {
+val ContentsPadding: ContentPadding
     @Composable
     @ReadOnlyComposable
-    operator fun invoke() = LocalContentPadding.current
-}
+    get() = LocalContentPadding.current
 
-object Space {
+val Space: CookSpaceDimensions
     @Composable
     @ReadOnlyComposable
-    operator fun invoke() = LocalSpace.current
-}
-
-
-object CookTheme {
-
-    val colors: CookColor
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalColors.current
-
-    val typography: CookTypography
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalTypography.current
-
-    // We use the default material shapes
-    val shapes: Shapes
-        @ReadOnlyComposable
-        @Composable
-        get() = LocalShapes.current
-
-    val contentPadding: ContentPadding
-        @ReadOnlyComposable
-        @Composable
-        get() = LocalContentPadding.current
-
-    val space: CookSpaceDimensions
-        @ReadOnlyComposable
-        @Composable
-        get() = LocalSpace.current
-}
+    get() = LocalSpace.current

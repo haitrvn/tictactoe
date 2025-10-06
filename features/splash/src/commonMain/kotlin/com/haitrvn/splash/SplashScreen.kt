@@ -27,7 +27,7 @@ import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Colors
 import cookapp.resources.splash.Res
 import cookapp.resources.splash.splash_bg
 
@@ -77,7 +77,7 @@ fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
             Button.Curved(
                 modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)),
                 onClick = onStartClick,
-                backgroundColor = CookTheme.colors.primary
+                backgroundColor = Colors.primary
             ) {
                 Row(
                     Modifier.padding(vertical = 16.dp),

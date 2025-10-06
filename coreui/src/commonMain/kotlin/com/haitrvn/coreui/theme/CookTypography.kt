@@ -41,13 +41,23 @@ class CookTypography(
         tinyRegular: TextStyle = this.tinyRegular,
         timeStatusBar: TextStyle = this.timeStatusBar,
     ): CookTypography = CookTypography(
-        headingBold, h4Bold, h5Bold, paragraphBold, paragraphRegular, labelBold, labelRegular, smallBold, smallRegular, tinyRegular, timeStatusBar
+        headingBold,
+        h4Bold,
+        h5Bold,
+        paragraphBold,
+        paragraphRegular,
+        labelBold,
+        labelRegular,
+        smallBold,
+        smallRegular,
+        tinyRegular,
+        timeStatusBar
     )
 }
 
 @Composable
 fun CreateCookTypography(
-    defaultColor: Color = CookTheme.colors.paragraph,
+    defaultColor: Color = Colors.paragraph,
     poppinsFontFamily: FontFamily = FontFamily(
         Font(Res.font.nunito_italic, weight = FontWeight.W400, style = FontStyle.Normal),
         Font(Res.font.nunito_normal, weight = FontWeight.W600, style = FontStyle.Normal),
@@ -55,17 +65,44 @@ fun CreateCookTypography(
     ),
     sfProTextFontFamily: FontFamily = FontFamily.Default // fallback, hoặc thêm nếu có file
 ): CookTypography = CookTypography(
-    headingBold = CookTypographyTokens.headingBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
+    headingBold = CookTypographyTokens.headingBold.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
     h4Bold = CookTypographyTokens.h4Bold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
     h5Bold = CookTypographyTokens.h5Bold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    paragraphBold = CookTypographyTokens.paragraphBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    paragraphRegular = CookTypographyTokens.paragraphRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    labelBold = CookTypographyTokens.labelBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    labelRegular = CookTypographyTokens.labelRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    smallBold = CookTypographyTokens.smallBold.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    smallRegular = CookTypographyTokens.smallRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    tinyRegular = CookTypographyTokens.tinyRegular.copy(color = defaultColor, fontFamily = poppinsFontFamily),
-    timeStatusBar = CookTypographyTokens.timeStatusBar.copy(color = defaultColor, fontFamily = sfProTextFontFamily),
+    paragraphBold = CookTypographyTokens.paragraphBold.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
+    paragraphRegular = CookTypographyTokens.paragraphRegular.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
+    labelBold = CookTypographyTokens.labelBold.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
+    labelRegular = CookTypographyTokens.labelRegular.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
+    smallBold = CookTypographyTokens.smallBold.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
+    smallRegular = CookTypographyTokens.smallRegular.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
+    tinyRegular = CookTypographyTokens.tinyRegular.copy(
+        color = defaultColor,
+        fontFamily = poppinsFontFamily
+    ),
+    timeStatusBar = CookTypographyTokens.timeStatusBar.copy(
+        color = defaultColor,
+        fontFamily = sfProTextFontFamily
+    ),
 )
 
 internal val LocalTypography = staticCompositionLocalOf { CookTypography() }

@@ -11,7 +11,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Colors
+import com.haitrvn.coreui.theme.Typo
 
 object Text
 
@@ -20,9 +21,9 @@ fun Text.Header(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = CookTheme.colors.paragraph,
+    color: Color = Colors.paragraph,
     fontSize: TextUnit = 60.sp,
-    fontFamily: FontFamily? = CookTheme.typography.headingBold.fontFamily
+    fontFamily: FontFamily? = Typo.headingBold.fontFamily
 ) {
     Text(
         text = text,
@@ -61,7 +62,7 @@ fun Text.Paragraph(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = CookTheme.colors.paragraph
+    color: Color = Colors.paragraph
 ) {
     Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
 }

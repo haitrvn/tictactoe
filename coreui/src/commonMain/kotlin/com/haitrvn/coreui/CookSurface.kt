@@ -14,13 +14,13 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Colors
 
 @Composable
 fun CookSurface(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
-    color: Color = CookTheme.colors.background1,
+    color: Color = Colors.background1,
     shadowElevation: Dp = 0.dp,
     paddingValues: PaddingValues = PaddingValues(0.dp),
     content: @Composable BoxScope.() -> Unit = {},

@@ -30,7 +30,10 @@ import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Colors
+import com.haitrvn.coreui.theme.Shapes
+import com.haitrvn.coreui.theme.Space
+import com.haitrvn.coreui.theme.Typo
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
@@ -71,7 +74,7 @@ fun LoginScreen(
 ) {
     Column(
         modifier = modifier.fillMaxSize()
-            .padding(CookTheme.space.screenPadding)
+            .padding(Space.screenPadding)
     ) {
         Button.Float(
             modifier = Modifier.fillMaxHeight(0.09f).aspectRatio(1f),
@@ -82,18 +85,18 @@ fun LoginScreen(
         Box(
             modifier = Modifier.fillMaxWidth()
                 .weight(0.8f)
-                .padding(top = CookTheme.space.medium)
+                .padding(top = Space.medium)
         ) {
             CookImage(
-                modifier = Modifier.fillMaxSize().clip(shape = CookTheme.shapes.medium),
+                modifier = Modifier.fillMaxSize().clip(shape = Shapes.medium),
                 source = welcomeUiState.login.imageUrl,
             )
             Box(
-                modifier = Modifier.fillMaxSize().clip(shape = CookTheme.shapes.medium)
+                modifier = Modifier.fillMaxSize().clip(shape = Shapes.medium)
                     .background(Color.Black.copy(0.5f))
             ) {
                 Column(
-                    modifier = Modifier.padding(CookTheme.space.medium).fillMaxSize(),
+                    modifier = Modifier.padding(Space.medium).fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
                 ) {
                     Text.Header(
@@ -106,12 +109,12 @@ fun LoginScreen(
             }
         }
         Column(
-            modifier = Modifier.fillMaxWidth().weight(0.2f).padding(top = CookTheme.space.medium),
+            modifier = Modifier.fillMaxWidth().weight(0.2f).padding(top = Space.medium),
         ) {
             val density = LocalDensity.current
 
             val textHeight = with(density) {
-                CookTheme.typography.paragraphRegular.fontSize.toDp()
+                Typo.paragraphRegular.fontSize.toDp()
             }
             Button.Curved(
                 modifier = Modifier.fillMaxWidth(),
@@ -123,7 +126,7 @@ fun LoginScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     CookImage(
-                        modifier = Modifier.padding(end = CookTheme.space.small)
+                        modifier = Modifier.padding(end = Space.small)
                             .height(textHeight)
                             .aspectRatio(1f),
                         source = Res.drawable.ic_login_socical_apple
@@ -134,13 +137,13 @@ fun LoginScreen(
                 }
             }
             Row(
-                modifier = Modifier.fillMaxWidth().padding(top = CookTheme.space.small),
-                horizontalArrangement = Arrangement.spacedBy(CookTheme.space.small),
+                modifier = Modifier.fillMaxWidth().padding(top = Space.small),
+                horizontalArrangement = Arrangement.spacedBy(Space.small),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Button.Curved(
                     modifier = Modifier.weight(0.5f),
-                    backgroundColor = CookTheme.colors.secondParagraph,
+                    backgroundColor = Colors.secondParagraph,
                     onClick = loginWithApple,
                 ) {
                     CookImage(
@@ -150,7 +153,7 @@ fun LoginScreen(
                 }
                 Button.Curved(
                     modifier = Modifier.weight(0.5f),
-                    backgroundColor = CookTheme.colors.secondParagraph,
+                    backgroundColor = Colors.secondParagraph,
                     onClick = loginWithGoogle,
                 ) {
                     CookImage(

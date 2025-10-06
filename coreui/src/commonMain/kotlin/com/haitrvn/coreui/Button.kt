@@ -15,7 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Colors
+import com.haitrvn.coreui.theme.Shapes
+import com.haitrvn.coreui.theme.Space
 
 object Button
 
@@ -24,7 +26,7 @@ internal fun BaseButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     shape: Shape,
-    backgroundColor: Color = CookTheme.colors.primary,
+    backgroundColor: Color = Colors.primary,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     indication: Indication? = null,
     content: @Composable () -> Unit,
@@ -73,12 +75,12 @@ fun Button.Float(
 fun Button.Curved(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
-    backgroundColor: Color = CookTheme.colors.primary,
+    backgroundColor: Color = Colors.primary,
     content: @Composable () -> Unit,
 ) {
     BaseButton(
-        modifier = modifier.wrapContentSize().padding(CookTheme.space.medium),
-        shape = CookTheme.shapes.medium,
+        modifier = modifier.wrapContentSize().padding(Space.medium),
+        shape = Shapes.medium,
         onClick = onClick,
         backgroundColor = backgroundColor,
     ) {
@@ -89,13 +91,13 @@ fun Button.Curved(
 @Composable
 fun Button.Curved(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = CookTheme.colors.primary,
+    backgroundColor: Color = Colors.primary,
     text: String,
     onClick: () -> Unit,
 ) {
     BaseButton(
-        modifier = modifier.padding(CookTheme.space.medium),
-        shape = CookTheme.shapes.medium,
+        modifier = modifier.padding(Space.medium),
+        shape = Shapes.medium,
         onClick = onClick,
         backgroundColor = backgroundColor,
     ) {
