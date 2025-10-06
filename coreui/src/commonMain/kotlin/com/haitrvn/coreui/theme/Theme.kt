@@ -31,6 +31,36 @@ fun CookTheme(
         }
     }
 }
+object Colors {
+    @Composable
+    @ReadOnlyComposable
+    operator fun invoke() = LocalColors.current
+}
+
+object Typography {
+    @Composable
+    @ReadOnlyComposable
+    operator fun invoke() = LocalTypography.current
+}
+
+object Shapes {
+    @Composable
+    @ReadOnlyComposable
+    operator fun invoke() = LocalShapes.current
+}
+
+object ContentsPadding {
+    @Composable
+    @ReadOnlyComposable
+    operator fun invoke() = LocalContentPadding.current
+}
+
+object Space {
+    @Composable
+    @ReadOnlyComposable
+    operator fun invoke() = LocalSpace.current
+}
+
 
 object CookTheme {
 

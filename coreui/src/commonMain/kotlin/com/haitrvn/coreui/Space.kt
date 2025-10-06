@@ -1,7 +1,5 @@
 package com.haitrvn.coreui
 
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -72,14 +70,4 @@ fun LargeSpace(modifier: Modifier = Modifier) {
 @Composable
 fun CustomSpace(size: Dp, modifier: Modifier = Modifier) {
     Spacer(modifier.size(size))
-}
-
-@Composable
-fun ColumnScope.FillSpace() {
-    Spacer(modifier = Modifier.weight(1f))
-}
-
-@Composable
-fun RowScope.FillSpace() {
-    Spacer(modifier = Modifier.weight(1f))
 }

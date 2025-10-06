@@ -9,7 +9,6 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
-import com.haitrvn.coreui.base.DebouncedClickable
 
 @Composable
 fun MultiClickableText(
@@ -25,7 +24,7 @@ fun MultiClickableText(
                     tag = segment.tag,
                     styles = TextLinkStyles(style = SpanStyle(color = Color.Blue))
                 ) {
-                    DebouncedClickable.preform { onClick(segment.tag) }
+                    onClick(segment.tag)
                 }
                 withLink(link = link) {
                     append(segment.text)
