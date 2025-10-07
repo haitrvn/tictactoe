@@ -24,12 +24,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Drop
 import com.haitrvn.coreui.Float
 import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.Paragraph
-import com.haitrvn.coreui.SmoothLinearProgressBar
+import com.haitrvn.coreui.ProgressBar
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.theme.Colors
 import com.haitrvn.coreui.theme.Shapes
@@ -92,7 +92,7 @@ fun WelcomeScreen(
                 state = pagerState,
             ) { page ->
                 Drop {
-                    CookImage(
+                    Image(
                         modifier = Modifier.fillMaxSize(),
                         source = welcomePages[page].imageUrl,
                     )
@@ -123,7 +123,7 @@ fun WelcomeScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            SmoothLinearProgressBar(
+            ProgressBar(
                 progress = ((pagerState.currentPage + 1).toFloat() / pagerState.pageCount.toFloat()).coerceIn(
                     0f, 1f
                 ),

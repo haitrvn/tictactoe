@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.drawscope.clipPath
 import com.haitrvn.coreui.theme.Colors
 
 @Composable
-fun SmoothLinearProgressBar(
+fun ProgressBar(
     progress: Float,
     modifier: Modifier = Modifier,
     trackColor: Color = Colors.background2,

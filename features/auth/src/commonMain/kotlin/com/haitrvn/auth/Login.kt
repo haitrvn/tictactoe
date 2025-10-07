@@ -21,7 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Curved
 import com.haitrvn.coreui.Float
 import com.haitrvn.coreui.Header
@@ -87,7 +87,7 @@ fun LoginScreen(
                 .weight(0.8f)
                 .padding(top = Space.medium)
         ) {
-            CookImage(
+            Image(
                 modifier = Modifier.fillMaxSize().clip(shape = Shapes.medium),
                 source = welcomeUiState.login.imageUrl,
             )
@@ -125,7 +125,7 @@ fun LoginScreen(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    CookImage(
+                    Image(
                         modifier = Modifier.padding(end = Space.small)
                             .height(textHeight)
                             .aspectRatio(1f),
@@ -146,7 +146,7 @@ fun LoginScreen(
                     backgroundColor = Colors.secondParagraph,
                     onClick = loginWithApple,
                 ) {
-                    CookImage(
+                    Image(
                         modifier = Modifier.height(textHeight * 1.5f).aspectRatio(1f),
                         source = Res.drawable.ic_login_socical_apple
                     )
@@ -156,7 +156,7 @@ fun LoginScreen(
                     backgroundColor = Colors.secondParagraph,
                     onClick = loginWithGoogle,
                 ) {
-                    CookImage(
+                    Image(
                         modifier = Modifier.height(textHeight * 1.5f).aspectRatio(1f),
                         source = Res.drawable.ic_login_socical_google
                     )

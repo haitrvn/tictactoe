@@ -9,7 +9,7 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun CookImage(
+fun Image(
     modifier: Modifier = Modifier,
     source: Any,
     contentScale: ContentScale = ContentScale.Crop,

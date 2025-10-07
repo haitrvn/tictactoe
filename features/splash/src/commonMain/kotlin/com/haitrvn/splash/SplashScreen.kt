@@ -19,7 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.CookImage
+import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Curved
 import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.LargeSpace
@@ -35,7 +35,7 @@ import cookapp.resources.splash.splash_bg
 fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
     Box(modifier = modifier.fillMaxSize()) {
         // Background image
-        CookImage(
+        Image(
             modifier = Modifier.fillMaxSize(),
             source = Res.drawable.splash_bg,
             contentScale = ContentScale.Crop
