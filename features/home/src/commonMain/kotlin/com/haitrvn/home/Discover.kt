@@ -12,16 +12,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.Text
@@ -79,10 +76,8 @@ fun Tabs(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(horizontal = 12.dp, vertical = 8.dp)
         ) {
-            Text(
+            Text.Paragraph(
                 text = "Video",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
                 color = Colors.primary,
                 textAlign = TextAlign.Center
             )
@@ -91,10 +86,8 @@ fun Tabs(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(horizontal = 12.dp, vertical = 8.dp)
         ) {
-            Text(
+            Text.Paragraph(
                 text = "Recipes",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
                 color = Colors.primary,
                 textAlign = TextAlign.Center
             )
@@ -156,10 +149,8 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                             contentDescription = null,
                             modifier = Modifier
                         )
-                        Text(
+                        Text.Paragraph(
                             text = "4,7",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
                             color = Colors.primary,
                             modifier = Modifier.padding(start = 3.dp)
                         )
@@ -171,18 +162,15 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                         .background(Colors.primary)
                         .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
-                    Text(
+                    Text.Paragraph(
                         text = "8:12",
-                        fontSize = 12.sp,
                         color = Colors.primary
                     )
                 }
             }
             Spacer(modifier = Modifier.padding(top = 8.dp))
-            Text(
+            Text.Paragraph(
                 text = "How to make sandwich",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
                 color = Colors.primary,
                 modifier = Modifier.padding(start = 0.dp, top = 0.dp)
             )
@@ -198,9 +186,8 @@ fun DiscoverCard(modifier: Modifier = Modifier) {
                 ) {
                     // Avatar image placeholder
                 }
-                Text(
+                Text.Paragraph(
                     text = "By Robert hurtson",
-                    fontSize = 12.sp,
                     color = Colors.primary,
                     modifier = Modifier.padding(start = 8.dp)
                 )
