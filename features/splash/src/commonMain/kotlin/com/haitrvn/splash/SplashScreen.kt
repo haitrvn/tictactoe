@@ -39,7 +39,7 @@ import cookapp.resources.splash.splash_views
 import cookapp.resources.splash.splash_views_recipes
 
 @Composable
-fun SplashScreenWrapper(
+fun SplashScreen(
     modifier: Modifier = Modifier,
     navigator: Navigator,
 ) {
@@ -47,7 +47,7 @@ fun SplashScreenWrapper(
 }
 
 @Composable
-fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
+internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
     Box(modifier = modifier.fillMaxSize()) {
         Image(
             modifier = Modifier.fillMaxSize(),

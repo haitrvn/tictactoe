@@ -31,7 +31,7 @@ fun RegisterScreen(
     goToLogin: () -> Unit = {},
 ) {
     Column(
-        modifier = Modifier.padding(Space.screenPadding).fillMaxSize(),
+        modifier = Modifier.padding(Space.medium).fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Row(

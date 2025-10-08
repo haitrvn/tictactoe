@@ -24,10 +24,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Drop
 import com.haitrvn.coreui.Float
 import com.haitrvn.coreui.Header
+import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.ProgressBar
 import com.haitrvn.coreui.Text
@@ -81,7 +81,7 @@ fun WelcomeScreen(
     }
     val scope = rememberCoroutineScope()
     Column(
-        modifier = modifier.fillMaxSize().padding(Space.screenPadding)
+        modifier = modifier.fillMaxSize().padding(Space.medium)
     ) {
         Box(
             modifier = Modifier.fillMaxWidth().weight(1f)

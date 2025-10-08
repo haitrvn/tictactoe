@@ -18,7 +18,7 @@ import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
-import com.haitrvn.splash.SplashScreenWrapper
+import com.haitrvn.splash.SplashScreen
 
 @Composable
 internal fun MainGraph(
@@ -74,7 +74,7 @@ internal fun NavGraphBuilder.authGraph(
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
         composable<Auth.Welcome> {
-            SplashScreenWrapper(
+            SplashScreen(
                 modifier = modifier,
                 navigator = navigator,
             )

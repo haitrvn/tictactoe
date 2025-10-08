@@ -106,7 +106,7 @@ val LightColors = Color(
 val DarkColors = Color(
     primary = Color(0xFFBB86FC),
     onPrimary = Color(0xffffffff),
-    primaryContainer = Color(0xFF6200EE),
+    primaryContainer = Color(0xff492c63),
     onPrimaryContainer = Color(0xFFFFFFFF),
 
     secondary = Color(0xFF03DAC6),
