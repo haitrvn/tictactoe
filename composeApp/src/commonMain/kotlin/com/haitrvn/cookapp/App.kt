@@ -4,6 +4,8 @@ package com.haitrvn.cookapp
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -13,8 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.imageloader.initImageLoader
+import com.haitrvn.coreui.theme.Colors
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.home.BottomNavigationBar
 import com.haitrvn.navigation.Auth
@@ -69,7 +71,7 @@ internal fun App(
             }
         }) {
         SharedTransitionLayout {
-            CookSurface {
+            Box(modifier = Modifier.background(Colors.background1)) {
                 MainGraph(
                     navController = navController,
                     navigator = navigator,

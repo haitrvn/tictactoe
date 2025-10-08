@@ -31,6 +31,7 @@ import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
 import com.haitrvn.coreui.theme.Colors
+import com.haitrvn.coreui.theme.Shape
 import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.theme.Space
 import com.haitrvn.coreui.theme.Typo

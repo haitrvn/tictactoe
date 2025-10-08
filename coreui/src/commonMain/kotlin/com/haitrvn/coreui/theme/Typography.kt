@@ -15,7 +15,7 @@ import cookapp.resources.core.ui.nunito_normal
 import org.jetbrains.compose.resources.Font
 
 @Immutable
-class CookTypography(
+class Typography(
     val headingBold: TextStyle = CookTypographyTokens.headingBold,
     val h4Bold: TextStyle = CookTypographyTokens.h4Bold,
     val h5Bold: TextStyle = CookTypographyTokens.h5Bold,
@@ -40,7 +40,7 @@ class CookTypography(
         smallRegular: TextStyle = this.smallRegular,
         tinyRegular: TextStyle = this.tinyRegular,
         timeStatusBar: TextStyle = this.timeStatusBar,
-    ): CookTypography = CookTypography(
+    ): Typography = Typography(
         headingBold,
         h4Bold,
         h5Bold,
@@ -64,7 +64,7 @@ fun CreateCookTypography(
         Font(Res.font.nunito_normal, weight = FontWeight.W700, style = FontStyle.Normal),
     ),
     sfProTextFontFamily: FontFamily = FontFamily.Default // fallback, hoặc thêm nếu có file
-): CookTypography = CookTypography(
+): Typography = Typography(
     headingBold = CookTypographyTokens.headingBold.copy(
         color = defaultColor,
         fontFamily = poppinsFontFamily
@@ -104,8 +104,6 @@ fun CreateCookTypography(
         fontFamily = sfProTextFontFamily
     ),
 )
-
-internal val LocalTypography = staticCompositionLocalOf { CookTypography() }
 
 object CookTypographyTokens {
     val headingBold = TextStyle(
@@ -175,3 +173,5 @@ object CookTypographyTokens {
         fontStyle = FontStyle.Normal,
     )
 }
+
+internal val LocalTypography = staticCompositionLocalOf { Typography() }

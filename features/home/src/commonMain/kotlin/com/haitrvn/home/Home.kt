@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.haitrvn.coreui.CookSurface
 import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
@@ -71,10 +69,8 @@ fun Trending(modifier: Modifier = Modifier) {
 
 @Composable
 fun TrendingItem(modifier: Modifier = Modifier) {
-    CookSurface {
-        Text.Title(modifier = Modifier.align(Alignment.TopStart), text = "4*")
-        Text.Title(modifier = Modifier.align(Alignment.TopEnd), text = "10:10")
-    }
+    Text.Title(text = "4*")
+    Text.Title(text = "10:10")
 }
 
 @Composable

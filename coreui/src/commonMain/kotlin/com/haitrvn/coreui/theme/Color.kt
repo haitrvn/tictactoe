@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-class CookColor(
+class Color(
     primary: Color,
     onPrimary: Color,
     paragraph: Color,
@@ -50,7 +50,7 @@ class CookColor(
         background1: Color = this.background1,
         background2: Color = this.background2,
         background3: Color = this.background3
-    ): CookColor = CookColor(
+    ): com.haitrvn.coreui.theme.Color = Color(
         primary = primary,
         onPrimary = onPrimary,
         paragraph = paragraph,
@@ -63,7 +63,7 @@ class CookColor(
         background3 = background3
     )
 
-    fun updateColorsFrom(other: CookColor) {
+    fun updateColorsFrom(other: com.haitrvn.coreui.theme.Color) {
         primary = other.primary
         onPrimary = other.onPrimary
         paragraph = other.paragraph
@@ -104,9 +104,7 @@ val darkBackground1: Color = Color(0xFF090d19)
 val darkBackground2: Color = Color(0xFF161c2c)
 val darkBackground3: Color = Color(0xFF161c2c)
 
-internal val LocalColors = staticCompositionLocalOf { LightColors }
-
-val LightColors = CookColor(
+val LightColors = Color(
     primary = lightPrimary,
     onPrimary = lightOnPrimary,
     paragraph = lightParagraph,
@@ -119,7 +117,7 @@ val LightColors = CookColor(
     background3 = lightBackground3
 )
 
-val DarkColors = CookColor(
+val DarkColors = Color(
     primary = darkPrimary,
     onPrimary = darkOnPrimary,
     paragraph = darkParagraph,
@@ -131,3 +129,5 @@ val DarkColors = CookColor(
     background2 = darkBackground2,
     background3 = darkBackground3
 )
+
+internal val LocalColors = staticCompositionLocalOf { LightColors }
