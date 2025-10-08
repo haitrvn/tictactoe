@@ -10,7 +10,6 @@ class AppActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            App(Modifier.safeDrawingPadding())
             App()
         }
     }

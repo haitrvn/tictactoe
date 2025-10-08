@@ -100,7 +100,7 @@ val LightColors = Color(
     error = Color(0xFFB00020),
     onError = Color(0xFFFFFFFF),
     errorContainer = Color(0xFFFFDAD4),
-    onErrorContainer = Color.Black
+    onErrorContainer = Color(0xFF000000),
 )
 
 val DarkColors = Color(
@@ -128,7 +128,7 @@ val DarkColors = Color(
     error = Color(0xFFCF6679),
     onError = Color(0xFF000000),
     errorContainer = Color(0xFFB00020),
-    onErrorContainer = Color.White
+    onErrorContainer = Color(0xFFFFFFFF),
 )
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }
