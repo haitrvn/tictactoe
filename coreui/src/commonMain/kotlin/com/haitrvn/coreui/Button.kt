@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import com.haitrvn.coreui.theme.Colors
+import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.theme.Space
 
@@ -26,7 +26,7 @@ internal fun BaseButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     shape: Shape,
-    backgroundColor: Color = Colors.primary,
+    backgroundColor: Color = AppColors.primary,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     indication: Indication? = null,
     content: @Composable () -> Unit,
@@ -75,7 +75,7 @@ fun Button.Float(
 fun Button.Curved(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
-    backgroundColor: Color = Colors.primary,
+    backgroundColor: Color = AppColors.primary,
     content: @Composable () -> Unit,
 ) {
     BaseButton(
@@ -91,7 +91,7 @@ fun Button.Curved(
 @Composable
 fun Button.Curved(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = Colors.primary,
+    backgroundColor: Color = AppColors.primary,
     text: String,
     onClick: () -> Unit,
 ) {

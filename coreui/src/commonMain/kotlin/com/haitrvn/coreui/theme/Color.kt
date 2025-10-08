@@ -9,125 +9,126 @@ import androidx.compose.ui.graphics.Color
 class Color(
     primary: Color,
     onPrimary: Color,
-    paragraph: Color,
-    paragraphReversed: Color,
-    secondParagraph: Color,
+    primaryContainer: Color,
+    onPrimaryContainer: Color,
+    secondary: Color,
+    onSecondary: Color,
+    secondaryContainer: Color,
+    onSecondaryContainer: Color,
+    tertiary: Color,
+    onTertiary: Color,
+    tertiaryContainer: Color,
+    onTertiaryContainer: Color,
+    background: Color,
+    onBackground: Color,
+    surface: Color,
+    onSurface: Color,
     error: Color,
-    link: Color,
-    background1: Color,
-    background2: Color,
-    background3: Color
+    onError: Color,
+    errorContainer: Color,
+    onErrorContainer: Color,
 ) {
     var primary by mutableStateOf(primary)
         private set
     var onPrimary by mutableStateOf(onPrimary)
         private set
-    var paragraph by mutableStateOf(paragraph)
+    var primaryContainer by mutableStateOf(primaryContainer)
         private set
-    var paragraphReversed by mutableStateOf(paragraph)
+    var onPrimaryContainer by mutableStateOf(onPrimaryContainer)
         private set
-    var secondParagraph by mutableStateOf(secondParagraph)
+
+    var secondary by mutableStateOf(secondary)
         private set
+    var onSecondary by mutableStateOf(onSecondary)
+        private set
+    var secondaryContainer by mutableStateOf(secondaryContainer)
+        private set
+    var onSecondaryContainer by mutableStateOf(onSecondaryContainer)
+        private set
+
+    var tertiary by mutableStateOf(tertiary)
+        private set
+    var onTertiary by mutableStateOf(onTertiary)
+        private set
+    var tertiaryContainer by mutableStateOf(tertiaryContainer)
+        private set
+    var onTertiaryContainer by mutableStateOf(onTertiaryContainer)
+        private set
+
+    var background by mutableStateOf(background)
+        private set
+    var onBackground by mutableStateOf(onBackground)
+        private set
+
+    var surface by mutableStateOf(surface)
+        private set
+    var onSurface by mutableStateOf(onSurface)
+        private set
+
     var error by mutableStateOf(error)
         private set
-    var link by mutableStateOf(link)
+    var onError by mutableStateOf(onError)
         private set
-    var background1 by mutableStateOf(background1)
+    var errorContainer by mutableStateOf(errorContainer)
         private set
-    var background2 by mutableStateOf(background2)
+    var onErrorContainer by mutableStateOf(onErrorContainer)
         private set
-    var background3 by mutableStateOf(background3)
-        private set
-
-    fun copy(
-        primary: Color = this.primary,
-        onPrimary: Color = this.onPrimary,
-        paragraph: Color = this.paragraph,
-        paragraphReversed: Color = this.paragraphReversed,
-        secondParagraph: Color = this.secondParagraph,
-        error: Color = this.error,
-        link: Color = this.link,
-        background1: Color = this.background1,
-        background2: Color = this.background2,
-        background3: Color = this.background3
-    ): com.haitrvn.coreui.theme.Color = Color(
-        primary = primary,
-        onPrimary = onPrimary,
-        paragraph = paragraph,
-        paragraphReversed = paragraphReversed,
-        secondParagraph = secondParagraph,
-        error = error,
-        link = link,
-        background1 = background1,
-        background2 = background2,
-        background3 = background3
-    )
-
-    fun updateColorsFrom(other: com.haitrvn.coreui.theme.Color) {
-        primary = other.primary
-        onPrimary = other.onPrimary
-        paragraph = other.paragraph
-        paragraphReversed = other.paragraphReversed
-        secondParagraph = other.secondParagraph
-        error = other.error
-        link = other.link
-        background1 = other.background1
-        background2 = other.background2
-        background3 = other.background3
-    }
 }
 
-val appleLoginBackground: Color = Color(0xFF1a1a1a)
-val facebookLoginBackground: Color = Color(0xFF0866ff)
-val googleLoginBackground: Color = Color(0xFFf0f4f8)
-val googleLoginText: Color = Color(0xff000000)
-
-val lightPrimary: Color = Color(0xFFff6e41)
-val lightOnPrimary: Color = Color(0xFFFFFFFF)
-val lightParagraph: Color = Color(0xfffff3eb)
-val lightParagraphReversed: Color = Color(0xff47304d)
-val lightSecondParagraph: Color = Color(0xff292929)
-val lightError: Color = Color(0xfffb0909)
-val lightLink: Color = Color(0xccff6e41)
-val lightBackground1: Color = Color(0xFFFFFFFF)
-val lightBackground2: Color = Color(0xFFf5f5f5)
-val lightBackground3: Color = Color(0xFFfff2eb)
-
-val darkPrimary: Color = Color(0xFFff6e41)
-val darkOnPrimary: Color = Color(0xFFFFFFFF)
-val darkParagraph: Color = Color(0xffffeee2)
-val darkParagraphReversed: Color = Color(0xffffeee2)
-val darkSecondParagraph: Color = Color(0xffd6d6d6)
-val darkError: Color = Color(0xffe40303)
-val darkLink: Color = Color(0xccff6e41)
-val darkBackground1: Color = Color(0xFF090d19)
-val darkBackground2: Color = Color(0xFF161c2c)
-val darkBackground3: Color = Color(0xFF161c2c)
-
 val LightColors = Color(
-    primary = lightPrimary,
-    onPrimary = lightOnPrimary,
-    paragraph = lightParagraph,
-    paragraphReversed = lightParagraphReversed,
-    secondParagraph = lightSecondParagraph,
-    error = lightError,
-    link = lightLink,
-    background1 = lightBackground1,
-    background2 = lightBackground2,
-    background3 = lightBackground3
+    primary = Color(0xFF6200EE),
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFF3700B3),
+    onPrimaryContainer = Color.White,
+
+    secondary = Color(0xFF03DAC6),
+    onSecondary = Color.Black,
+    secondaryContainer = Color(0xFF018786),
+    onSecondaryContainer = Color.Black,
+
+    tertiary = Color(0xFFB00020),
+    onTertiary = Color.White,
+    tertiaryContainer = Color(0xFF370617),
+    onTertiaryContainer = Color.White,
+
+    background = Color(0xFFFFFFFF),
+    onBackground = Color.Black,
+
+    surface = Color(0xFFFFFFFF),
+    onSurface = Color.Black,
+
+    error = Color(0xFFB00020),
+    onError = Color.White,
+    errorContainer = Color(0xFFFFDAD4),
+    onErrorContainer = Color.Black
 )
 
 val DarkColors = Color(
-    primary = darkPrimary,
-    onPrimary = darkOnPrimary,
-    paragraph = darkParagraph,
-    paragraphReversed = darkParagraphReversed,
-    secondParagraph = darkSecondParagraph,
-    error = darkError,
-    link = darkLink,
-    background1 = darkBackground1,
-    background2 = darkBackground2,
-    background3 = darkBackground3
+    primary = Color(0xFFBB86FC),
+    onPrimary = Color.Black,
+    primaryContainer = Color(0xFF6200EE),
+    onPrimaryContainer = Color.White,
+
+    secondary = Color(0xFF03DAC6),
+    onSecondary = Color.Black,
+    secondaryContainer = Color(0xFF03DAC5),
+    onSecondaryContainer = Color.Black,
+
+    tertiary = Color(0xFFCF6679),
+    onTertiary = Color.Black,
+    tertiaryContainer = Color(0xFFB00020),
+    onTertiaryContainer = Color.White,
+
+    background = Color(0xFF121212),
+    onBackground = Color.White,
+
+    surface = Color(0xFF121212),
+    onSurface = Color.White,
+
+    error = Color(0xFFCF6679),
+    onError = Color.Black,
+    errorContainer = Color(0xFFB00020),
+    onErrorContainer = Color.White
 )
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }

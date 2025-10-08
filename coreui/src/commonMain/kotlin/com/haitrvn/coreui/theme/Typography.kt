@@ -57,7 +57,7 @@ class Typography(
 
 @Composable
 fun CreateCookTypography(
-    defaultColor: Color = Colors.paragraph,
+    defaultColor: Color = AppColors.onPrimary,
     poppinsFontFamily: FontFamily = FontFamily(
         Font(Res.font.nunito_italic, weight = FontWeight.W400, style = FontStyle.Normal),
         Font(Res.font.nunito_normal, weight = FontWeight.W600, style = FontStyle.Normal),

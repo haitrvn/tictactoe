@@ -27,33 +27,33 @@ fun CookTheme(
         LocalTypography provides typography,
         LocalContentPadding provides contentPadding,
     ) {
-        Box(modifier = Modifier.background(Colors.background1)) {
+        Box(modifier = Modifier.background(AppColors.primaryContainer)) {
             content()
         }
     }
 }
 
-val Colors: Color
+internal val AppColors: Color
     @Composable
     @ReadOnlyComposable
     get() = LocalColors.current
 
-val Typo: Typography
+internal val Typographies: Typography
     @Composable
     @ReadOnlyComposable
     get() = LocalTypography.current
 
-val Shapes: Shape
+ val Shapes: Shape
     @Composable
     @ReadOnlyComposable
     get() = LocalShape.current
 
-val ContentsPadding: ContentPadding
+ val ContentsPadding: ContentPadding
     @Composable
     @ReadOnlyComposable
     get() = LocalContentPadding.current
 
-val Space: CookSpaceDimensions
+ val Space: CookSpaceDimensions
     @Composable
     @ReadOnlyComposable
     get() = LocalSpace.current

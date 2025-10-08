@@ -16,8 +16,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.haitrvn.coreui.theme.Colors
-import com.haitrvn.coreui.theme.Typo
+import com.haitrvn.coreui.theme.AppColors
+import com.haitrvn.coreui.theme.Typographies
 
 object Text
 
@@ -26,9 +26,9 @@ fun Text.Header(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = Colors.paragraph,
+    color: Color = AppColors.onPrimary,
     fontSize: TextUnit = 60.sp,
-    fontFamily: FontFamily? = Typo.headingBold.fontFamily
+    fontFamily: FontFamily? = Typographies.headingBold.fontFamily
 ) {
     Text(
         text = text,
@@ -67,7 +67,7 @@ fun Text.Paragraph(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = Colors.paragraph
+    color: Color = AppColors.onPrimary
 ) {
     Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
 }

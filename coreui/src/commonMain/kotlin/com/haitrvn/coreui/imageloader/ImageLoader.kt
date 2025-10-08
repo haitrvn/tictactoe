@@ -40,7 +40,7 @@ expect object CoilDiskCache {
 
 @Composable
 fun initPreviewImageLoader() {
-    val color = DarkColors.link.toArgb()
+    val color = DarkColors.onError.toArgb()
     SingletonImageLoader.setSafe {
         ImageLoader.Builder(it)
             .placeholder(ColorImage(color = color))

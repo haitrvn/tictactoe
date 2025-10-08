@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,20 +20,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Curved
 import com.haitrvn.coreui.Float
 import com.haitrvn.coreui.Header
+import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.MultiClickableText
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.SegmentText
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
-import com.haitrvn.coreui.theme.Colors
-import com.haitrvn.coreui.theme.Shape
 import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.theme.Space
-import com.haitrvn.coreui.theme.Typo
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
@@ -113,10 +109,6 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth().weight(0.2f).padding(top = Space.medium),
         ) {
             val density = LocalDensity.current
-
-            val textHeight = with(density) {
-                Typo.paragraphRegular.fontSize.toDp()
-            }
             Button.Curved(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = registerWithEmail
@@ -128,7 +120,6 @@ fun LoginScreen(
                 ) {
                     Image(
                         modifier = Modifier.padding(end = Space.small)
-                            .height(textHeight)
                             .aspectRatio(1f),
                         source = Res.drawable.ic_login_socical_apple
                     )
@@ -144,21 +135,17 @@ fun LoginScreen(
             ) {
                 Button.Curved(
                     modifier = Modifier.weight(0.5f),
-                    backgroundColor = Colors.secondParagraph,
                     onClick = loginWithApple,
                 ) {
                     Image(
-                        modifier = Modifier.height(textHeight * 1.5f).aspectRatio(1f),
                         source = Res.drawable.ic_login_socical_apple
                     )
                 }
                 Button.Curved(
                     modifier = Modifier.weight(0.5f),
-                    backgroundColor = Colors.secondParagraph,
                     onClick = loginWithGoogle,
                 ) {
                     Image(
-                        modifier = Modifier.height(textHeight * 1.5f).aspectRatio(1f),
                         source = Res.drawable.ic_login_socical_google
                     )
                 }

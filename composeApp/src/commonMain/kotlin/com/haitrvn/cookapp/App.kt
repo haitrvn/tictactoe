@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.haitrvn.coreui.imageloader.initImageLoader
-import com.haitrvn.coreui.theme.Colors
 import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.utils.appBackground
 import com.haitrvn.home.BottomNavigationBar
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Main
@@ -71,7 +71,7 @@ internal fun App(
             }
         }) {
         SharedTransitionLayout {
-            Box(modifier = Modifier.background(Colors.background1)) {
+            Box(modifier = Modifier.appBackground()) {
                 MainGraph(
                     navController = navController,
                     navigator = navigator,

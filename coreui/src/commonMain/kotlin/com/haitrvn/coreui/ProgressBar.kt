@@ -21,14 +21,14 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
-import com.haitrvn.coreui.theme.Colors
+import com.haitrvn.coreui.theme.AppColors
 
 @Composable
 fun ProgressBar(
     progress: Float,
     modifier: Modifier = Modifier,
-    trackColor: Color = Colors.background2,
-    progressColor: Color = Colors.primary,
+    trackColor: Color = AppColors.primary,
+    progressColor: Color = AppColors.onPrimary,
     animate: Boolean = true,
     animationSpec: AnimationSpec<Float> = tween(durationMillis = 600, easing = FastOutSlowInEasing),
 ) {

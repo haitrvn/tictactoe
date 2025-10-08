@@ -31,7 +31,6 @@ import com.haitrvn.coreui.Header
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.ProgressBar
 import com.haitrvn.coreui.Text
-import com.haitrvn.coreui.theme.Colors
 import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.theme.Space
 import com.haitrvn.navigation.Auth
@@ -108,11 +107,9 @@ fun WelcomeScreen(
                 ) {
                     Text.Header(
                         text = welcomePages[pagerState.currentPage].title,
-                        color = Colors.paragraphReversed,
                     )
                     Text.Paragraph(
                         text = welcomePages[pagerState.currentPage].description,
-                        color = Colors.paragraphReversed,
                     )
                 }
             }
