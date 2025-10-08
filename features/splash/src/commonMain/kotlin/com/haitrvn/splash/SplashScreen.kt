@@ -19,27 +19,41 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Curved
 import com.haitrvn.coreui.Header
+import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.LargeSpace
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.Text
 import com.haitrvn.coreui.Title
+import com.haitrvn.coreui.utils.toText
+import com.haitrvn.navigation.Auth
+import com.haitrvn.navigation.Navigator
 import cookapp.resources.splash.Res
+import cookapp.resources.splash.splash_best_recipes
 import cookapp.resources.splash.splash_bg
+import cookapp.resources.splash.splash_button_start
+import cookapp.resources.splash.splash_let_cooking
+import cookapp.resources.splash.splash_views
+import cookapp.resources.splash.splash_views_recipes
+
+@Composable
+fun SplashScreenWrapper(
+    modifier: Modifier = Modifier,
+    navigator: Navigator,
+) {
+    SplashScreen(modifier = modifier) { navigator.navigate(Auth.Login) }
+}
 
 @Composable
 fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
     Box(modifier = modifier.fillMaxSize()) {
-        // Background image
         Image(
             modifier = Modifier.fillMaxSize(),
             source = Res.drawable.splash_bg,
             contentScale = ContentScale.Crop
         )
-        // Gradient overlay (bottom)
         Box(
             Modifier.fillMaxSize().background(
                 Brush.verticalGradient(
@@ -49,62 +63,40 @@ fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
                 )
             )
         )
-        // Content
         Column(
             modifier = Modifier.fillMaxSize().padding(horizontal = 32.dp, vertical = 48.dp),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Title
             Text.Header(
-                text = "Let’s\nCooking",
-                color = Color.White,
+                modifier = Modifier.fillMaxWidth(),
+                text = Res.string.splash_let_cooking.toText(),
                 fontSize = 56.sp,
-                modifier = Modifier.fillMaxWidth(),
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )
             LargeSpace()
-            // Subtitle
             Text.Paragraph(
-                text = "Find best recipes for cooking",
-                color = Color.White,
                 modifier = Modifier.fillMaxWidth(),
+                text = Res.string.splash_best_recipes.toText(),
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )
             LargeSpace()
-            // Button
             Button.Curved(
                 modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)),
+                text = Res.string.splash_button_start.toText(),
                 onClick = onStartClick,
-            ) {
-                Row(
-                    Modifier.padding(vertical = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text.Title(
-                        text = "Start cooking",
-                        color = Color.White,
-                        modifier = Modifier.weight(1f),
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
-                    )
-                    // TODO: Add Arrow-Right icon if available
-                }
-            }
+            )
             LargeSpace()
-            // Label (60k+ Premium recipes)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                // TODO: Add Star icon if available
                 Text.Title(
-                    text = "60k+",
-                    color = Color.White,
+                    text = Res.string.splash_views.toText(),
                 )
                 SmallSpace()
                 Text.Paragraph(
-                    text = "Premium recipes", color = Color.White
+                    text = Res.string.splash_views_recipes.toText(),
                 )
             }
         }

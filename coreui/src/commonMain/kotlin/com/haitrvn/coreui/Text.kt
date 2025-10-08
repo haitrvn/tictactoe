@@ -47,7 +47,7 @@ fun Text.Title(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = Color.Black
+    color: Color = AppColors.onPrimary
 ) {
     Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
 }
@@ -57,7 +57,7 @@ fun Text.Title(
     modifier: Modifier = Modifier,
     string: AnnotatedString,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = Color.Black
+    color: Color = AppColors.onPrimary
 ) {
     Text(text = string, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
 }
@@ -77,7 +77,7 @@ fun Text.Error(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = Color.Black
+    color: Color = AppColors.onPrimary
 ) {
     Text(text = text, modifier = modifier, fontSize = 16.sp, textAlign = textAlign, color = color)
 }
