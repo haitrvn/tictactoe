@@ -40,6 +40,7 @@ import cookapp.resources.auth.ic_login_socical_apple
 import cookapp.resources.auth.ic_login_socical_google
 import cookapp.resources.auth.login_button_login
 import cookapp.resources.auth.login_forgot_password
+import cookapp.resources.auth.login_logo
 import cookapp.resources.auth.login_title
 import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.stringResource
@@ -81,7 +82,7 @@ fun LoginScreen(
         if (rememberScreenSizeType() == ScreenSizeType.Large) {
             Image(
                 modifier = Modifier.fillMaxWidth(0.8f).aspectRatio(1f),
-                source = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnkz7LPNNnGZX1eG9Is04eyoMh6WCb8sd3Q&s",
+                source = Res.drawable.login_logo,
             )
             MediumSpace()
         }
