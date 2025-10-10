@@ -77,7 +77,7 @@ fun Text.Error(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onErrorContainer
 ) {
     Text(text = text, modifier = modifier, fontSize = 16.sp, textAlign = textAlign, color = color)
 }

@@ -82,7 +82,7 @@ internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Uni
             )
             LargeSpace()
             Button.Curved(
-                modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)),
+                modifier = Modifier.fillMaxWidth(),
                 text = Res.string.splash_button_start.toText(),
                 onClick = onStartClick,
             )

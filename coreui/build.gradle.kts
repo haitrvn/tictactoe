@@ -41,8 +41,8 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.androidx.ui.tooling)
         }
-
         jvmMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.8.0")

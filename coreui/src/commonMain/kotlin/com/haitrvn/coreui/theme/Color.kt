@@ -78,12 +78,12 @@ class Color(
 val LightColors = Color(
     primary = Color(0xffff6b00),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFF3700B3),
-    onPrimaryContainer = Color(0xFFFFFFFF),
+    primaryContainer = Color(0xffe5dfec),
+    onPrimaryContainer = Color(0xff1c1b1b),
 
     secondary = Color(0xFF03DAC6),
     onSecondary = Color(0xFF000000),
-    secondaryContainer = Color(0xFF018786),
+    secondaryContainer = Color(0xffffffff),
     onSecondaryContainer = Color(0xFF000000),
 
     tertiary = Color(0xFFB00020),
@@ -97,21 +97,21 @@ val LightColors = Color(
     surface = Color(0xFFFFFFFF),
     onSurface = Color(0xFF000000),
 
-    error = Color(0xFFB00020),
-    onError = Color(0xFFFFFFFF),
-    errorContainer = Color(0xFFFFDAD4),
-    onErrorContainer = Color(0xFF000000),
+    error = Color(0xffff0000),
+    onError = Color(0xffffffff),
+    errorContainer = Color(0xffffffff),
+    onErrorContainer = Color(0xffff0000),
 )
 
 val DarkColors = Color(
     primary = Color(0xffd16110),
     onPrimary = Color(0xffffffff),
-    primaryContainer = Color(0xff492c63),
-    onPrimaryContainer = Color(0xFFFFFFFF),
+    primaryContainer = Color(0xffe5dfec),
+    onPrimaryContainer = Color(0xff1c1b1b),
 
     secondary = Color(0xFF03DAC6),
     onSecondary = Color(0xFF000000),
-    secondaryContainer = Color(0xFF03DAC5),
+    secondaryContainer = Color(0xffffffff),
     onSecondaryContainer = Color(0xFF000000),
 
     tertiary = Color(0xFFCF6679),
@@ -125,10 +125,10 @@ val DarkColors = Color(
     surface = Color(0xFF121212),
     onSurface = Color(0xFFFFFFFF),
 
-    error = Color(0xFFCF6679),
-    onError = Color(0xFF000000),
-    errorContainer = Color(0xFFB00020),
-    onErrorContainer = Color(0xFFFFFFFF),
+    error = Color(0xffff0000),
+    onError = Color(0xffffffff),
+    errorContainer = Color(0xffffffff),
+    onErrorContainer = Color(0xffff0000),
 )
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }

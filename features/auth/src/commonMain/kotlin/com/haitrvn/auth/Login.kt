@@ -14,10 +14,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Curved
@@ -36,8 +43,10 @@ import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
+import cookapp.resources.auth.ic_login_password
 import cookapp.resources.auth.ic_login_socical_apple
 import cookapp.resources.auth.ic_login_socical_google
+import cookapp.resources.auth.ic_login_user
 import cookapp.resources.auth.login_button_login
 import cookapp.resources.auth.login_forgot_password
 import cookapp.resources.auth.login_logo
@@ -74,6 +83,8 @@ fun LoginScreen(
     loginWithGoogle: () -> Unit = {},
     loginWithApple: () -> Unit = {},
 ) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
     Column(
         modifier = modifier.fillMaxSize()
             .padding(Space.large),
@@ -88,13 +99,20 @@ fun LoginScreen(
         }
         Text.Header(text = stringResource(Res.string.login_title))
         MediumSpace()
-        Input.Text(modifier = Modifier.padding(top = Space.medium), value = "", onValueChange = {
-
-        })
+        Input.Text(
+            modifier = Modifier,
+            icon = Res.drawable.ic_login_user, value = email, onValueChange = { email = it },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+        )
         SmallSpace()
-        Input.Text(modifier = Modifier.padding(top = Space.medium), value = "", onValueChange = {
-
-        })
+        Input.Text(
+            modifier = Modifier.fillMaxWidth(),
+            icon = Res.drawable.ic_login_password,
+            value = password,
+            onValueChange = { password = it },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+        )
         SmallSpace()
         Text.Paragraph(text = Res.string.login_forgot_password.toText())
         MediumSpace()
