@@ -2,6 +2,7 @@ package com.haitrvn.coreui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,12 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.theme.Space
 import com.haitrvn.coreui.theme.Typographies
+import com.haitrvn.coreui.utils.conditionalClickable
 import org.jetbrains.compose.resources.DrawableResource
 
 object Input
@@ -37,7 +40,10 @@ fun Input.Text(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     maxLines: Int = 1,
     interactionSource: MutableInteractionSource? = null,
-    icon: DrawableResource? = null,
+    prefixIcon: DrawableResource? = null,
+    prefixIconClickable: (() -> Unit)? = null,
+    suffixIcon: DrawableResource? = null,
+    suffixIconClickable: (() -> Unit)? = null,
     error: String? = null
 ) {
     Column(modifier = modifier) {
@@ -50,8 +56,8 @@ fun Input.Text(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (icon != null) {
-                    Image(modifier = Modifier.size(24.dp), source = icon)
+                if (prefixIcon != null) {
+                    Image(modifier = Modifier.size(24.dp).conditionalClickable(prefixIconClickable), source = prefixIcon)
                     TinySpace()
                 }
                 BasicTextField(
@@ -66,6 +72,9 @@ fun Input.Text(
                     maxLines = maxLines,
                     interactionSource = interactionSource
                 )
+                if (suffixIcon != null) {
+                    Image(modifier = Modifier.size(24.dp).conditionalClickable(suffixIconClickable), source = suffixIcon)
+                }
             }
         }
         if (error != null) {

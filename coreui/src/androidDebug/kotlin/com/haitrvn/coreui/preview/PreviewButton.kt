@@ -12,6 +12,6 @@ import cookapp.resources.core.ui.core_ui_icon_back
 @Composable
 fun PreviewButton() {
     CookTheme {
-        Input.Text(icon = Res.drawable.core_ui_icon_back, value = "This is sample input", onValueChange = {}, error = "Error")
+        Input.Text(prefixIcon = Res.drawable.core_ui_icon_back, value = "This is sample input", onValueChange = {}, error = "Error")
     }
 }

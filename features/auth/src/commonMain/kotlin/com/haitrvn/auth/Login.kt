@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Curved
@@ -85,6 +86,7 @@ fun LoginScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var isShowPassword by remember { mutableStateOf(false) }
     Column(
         modifier = modifier.fillMaxSize()
             .padding(Space.large),
@@ -101,16 +103,18 @@ fun LoginScreen(
         MediumSpace()
         Input.Text(
             modifier = Modifier,
-            icon = Res.drawable.ic_login_user, value = email, onValueChange = { email = it },
+            prefixIcon = Res.drawable.ic_login_user, value = email, onValueChange = { email = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
         SmallSpace()
         Input.Text(
             modifier = Modifier.fillMaxWidth(),
-            icon = Res.drawable.ic_login_password,
+            prefixIcon = Res.drawable.ic_login_password,
+            suffixIcon = if (isShowPassword) Res.drawable.ic_login_user else Res.drawable.ic_login_password,
+            suffixIconClickable = { isShowPassword = !isShowPassword },
             value = password,
             onValueChange = { password = it },
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation = if (isShowPassword) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
         SmallSpace()
