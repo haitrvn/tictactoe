@@ -1,13 +1,10 @@
 package com.haitrvn.coreui.theme
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import com.haitrvn.coreui.CookSpaceDimensions
 import com.haitrvn.coreui.LocalSpace
 
@@ -27,9 +24,7 @@ fun CookTheme(
         LocalTypography provides typography,
         LocalContentPadding provides contentPadding,
     ) {
-        Box(modifier = Modifier.background(AppColors.primaryContainer)) {
-            content()
-        }
+        content()
     }
 }
 
@@ -43,17 +38,17 @@ internal val Typographies: Typography
     @ReadOnlyComposable
     get() = LocalTypography.current
 
- val Shapes: Shape
+val Shapes: Shape
     @Composable
     @ReadOnlyComposable
     get() = LocalShape.current
 
- val ContentsPadding: ContentPadding
+val ContentsPadding: ContentPadding
     @Composable
     @ReadOnlyComposable
     get() = LocalContentPadding.current
 
- val Space: CookSpaceDimensions
+val Space: CookSpaceDimensions
     @Composable
     @ReadOnlyComposable
     get() = LocalSpace.current

@@ -91,7 +91,7 @@ val LightColors = Color(
     tertiaryContainer = Color(0xFF370617),
     onTertiaryContainer = Color(0xFFFFFFFF),
 
-    background = Color(0xFFFFFFFF),
+    background = Color(0xffc8c8c8),
     onBackground = Color(0xFF000000),
 
     surface = Color(0xFFFFFFFF),
@@ -119,7 +119,7 @@ val DarkColors = Color(
     tertiaryContainer = Color(0xFFB00020),
     onTertiaryContainer = Color(0xFFFFFFFF),
 
-    background = Color(0xFF121212),
+    background = Color(0xff3e3737),
     onBackground = Color(0xFFFFFFFF),
 
     surface = Color(0xFF121212),

@@ -80,7 +80,7 @@ fun Button.Curved(
 ) {
     BaseButton(
         modifier = modifier.wrapContentSize().padding(Space.medium),
-        shape = Shapes.medium,
+        shape = Shapes.rounded,
         onClick = onClick,
         backgroundColor = backgroundColor,
     ) {
@@ -97,7 +97,7 @@ fun Button.Curved(
 ) {
     BaseButton(
         modifier = modifier.padding(Space.medium),
-        shape = Shapes.medium,
+        shape = Shapes.rounded,
         onClick = onClick,
         backgroundColor = backgroundColor,
     ) {

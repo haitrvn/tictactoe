@@ -87,7 +87,7 @@ fun WelcomeScreen(
             modifier = Modifier.fillMaxWidth().weight(1f)
         ) {
             HorizontalPager(
-                modifier = Modifier.fillMaxSize().clip(shape = Shapes.medium),
+                modifier = Modifier.fillMaxSize().clip(shape = Shapes.rounded),
                 state = pagerState,
             ) { page ->
                 Drop {
@@ -98,7 +98,7 @@ fun WelcomeScreen(
                 }
             }
             Box(
-                modifier = Modifier.fillMaxSize().clip(shape = Shapes.medium)
+                modifier = Modifier.fillMaxSize().clip(shape = Shapes.rounded)
                     .background(Color.Black.copy(0.5f))
             ) {
                 Column(
