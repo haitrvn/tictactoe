@@ -13,12 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Shapes
 import cookapp.resources.core.ui.Res
 import cookapp.resources.core.ui.core_ui_icon_back
+import cookapp.resources.core.ui.icon_bookmarked
+import cookapp.resources.core.ui.icon_star
+import cookapp.resources.core.ui.icon_unbookmark
 
 @Composable
 fun VideoCard(
@@ -26,25 +28,24 @@ fun VideoCard(
     star: Float,
     isSaved: Boolean,
     timeStamp: Long,
-    thumbnailContent: @Composable () -> Unit
+    thumbnailUrl: Any,
 ) {
     Box(
-        modifier = modifier.fillMaxSize().clip(Shapes.rounded).background(Color.Cyan).padding(8.dp),
+        modifier = modifier.fillMaxSize().clip(Shapes.rounded),
         contentAlignment = Alignment.Center
     ) {
-        Star(modifier = Modifier.align(Alignment.TopStart), star = star)
-        Saved(modifier = Modifier.align(Alignment.TopEnd), isSaved = isSaved)
-        PlayButton(modifier = Modifier, onPlayClick = {})
-        TimeStamp(modifier = Modifier.align(Alignment.BottomEnd), time = timeStamp)
+        Image(modifier = Modifier.fillMaxSize(), source = thumbnailUrl)
+        Box(
+            modifier = modifier.fillMaxSize()
+                .padding(8.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Star(modifier = Modifier.align(Alignment.TopStart), star = star)
+            Saved(modifier = Modifier.align(Alignment.TopEnd), isSaved = isSaved)
+            PlayButton(modifier = Modifier, onPlayClick = {})
+            TimeStamp(modifier = Modifier.align(Alignment.BottomEnd), time = timeStamp)
+        }
     }
-}
-
-@Composable
-fun BackGround(
-    modifier: Modifier,
-
-    ) {
-
 }
 
 @Composable
@@ -67,11 +68,11 @@ fun Saved(
     isSaved: Boolean
 ) {
     if (isSaved) {
-        Image(modifier = modifier, source = Res.drawable.core_ui_icon_back)
+        Image(modifier = modifier.size(32.dp), source = Res.drawable.icon_bookmarked)
     } else {
         Image(
-            modifier = modifier.background(AppColors.error),
-            source = Res.drawable.core_ui_icon_back
+            modifier = modifier.size(32.dp),
+            source = Res.drawable.icon_unbookmark
         )
     }
 }
@@ -89,8 +90,8 @@ fun Star(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Image(modifier = Modifier.size(16.dp), source = Res.drawable.core_ui_icon_back)
-        SmallSpace()
+        Image(modifier = Modifier.size(16.dp), source = Res.drawable.icon_star)
+        TinySpace()
         Text.Paragraph(text = star.toString())
     }
 }

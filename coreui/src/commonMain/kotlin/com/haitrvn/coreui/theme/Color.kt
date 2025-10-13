@@ -81,7 +81,7 @@ val LightColors = Color(
     primaryContainer = Color(0xffe5dfec),
     onPrimaryContainer = Color(0xff1c1b1b),
 
-    secondary = Color(0xFF03DAC6),
+    secondary = Color(0x4dffffff),
     onSecondary = Color(0xFF000000),
     secondaryContainer = Color(0xffffffff),
     onSecondaryContainer = Color(0xFF000000),
