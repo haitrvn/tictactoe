@@ -28,7 +28,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Curved
+import com.haitrvn.coreui.Primary
 import com.haitrvn.coreui.Heading
 import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Input
@@ -42,6 +42,7 @@ import com.haitrvn.coreui.utils.ScreenSizeType
 import com.haitrvn.coreui.utils.rememberScreenSizeType
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
+import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_login_password
@@ -60,13 +61,8 @@ fun LoginScreen(
     modifier: Modifier = Modifier,
     navigator: Navigator,
 ) {
-    val welcomeUiState = WelcomeUiState(
-        login = WelcomePageUi(title = "Title", description = "Description", imageUrl = ""),
-        pages = persistentListOf()
-    )
     LoginScreen(
         modifier = modifier,
-        welcomeUiState = welcomeUiState,
         registerWithEmail = { navigator.navigate(Auth.Register) },
         loginWithEmail = { navigator.navigate(Auth.LoginWithEmail) },
         loginWithGoogle = { },
@@ -77,7 +73,6 @@ fun LoginScreen(
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    welcomeUiState: WelcomeUiState,
     goBack: () -> Unit = {},
     registerWithEmail: () -> Unit = {},
     loginWithEmail: () -> Unit = {},
@@ -120,7 +115,7 @@ fun LoginScreen(
         SmallSpace()
         Text.Paragraph(text = Res.string.login_forgot_password.toText())
         MediumSpace()
-        Button.Curved(
+        Button.Primary(
             modifier = Modifier.fillMaxWidth(),
             text = Res.string.login_button_login.toText()
         ) {

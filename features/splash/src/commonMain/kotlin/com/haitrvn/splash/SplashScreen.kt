@@ -15,9 +15,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Curved
+import com.haitrvn.coreui.Primary
 import com.haitrvn.coreui.Heading
 import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.LargeSpace
@@ -68,7 +67,6 @@ internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Uni
             Text.Heading(
                 modifier = Modifier.fillMaxWidth(),
                 text = Res.string.splash_let_cooking.toText(),
-                fontSize = 56.sp,
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )
             LargeSpace()
@@ -78,7 +76,7 @@ internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Uni
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )
             LargeSpace()
-            Button.Curved(
+            Button.Primary(
                 modifier = Modifier.fillMaxWidth(),
                 text = Res.string.splash_button_start.toText(),
                 onClick = onStartClick,
