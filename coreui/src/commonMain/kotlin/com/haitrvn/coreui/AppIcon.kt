@@ -8,7 +8,7 @@ import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun AppIcon(modifier: Modifier = Modifier, color: Color = Color.White) {
-    Text.Header(
+    Text.Heading(
         modifier = modifier.fillMaxWidth(),
         text = "Appetit",
         textAlign = TextAlign.Center,

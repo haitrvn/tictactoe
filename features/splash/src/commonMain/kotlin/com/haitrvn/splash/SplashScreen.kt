@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -20,13 +18,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Curved
-import com.haitrvn.coreui.Header
+import com.haitrvn.coreui.Heading
 import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.LargeSpace
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.Text
-import com.haitrvn.coreui.Title
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
@@ -68,7 +65,7 @@ internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Uni
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text.Header(
+            Text.Heading(
                 modifier = Modifier.fillMaxWidth(),
                 text = Res.string.splash_let_cooking.toText(),
                 fontSize = 56.sp,
@@ -91,7 +88,7 @@ internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Uni
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text.Title(
+                Text.Paragraph(
                     text = Res.string.splash_views.toText(),
                 )
                 SmallSpace()

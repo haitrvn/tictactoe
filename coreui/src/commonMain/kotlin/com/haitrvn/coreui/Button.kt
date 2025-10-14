@@ -67,7 +67,7 @@ fun Button.Float(
         shape = CircleShape,
         onClick = onClick,
     ) {
-        Text.Title(text = text)
+        Text.Paragraph(text = text)
     }
 }
 
@@ -101,6 +101,6 @@ fun Button.Curved(
         onClick = onClick,
         backgroundColor = backgroundColor,
     ) {
-        Text.Title(text = text)
+        Text.Paragraph(text = text)
     }
 }

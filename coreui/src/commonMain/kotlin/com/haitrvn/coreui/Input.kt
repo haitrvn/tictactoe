@@ -78,7 +78,7 @@ fun Input.Text(
             }
         }
         if (error != null) {
-            Text.Error(text = error)
+            Text.Small(text = error)
         }
     }
 }

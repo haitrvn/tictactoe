@@ -9,57 +9,59 @@ import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.sp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Typographies
 
 object Text
 
 @Composable
-fun Text.Header(
+fun Text.Heading(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
     color: Color = AppColors.onPrimary,
-    fontSize: TextUnit = 60.sp,
-    fontFamily: FontFamily? = Typographies.headingBold.fontFamily
 ) {
     Text(
         text = text,
         modifier = modifier,
-        fontSize = fontSize,
         textAlign = textAlign,
         color = color,
-        fontFamily = fontFamily,
-        fontWeight = FontWeight.Bold,
-        fontStyle = FontStyle.Normal,
+        style = Typographies.headingBold,
     )
 }
 
 @Composable
-fun Text.Title(
+fun Text.H4(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
     color: Color = AppColors.onPrimary
 ) {
-    Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.h4Bold,
+    )
 }
 
 @Composable
-fun Text.Title(
+fun Text.H5(
     modifier: Modifier = Modifier,
-    string: AnnotatedString,
+    text: String,
     textAlign: TextAlign = TextAlign.Left,
     color: Color = AppColors.onPrimary
 ) {
-    Text(text = string, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.h5Bold,
+    )
 }
 
 @Composable
@@ -69,17 +71,93 @@ fun Text.Paragraph(
     textAlign: TextAlign = TextAlign.Left,
     color: Color = AppColors.onPrimary
 ) {
-    Text(text = text, modifier = modifier, fontSize = 20.sp, textAlign = textAlign, color = color)
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.paragraphRegular,
+    )
 }
 
 @Composable
-fun Text.Error(
+fun Text.ParagraphBold(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onErrorContainer
+    color: Color = AppColors.onPrimary
 ) {
-    Text(text = text, modifier = modifier, fontSize = 16.sp, textAlign = textAlign, color = color)
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.paragraphBold,
+    )
+}
+
+@Composable
+fun Text.Label(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Left,
+    color: Color = AppColors.onPrimary
+) {
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.labelRegular,
+    )
+}
+
+@Composable
+fun Text.LabelBold(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Left,
+    color: Color = AppColors.onPrimary
+) {
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.labelBold,
+    )
+}
+
+@Composable
+fun Text.Small(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Left,
+    color: Color = AppColors.onPrimary
+) {
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.smallRegular,
+    )
+}
+
+@Composable
+fun Text.Tiny(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Left,
+    color: Color = AppColors.onPrimary
+) {
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.tinyRegular,
+    )
 }
 
 @Composable

@@ -10,8 +10,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import cookapp.resources.core.ui.Res
-import cookapp.resources.core.ui.nunito_italic
-import cookapp.resources.core.ui.nunito_normal
+import cookapp.resources.core.ui.poppins_bold
+import cookapp.resources.core.ui.poppins_regular
 import org.jetbrains.compose.resources.Font
 
 @Immutable
@@ -26,7 +26,6 @@ class Typography(
     val smallBold: TextStyle = CookTypographyTokens.smallBold,
     val smallRegular: TextStyle = CookTypographyTokens.smallRegular,
     val tinyRegular: TextStyle = CookTypographyTokens.tinyRegular,
-    val timeStatusBar: TextStyle = CookTypographyTokens.timeStatusBar,
 ) {
     fun copy(
         headingBold: TextStyle = this.headingBold,
@@ -39,7 +38,6 @@ class Typography(
         smallBold: TextStyle = this.smallBold,
         smallRegular: TextStyle = this.smallRegular,
         tinyRegular: TextStyle = this.tinyRegular,
-        timeStatusBar: TextStyle = this.timeStatusBar,
     ): Typography = Typography(
         headingBold,
         h4Bold,
@@ -51,7 +49,6 @@ class Typography(
         smallBold,
         smallRegular,
         tinyRegular,
-        timeStatusBar
     )
 }
 
@@ -59,11 +56,9 @@ class Typography(
 fun CreateCookTypography(
     defaultColor: Color = AppColors.onPrimary,
     poppinsFontFamily: FontFamily = FontFamily(
-        Font(Res.font.nunito_italic, weight = FontWeight.W400, style = FontStyle.Normal),
-        Font(Res.font.nunito_normal, weight = FontWeight.W600, style = FontStyle.Normal),
-        Font(Res.font.nunito_normal, weight = FontWeight.W700, style = FontStyle.Normal),
+        Font(Res.font.poppins_bold, style = FontStyle.Normal, weight = FontWeight.W600),
+        Font(Res.font.poppins_regular, style = FontStyle.Normal, weight = FontWeight.W400),
     ),
-    sfProTextFontFamily: FontFamily = FontFamily.Default // fallback, hoặc thêm nếu có file
 ): Typography = Typography(
     headingBold = CookTypographyTokens.headingBold.copy(
         color = defaultColor,
@@ -98,10 +93,6 @@ fun CreateCookTypography(
     tinyRegular = CookTypographyTokens.tinyRegular.copy(
         color = defaultColor,
         fontFamily = poppinsFontFamily
-    ),
-    timeStatusBar = CookTypographyTokens.timeStatusBar.copy(
-        color = defaultColor,
-        fontFamily = sfProTextFontFamily
     ),
 )
 

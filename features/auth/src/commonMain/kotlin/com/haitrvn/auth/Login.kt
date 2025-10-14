@@ -29,7 +29,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Curved
-import com.haitrvn.coreui.Header
+import com.haitrvn.coreui.Heading
 import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Input
 import com.haitrvn.coreui.LargeSpace
@@ -99,7 +99,7 @@ fun LoginScreen(
             )
             MediumSpace()
         }
-        Text.Header(text = stringResource(Res.string.login_title))
+        Text.Heading(text = stringResource(Res.string.login_title))
         MediumSpace()
         Input.Text(
             modifier = Modifier,

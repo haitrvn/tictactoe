@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Drop
 import com.haitrvn.coreui.Float
-import com.haitrvn.coreui.Header
+import com.haitrvn.coreui.Heading
 import com.haitrvn.coreui.Image
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.ProgressBar
@@ -105,7 +105,7 @@ fun WelcomeScreen(
                     modifier = Modifier.padding(Space.large).fillMaxSize(),
                     verticalArrangement = Arrangement.Bottom
                 ) {
-                    Text.Header(
+                    Text.Heading(
                         text = welcomePages[pagerState.currentPage].title,
                     )
                     Text.Paragraph(
