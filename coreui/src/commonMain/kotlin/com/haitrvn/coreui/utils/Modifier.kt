@@ -19,6 +19,16 @@ fun Modifier.appBackground(
     )
 }
 
+@Composable
+@Stable
+fun Modifier.noBackground(
+    color: Color = AppColors.onBackground
+): Modifier {
+    return this.then(
+        background(color)
+    )
+}
+
 fun Modifier.conditionalClickable(
     onClick: (() -> Unit)?,
     enabled: Boolean = true

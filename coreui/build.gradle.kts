@@ -60,7 +60,7 @@ kotlin {
 configureLibraryAndroidTarget()
 
 compose.resources {
-    publicResClass = true
+    publicResClass = false
     packageOfResClass = "cookapp.resources.core.ui"
     generateResClass = auto
 }

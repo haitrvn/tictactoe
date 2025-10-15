@@ -2,7 +2,6 @@ package com.haitrvn.coreui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,12 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Shapes
-import com.haitrvn.coreui.theme.Space
+import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.theme.Typographies
 import com.haitrvn.coreui.utils.conditionalClickable
 import org.jetbrains.compose.resources.DrawableResource
@@ -51,7 +49,7 @@ fun Input.Text(
             modifier = modifier.border(
                     width = 1.dp, color = AppColors.onSecondaryContainer, shape = Shapes.rounded
                 ).clip(Shapes.rounded).background(AppColors.secondaryContainer)
-                .padding(Space.medium),
+                .padding(Dimensions.medium),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically

@@ -6,7 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import com.haitrvn.coreui.CookSpaceDimensions
-import com.haitrvn.coreui.LocalSpace
+import com.haitrvn.coreui.LocalDimensions
 
 @Composable
 fun CookTheme(
@@ -48,7 +48,7 @@ val ContentsPadding: ContentPadding
     @ReadOnlyComposable
     get() = LocalContentPadding.current
 
-val Space: CookSpaceDimensions
+val Dimensions: CookSpaceDimensions
     @Composable
     @ReadOnlyComposable
-    get() = LocalSpace.current
+    get() = LocalDimensions.current

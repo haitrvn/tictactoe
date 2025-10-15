@@ -37,12 +37,11 @@ import com.haitrvn.coreui.MediumSpace
 import com.haitrvn.coreui.Paragraph
 import com.haitrvn.coreui.SmallSpace
 import com.haitrvn.coreui.Text
-import com.haitrvn.coreui.theme.Space
+import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.utils.ScreenSizeType
 import com.haitrvn.coreui.utils.rememberScreenSizeType
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_login_password
@@ -53,7 +52,6 @@ import cookapp.resources.auth.login_button_login
 import cookapp.resources.auth.login_forgot_password
 import cookapp.resources.auth.login_logo
 import cookapp.resources.auth.login_title
-import kotlinx.collections.immutable.persistentListOf
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -84,7 +82,7 @@ fun LoginScreen(
     var isShowPassword by remember { mutableStateOf(false) }
     Column(
         modifier = modifier.fillMaxSize()
-            .padding(Space.large),
+            .padding(Dimensions.large),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (rememberScreenSizeType() == ScreenSizeType.Large) {
