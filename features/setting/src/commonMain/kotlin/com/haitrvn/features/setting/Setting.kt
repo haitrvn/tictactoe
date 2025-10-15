@@ -1,5 +1,6 @@
 package com.haitrvn.features.setting
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -22,6 +23,7 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Circle
@@ -40,6 +42,7 @@ import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.utils.noBackground
 import com.haitrvn.coreui.utils.toText
 import cookapp.resources.setting.Res
+import cookapp.resources.setting.ic_cyclone1
 import cookapp.resources.setting.setting_edit_profile
 import cookapp.resources.setting.setting_followers
 import cookapp.resources.setting.setting_following
@@ -71,8 +74,7 @@ fun Setting(
     modifier: Modifier = Modifier, uiState: SettingUiState
 ) {
     Column(
-        modifier = modifier.fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState()),
     ) {
         CustomSpace(Dimensions.extraLarge)
         Profile(
@@ -87,12 +89,19 @@ fun Setting(
         LargeSpace()
         FeaturedPhotos(modifier = Modifier, uiState.featuredPhotos.toMutableStateList())
         LargeSpace()
+        SettingItem(modifier = Modifier.padding(horizontal = 20.dp).fillMaxWidth())
     }
 }
 
 @Composable
 private fun SettingItem(modifier: Modifier = Modifier) {
-
+    Row(
+        Modifier.then(modifier).height(IntrinsicSize.Min).noBackground(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text.Label(text = "About me!")
+        Image(modifier = Modifier.background(Color.Red), source = Res.drawable.ic_cyclone1)
+    }
 }
 
 @Composable
@@ -114,8 +123,7 @@ fun Profile(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image.Circle(
-                modifier = Modifier.size(100.dp),
-                source = avatarUrl
+                modifier = Modifier.size(100.dp), source = avatarUrl
             )
             Button.Primary(text = Res.string.setting_edit_profile.toText()) {}
         }
