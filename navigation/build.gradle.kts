@@ -15,7 +15,6 @@ kotlin {
                 implementation(projects.coreui)
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
-                implementation(libs.navigation.compose)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
