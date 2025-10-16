@@ -28,7 +28,7 @@ fun CookTheme(
     }
 }
 
-internal val AppColors: Color
+val AppColors: Color
     @Composable
     @ReadOnlyComposable
     get() = LocalColors.current
