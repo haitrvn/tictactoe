@@ -17,7 +17,6 @@ kotlin {
                 implementation(libs.kotlin.stdlib)
                 implementation(libs.navigation.compose)
                 implementation(libs.kotlinx.serialization.json)
-                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
 
@@ -25,6 +24,14 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
+
+                implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha11")
+            }
+        }
+
+        androidMain {
+            dependencies {
+                implementation("androidx.navigation3:navigation3-ui:1.0.0-alpha11")
             }
         }
 
