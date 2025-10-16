@@ -18,6 +18,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
@@ -48,25 +50,14 @@ import cookapp.resources.setting.setting_followers
 import cookapp.resources.setting.setting_following
 import cookapp.resources.setting.setting_recipe
 import cookapp.resources.setting.setting_video
-import kotlinx.collections.immutable.PersistentList
-import kotlinx.collections.immutable.persistentListOf
+import org.koin.compose.koinInject
 
 @Composable
-fun Setting(modifier: Modifier = Modifier) {
-    val uiState = SettingUiState(
-        userName = "Nguyen Van A",
-        userAvatar = "https://sm.ign.com/ign_pk/cover/a/avatar-gen/avatar-generations_rpge.jpg",
-        aboutMe = "I am a chef",
-        recipe = 10,
-        followers = 100,
-        following = 100,
-        featuredPhotos = persistentListOf(
-            "https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg",
-            "https://dq5pwpg1q8ru0.cloudfront.net/2022/05/30/07/10/14/5d20bb61-4228-46ca-a3e7-cd024785cbbd/Food.jpg",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpO0Yei24aI8SWNTnWQDKvHKno4l4a4jfJbWJfv9Z9QPdzuSYtDveWMS5JT89lGFGhB94&usqp=CAU",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKyuUCfF_gjGadZyTBeg3l0FdlK6WiVld9CS4AUGXQla-Yd-BjJDXZOqpcbrXvnUhb8xw&usqp=CAU",
-        )
-    )
+fun Setting(
+    modifier: Modifier = Modifier,
+) {
+    val viewmodel: SettingViewModel = koinInject()
+    val uiState by viewmodel.uiState.collectAsState()
     Setting(modifier = modifier, uiState = uiState)
 }
 
@@ -213,13 +204,3 @@ fun FeaturedPhotos(
             }
         })
 }
-
-data class SettingUiState(
-    val userName: String,
-    val userAvatar: String,
-    val aboutMe: String,
-    val recipe: Int,
-    val followers: Int,
-    val following: Int,
-    val featuredPhotos: PersistentList<String>,
-)

@@ -3,6 +3,7 @@ package com.haitrvn.cookapp
 import com.haitrvn.auth.di.loginModule
 import com.haitrvn.data.di.dataModule
 import com.haitrvn.domain.domainModule
+import com.haitrvn.features.setting.di.settingModule
 import com.haitrvn.home.di.homeModule
 import com.haitrvn.navigation.ReloadViewModel
 import com.haitrvn.navigation.di.navigationMode
@@ -23,4 +24,5 @@ val appModule = listOf(
     homeModule,
     loginModule,
     splashModule,
+    settingModule,
 )

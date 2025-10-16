@@ -32,7 +32,6 @@ fun BottomNavigationBar(
     onItemClick: (NavigationItem) -> Unit,
     onItemReClick: (Boolean, NavigationItem) -> Unit = { _, _ -> },
 ) {
-    // Re-implementation of Material's NavigationBar using a Row
     Row(
         modifier = Modifier
             .fillMaxWidth()
