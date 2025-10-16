@@ -9,5 +9,9 @@ sealed interface Screen : NavKey {
     data object Auth : Screen
 
     @Serializable
-    data object Home : Screen
+    sealed class Home : Screen, BottomNavShown {
+
+    }
 }
+
+interface BottomNavShown
