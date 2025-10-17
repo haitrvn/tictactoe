@@ -23,8 +23,8 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
-
-                implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha11")
+                implementation(libs.androidx.nav3.ui)
+                implementation(libs.androidx.nav3.runtime)
             }
         }
 
