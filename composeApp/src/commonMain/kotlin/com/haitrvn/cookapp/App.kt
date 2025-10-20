@@ -100,6 +100,13 @@ val navigationItemsLists by lazy {
             startDestination = Main.Search.Search1,
         ),
         NavigationItem(
+            unSelectedIcon = Res.drawable.ic_app_home,
+            selectedIcon = Res.drawable.ic_app_home,
+            title = Res.string.presentation_bottom_search_title,
+            destination = Main.Notification,
+            startDestination = Main.Notification.Notification1,
+        ),
+        NavigationItem(
             unSelectedIcon = Res.drawable.ic_app_setting,
             selectedIcon = Res.drawable.ic_app_setting,
             title = Res.string.presentation_bottom_setting_title,

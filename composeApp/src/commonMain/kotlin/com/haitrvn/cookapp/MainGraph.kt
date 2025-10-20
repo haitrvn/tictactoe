@@ -15,6 +15,7 @@ import androidx.navigation.navigation
 import com.haitrvn.auth.LoginScreen
 import com.haitrvn.auth.RegisterScreen
 import com.haitrvn.features.setting.Setting
+import com.haitrvn.home.NotificationScreen
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
@@ -59,6 +60,11 @@ internal fun NavGraphBuilder.homeGraph(
             composable<Main.Search.Search1> {
             }
         }
+        navigation<Main.Notification>(startDestination = Main.Notification.Notification1) {
+            composable<Main.Notification.Notification1> {
+                NotificationScreen()
+            }
+        }
         navigation<Main.Setting>(startDestination = Main.Setting.Setting1) {
             composable<Main.Setting.Setting1> {
             }
@@ -79,7 +85,8 @@ internal fun NavGraphBuilder.authGraph(
 //                modifier = modifier,
 //                navigator = navigator,
 //            )
-            Setting()
+//            Setting()
+            NotificationScreen()
         }
         composable<Auth.Login> {
             LoginScreen(modifier = modifier, navigator = navigator)

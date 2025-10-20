@@ -41,6 +41,12 @@ data object Main : Destination {
     }
 
     @Serializable
+    data object Notification : Destination {
+        @Serializable
+        data object Notification1 : Destination
+    }
+
+    @Serializable
     data object Setting : Destination {
         @Serializable
         data object Setting1 : Destination
