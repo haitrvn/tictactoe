@@ -44,7 +44,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation("io.insert-koin:koin-core-viewmodel:4.1.0")
-            implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha11")
+            api(libs.androidx.nav3.ui)
         }
 
         commonTest.dependencies {

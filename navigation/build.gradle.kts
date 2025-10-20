@@ -23,8 +23,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.components.resources)
                 implementation(compose.components.uiToolingPreview)
-                implementation(libs.androidx.nav3.ui)
-                implementation(libs.androidx.nav3.runtime)
+                api(libs.androidx.nav3.ui)
             }
         }
 

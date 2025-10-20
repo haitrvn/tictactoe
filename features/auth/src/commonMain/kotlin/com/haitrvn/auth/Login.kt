@@ -41,8 +41,6 @@ import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.utils.ScreenSizeType
 import com.haitrvn.coreui.utils.rememberScreenSizeType
 import com.haitrvn.coreui.utils.toText
-import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_login_password
 import cookapp.resources.auth.ic_login_socical_apple
@@ -57,12 +55,11 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    navigator: Navigator,
 ) {
     LoginScreen(
         modifier = modifier,
-        registerWithEmail = { navigator.navigate(Auth.Register) },
-        loginWithEmail = { navigator.navigate(Auth.LoginWithEmail) },
+        registerWithEmail = { },
+        loginWithEmail = {  },
         loginWithGoogle = { },
         loginWithApple = { },
     )
