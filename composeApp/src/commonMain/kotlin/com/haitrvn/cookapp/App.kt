@@ -7,16 +7,17 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.haitrvn.core.Log
 import com.haitrvn.coreui.Button
 import com.haitrvn.coreui.Heading
 import com.haitrvn.coreui.Image
@@ -26,7 +27,6 @@ import com.haitrvn.coreui.imageloader.initImageLoader
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Screen
-import com.haitrvn.navigation.rememberNavBackStackFix
 import cookapp.resources.app.Res
 import cookapp.resources.app.ic_app_home
 import cookapp.resources.app.ic_app_search
@@ -55,38 +55,20 @@ internal fun App(
     modifier: Modifier = Modifier
 ) = CookTheme {
     initImageLoader()
-    val backStack = rememberNavBackStackFix<Screen>(config, Screen.Auth)
-    NavDisplay(
-        backStack = backStack,
-        onBack = { backStack.removeLastOrNull() },
-        entryProvider = entryProvider {
-            entry<Screen.Auth> {
-                Button.Primary(text = "Home") {
-                    backStack.removeLastOrNull()
-                    backStack.add(Screen.Main())
-                }
-            }
-            entry<Screen.Main> {
-                InnerDisplay(modifier = Modifier)
-            }
-        },
-    )
-}
-
-@Composable
-fun InnerDisplay(modifier: Modifier = Modifier) {
-    val backStack = rememberNavBackStackFix(config, Screen.Main.Home)
+    val topLevelBackStack = remember { TopLevelBackStack<Screen>(Screen.Auth) }
+    val activeEntries = remember { mutableStateMapOf<NavKey, Boolean>() }
     Scaffold(
         bottomBar = {
             NavigationBar {
                 navigationItemsLists.forEach { topLevelRoute ->
 
-                    val isSelected = topLevelRoute == backStack
+                    val isSelected = topLevelRoute == topLevelBackStack.backStack
                     NavigationBarItem(
                         selected = isSelected,
                         onClick = {
-                            backStack.removeLastOrNull()
-                            backStack.add(topLevelRoute.destination)
+                            if (activeEntries[topLevelRoute.destination] != true) {
+                                topLevelBackStack.addTopLevel(topLevelRoute.destination)
+                            }
                         },
                         icon = {
                             Image(source = topLevelRoute.selectedIcon)
@@ -96,25 +78,126 @@ fun InnerDisplay(modifier: Modifier = Modifier) {
             }
         }
     ) { _ ->
+//        val backstack = rememberNavBackStackFix(config, Screen.Main.Home, Screen.Main.Home)
         NavDisplay(
-            backStack = backStack,
+            backStack = topLevelBackStack.backStack,
             modifier = modifier,
-            onBack = { backStack.removeLastOrNull() },
+            onBack = { topLevelBackStack.removeLast() },
             entryProvider = entryProvider {
+                entry<Screen.Auth> {
+                    TrackableEntry(
+                        key = Screen.Auth,
+                        onActiveChange = { active ->
+                            activeEntries[Screen.Auth] = active
+                        }) {
+
+                        Button.Primary(text = "Go home") {
+                            topLevelBackStack.addTopLevel(Screen.Main.Home)
+                        }
+                    }
+                }
                 entry<Screen.Main.Home> {
-                    Text.Heading(text = "Home")
+                    TrackableEntry(
+                        key = Screen.Main.Home,
+                        onActiveChange = { active ->
+                            activeEntries[Screen.Main.Home] = active
+                        }) {
+                        Text.Heading(text = "Home")
+                    }
                 }
                 entry<Screen.Main.Saved> {
-                    Text.Heading(text = "ChatList")
+                    TrackableEntry(
+                        key = Screen.Main.Saved,
+                        onActiveChange = { active ->
+                            activeEntries[Screen.Main.Saved] = active
+                        }) {
+                        Text.Heading(text = "Saved")
+                    }
                 }
                 entry<Screen.Main.Notification> {
-                    Text.Heading(text = "ChatDetail")
+                    TrackableEntry(
+                        key = Screen.Main.Notification,
+                        onActiveChange = { active ->
+                            activeEntries[Screen.Main.Notification] = active
+                        }) {
+                        Text.Heading(text = "Saved")
+                    }
                 }
                 entry<Screen.Main.Setting> {
-                    Text.Heading(text = "Camera")
+                    TrackableEntry(
+                        key = Screen.Main.Setting,
+                        onActiveChange = { active ->
+                            activeEntries[Screen.Main.Setting] = active
+                        }) {
+                        Text.Heading(text = "Saved")
+                    }
                 }
             },
         )
+    }
+}
+
+@Composable
+fun TrackableEntry(
+    key: Any,
+    onActiveChange: (Boolean) -> Unit,
+    content: @Composable () -> Unit
+) {
+    DisposableEffect(key) {
+        Log.d("TrackableEntry", "DisposableEffect $key true")
+        onActiveChange(true)
+        onDispose {
+            Log.d("TrackableEntry", "DisposableEffect $key false")
+            onActiveChange(false)
+        }
+    }
+    content()
+}
+
+
+class TopLevelBackStack<T : Any>(startKey: T) {
+
+    private var topLevelStacks: LinkedHashMap<T, SnapshotStateList<T>> = linkedMapOf(
+        startKey to mutableStateListOf(startKey)
+    )
+
+    var topLevelKey = startKey
+        private set
+
+    val backStack = mutableStateListOf(startKey)
+
+    private fun updateBackStack() =
+        backStack.apply {
+            clear()
+            addAll(topLevelStacks.flatMap { it.value })
+        }
+
+    fun addTopLevel(key: T) {
+
+        if (topLevelStacks[key] == null) {
+            topLevelStacks.put(key, mutableStateListOf(key))
+        } else {
+            topLevelStacks.apply {
+                remove(key)?.let {
+                    put(key, it)
+                }
+            }
+        }
+        topLevelKey = key
+        updateBackStack()
+    }
+
+    fun add(key: T) {
+        topLevelStacks[topLevelKey]?.add(key)
+        updateBackStack()
+    }
+
+    fun removeLast() {
+        val removedKey = topLevelStacks[topLevelKey]?.removeLastOrNull()
+        // If the removed key was a top level key, remove the associated top level stack
+        topLevelStacks.remove(removedKey)
+        topLevelKey = topLevelStacks.keys.last()
+        updateBackStack()
     }
 }
 
