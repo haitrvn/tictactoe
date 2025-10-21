@@ -17,10 +17,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,6 +35,7 @@ import com.haitrvn.coreui.utils.toText
 import cookapp.resources.notification.Res
 import cookapp.resources.notification.notification_title
 import kotlinx.collections.immutable.PersistentList
+import kotlinx.coroutines.launch
 
 @Composable
 fun NotificationScreen(
@@ -45,17 +43,17 @@ fun NotificationScreen(
     notifications: PersistentList<NotificationGroupByDate> = mockNotificationGroupByDate
 ) {
     val pagerState = rememberPagerState(pageCount = { NotificationType.entries.size })
-
+    val scope = rememberCoroutineScope()
     Column(
         modifier = modifier.fillMaxSize().background(AppColors.background)
     ) {
         Header(
             modifier = Modifier.fillMaxWidth(),
             title = Res.string.notification_title.toText(),
-            headerAction = {
-
-            })
-        NotificationTabs(selectedTab = selectedTab, onTabSelected = { selectedTab = it })
+            headerAction = {})
+        NotificationTabs(
+            selectedTab = NotificationType.entries[pagerState.currentPage],
+            onTabSelected = { scope.launch { pagerState.scrollToPage(it.ordinal) } })
         NotificationPager(
             modifier = Modifier.fillMaxSize().padding(Dimensions.medium),
             pagerState = pagerState,
