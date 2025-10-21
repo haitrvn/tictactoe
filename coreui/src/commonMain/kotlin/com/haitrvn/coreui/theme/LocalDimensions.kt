@@ -14,4 +14,5 @@ data class CookSpaceDimensions(
     val medium: Dp = 16.dp,
     val large: Dp = 32.dp,
     val extraLarge: Dp = 64.dp,
+    val iconSize: Dp = 24.dp
 )

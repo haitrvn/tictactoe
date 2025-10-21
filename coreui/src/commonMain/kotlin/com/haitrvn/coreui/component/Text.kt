@@ -145,6 +145,22 @@ fun Text.Small(
 }
 
 @Composable
+fun Text.SmallBold(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Left,
+    color: Color = AppColors.onPrimaryContainer
+) {
+    Text(
+        text = text,
+        modifier = modifier,
+        textAlign = textAlign,
+        color = color,
+        style = Typographies.smallBold,
+    )
+}
+
+@Composable
 fun Text.Tiny(
     modifier: Modifier = Modifier,
     text: String,

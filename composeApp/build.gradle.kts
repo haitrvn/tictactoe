@@ -33,6 +33,7 @@ kotlin {
             implementation(projects.features.home)
             implementation(projects.features.setting)
             implementation(projects.features.splash)
+            implementation(projects.features.notification)
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
             implementation("org.jetbrains.compose.ui:ui-backhandler:1.8.2")

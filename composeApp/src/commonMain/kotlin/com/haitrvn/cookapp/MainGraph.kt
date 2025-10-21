@@ -15,12 +15,13 @@ import androidx.navigation.navigation
 import com.haitrvn.auth.LoginScreen
 import com.haitrvn.auth.RegisterScreen
 import com.haitrvn.features.setting.Setting
-import com.haitrvn.home.NotificationScreen
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
+import com.haitrvn.notification.NotificationScreen
 import com.haitrvn.splash.SplashScreen
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun MainGraph(
