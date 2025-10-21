@@ -14,15 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Primary
-import com.haitrvn.coreui.Heading
-import com.haitrvn.coreui.Image
-import com.haitrvn.coreui.LargeSpace
-import com.haitrvn.coreui.Paragraph
-import com.haitrvn.coreui.SmallSpace
-import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.component.Button
+import com.haitrvn.coreui.component.Heading
+import com.haitrvn.coreui.component.Image
+import com.haitrvn.coreui.component.LargeSpace
+import com.haitrvn.coreui.component.Normal
+import com.haitrvn.coreui.component.Paragraph
+import com.haitrvn.coreui.component.Primary
+import com.haitrvn.coreui.component.SmallSpace
+import com.haitrvn.coreui.component.Text
+import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Navigator
@@ -45,35 +48,36 @@ fun SplashScreen(
 @Composable
 internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
     Box(modifier = modifier.fillMaxSize()) {
-        Image(
+        Image.Normal(
             modifier = Modifier.fillMaxSize(),
             source = Res.drawable.splash_bg,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
         Box(
             Modifier.fillMaxSize().background(
                 Brush.verticalGradient(
                     colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.7f)),
                     startY = 400f,
-                    endY = Float.POSITIVE_INFINITY
+                    endY = Float.POSITIVE_INFINITY,
                 )
             )
         )
         Column(
             modifier = Modifier.fillMaxSize().padding(horizontal = 32.dp, vertical = 48.dp),
             verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text.Heading(
                 modifier = Modifier.fillMaxWidth(),
                 text = Res.string.splash_let_cooking.toText(),
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                textAlign = TextAlign.Center,
             )
             LargeSpace()
             Text.Paragraph(
                 modifier = Modifier.fillMaxWidth(),
                 text = Res.string.splash_best_recipes.toText(),
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = AppColors.onPrimary,
             )
             LargeSpace()
             Button.Primary(
@@ -88,10 +92,12 @@ internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Uni
             ) {
                 Text.Paragraph(
                     text = Res.string.splash_views.toText(),
+                    color = AppColors.onPrimary,
                 )
                 SmallSpace()
                 Text.Paragraph(
                     text = Res.string.splash_views_recipes.toText(),
+                    color = AppColors.onPrimary,
                 )
             }
         }

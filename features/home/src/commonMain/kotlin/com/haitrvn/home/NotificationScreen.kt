@@ -24,10 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.H4
-import com.haitrvn.coreui.Label
-import com.haitrvn.coreui.Small
-import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.component.H4
+import com.haitrvn.coreui.component.Label
+import com.haitrvn.coreui.component.Small
+import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
 
 data class NotificationItem(
@@ -43,7 +43,7 @@ fun NotificationScreen(
     modifier: Modifier = Modifier
 ) {
     var selectedTab by remember { mutableStateOf(0) }
-    
+
     val notifications = remember {
         listOf(
             NotificationItem(
@@ -54,7 +54,7 @@ fun NotificationScreen(
                 date = "Today"
             ),
             NotificationItem(
-                id = "2", 
+                id = "2",
                 title = "Don't forget to try your saved recipe",
                 description = "Far far away, behind the word mountains, far from the countries.",
                 isRead = false,
@@ -62,7 +62,7 @@ fun NotificationScreen(
             ),
             NotificationItem(
                 id = "3",
-                title = "Don't forget to try your saved recipe", 
+                title = "Don't forget to try your saved recipe",
                 description = "Far far away, behind the word mountains, far from the countries.",
                 isRead = true,
                 date = "Yesterday"
@@ -77,17 +77,20 @@ fun NotificationScreen(
     ) {
         // Header
         NotificationHeader()
-        
+
         // Tabs
         NotificationTabs(
             selectedTab = selectedTab,
             onTabSelected = { selectedTab = it }
         )
-        
+
         // Notification List
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 20.dp, vertical = 12.dp),
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(
+                horizontal = 20.dp,
+                vertical = 12.dp
+            ),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             // Today section
@@ -98,23 +101,23 @@ fun NotificationScreen(
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
             }
-            
+
             val todayNotifications = notifications.filter { it.date == "Today" }
             items(todayNotifications) { notification ->
                 NotificationItemCard(
                     notification = notification
                 )
             }
-            
+
             // Yesterday section
             item {
                 Text.Label(
-                    text = "Yesterday", 
+                    text = "Yesterday",
                     color = AppColors.onBackground,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
             }
-            
+
             val yesterdayNotifications = notifications.filter { it.date == "Yesterday" }
             items(yesterdayNotifications) { notification ->
                 NotificationItemCard(
@@ -138,7 +141,7 @@ private fun NotificationHeader() {
             text = "Notifications",
             color = AppColors.onBackground
         )
-        
+
         // Filter icon placeholder
         Box(
             modifier = Modifier
@@ -155,7 +158,7 @@ private fun NotificationTabs(
     onTabSelected: (Int) -> Unit
 ) {
     val tabs = listOf("All", "Unread", "Read")
-    
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -164,7 +167,7 @@ private fun NotificationTabs(
     ) {
         tabs.forEachIndexed { index, tab ->
             val isSelected = selectedTab == index
-            
+
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -214,7 +217,7 @@ private fun NotificationItemCard(
                     .background(Color(0xFF31B057))
             )
         }
-        
+
         // Content
         Column(
             modifier = Modifier.weight(1f),
@@ -229,7 +232,7 @@ private fun NotificationItemCard(
                 color = Color(0xFFA9A9A9)
             )
         }
-        
+
         // Unread indicator
         if (!notification.isRead) {
             Box(

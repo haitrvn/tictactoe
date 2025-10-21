@@ -67,6 +67,7 @@ internal fun NavGraphBuilder.homeGraph(
         }
         navigation<Main.Setting>(startDestination = Main.Setting.Setting1) {
             composable<Main.Setting.Setting1> {
+                Setting()
             }
             composable<Main.Setting.Setting2> {
             }
@@ -81,12 +82,10 @@ internal fun NavGraphBuilder.authGraph(
 ) {
     navigation<Auth>(startDestination = Auth.Welcome) {
         composable<Auth.Welcome> {
-//            SplashScreen(
-//                modifier = modifier,
-//                navigator = navigator,
-//            )
-//            Setting()
-            NotificationScreen()
+            SplashScreen(
+                modifier = modifier,
+                navigator = navigator,
+            )
         }
         composable<Auth.Login> {
             LoginScreen(modifier = modifier, navigator = navigator)

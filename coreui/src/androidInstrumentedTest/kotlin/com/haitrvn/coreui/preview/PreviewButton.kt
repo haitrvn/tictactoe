@@ -2,10 +2,10 @@ package com.haitrvn.coreui.preview
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
-import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Primary
-import com.haitrvn.coreui.Secondary
-import com.haitrvn.coreui.Tertiary
+import com.haitrvn.coreui.component.Button
+import com.haitrvn.coreui.component.Primary
+import com.haitrvn.coreui.component.Secondary
+import com.haitrvn.coreui.component.Tertiary
 import com.haitrvn.coreui.imageloader.DevicesPreview
 import com.haitrvn.coreui.theme.CookTheme
 

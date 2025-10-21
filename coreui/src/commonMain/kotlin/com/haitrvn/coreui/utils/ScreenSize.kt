@@ -2,7 +2,6 @@ package com.haitrvn.coreui.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalWindowInfo
-import androidx.compose.ui.unit.dp
 import com.haitrvn.core.Log
 
 @Composable

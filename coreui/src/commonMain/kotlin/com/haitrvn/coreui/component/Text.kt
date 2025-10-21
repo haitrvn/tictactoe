@@ -1,4 +1,4 @@
-package com.haitrvn.coreui
+package com.haitrvn.coreui.component
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,7 +37,7 @@ fun Text.H4(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,
@@ -53,7 +53,7 @@ fun Text.H5(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,
@@ -69,7 +69,7 @@ fun Text.Paragraph(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,
@@ -85,7 +85,7 @@ fun Text.ParagraphBold(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,
@@ -101,7 +101,7 @@ fun Text.Label(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,
@@ -117,7 +117,7 @@ fun Text.LabelBold(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,
@@ -133,7 +133,7 @@ fun Text.Small(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,
@@ -149,7 +149,7 @@ fun Text.Tiny(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Left,
-    color: Color = AppColors.onPrimary
+    color: Color = AppColors.onPrimaryContainer
 ) {
     Text(
         text = text,

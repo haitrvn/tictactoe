@@ -7,6 +7,7 @@ import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -71,7 +72,7 @@ internal fun App(
             }
         }) {
         SharedTransitionLayout {
-            Box(modifier = Modifier.background(AppColors.background)) {
+            Box(modifier = Modifier.background(AppColors.background).padding(it)) {
                 MainGraph(
                     navController = navController,
                     navigator = navigator,

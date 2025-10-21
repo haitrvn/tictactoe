@@ -1,4 +1,4 @@
-package com.haitrvn.coreui
+package com.haitrvn.coreui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
@@ -13,7 +13,7 @@ import org.jetbrains.compose.resources.painterResource
 object Image
 
 @Composable
-fun Image(
+fun Image.Normal(
     modifier: Modifier = Modifier,
     source: Any,
     contentScale: ContentScale = ContentScale.Crop,
@@ -33,5 +33,5 @@ fun Image(
 
 @Composable
 fun Image.Circle(modifier: Modifier = Modifier, source: Any) {
-    Image(modifier.clip(Shapes.circle), source = source)
+    Image.Normal(modifier.clip(Shapes.circle), source = source)
 }

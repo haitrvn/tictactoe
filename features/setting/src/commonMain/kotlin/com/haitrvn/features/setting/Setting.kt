@@ -28,17 +28,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Circle
-import com.haitrvn.coreui.CustomSpace
-import com.haitrvn.coreui.H5
-import com.haitrvn.coreui.Image
-import com.haitrvn.coreui.Label
-import com.haitrvn.coreui.LargeSpace
-import com.haitrvn.coreui.MediumSpace
-import com.haitrvn.coreui.Primary
-import com.haitrvn.coreui.SmallSpace
-import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.component.Button
+import com.haitrvn.coreui.component.Circle
+import com.haitrvn.coreui.component.CustomSpace
+import com.haitrvn.coreui.component.H5
+import com.haitrvn.coreui.component.Image
+import com.haitrvn.coreui.component.Label
+import com.haitrvn.coreui.component.LargeSpace
+import com.haitrvn.coreui.component.MediumSpace
+import com.haitrvn.coreui.component.Normal
+import com.haitrvn.coreui.component.Primary
+import com.haitrvn.coreui.component.SmallSpace
+import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.theme.Shapes
@@ -108,7 +109,7 @@ private fun SettingItem(
     Row(modifier = modifier.fillMaxWidth().background(Color.Red).clickable { onClick }
         .padding(Dimensions.medium), horizontalArrangement = Arrangement.SpaceBetween) {
         Text.Label(text = label)
-        Image(modifier = Modifier.background(Color.White), source = Res.drawable.ic_cyclone1)
+        Image.Normal(modifier = Modifier.background(Color.White), source = Res.drawable.ic_cyclone1)
     }
 }
 
@@ -197,7 +198,7 @@ fun FeaturedPhotos(
         columns = GridCells.Fixed(2),
         content = {
             items(featuredPhotos.size) { index ->
-                Image(
+                Image.Normal(
                     modifier = Modifier.fillMaxWidth().aspectRatio(1f).clip(Shapes.rounded),
                     source = featuredPhotos[index]
                 )

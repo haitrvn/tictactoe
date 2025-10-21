@@ -1,4 +1,4 @@
-package com.haitrvn.coreui
+package com.haitrvn.coreui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,7 +34,7 @@ fun VideoCard(
         modifier = modifier.fillMaxSize().clip(Shapes.rounded),
         contentAlignment = Alignment.Center
     ) {
-        Image(modifier = Modifier.fillMaxSize(), source = thumbnailUrl)
+        Image.Normal(modifier = Modifier.fillMaxSize(), source = thumbnailUrl)
         Box(
             modifier = modifier.fillMaxSize()
                 .padding(8.dp),
@@ -53,7 +53,7 @@ fun PlayButton(
     modifier: Modifier,
     onPlayClick: () -> Unit
 ) {
-    Image(
+    Image.Normal(
         modifier = modifier.size(48.dp)
             .clip(Shapes.circle)
             .background(AppColors.onPrimary)
@@ -68,9 +68,9 @@ fun Saved(
     isSaved: Boolean
 ) {
     if (isSaved) {
-        Image(modifier = modifier.size(32.dp), source = Res.drawable.icon_bookmarked)
+        Image.Normal(modifier = modifier.size(32.dp), source = Res.drawable.icon_bookmarked)
     } else {
-        Image(
+        Image.Normal(
             modifier = modifier.size(32.dp),
             source = Res.drawable.icon_unbookmark
         )
@@ -90,7 +90,7 @@ fun Star(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Image(modifier = Modifier.size(16.dp), source = Res.drawable.icon_star)
+        Image.Normal(modifier = Modifier.size(16.dp), source = Res.drawable.icon_star)
         TinySpace()
         Text.Paragraph(text = star.toString())
     }

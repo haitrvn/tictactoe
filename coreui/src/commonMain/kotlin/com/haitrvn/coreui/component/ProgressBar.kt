@@ -1,4 +1,4 @@
-package com.haitrvn.coreui
+package com.haitrvn.coreui.component
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec

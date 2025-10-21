@@ -1,4 +1,4 @@
-package com.haitrvn.coreui
+package com.haitrvn.coreui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -27,7 +27,7 @@ fun Button.Primary(
     backgroundColor: Color = AppColors.primary,
     verticalPadding: Dp = Dimensions.small,
     horizontalPadding: Dp = Dimensions.small * 1.5f,
-    content: @Composable () -> Unit = { Text.ParagraphBold(text = text) },
+    content: @Composable () -> Unit = { Text.ParagraphBold(text = text, color = AppColors.onPrimary) },
     onClick: () -> Unit,
 ) {
     Box(

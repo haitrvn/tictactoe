@@ -14,16 +14,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.Image
-import com.haitrvn.coreui.Paragraph
-import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.component.Image
+import com.haitrvn.coreui.component.Normal
+import com.haitrvn.coreui.component.Paragraph
+import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.NavigationItem
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun BottomNavigationBar(
@@ -80,7 +80,7 @@ private fun RowScope.CustomNavigationBarItem(
 
     Box(
         modifier = Modifier
-            .weight(1f) // Each item takes equal space
+            .weight(1f)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null, // No ripple effect
@@ -93,9 +93,9 @@ private fun RowScope.CustomNavigationBarItem(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.padding(vertical = 8.dp)
         ) {
-            Image(
-                source = vectorResource(iconRes),
-                modifier = Modifier.size(24.dp) // Default icon size
+            Image.Normal(
+                source = iconRes,
+                modifier = Modifier.size(24.dp)
             )
             Text.Paragraph(text = navigationItem.title.toText(), color = textColor)
         }

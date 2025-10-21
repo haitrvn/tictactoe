@@ -27,21 +27,23 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.Button
-import com.haitrvn.coreui.Primary
-import com.haitrvn.coreui.Heading
-import com.haitrvn.coreui.Image
-import com.haitrvn.coreui.Input
-import com.haitrvn.coreui.LargeSpace
-import com.haitrvn.coreui.MediumSpace
-import com.haitrvn.coreui.Paragraph
-import com.haitrvn.coreui.SmallSpace
-import com.haitrvn.coreui.Text
+import com.haitrvn.coreui.component.Button
+import com.haitrvn.coreui.component.Heading
+import com.haitrvn.coreui.component.Image
+import com.haitrvn.coreui.component.Input
+import com.haitrvn.coreui.component.LargeSpace
+import com.haitrvn.coreui.component.MediumSpace
+import com.haitrvn.coreui.component.Normal
+import com.haitrvn.coreui.component.Paragraph
+import com.haitrvn.coreui.component.Primary
+import com.haitrvn.coreui.component.SmallSpace
+import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.utils.ScreenSizeType
 import com.haitrvn.coreui.utils.rememberScreenSizeType
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.Auth
+import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
 import cookapp.resources.auth.Res
 import cookapp.resources.auth.ic_login_password
@@ -65,6 +67,7 @@ fun LoginScreen(
         loginWithEmail = { navigator.navigate(Auth.LoginWithEmail) },
         loginWithGoogle = { },
         loginWithApple = { },
+        gotoHome = { navigator.navigate(Main.Home) },
     )
 }
 
@@ -76,6 +79,7 @@ fun LoginScreen(
     loginWithEmail: () -> Unit = {},
     loginWithGoogle: () -> Unit = {},
     loginWithApple: () -> Unit = {},
+    gotoHome: () -> Unit = {},
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -86,7 +90,7 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (rememberScreenSizeType() == ScreenSizeType.Large) {
-            Image(
+            Image.Normal(
                 modifier = Modifier.fillMaxWidth(0.8f).aspectRatio(1f),
                 source = Res.drawable.login_logo,
             )
@@ -117,7 +121,7 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth(),
             text = Res.string.login_button_login.toText()
         ) {
-
+            gotoHome()
         }
         LargeSpace()
         Box(modifier = Modifier.fillMaxWidth(0.6f).height(1.dp).background(Color.Black))
@@ -126,11 +130,11 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth().height(30.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Image(
+            Image.Normal(
                 modifier = Modifier.fillMaxHeight().aspectRatio(1f),
                 source = Res.drawable.ic_login_socical_google
             )
-            Image(
+            Image.Normal(
                 modifier = Modifier.fillMaxHeight().aspectRatio(1f),
                 source = Res.drawable.ic_login_socical_apple
             )

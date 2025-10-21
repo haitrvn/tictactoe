@@ -1,4 +1,4 @@
-package com.haitrvn.coreui
+package com.haitrvn.coreui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,8 +19,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
-import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.theme.Dimensions
+import com.haitrvn.coreui.theme.Shapes
 import com.haitrvn.coreui.theme.Typographies
 import com.haitrvn.coreui.utils.conditionalClickable
 import org.jetbrains.compose.resources.DrawableResource
@@ -47,15 +47,18 @@ fun Input.Text(
     Column(modifier = modifier) {
         Box(
             modifier = modifier.border(
-                    width = 1.dp, color = AppColors.onSecondaryContainer, shape = Shapes.rounded
-                ).clip(Shapes.rounded).background(AppColors.secondaryContainer)
+                width = 1.dp, color = AppColors.onSecondaryContainer, shape = Shapes.rounded
+            ).clip(Shapes.rounded).background(AppColors.secondaryContainer)
                 .padding(Dimensions.medium),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (prefixIcon != null) {
-                    Image(modifier = Modifier.size(24.dp).conditionalClickable(prefixIconClickable), source = prefixIcon)
+                    Image.Normal(
+                        modifier = Modifier.size(24.dp).conditionalClickable(prefixIconClickable),
+                        source = prefixIcon
+                    )
                     TinySpace()
                 }
                 BasicTextField(
@@ -71,7 +74,10 @@ fun Input.Text(
                     interactionSource = interactionSource
                 )
                 if (suffixIcon != null) {
-                    Image(modifier = Modifier.size(24.dp).conditionalClickable(suffixIconClickable), source = suffixIcon)
+                    Image.Normal(
+                        modifier = Modifier.size(24.dp).conditionalClickable(suffixIconClickable),
+                        source = suffixIcon
+                    )
                 }
             }
         }
