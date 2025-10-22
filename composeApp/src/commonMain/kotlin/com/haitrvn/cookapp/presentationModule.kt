@@ -7,6 +7,8 @@ import com.haitrvn.features.setting.di.settingModule
 import com.haitrvn.home.di.homeModule
 import com.haitrvn.navigation.ReloadViewModel
 import com.haitrvn.navigation.di.navigationMode
+import com.haitrvn.notification.di.notificationModule
+import com.haitrvn.saved.di.saveModule
 import com.haitrvn.splash.di.splashModule
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -25,4 +27,6 @@ val appModule = listOf(
     loginModule,
     splashModule,
     settingModule,
+    notificationModule,
+    saveModule,
 )

@@ -16,6 +16,7 @@ fun PreviewVideoCard() {
             star = 4.5f,
             isSaved = true,
             timeStamp = 1000L,
+            title = "title",
             thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpK1noS9RwpA351YDfG9dRCvSON-j5nZHU0A&s"
         )
     }

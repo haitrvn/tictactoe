@@ -35,7 +35,7 @@ import com.haitrvn.coreui.component.LargeSpace
 import com.haitrvn.coreui.component.MediumSpace
 import com.haitrvn.coreui.component.Normal
 import com.haitrvn.coreui.component.Paragraph
-import com.haitrvn.coreui.component.Primary
+import com.haitrvn.coreui.component.Filled
 import com.haitrvn.coreui.component.SmallSpace
 import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.Dimensions
@@ -117,7 +117,7 @@ fun LoginScreen(
         SmallSpace()
         Text.Paragraph(text = Res.string.login_forgot_password.toText())
         MediumSpace()
-        Button.Primary(
+        Button.Filled(
             modifier = Modifier.fillMaxWidth(),
             text = Res.string.login_button_login.toText()
         ) {

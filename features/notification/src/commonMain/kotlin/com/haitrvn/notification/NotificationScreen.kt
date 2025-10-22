@@ -31,6 +31,7 @@ import com.haitrvn.coreui.component.LabelBold
 import com.haitrvn.coreui.component.Small
 import com.haitrvn.coreui.component.SmallSpace
 import com.haitrvn.coreui.component.Tab
+import com.haitrvn.coreui.component.Tabs
 import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Dimensions
@@ -72,9 +73,12 @@ fun NotificationScreen(
             modifier = Modifier.fillMaxWidth(),
             title = Res.string.notification_title.toText(),
             headerAction = {})
-        NotificationTabs(
-            selectedTab = NotificationType.entries[pagerState.currentPage],
-            onTabSelected = { scope.launch { pagerState.scrollToPage(it.ordinal) } })
+        Tabs(
+            modifier = Modifier,
+            listTabs = NotificationType.entries.map { notificationType -> notificationType.title.toText() },
+            selectedTabIndex = pagerState.currentPage,
+            onTabSelected = { scope.launch { pagerState.scrollToPage(it) } }
+        )
         NotificationPager(
             modifier = Modifier.fillMaxSize().padding(Dimensions.medium),
             pagerState = pagerState,
@@ -95,7 +99,7 @@ fun NotificationPager(
         modifier = Modifier.fillMaxSize(),
         state = pagerState
     ) { page ->
-        LazyColumn(modifier = modifier.fillMaxSize().background(AppColors.onTertiary)) {
+        LazyColumn(modifier = modifier.fillMaxSize()) {
             notifications.forEach { (date, notificationsForDay) ->
                 item {
                     Text.LabelBold(

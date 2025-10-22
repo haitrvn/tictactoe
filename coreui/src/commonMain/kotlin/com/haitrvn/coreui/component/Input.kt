@@ -47,8 +47,8 @@ fun Input.Text(
     Column(modifier = modifier) {
         Box(
             modifier = modifier.border(
-                width = 1.dp, color = AppColors.onSecondaryContainer, shape = Shapes.rounded
-            ).clip(Shapes.rounded).background(AppColors.secondaryContainer)
+                width = 1.dp, color = AppColors.outline, shape = Shapes.rounded
+            ).clip(Shapes.rounded).background(AppColors.surface)
                 .padding(Dimensions.medium),
         ) {
             Row(
@@ -64,7 +64,7 @@ fun Input.Text(
                 BasicTextField(
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     value = value,
-                    textStyle = Typographies.paragraphBold.copy(color = AppColors.onPrimaryContainer),
+                    textStyle = Typographies.paragraphBold.copy(color = AppColors.onSurface),
                     onValueChange = onValueChange,
                     enabled = enabled,
                     keyboardOptions = keyboardOptions,

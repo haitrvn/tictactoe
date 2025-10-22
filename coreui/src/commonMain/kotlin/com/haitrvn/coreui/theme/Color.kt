@@ -27,6 +27,7 @@ class Color(
     onError: Color,
     errorContainer: Color,
     onErrorContainer: Color,
+    outline: Color,
 ) {
     var primary by mutableStateOf(primary)
         private set
@@ -73,6 +74,9 @@ class Color(
         private set
     var onErrorContainer by mutableStateOf(onErrorContainer)
         private set
+
+    var outline by mutableStateOf(outline)
+        private set
 }
 
 val LightColors = Color(
@@ -101,6 +105,8 @@ val LightColors = Color(
     onError = Color(0xffffffff),
     errorContainer = Color(0xffffffff),
     onErrorContainer = Color(0xffff0000),
+
+    outline = Color(0xffca682f),
 )
 
 val DarkColors = Color(
@@ -129,6 +135,8 @@ val DarkColors = Color(
     onError = Color(0xffffffff),
     errorContainer = Color(0xffffffff),
     onErrorContainer = Color(0xffff0000),
+
+    outline = Color(0xffca682f),
 )
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }

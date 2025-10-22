@@ -1,0 +1,5 @@
+<resources>
+    <string name="saved_title">Saved Recipes</string>
+    <string name="saved_tab_recipes">Recipes</string>
+    <string name="saved_tab_videos">Videos</string>
+</resources>

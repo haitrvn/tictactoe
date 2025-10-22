@@ -28,15 +28,16 @@ fun VideoCard(
     star: Float,
     isSaved: Boolean,
     timeStamp: Long,
+    title: String,
     thumbnailUrl: Any,
 ) {
     Box(
-        modifier = modifier.fillMaxSize().clip(Shapes.rounded),
+        modifier = modifier.clip(Shapes.rounded),
         contentAlignment = Alignment.Center
     ) {
         Image.Normal(modifier = Modifier.fillMaxSize(), source = thumbnailUrl)
         Box(
-            modifier = modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize()
                 .padding(8.dp),
             contentAlignment = Alignment.Center
         ) {

@@ -21,7 +21,7 @@ import com.haitrvn.coreui.theme.Shapes
 object Button
 
 @Composable
-fun Button.Primary(
+fun Button.Filled(
     modifier: Modifier = Modifier,
     text: String,
     backgroundColor: Color = AppColors.primary,
@@ -46,18 +46,18 @@ fun Button.Primary(
 }
 
 @Composable
-fun Button.Secondary(
+fun Button.Outlined(
     modifier: Modifier = Modifier,
     text: String,
-    backgroundColor: Color = AppColors.primary,
+    outline: Color = AppColors.outline,
     verticalPadding: Dp = Dimensions.small,
     horizontalPadding: Dp = Dimensions.small * 1.5f,
-    content: @Composable () -> Unit = { Text.ParagraphBold(text = text, color = backgroundColor) },
+    content: @Composable () -> Unit = { Text.ParagraphBold(text = text, color = AppColors.primary) },
     onClick: () -> Unit,
 ) {
     Box(
         modifier = modifier.clip(Shapes.rounded)
-            .border(2.dp, backgroundColor, Shapes.rounded)
+            .border(2.dp, outline, Shapes.rounded)
             .padding(horizontal = horizontalPadding, vertical = verticalPadding)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
@@ -71,10 +71,10 @@ fun Button.Secondary(
 }
 
 @Composable
-fun Button.Tertiary(
+fun Button.Text(
     modifier: Modifier = Modifier,
     text: String,
-    backgroundColor: Color = AppColors.tertiary,
+    backgroundColor: Color = AppColors.primary,
     verticalPadding: Dp = Dimensions.small,
     horizontalPadding: Dp = Dimensions.small * 1.5f,
     content: @Composable () -> Unit = { Text.ParagraphBold(text = text, color = backgroundColor) },

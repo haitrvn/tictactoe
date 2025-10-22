@@ -22,7 +22,7 @@ import com.haitrvn.coreui.component.Image
 import com.haitrvn.coreui.component.LargeSpace
 import com.haitrvn.coreui.component.Normal
 import com.haitrvn.coreui.component.Paragraph
-import com.haitrvn.coreui.component.Primary
+import com.haitrvn.coreui.component.Filled
 import com.haitrvn.coreui.component.SmallSpace
 import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
@@ -80,7 +80,7 @@ internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Uni
                 color = AppColors.onPrimary,
             )
             LargeSpace()
-            Button.Primary(
+            Button.Filled(
                 modifier = Modifier.fillMaxWidth(),
                 text = Res.string.splash_button_start.toText(),
                 onClick = onStartClick,

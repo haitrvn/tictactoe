@@ -43,6 +43,9 @@ data object Main : Destination {
     @Serializable
     data object Notification : Destination {
         @Serializable
+        data object Notification1 : Destination
+
+        @Serializable
         data class Detail(val id: String) : Destination
     }
 

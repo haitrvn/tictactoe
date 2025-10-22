@@ -20,8 +20,8 @@ import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.Navigator
 import com.haitrvn.notification.NotificationScreen
+import com.haitrvn.saved.SavedScreen
 import com.haitrvn.splash.SplashScreen
-import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 internal fun MainGraph(
@@ -59,11 +59,12 @@ internal fun NavGraphBuilder.homeGraph(
         }
         navigation<Main.Search>(startDestination = Main.Search.Search1) {
             composable<Main.Search.Search1> {
+                SavedScreen(modifier = Modifier, navigator = navigator)
             }
         }
         navigation<Main.Notification>(startDestination = Main.Notification.Notification1) {
             composable<Main.Notification.Notification1> {
-                NotificationScreen()
+                NotificationScreen(navigator = navigator)
             }
         }
         navigation<Main.Setting>(startDestination = Main.Setting.Setting1) {

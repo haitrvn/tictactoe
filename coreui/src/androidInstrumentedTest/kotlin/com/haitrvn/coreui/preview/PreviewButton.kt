@@ -3,9 +3,9 @@ package com.haitrvn.coreui.preview
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import com.haitrvn.coreui.component.Button
-import com.haitrvn.coreui.component.Primary
-import com.haitrvn.coreui.component.Secondary
-import com.haitrvn.coreui.component.Tertiary
+import com.haitrvn.coreui.component.Filled
+import com.haitrvn.coreui.component.Outlined
+import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.imageloader.DevicesPreview
 import com.haitrvn.coreui.theme.CookTheme
 
@@ -14,9 +14,9 @@ import com.haitrvn.coreui.theme.CookTheme
 fun PreviewButton() {
     CookTheme {
         Column {
-            Button.Primary(text = "Sample button") { }
-            Button.Secondary(text = "Sample button") { }
-            Button.Tertiary(text = "Sample button") { }
+            Button.Filled(text = "Sample button") { }
+            Button.Outlined(text = "Sample button") { }
+            Button.Text(text = "Sample button") { }
         }
     }
 }

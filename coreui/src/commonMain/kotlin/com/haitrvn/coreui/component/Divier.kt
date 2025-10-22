@@ -15,7 +15,7 @@ import com.haitrvn.coreui.theme.AppColors
 @Composable
 fun VerticalDivider(
     modifier: Modifier = Modifier,
-    color: Color = AppColors.secondary,
+    color: Color = AppColors.outline,
     thickness: Dp = 1.dp
 ) {
     Box(
@@ -29,7 +29,7 @@ fun VerticalDivider(
 @Composable
 fun HorizontalDivider(
     modifier: Modifier = Modifier,
-    color: Color = AppColors.secondary,
+    color: Color = AppColors.outline,
     thickness: Dp = 1.dp
 ) {
     Box(

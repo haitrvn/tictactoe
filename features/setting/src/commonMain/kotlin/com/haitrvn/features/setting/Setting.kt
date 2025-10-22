@@ -37,7 +37,7 @@ import com.haitrvn.coreui.component.Label
 import com.haitrvn.coreui.component.LargeSpace
 import com.haitrvn.coreui.component.MediumSpace
 import com.haitrvn.coreui.component.Normal
-import com.haitrvn.coreui.component.Primary
+import com.haitrvn.coreui.component.Filled
 import com.haitrvn.coreui.component.SmallSpace
 import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
@@ -135,7 +135,7 @@ fun Profile(
                 modifier = Modifier.size(120.dp).border(2.dp, AppColors.primary, Shapes.circle),
                 source = avatarUrl
             )
-            Button.Primary(text = Res.string.setting_edit_profile.toText()) {}
+            Button.Filled(text = Res.string.setting_edit_profile.toText()) {}
         }
         MediumSpace()
         Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
