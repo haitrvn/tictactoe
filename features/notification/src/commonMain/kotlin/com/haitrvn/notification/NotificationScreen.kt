@@ -1,6 +1,7 @@
 package com.haitrvn.notification
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,12 +18,14 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.haitrvn.coreui.component.Header
 import com.haitrvn.coreui.component.LabelBold
 import com.haitrvn.coreui.component.Small
@@ -32,15 +35,33 @@ import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.utils.toText
+import com.haitrvn.navigation.Main
+import com.haitrvn.navigation.Navigator
 import cookapp.resources.notification.Res
 import cookapp.resources.notification.notification_title
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.coroutines.launch
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun NotificationScreen(
     modifier: Modifier = Modifier,
-    notifications: PersistentList<NotificationGroupByDate> = mockNotificationGroupByDate
+    navigator: Navigator,
+    viewModel: NotificationViewModel = koinViewModel(),
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    NotificationScreen(
+        modifier = modifier,
+        uiState = uiState,
+        goToDetail = { navigator.navigate(Main.Notification.Detail(it)) }
+    )
+}
+
+@Composable
+fun NotificationScreen(
+    modifier: Modifier = Modifier,
+    uiState: NotificationScreenUiState,
+    goToDetail: (String) -> Unit = {},
 ) {
     val pagerState = rememberPagerState(pageCount = { NotificationType.entries.size })
     val scope = rememberCoroutineScope()
@@ -57,7 +78,8 @@ fun NotificationScreen(
         NotificationPager(
             modifier = Modifier.fillMaxSize().padding(Dimensions.medium),
             pagerState = pagerState,
-            notifications = notifications,
+            notifications = uiState.notifications,
+            goToDetail = goToDetail,
         )
     }
 }
@@ -67,8 +89,8 @@ fun NotificationPager(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
     notifications: PersistentList<NotificationGroupByDate>,
-
-    ) {
+    goToDetail: (String) -> Unit = {},
+) {
     HorizontalPager(
         modifier = Modifier.fillMaxSize(),
         state = pagerState
@@ -81,9 +103,8 @@ fun NotificationPager(
                         text = date
                     )
                 }
-                items(
-                    items = notificationsForDay, key = { it.id }) { notification ->
-                    NotificationItemCard(notification)
+                items(items = notificationsForDay, key = { it.id }) { notification ->
+                    NotificationItemCard(notification, goToDetail)
                     SmallSpace()
                 }
             }
@@ -116,10 +137,12 @@ private fun NotificationTabs(
 
 @Composable
 private fun NotificationItemCard(
-    notification: NotificationItem
+    notification: NotificationItem,
+    notificationClick: (String) -> Unit,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp))
+            .clickable { notificationClick(notification.id) }
             .background(Color(0xFFF1F1F1)).padding(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.Top

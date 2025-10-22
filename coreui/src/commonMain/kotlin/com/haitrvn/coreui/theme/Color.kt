@@ -79,15 +79,15 @@ val LightColors = Color(
     primary = Color(0xffff6b00),
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = Color(0xffe5dfec),
-    onPrimaryContainer = Color(0xff0e0e0e),
+    onPrimaryContainer = Color(0xff181818),
 
-    secondary = Color(0x4dffffff),
-    onSecondary = Color(0xFF000000),
-    secondaryContainer = Color(0xffffffff),
-    onSecondaryContainer = Color(0xFF000000),
+    secondary = Color(0xffffffff),
+    onSecondary = Color(0xFFFF6A00),
+    secondaryContainer = Color(0xffF1F1F1),
+    onSecondaryContainer = Color(0xff181818),
 
-    tertiary = Color(0xFFB00020),
-    onTertiary = Color(0xFFFFFFFF),
+    tertiary = Color(0xffffffff),
+    onTertiary = Color(0xFFEE8B8B),
     tertiaryContainer = Color(0xFF370617),
     onTertiaryContainer = Color(0xFFFFFFFF),
 

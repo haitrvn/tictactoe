@@ -18,7 +18,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -28,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.haitrvn.coreui.component.Button
 import com.haitrvn.coreui.component.Circle
 import com.haitrvn.coreui.component.CustomSpace
@@ -58,7 +58,7 @@ fun Setting(
     modifier: Modifier = Modifier,
 ) {
     val viewmodel: SettingViewModel = koinInject()
-    val uiState by viewmodel.uiState.collectAsState()
+    val uiState by viewmodel.uiState.collectAsStateWithLifecycle()
     Setting(modifier = modifier, uiState = uiState)
 }
 
@@ -191,7 +191,7 @@ fun FeaturedPhotos(
     featuredPhotos: SnapshotStateList<String> = mutableStateListOf(),
 ) {
     LazyVerticalGrid(
-        modifier = modifier.fillMaxWidth().aspectRatio(1f).background(AppColors.background)
+        modifier = modifier.fillMaxWidth().aspectRatio(1f).background(AppColors.surface)
             .padding(Dimensions.medium),
         verticalArrangement = Arrangement.spacedBy(Dimensions.medium),
         horizontalArrangement = Arrangement.spacedBy(Dimensions.medium),
