@@ -1,7 +1,6 @@
 package com.haitrvn.saved
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,7 +28,6 @@ import cookapp.resources.saved.saved_title
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
-
 
 @Composable
 fun SavedScreen(
@@ -65,7 +63,10 @@ fun SavedScreen(
             modifier = Modifier,
             pagerState = pagerState,
             notifications = uiState.listSaved,
-            goToWatch = {})
+            goToWatch = {},
+            saveVideoAndRecipe = {},
+            viewRate = {},
+        )
     }
 }
 
@@ -75,6 +76,8 @@ fun SavedVideoAndRecipePager(
     pagerState: PagerState,
     notifications: PersistentList<SavedVideoAndRecipe>,
     goToWatch: (String) -> Unit = {},
+    saveVideoAndRecipe: (String) -> Unit = {},
+    viewRate: (String) -> Unit = {},
 ) {
     HorizontalPager(
         modifier = modifier.fillMaxSize(),
@@ -85,13 +88,15 @@ fun SavedVideoAndRecipePager(
                 items(items = notifications, key = { it.id }) { savedVideoAndRecipe ->
                     SmallSpace()
                     VideoCard(
-                        modifier = Modifier.fillMaxWidth().height(maxWidth * 0.5f)
-                            .clickable { goToWatch(savedVideoAndRecipe.id) },
+                        modifier = Modifier.fillMaxWidth().height(maxWidth * 0.5f),
                         star = savedVideoAndRecipe.star,
                         isSaved = savedVideoAndRecipe.isSaved,
                         timeStamp = savedVideoAndRecipe.timeStamp,
                         title = savedVideoAndRecipe.title,
                         thumbnailUrl = savedVideoAndRecipe.thumbnailUrl,
+                        onPlayClick = { goToWatch(savedVideoAndRecipe.id) },
+                        onSaveClick = { saveVideoAndRecipe(savedVideoAndRecipe.id) },
+                        onRateClick = { viewRate(savedVideoAndRecipe.id) },
                     )
                 }
             }

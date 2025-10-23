@@ -30,6 +30,9 @@ kotlin {
                 implementation(libs.coil.network.ktor)
                 implementation(libs.coil.network.cache.control)
                 implementation(libs.ktor.client.core)
+
+                api("dev.chrisbanes.haze:haze:1.6.10")
+                api("dev.chrisbanes.haze:haze-materials:1.6.10")
             }
         }
 

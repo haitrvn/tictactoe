@@ -15,6 +15,7 @@ import androidx.navigation.navigation
 import com.haitrvn.auth.LoginScreen
 import com.haitrvn.auth.RegisterScreen
 import com.haitrvn.features.setting.Setting
+import com.haitrvn.home.Home
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Destination
 import com.haitrvn.navigation.Main
@@ -55,6 +56,7 @@ internal fun NavGraphBuilder.homeGraph(
     navigation<Main>(startDestination = Main.Home) {
         navigation<Main.Home>(startDestination = Main.Home.Home1) {
             composable<Main.Home.Home1> {
+                Home()
             }
         }
         navigation<Main.Search>(startDestination = Main.Search.Search1) {

@@ -19,7 +19,7 @@ private val mockSavedVideoAndRecipeList = persistentListOf(
         star = 4.5f,
         isSaved = true,
         timeStamp = 1000L,
-        thumbnailUrl = "https://example.com/thumb1.jpg"
+        thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY3cOryhn3_YO1AyGKZTg1zLlk5QubdUyoKw&s"
     ),
     SavedVideoAndRecipe(
         id = "2",
@@ -27,6 +27,6 @@ private val mockSavedVideoAndRecipeList = persistentListOf(
         star = 5.0f,
         isSaved = true,
         timeStamp = 1000L, // 1 day ago
-        thumbnailUrl = "https://example.com/thumb2.jpg"
+        thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjY0SHHdRkZEpjyZcqcVVJ_0O3Qw3d0piUZw&s"
     )
 )
