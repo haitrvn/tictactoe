@@ -33,6 +33,7 @@ kotlin {
 
                 api("dev.chrisbanes.haze:haze:1.6.10")
                 api("dev.chrisbanes.haze:haze-materials:1.6.10")
+                implementation(libs.kotlinx.collections.immutable)
             }
         }
 

@@ -62,7 +62,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.room.runtime)
-            implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
+            implementation(libs.kotlinx.collections.immutable)
         }
 
         jvmMain.dependencies {

@@ -25,20 +25,20 @@ class HomeViewModel(
     private val userLoginUseCase: UserLoginUseCase,
     private val userLoginValidationUseCase: UserLoginValidationUseCase
 ) : ViewModel() {
-    private val _uiState: MutableStateFlow<LoginUiState> = MutableStateFlow(LoginUiState.Empty)
+    private val _uiState: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Empty)
     val uiState = _uiState.asStateFlow()
 
-    private val actionSharedFlow = MutableSharedFlow<LoginAction>()
-    private inline fun <reified T : LoginAction> action() = actionSharedFlow.filterIsInstance<T>()
+    private val actionSharedFlow = MutableSharedFlow<HomeAction>()
+    private inline fun <reified T : HomeAction> action() = actionSharedFlow.filterIsInstance<T>()
 
-    internal fun dispatch(action: LoginAction) {
+    internal fun dispatch(action: HomeAction) {
         viewModelScope.launch {
             actionSharedFlow.emit(action)
         }
     }
 
     init {
-        action<LoginAction.UsernameChanged>()
+        action<HomeAction.UsernameChanged>()
             .map { it.username }
             .flatMapLatest { username ->
                 flow {
@@ -48,7 +48,7 @@ class HomeViewModel(
                 _uiState.value = _uiState.value.copy(username = username)
             }.launchIn(viewModelScope)
 
-        action<LoginAction.PasswordChanged>()
+        action<HomeAction.PasswordChanged>()
             .map { it.password }
             .flatMapLatest { password ->
                 flow {
@@ -58,7 +58,7 @@ class HomeViewModel(
                 _uiState.value = _uiState.value.copy(password = password)
             }.launchIn(viewModelScope)
 
-        action<LoginAction.LoginClicked>().onEach {
+        action<HomeAction.LoginClicked>().onEach {
             println("Login clicked")
         }.flatMapFirst {
             flow {
@@ -84,7 +84,7 @@ class HomeViewModel(
     }
 }
 
-data class LoginUiState(
+data class HomeUiState(
     val username: String,
     val password: String,
     val isHidePassword: Boolean,
@@ -92,7 +92,7 @@ data class LoginUiState(
     val isLoading: Boolean,
 ) {
     companion object {
-        val Empty = LoginUiState(
+        val Empty = HomeUiState(
             username = "",
             password = "",
             isHidePassword = true,
@@ -104,8 +104,8 @@ data class LoginUiState(
 
 interface Action
 
-sealed interface LoginAction : Action {
-    data class UsernameChanged(val username: String) : LoginAction
-    data class PasswordChanged(val password: String) : LoginAction
-    object LoginClicked : LoginAction
+sealed interface HomeAction : Action {
+    data class UsernameChanged(val username: String) : HomeAction
+    data class PasswordChanged(val password: String) : HomeAction
+    object LoginClicked : HomeAction
 }

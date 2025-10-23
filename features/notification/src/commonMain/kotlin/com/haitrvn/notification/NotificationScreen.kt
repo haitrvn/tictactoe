@@ -41,6 +41,7 @@ import com.haitrvn.navigation.Navigator
 import cookapp.resources.notification.Res
 import cookapp.resources.notification.notification_title
 import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -75,7 +76,8 @@ fun NotificationScreen(
             headerAction = {})
         Tabs(
             modifier = Modifier,
-            listTabs = NotificationType.entries.map { notificationType -> notificationType.title.toText() },
+            listTabs = NotificationType.entries.map { notificationType -> notificationType.title.toText() }
+                .toPersistentList(),
             selectedTabIndex = pagerState.currentPage,
             onTabSelected = { scope.launch { pagerState.scrollToPage(it) } }
         )

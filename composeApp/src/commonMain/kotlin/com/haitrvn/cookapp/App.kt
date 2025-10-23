@@ -76,7 +76,7 @@ internal fun App(
                 MainGraph(
                     navController = navController,
                     navigator = navigator,
-                    startDestination = Auth,
+                    startDestination = Main,
                     sharedTransitionScope = this@SharedTransitionLayout,
                 )
             }

@@ -26,6 +26,7 @@ import com.haitrvn.navigation.Navigator
 import cookapp.resources.saved.Res
 import cookapp.resources.saved.saved_title
 import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -55,7 +56,7 @@ fun SavedScreen(
         Header(title = Res.string.saved_title.toText())
         Tabs(
             modifier = Modifier,
-            listTabs = SavedType.entries.map { notificationType -> notificationType.title.toText() },
+            listTabs = SavedType.entries.map { notificationType -> notificationType.title.toText() }.toPersistentList(),
             selectedTabIndex = pagerState.currentPage,
             onTabSelected = { scope.launch { pagerState.scrollToPage(it) } }
         )
