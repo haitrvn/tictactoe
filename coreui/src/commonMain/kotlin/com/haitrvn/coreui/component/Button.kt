@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -17,6 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.theme.Shapes
+import cookapp.resources.core.ui.Res
+import cookapp.resources.core.ui.icon_bookmarked
+import cookapp.resources.core.ui.icon_unbookmark
 
 object Button
 
@@ -92,4 +96,17 @@ fun Button.Text(
     ) {
         content()
     }
+}
+
+@Composable
+fun Button.Bookmark(
+    modifier: Modifier = Modifier.size(32.dp),
+    isSaved: Boolean,
+    onSaveClick: (Boolean) -> Unit,
+) {
+    val icon = if (isSaved) Res.drawable.icon_bookmarked else Res.drawable.icon_unbookmark
+    Image.Normal(
+        modifier = modifier.clickable { onSaveClick(!isSaved) },
+        source = icon
+    )
 }

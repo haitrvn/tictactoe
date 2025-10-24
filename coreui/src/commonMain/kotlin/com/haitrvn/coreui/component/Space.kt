@@ -28,6 +28,6 @@ fun LargeSpace(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CustomSpace(size: Dp, modifier: Modifier = Modifier) {
+fun CustomSpace(size: Dp = Dimensions.medium, modifier: Modifier = Modifier) {
     Spacer(modifier.size(size))
 }

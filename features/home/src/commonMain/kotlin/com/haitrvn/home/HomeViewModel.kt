@@ -4,6 +4,7 @@ package com.haitrvn.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.haitrvn.core.Log
 import com.haitrvn.core.flatMapFirst
 import com.haitrvn.domain.model.UserLogin
 import com.haitrvn.domain.usecase.UserLoginUseCase
@@ -38,6 +39,7 @@ class HomeViewModel(
     }
 
     init {
+        Log.d("haitrvnViewModel $this")
         action<HomeAction.UsernameChanged>()
             .map { it.username }
             .flatMapLatest { username ->

@@ -17,10 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.Shapes
 import cookapp.resources.core.ui.Res
-import cookapp.resources.core.ui.icon_bookmarked
 import cookapp.resources.core.ui.icon_play_button
 import cookapp.resources.core.ui.icon_star
-import cookapp.resources.core.ui.icon_unbookmark
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
@@ -62,7 +60,7 @@ fun VideoCard(
                 onRateClick = onRateClick,
                 blurState = blurState,
             )
-            Saved(
+            Button.Bookmark(
                 modifier = Modifier.align(Alignment.TopEnd),
                 isSaved = isSaved,
                 onSaveClick = onSaveClick,
@@ -93,19 +91,6 @@ private fun PlayButton(
             .hazeEffect(blurState, style = HazeMaterials.ultraThin())
             .clickable { onPlayClick() },
         source = Res.drawable.icon_play_button
-    )
-}
-
-@Composable
-private fun Saved(
-    modifier: Modifier,
-    isSaved: Boolean,
-    onSaveClick: (Boolean) -> Unit,
-) {
-    val icon = if (isSaved) Res.drawable.icon_bookmarked else Res.drawable.icon_unbookmark
-    Image.Normal(
-        modifier = modifier.size(32.dp).clickable { onSaveClick(!isSaved) },
-        source = icon
     )
 }
 
