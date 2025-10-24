@@ -33,6 +33,7 @@ detekt = "1.23.8"
 maven-publish = "0.34.0"
 uiTooling = "1.9.1"
 navigation3 = "1.0.0-alpha09"
+androidx-nav3 = "1.0.0-alpha03"
 [libraries]
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -87,6 +88,8 @@ dokka-gradle = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref
 publishing-gradle = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 compose-gradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+
+androidx-nav3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "androidx-nav3" }
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

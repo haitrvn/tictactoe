@@ -47,6 +47,7 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation("io.insert-koin:koin-core-viewmodel:4.1.0")
+            implementation(libs.androidx.nav3.ui)
         }
 
         commonTest.dependencies {
