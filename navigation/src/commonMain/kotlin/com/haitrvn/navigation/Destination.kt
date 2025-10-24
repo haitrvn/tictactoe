@@ -1,60 +1,60 @@
 package com.haitrvn.navigation
 
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
-sealed interface Destination {
-    val deeplinkPattern: String?
-        get() = null
-}
+sealed interface Screen : NavKey
+
+interface ShowBottomBar
 
 @Serializable
-data object Auth : Destination {
+data object Auth : Screen {
     @Serializable
-    data object Welcome : Destination
+    data object Welcome : Screen
 
     @Serializable
-    data object Login : Destination
+    data object Login : Screen
 
     @Serializable
-    data object LoginWithEmail : Destination
+    data object LoginWithEmail : Screen
 
     @Serializable
-    data object Register : Destination
+    data object Register : Screen
 }
 
 
 @Serializable
-data object Main : Destination {
+data object Main : Screen {
     @Serializable
-    data object Home : Destination {
+    data object Home : Screen, ShowBottomBar {
         @Serializable
-        data object Home1 : Destination
+        data object Home1 : Screen
 
         @Serializable
-        data object Home2 : Destination
+        data object Home2 : Screen
     }
 
     @Serializable
-    data object Search : Destination {
+    data object Search : Screen, ShowBottomBar {
         @Serializable
-        data object Search1 : Destination
+        data object Search1 : Screen
     }
 
     @Serializable
-    data object Notification : Destination {
+    data object Notification : Screen, ShowBottomBar {
         @Serializable
-        data object Notification1 : Destination
+        data object Notification1 : Screen
 
         @Serializable
-        data class Detail(val id: String) : Destination
+        data class Detail(val id: String) : Screen
     }
 
     @Serializable
-    data object Setting : Destination {
+    data object Setting : Screen, ShowBottomBar {
         @Serializable
-        data object Setting1 : Destination
+        data object Setting1 : Screen
 
         @Serializable
-        data object Setting2 : Destination
+        data object Setting2 : Screen
     }
 }

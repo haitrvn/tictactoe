@@ -29,7 +29,7 @@ kotlin {
                 implementation("io.insert-koin:koin-compose-viewmodel:4.0.4") {
                     exclude(group = "org.jetbrains.androidx.core", module = "core-bundle")
                 }
-                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+                implementation(libs.androidx.nav3.ui)
                 implementation(libs.lifecycle.viewmodel.compose)
                 implementation(libs.kotlinx.collections.immutable)
             }

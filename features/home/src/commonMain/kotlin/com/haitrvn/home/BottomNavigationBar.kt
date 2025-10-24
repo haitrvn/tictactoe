@@ -24,13 +24,13 @@ import com.haitrvn.coreui.component.Paragraph
 import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.utils.toText
 import com.haitrvn.navigation.NavigationItem
+import com.haitrvn.navigation.Screen
 
 @Composable
 fun BottomNavigationBar(
     items: List<NavigationItem>,
-    currentRoute: String?,
+    currentRoute: Screen?,
     onItemClick: (NavigationItem) -> Unit,
-    onItemReClick: (Boolean, NavigationItem) -> Unit = { _, _ -> },
 ) {
     Row(
         modifier = Modifier
@@ -41,20 +41,11 @@ fun BottomNavigationBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         items.forEach { navigationItem ->
-            val isSelected =
-                currentRoute?.contains(navigationItem.destination::class.qualifiedName ?: "")
-                    ?: false
             CustomNavigationBarItem(
                 navigationItem = navigationItem,
-                isSelected = isSelected,
+                isSelected = navigationItem.destination == currentRoute,
                 onClick = {
-                    val isShouldCallReload =
-                        currentRoute == navigationItem.startDestination::class.qualifiedName
-                    if (isSelected) {
-                        onItemReClick(isShouldCallReload, navigationItem)
-                    } else {
-                        onItemClick(navigationItem)
-                    }
+                    onItemClick(navigationItem)
                 }
             )
         }

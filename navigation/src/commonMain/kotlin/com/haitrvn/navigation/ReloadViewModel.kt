@@ -14,5 +14,4 @@ sealed interface MainAction {
 }
 
 sealed interface MainEvent {
-    data class Reload(val destination: Destination) : MainEvent
 }

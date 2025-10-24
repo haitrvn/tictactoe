@@ -3,101 +3,59 @@
 package com.haitrvn.cookapp
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.animation.SharedTransitionScope
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.navigation
-import com.haitrvn.auth.LoginScreen
-import com.haitrvn.auth.RegisterScreen
-import com.haitrvn.features.setting.Setting
-import com.haitrvn.home.Home
-import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Destination
-import com.haitrvn.navigation.Main
-import com.haitrvn.navigation.Navigator
-import com.haitrvn.notification.NotificationScreen
-import com.haitrvn.saved.SavedScreen
-import com.haitrvn.splash.SplashScreen
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 
-@Composable
-internal fun MainGraph(
-    modifier: Modifier = Modifier,
-    navigator: Navigator,
-    navController: NavHostController,
-    startDestination: Destination,
-    sharedTransitionScope: SharedTransitionScope,
-) {
-    NavHost(
-        modifier = Modifier.fillMaxSize().then(modifier),
-        navController = navController,
-        startDestination = startDestination
-    ) {
-        authGraph(
-            navigator = navigator,
-            sharedTransitionScope = sharedTransitionScope,
-        )
-        homeGraph(
-            navigator = navigator,
-            sharedTransitionScope = sharedTransitionScope,
-        )
+class TopLevelBackStack<T: Any>(startKey: T) {
+
+    // Maintain a stack for each top level route
+    private var topLevelStacks : LinkedHashMap<T, SnapshotStateList<T>> = linkedMapOf(
+        startKey to mutableStateListOf(startKey)
+    )
+
+    // Expose the current top level route for consumers
+    var topLevelKey by mutableStateOf(startKey)
+        private set
+
+    // Expose the back stack so it can be rendered by the NavDisplay
+    val backStack = mutableStateListOf(startKey)
+
+    private fun updateBackStack() =
+        backStack.apply {
+            clear()
+            addAll(topLevelStacks.flatMap { it.value })
+        }
+
+    fun addTopLevel(key: T){
+
+        // If the top level doesn't exist, add it
+        if (topLevelStacks[key] == null){
+            topLevelStacks.put(key, mutableStateListOf(key))
+        } else {
+            // Otherwise just move it to the end of the stacks
+            topLevelStacks.apply {
+                remove(key)?.let {
+                    put(key, it)
+                }
+            }
+        }
+        topLevelKey = key
+        updateBackStack()
     }
-}
 
-internal fun NavGraphBuilder.homeGraph(
-    modifier: Modifier = Modifier,
-    navigator: Navigator,
-    sharedTransitionScope: SharedTransitionScope,
-) {
-    navigation<Main>(startDestination = Main.Home) {
-        navigation<Main.Home>(startDestination = Main.Home.Home1) {
-            composable<Main.Home.Home1> {
-                Home(navigator = navigator)
-            }
-        }
-        navigation<Main.Search>(startDestination = Main.Search.Search1) {
-            composable<Main.Search.Search1> {
-                SavedScreen(modifier = Modifier, navigator = navigator)
-            }
-        }
-        navigation<Main.Notification>(startDestination = Main.Notification.Notification1) {
-            composable<Main.Notification.Notification1> {
-                NotificationScreen(navigator = navigator)
-            }
-        }
-        navigation<Main.Setting>(startDestination = Main.Setting.Setting1) {
-            composable<Main.Setting.Setting1> {
-                Setting()
-            }
-            composable<Main.Setting.Setting2> {
-            }
-        }
+    fun add(key: T){
+        topLevelStacks[topLevelKey]?.add(key)
+        updateBackStack()
     }
-}
 
-internal fun NavGraphBuilder.authGraph(
-    modifier: Modifier = Modifier,
-    navigator: Navigator,
-    sharedTransitionScope: SharedTransitionScope,
-) {
-    navigation<Auth>(startDestination = Auth.Welcome) {
-        composable<Auth.Welcome> {
-            SplashScreen(
-                modifier = modifier,
-                navigator = navigator,
-            )
-        }
-        composable<Auth.Login> {
-            LoginScreen(modifier = modifier, navigator = navigator)
-        }
-        composable<Auth.LoginWithEmail> {
-        }
-        composable<Auth.Register> {
-            RegisterScreen()
-        }
+    fun removeLast(){
+        val removedKey = topLevelStacks[topLevelKey]?.removeLastOrNull()
+        // If the removed key was a top level key, remove the associated top level stack
+        topLevelStacks.remove(removedKey)
+        topLevelKey = topLevelStacks.keys.last()
+        updateBackStack()
     }
 }

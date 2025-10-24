@@ -36,8 +36,6 @@ import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.utils.toText
-import com.haitrvn.navigation.Main
-import com.haitrvn.navigation.Navigator
 import cookapp.resources.notification.Res
 import cookapp.resources.notification.notification_title
 import kotlinx.collections.immutable.PersistentList
@@ -48,14 +46,13 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun NotificationScreen(
     modifier: Modifier = Modifier,
-    navigator: Navigator,
     viewModel: NotificationViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     NotificationScreen(
         modifier = modifier,
         uiState = uiState,
-        goToDetail = { navigator.navigate(Main.Notification.Detail(it)) }
+        goToDetail = { }
     )
 }
 

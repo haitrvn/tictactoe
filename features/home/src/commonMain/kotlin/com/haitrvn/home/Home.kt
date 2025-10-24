@@ -40,23 +40,17 @@ import com.haitrvn.coreui.component.VideoCard
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.utils.toText
-import com.haitrvn.navigation.Main
-import com.haitrvn.navigation.Navigator
 import cookapp.resources.home.Res
 import cookapp.resources.home.home_time
 import cookapp.resources.home.home_title
 import cookapp.resources.home.home_trending
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
-import org.koin.compose.getKoin
-import org.koin.compose.scope.rememberKoinScope
 import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.context.startKoin
 
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
-    navigator: Navigator,
     viewmodel: HomeViewModel = koinViewModel(),
 ) {
     val uiState by viewmodel.uiState.collectAsStateWithLifecycle()

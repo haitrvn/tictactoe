@@ -27,8 +27,6 @@ import com.haitrvn.coreui.component.SmallSpace
 import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.utils.toText
-import com.haitrvn.navigation.Auth
-import com.haitrvn.navigation.Navigator
 import cookapp.resources.splash.Res
 import cookapp.resources.splash.splash_best_recipes
 import cookapp.resources.splash.splash_bg
@@ -38,15 +36,7 @@ import cookapp.resources.splash.splash_views
 import cookapp.resources.splash.splash_views_recipes
 
 @Composable
-fun SplashScreen(
-    modifier: Modifier = Modifier,
-    navigator: Navigator,
-) {
-    SplashScreen(modifier = modifier) { navigator.navigate(Auth.Login) }
-}
-
-@Composable
-internal fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
+fun SplashScreen(modifier: Modifier = Modifier, onStartClick: () -> Unit = {}) {
     Box(modifier = modifier.fillMaxSize()) {
         Image.Normal(
             modifier = Modifier.fillMaxSize(),

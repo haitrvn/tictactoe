@@ -22,7 +22,6 @@ import com.haitrvn.coreui.component.Tabs
 import com.haitrvn.coreui.component.VideoCard
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.utils.toText
-import com.haitrvn.navigation.Navigator
 import cookapp.resources.saved.Res
 import cookapp.resources.saved.saved_title
 import kotlinx.collections.immutable.PersistentList
@@ -33,7 +32,6 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun SavedScreen(
     modifier: Modifier = Modifier,
-    navigator: Navigator,
     viewModel: SavedViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()

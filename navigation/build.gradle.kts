@@ -15,9 +15,8 @@ kotlin {
                 implementation(projects.coreui)
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
-                implementation(libs.navigation.compose)
                 implementation(libs.kotlinx.serialization.json)
-                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+                implementation(libs.androidx.nav3.ui)
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
 
