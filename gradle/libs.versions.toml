@@ -33,7 +33,7 @@ detekt = "1.23.8"
 maven-publish = "0.34.0"
 uiTooling = "1.9.1"
 navigation3 = "1.0.0-alpha09"
-androidx-nav3 = "1.0.0-alpha03"
+androidx-nav3 = "1.0.0-alpha05"
 [libraries]
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
