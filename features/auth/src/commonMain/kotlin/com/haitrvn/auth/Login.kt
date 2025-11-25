@@ -24,8 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.component.Button
 import com.haitrvn.coreui.component.Heading
@@ -36,6 +34,7 @@ import com.haitrvn.coreui.component.MediumSpace
 import com.haitrvn.coreui.component.Normal
 import com.haitrvn.coreui.component.Paragraph
 import com.haitrvn.coreui.component.Filled
+import com.haitrvn.coreui.component.Password
 import com.haitrvn.coreui.component.SmallSpace
 import com.haitrvn.coreui.component.Text
 import com.haitrvn.coreui.theme.Dimensions
@@ -65,7 +64,6 @@ fun LoginScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var isShowPassword by remember { mutableStateOf(false) }
     Column(
         modifier = modifier.fillMaxSize()
             .padding(Dimensions.large),
@@ -86,15 +84,13 @@ fun LoginScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
         SmallSpace()
-        Input.Text(
+        Input.Password(
             modifier = Modifier.fillMaxWidth(),
             prefixIcon = Res.drawable.ic_login_password,
-            suffixIcon = if (isShowPassword) Res.drawable.ic_login_user else Res.drawable.ic_login_password,
-            suffixIconClickable = { isShowPassword = !isShowPassword },
+            showPasswordIcon = Res.drawable.ic_login_user,
+            hidePasswordIcon = Res.drawable.ic_login_password,
             value = password,
-            onValueChange = { password = it },
-            visualTransformation = if (isShowPassword) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            onValueChange = { password = it }
         )
         SmallSpace()
         Text.Paragraph(text = Res.string.login_forgot_password.toText())

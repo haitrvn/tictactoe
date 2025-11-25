@@ -13,9 +13,15 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
@@ -85,4 +91,37 @@ fun Input.Text(
             Text.Small(text = error)
         }
     }
+}
+
+@Composable
+fun Input.Password(
+    modifier: Modifier = Modifier,
+    value: String,
+    onValueChange: (String) -> Unit,
+    enabled: Boolean = true,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    maxLines: Int = 1,
+    interactionSource: MutableInteractionSource? = null,
+    prefixIcon: DrawableResource? = null,
+    showPasswordIcon: DrawableResource? = null,
+    hidePasswordIcon: DrawableResource? = null,
+    error: String? = null
+) {
+    var isShowPassword by remember { mutableStateOf(false) }
+
+    Text(
+        modifier = modifier,
+        value = value,
+        onValueChange = onValueChange,
+        enabled = enabled,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        keyboardActions = keyboardActions,
+        visualTransformation = if (isShowPassword) VisualTransformation.None else PasswordVisualTransformation(),
+        maxLines = maxLines,
+        interactionSource = interactionSource,
+        prefixIcon = prefixIcon,
+        suffixIcon = if (isShowPassword) showPasswordIcon else hidePasswordIcon,
+        suffixIconClickable = { isShowPassword = !isShowPassword },
+        error = error
+    )
 }
