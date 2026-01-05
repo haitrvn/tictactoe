@@ -8,7 +8,6 @@ import androidx.compose.runtime.remember
 
 @Composable
 fun CookTheme(
-    typography: Typography = CreateCookTypography(),
     contentPadding: ContentPadding = ContentsPadding,
     shapes: Shape = Shapes,
     systemIsDark: Boolean = isSystemInDarkTheme(),
@@ -19,7 +18,6 @@ fun CookTheme(
     CompositionLocalProvider(
         LocalColors provides rememberedColors,
         LocalShape provides shapes,
-        LocalTypography provides typography,
         LocalContentPadding provides contentPadding,
     ) {
         content()
@@ -30,11 +28,6 @@ val AppColors: Color
     @Composable
     @ReadOnlyComposable
     get() = LocalColors.current
-
-internal val Typographies: Typography
-    @Composable
-    @ReadOnlyComposable
-    get() = LocalTypography.current
 
 val Shapes: Shape
     @Composable
