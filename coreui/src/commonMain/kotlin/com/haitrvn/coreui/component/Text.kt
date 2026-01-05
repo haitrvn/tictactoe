@@ -12,7 +12,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import com.haitrvn.coreui.theme.AppColors
-import com.haitrvn.coreui.theme.Typographies
+import com.haitrvn.coreui.theme.Typography
 
 object Text
 
@@ -28,7 +28,7 @@ fun Text.Heading(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.headingBold,
+        style = Typography.text3ExtraLargeBold,
     )
 }
 
@@ -44,7 +44,7 @@ fun Text.H4(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.h4Bold,
+        style = Typography.textExtraLargeBold,
     )
 }
 
@@ -60,7 +60,7 @@ fun Text.H5(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.h5Bold,
+        style = Typography.textLargeBold,
     )
 }
 
@@ -76,7 +76,7 @@ fun Text.Paragraph(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.paragraphRegular,
+        style = Typography.textBaseRegular,
     )
 }
 
@@ -92,7 +92,7 @@ fun Text.ParagraphBold(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.paragraphBold,
+        style = Typography.textBaseBold,
     )
 }
 
@@ -108,7 +108,7 @@ fun Text.Label(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.labelRegular,
+        style = Typography.textMediumSmallRegular,
     )
 }
 
@@ -124,7 +124,7 @@ fun Text.LabelBold(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.labelBold,
+        style = Typography.textMediumSmallBold,
     )
 }
 
@@ -140,7 +140,7 @@ fun Text.Small(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.smallRegular,
+        style = Typography.textSmallRegular,
     )
 }
 
@@ -156,7 +156,7 @@ fun Text.SmallBold(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.smallBold,
+        style = Typography.textSmallBold,
     )
 }
 
@@ -172,7 +172,7 @@ fun Text.Tiny(
         modifier = modifier,
         textAlign = textAlign,
         color = color,
-        style = Typographies.tinyRegular,
+        style = Typography.textExtraSmallRegular,
     )
 }
 

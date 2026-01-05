@@ -4,79 +4,79 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-object DesignTypographyTokens {
-    // text-xs (12px)
-    val textXsRegular = TextStyle(
+object Typography {
+    // text-extra-small (12px)
+    val textExtraSmallRegular = TextStyle(
         fontSize = 12.sp,
         fontWeight = FontWeight.W400,
         lineHeight = 16.sp,
         letterSpacing = 0.sp
     )
-    val textXsMedium = TextStyle(
+    val textExtraSmallMedium = TextStyle(
         fontSize = 12.sp,
         fontWeight = FontWeight.W500,
         lineHeight = 16.sp,
         letterSpacing = 0.sp
     )
-    val textXsSemibold = TextStyle(
+    val textExtraSmallSemibold = TextStyle(
         fontSize = 12.sp,
         fontWeight = FontWeight.W600,
         lineHeight = 16.sp,
         letterSpacing = 0.sp
     )
-    val textXsBold = TextStyle(
+    val textExtraSmallBold = TextStyle(
         fontSize = 12.sp,
         fontWeight = FontWeight.W700,
         lineHeight = 16.sp,
         letterSpacing = 0.sp
     )
 
-    // text-sm (14px)
-    val textSmRegular = TextStyle(
+    // text-small (14px)
+    val textSmallRegular = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.W400,
         lineHeight = 18.sp,
         letterSpacing = 0.sp
     )
-    val textSmMedium = TextStyle(
+    val textSmallMedium = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.W500,
         lineHeight = 18.sp,
         letterSpacing = 0.sp
     )
-    val textSmSemibold = TextStyle(
+    val textSmallSemibold = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.W600,
         lineHeight = 18.sp,
         letterSpacing = 0.sp
     )
-    val textSmBold = TextStyle(
+    val textSmallBold = TextStyle(
         fontSize = 14.sp,
         fontWeight = FontWeight.W700,
         lineHeight = 18.sp,
         letterSpacing = 0.sp
     )
 
-    // text-ms (16px)
-    val textMsRegular = TextStyle(
+    // text-medium-small (16px)
+    val textMediumSmallRegular = TextStyle(
         fontSize = 16.sp,
         fontWeight = FontWeight.W400,
         lineHeight = 22.sp,
         letterSpacing = 0.sp
     )
-    val textMsMedium = TextStyle(
+    val textMediumSmallMedium = TextStyle(
         fontSize = 16.sp,
         fontWeight = FontWeight.W500,
         lineHeight = 22.sp,
         letterSpacing = 0.sp
     )
-    val textMsSemibold = TextStyle(
+    val textMediumSmallSemibold = TextStyle(
         fontSize = 16.sp,
         fontWeight = FontWeight.W600,
         lineHeight = 22.sp,
         letterSpacing = 0.sp
     )
-    val textMsBold = TextStyle(
+    val textMediumSmallBold = TextStyle(
         fontSize = 16.sp,
         fontWeight = FontWeight.W700,
         lineHeight = 22.sp,
@@ -109,104 +109,104 @@ object DesignTypographyTokens {
         letterSpacing = 0.sp
     )
 
-    // text-lg (20px)
-    val textLgRegular = TextStyle(
+    // text-large (20px)
+    val textLargeRegular = TextStyle(
         fontSize = 20.sp,
         fontWeight = FontWeight.W400,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     )
-    val textLgMedium = TextStyle(
+    val textLargeMedium = TextStyle(
         fontSize = 20.sp,
         fontWeight = FontWeight.W500,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     )
-    val textLgSemibold = TextStyle(
+    val textLargeSemibold = TextStyle(
         fontSize = 20.sp,
         fontWeight = FontWeight.W600,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     )
-    val textLgBold = TextStyle(
+    val textLargeBold = TextStyle(
         fontSize = 20.sp,
         fontWeight = FontWeight.W700,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     )
 
-    // text-xl (24px)
-    val textXlRegular = TextStyle(
+    // text-extra-large (24px)
+    val textExtraLargeRegular = TextStyle(
         fontSize = 24.sp,
         fontWeight = FontWeight.W400,
         lineHeight = 30.sp,
         letterSpacing = 0.sp
     )
-    val textXlMedium = TextStyle(
+    val textExtraLargeMedium = TextStyle(
         fontSize = 24.sp,
         fontWeight = FontWeight.W500,
         lineHeight = 30.sp,
         letterSpacing = 0.sp
     )
-    val textXlSemibold = TextStyle(
+    val textExtraLargeSemibold = TextStyle(
         fontSize = 24.sp,
         fontWeight = FontWeight.W600,
         lineHeight = 30.sp,
         letterSpacing = 0.sp
     )
-    val textXlBold = TextStyle(
+    val textExtraLargeBold = TextStyle(
         fontSize = 24.sp,
         fontWeight = FontWeight.W700,
         lineHeight = 30.sp,
         letterSpacing = 0.sp
     )
 
-    // text-2xl (32px)
-    val text2xlRegular = TextStyle(
+    // text-2-extra-large (32px)
+    val text2ExtraLargeRegular = TextStyle(
         fontSize = 32.sp,
         fontWeight = FontWeight.W400,
         lineHeight = 42.sp,
         letterSpacing = 0.sp
     )
-    val text2xlMedium = TextStyle(
+    val text2ExtraLargeMedium = TextStyle(
         fontSize = 32.sp,
         fontWeight = FontWeight.W500,
         lineHeight = 42.sp,
         letterSpacing = 0.sp
     )
-    val text2xlSemibold = TextStyle(
+    val text2ExtraLargeSemibold = TextStyle(
         fontSize = 32.sp,
         fontWeight = FontWeight.W600,
         lineHeight = 42.sp,
         letterSpacing = 0.sp
     )
-    val text2xlBold = TextStyle(
+    val text2ExtraLargeBold = TextStyle(
         fontSize = 32.sp,
         fontWeight = FontWeight.W700,
         lineHeight = 42.sp,
         letterSpacing = 0.sp
     )
 
-    // text-3xl (36px)
-    val text3xlRegular = TextStyle(
+    // text-3-extra-large (36px)
+    val text3ExtraLargeRegular = TextStyle(
         fontSize = 36.sp,
         fontWeight = FontWeight.W400,
         lineHeight = 46.sp,
         letterSpacing = 0.sp
     )
-    val text3xlMedium = TextStyle(
+    val text3ExtraLargeMedium = TextStyle(
         fontSize = 36.sp,
         fontWeight = FontWeight.W500,
         lineHeight = 46.sp,
         letterSpacing = 0.sp
     )
-    val text3xlSemibold = TextStyle(
+    val text3ExtraLargeSemibold = TextStyle(
         fontSize = 36.sp,
         fontWeight = FontWeight.W600,
         lineHeight = 46.sp,
         letterSpacing = 0.sp
     )
-    val text3xlBold = TextStyle(
+    val text3ExtraLargeBold = TextStyle(
         fontSize = 36.sp,
         fontWeight = FontWeight.W700,
         lineHeight = 46.sp,

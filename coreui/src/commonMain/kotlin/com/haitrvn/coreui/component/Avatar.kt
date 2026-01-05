@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,16 +19,18 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.haitrvn.coreui.theme.DesignColors
-import com.haitrvn.coreui.theme.DesignTypographyTokens
+import com.haitrvn.coreui.theme.Typography
+import cookapp.resources.core.ui.Res
+import cookapp.resources.core.ui.core_ui_icon_back
 
 enum class AvatarSize(val size: Dp, val textStyle: TextStyle) {
-    Size96(96.dp, DesignTypographyTokens.text3xlRegular), // 36px
-    Size72(72.dp, DesignTypographyTokens.text2xlRegular), // 32px
-    Size56(56.dp, DesignTypographyTokens.textXlRegular), // 24px
-    Size48(48.dp, DesignTypographyTokens.textLgRegular), // 20px
-    Size32(32.dp, DesignTypographyTokens.textBaseRegular), // 18px
-    Size24(24.dp, DesignTypographyTokens.textSmRegular), // 14px
-    Size16(16.dp, DesignTypographyTokens.textXsRegular)  // 12px
+    Size96(96.dp, Typography.text3ExtraLargeRegular), // 36px
+    Size72(72.dp, Typography.text2ExtraLargeRegular), // 32px
+    Size56(56.dp, Typography.textExtraLargeRegular), // 24px
+    Size48(48.dp, Typography.textLargeRegular), // 20px
+    Size32(32.dp, Typography.textBaseRegular), // 18px
+    Size24(24.dp, Typography.textSmallRegular), // 14px
+    Size16(16.dp, Typography.textExtraSmallRegular)  // 12px
 }
 
 enum class AvatarStatus {
@@ -64,10 +67,8 @@ fun Avatar(
         ) {
             when (state) {
                 is AvatarState.Empty -> {
-                    Icon(
-                        imageVector = Icons.Default.Person,
-                        contentDescription = null,
-                        tint = DesignColors.BlackAndWhite.Grey500,
+                    Image.Normal(
+                        source = Res.drawable.core_ui_icon_back,
                         modifier = Modifier.size(size.size * 0.6f)
                     )
                 }
@@ -124,9 +125,9 @@ private fun StatusIndicator(status: AvatarStatus, modifier: Modifier = Modifier)
     }
 
     val icon: ImageVector? = when (status) {
-        AvatarStatus.Editing -> Icons.Default.Edit
-        AvatarStatus.Uploaded -> Icons.Default.Check
-        AvatarStatus.ErrorUpload -> Icons.Default.Close
+//        AvatarStatus.Editing -> Icons.Default.Edit
+//        AvatarStatus.Uploaded -> Icons.Default.Check
+//        AvatarStatus.ErrorUpload -> Icons.Default.Close
         else -> null // Active/Inactive are just dots
     }
 
@@ -138,10 +139,8 @@ private fun StatusIndicator(status: AvatarStatus, modifier: Modifier = Modifier)
         contentAlignment = Alignment.Center
     ) {
         if (icon != null) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                tint = DesignColors.BlackAndWhite.White,
+            Image.Normal(
+                source = icon,
                 modifier = Modifier.size(10.dp) // Small icon size
             )
         }

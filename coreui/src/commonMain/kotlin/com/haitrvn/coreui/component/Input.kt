@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Dimensions
 import com.haitrvn.coreui.theme.Shapes
-import com.haitrvn.coreui.theme.Typographies
+import com.haitrvn.coreui.theme.Typography
 import com.haitrvn.coreui.utils.conditionalClickable
 import org.jetbrains.compose.resources.DrawableResource
 
@@ -70,7 +70,7 @@ fun Input.Text(
                 BasicTextField(
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     value = value,
-                    textStyle = Typographies.paragraphBold.copy(color = AppColors.onSurface),
+                    textStyle = Typography.textLargeRegular,
                     onValueChange = onValueChange,
                     enabled = enabled,
                     keyboardOptions = keyboardOptions,
