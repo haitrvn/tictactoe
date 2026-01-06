@@ -16,12 +16,19 @@ object Image
 fun Image.Normal(
     modifier: Modifier = Modifier,
     source: Any,
+    placeholder: DrawableResource? = null,
     contentScale: ContentScale = ContentScale.Crop,
 ) {
     val painter = if (source is DrawableResource) {
         painterResource(source)
     } else {
-        rememberAsyncImagePainter(source)
+        val placeholderPainter = placeholder?.let { painterResource(it) }
+        rememberAsyncImagePainter(
+            model = source,
+            placeholder = placeholderPainter,
+            error = placeholderPainter,
+            fallback = placeholderPainter
+        )
     }
     Image(
         modifier = modifier,
@@ -32,6 +39,14 @@ fun Image.Normal(
 }
 
 @Composable
-fun Image.Circle(modifier: Modifier = Modifier, source: Any) {
-    Image.Normal(modifier.clip(Shapes.circle), source = source)
+fun Image.Circle(
+    modifier: Modifier = Modifier,
+    source: Any,
+    placeholder: DrawableResource? = null
+) {
+    Image.Normal(
+        modifier = modifier.clip(Shapes.circle),
+        source = source,
+        placeholder = placeholder
+    )
 }

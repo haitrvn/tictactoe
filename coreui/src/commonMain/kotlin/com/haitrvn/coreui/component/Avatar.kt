@@ -46,7 +46,6 @@ enum class AvatarStatus {
 sealed interface AvatarState {
     val status: AvatarStatus
 
-    data class Empty(override val status: AvatarStatus = AvatarStatus.None) : AvatarState
     data class Initial(val initial: String, override val status: AvatarStatus = AvatarStatus.None) :
         AvatarState
 
@@ -72,12 +71,6 @@ fun Avatar(
             contentAlignment = Alignment.Center
         ) {
             when (state) {
-                is AvatarState.Empty -> {
-                    Image.Normal(
-                        source = Res.drawable.core_ui_icon_back,
-                    )
-                }
-
                 is AvatarState.Initial -> {
                     val fontSize = with(density) { (boxWidth * 0.4f).toSp() }
                     Text(
@@ -90,7 +83,8 @@ fun Avatar(
                 is AvatarState.UserPic -> {
                     Image.Circle(
                         modifier = Modifier.matchParentSize(),
-                        source = state.url
+                        source = state.url,
+                        placeholder = Res.drawable.core_ui_icon_back
                     )
                 }
             }
@@ -121,7 +115,6 @@ fun Avatar(
 @Composable
 private fun getBackgroundColor(state: AvatarState): Color {
     return when (state) {
-        is AvatarState.Empty -> DesignColors.BlackAndWhite.Grey200
         is AvatarState.Initial -> DesignColors.Blue.Blue200
         is AvatarState.UserPic -> DesignColors.BlackAndWhite.Grey200 // Placeholder color while loading
     }
