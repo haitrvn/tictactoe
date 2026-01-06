@@ -5,12 +5,9 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
-import androidx.compose.ui.platform.LocalDensity
-import kotlin.math.PI
-import kotlin.math.cos
-import kotlin.math.sin
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -20,18 +17,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.haitrvn.coreui.theme.DesignColors
 import cookapp.resources.core.ui.Res
-import cookapp.resources.core.ui.core_ui_icon_back
+import cookapp.resources.core.ui.icon_avatar_check
+import cookapp.resources.core.ui.icon_avatar_edit
+import cookapp.resources.core.ui.icon_avatar_error
+import cookapp.resources.core.ui.icon_default_user
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import kotlin.math.sqrt
 
 @Preview
 @Composable
 fun PreviewAvatar() {
-    Avatar(AvatarState.Initial("HA", AvatarStatus.Uploaded))
+    Avatar(AvatarState.Initial("HT", AvatarStatus.UserActive))
 }
 
 enum class AvatarStatus {
@@ -56,7 +58,7 @@ sealed interface AvatarState {
 @Composable
 fun Avatar(
     state: AvatarState,
-    modifier: Modifier = Modifier.fillMaxSize()
+    modifier: Modifier = Modifier.fillMaxWidth()
 ) {
     BoxWithConstraints(modifier = modifier.aspectRatio(1f)) {
         val density = LocalDensity.current
@@ -84,7 +86,7 @@ fun Avatar(
                     Image.Circle(
                         modifier = Modifier.matchParentSize(),
                         source = state.url,
-                        placeholder = Res.drawable.core_ui_icon_back
+                        placeholder = Res.drawable.icon_default_user
                     )
                 }
             }
@@ -92,19 +94,17 @@ fun Avatar(
 
         // Status Overlay
         if (state.status != AvatarStatus.None) {
-            val indicatorSize = boxWidth * 0.2f
-            val radius = with(density) { (boxWidth / 2).toPx() }
-            val indicatorSizePx = with(density) { indicatorSize.toPx() }
-            val angleRad = PI / 4
-            val offsetX = radius * cos(angleRad)
-            val offsetY = radius * sin(angleRad)
-            val xOffset = with(density) { (radius + offsetX - indicatorSizePx / 2).toFloat().toDp() }
-            val yOffset = with(density) { (radius + offsetY - indicatorSizePx / 2).toFloat().toDp() }
+            val isLargeIndicator = state.status != AvatarStatus.UserActive &&
+                    state.status != AvatarStatus.UserInactive
+            val indicatorSize = if (isLargeIndicator) boxWidth * 0.25f else boxWidth * 0.2f
+            val sin45 = sqrt(2f) / 2f
+            val offsetFactor = 1f + sin45
+            val position = (boxWidth / 2) * offsetFactor - (indicatorSize / 2)
 
             Box(
                 modifier = Modifier
                     .size(indicatorSize)
-                    .offset(x = xOffset, y = yOffset)
+                    .offset(x = position, y = position)
             ) {
                 StatusIndicator(status = state.status, modifier = Modifier.matchParentSize())
             }
@@ -132,9 +132,9 @@ private fun StatusIndicator(status: AvatarStatus, modifier: Modifier = Modifier)
     }
 
     val icon: DrawableResource? = when (status) {
-        AvatarStatus.Editing -> Res.drawable.core_ui_icon_back
-        AvatarStatus.Uploaded -> Res.drawable.core_ui_icon_back
-        AvatarStatus.ErrorUpload -> Res.drawable.core_ui_icon_back
+        AvatarStatus.Editing -> Res.drawable.icon_avatar_edit
+        AvatarStatus.Uploaded -> Res.drawable.icon_avatar_check
+        AvatarStatus.ErrorUpload -> Res.drawable.icon_avatar_error
         else -> null
     }
 
