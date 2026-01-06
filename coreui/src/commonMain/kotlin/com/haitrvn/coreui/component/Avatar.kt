@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.haitrvn.coreui.theme.DesignColors
+import com.haitrvn.coreui.theme.AppColors
 import cookapp.resources.core.ui.Res
 import cookapp.resources.core.ui.icon_avatar_check
 import cookapp.resources.core.ui.icon_avatar_edit
@@ -80,7 +80,6 @@ fun Avatar(
     BoxWithConstraints(modifier = modifier.aspectRatio(1f)) {
         val density = LocalDensity.current
         val boxWidth = maxWidth
-
         // Main Content
         Box(
             modifier = Modifier
@@ -88,7 +87,7 @@ fun Avatar(
                 .clip(CircleShape)
                 .border(
                     width = boxWidth * 0.025f,
-                    color = DesignColors.BlackAndWhite.White,
+                    color = AppColors.background,
                     shape = CircleShape
                 )
                 .background(getBackgroundColor(state)),
@@ -99,7 +98,7 @@ fun Avatar(
                     val fontSize = with(density) { (boxWidth * 0.4f).toSp() }
                     Text(
                         text = state.initial,
-                        color = DesignColors.Blue.Blue500,
+                        color = AppColors.primary,
                         fontSize = fontSize
                     )
                 }
@@ -137,19 +136,19 @@ fun Avatar(
 @Composable
 private fun getBackgroundColor(state: AvatarState): Color {
     return when (state) {
-        is AvatarState.Initial -> DesignColors.Blue.Blue200
-        is AvatarState.UserPic -> DesignColors.BlackAndWhite.Grey200 // Placeholder color while loading
+        is AvatarState.Initial -> AppColors.primaryContainer
+        is AvatarState.UserPic -> AppColors.onSurface.copy(alpha = 0.12f) // Placeholder color while loading
     }
 }
 
 @Composable
 private fun StatusIndicator(status: AvatarStatus, modifier: Modifier = Modifier) {
     val backgroundColor = when (status) {
-        AvatarStatus.Editing -> DesignColors.Blue.Blue500
-        AvatarStatus.Uploaded -> DesignColors.Success.Green500
-        AvatarStatus.UserActive -> DesignColors.Success.Green500
-        AvatarStatus.UserInactive -> DesignColors.BlackAndWhite.Grey600
-        AvatarStatus.ErrorUpload -> DesignColors.Error.Red500
+        AvatarStatus.Editing -> AppColors.primary
+        AvatarStatus.Uploaded -> AppColors.success
+        AvatarStatus.UserActive -> AppColors.success
+        AvatarStatus.UserInactive -> AppColors.outline
+        AvatarStatus.ErrorUpload -> AppColors.error
         else -> Color.Transparent
     }
 
@@ -171,7 +170,7 @@ private fun StatusIndicator(status: AvatarStatus, modifier: Modifier = Modifier)
         Box(
             modifier = Modifier
                 .matchParentSize()
-                .border(borderWidth, DesignColors.BlackAndWhite.White, CircleShape)
+                .border(borderWidth, AppColors.background, CircleShape)
         )
 
         if (icon != null) {
@@ -209,13 +208,13 @@ fun AvatarStack(
                     .zIndex(0f)
                     .offset(x = (-10).dp * displayAvatars.size)
                     .clip(CircleShape)
-                    .background(DesignColors.BlackAndWhite.Grey200)
-                    .border(2.dp, DesignColors.BlackAndWhite.White, CircleShape),
+                    .background(AppColors.onSurface.copy(alpha = 0.12f))
+                    .border(2.dp, AppColors.background, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "+$remaining",
-                    color = DesignColors.BlackAndWhite.Grey700
+                    color = AppColors.onSurface
                 )
             }
         }

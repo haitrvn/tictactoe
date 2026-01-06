@@ -27,6 +27,10 @@ class Color(
     onError: Color,
     errorContainer: Color,
     onErrorContainer: Color,
+    success: Color,
+    onSuccess: Color,
+    successContainer: Color,
+    onSuccessContainer: Color,
     outline: Color,
 ) {
     var primary by mutableStateOf(primary)
@@ -75,68 +79,87 @@ class Color(
     var onErrorContainer by mutableStateOf(onErrorContainer)
         private set
 
+    var success by mutableStateOf(success)
+        private set
+    var onSuccess by mutableStateOf(onSuccess)
+        private set
+    var successContainer by mutableStateOf(successContainer)
+        private set
+    var onSuccessContainer by mutableStateOf(onSuccessContainer)
+        private set
+
     var outline by mutableStateOf(outline)
         private set
 }
 
 val LightColors = Color(
-    primary = Color(0xffff6b00),
-    onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xffe5dfec),
-    onPrimaryContainer = Color(0xff181818),
+    primary = DesignColorsLight.Blue.Blue500,
+    onPrimary = DesignColorsLight.BlackAndWhite.White,
+    primaryContainer = DesignColorsLight.Blue.Blue100,
+    onPrimaryContainer = DesignColorsLight.Blue.Blue900,
 
-    secondary = Color(0xffffffff),
-    onSecondary = Color(0xFFFF6A00),
-    secondaryContainer = Color(0xffF1F1F1),
-    onSecondaryContainer = Color(0xff181818),
+    secondary = DesignColorsLight.Turquoise.Turquoise500,
+    onSecondary = DesignColorsLight.BlackAndWhite.White,
+    secondaryContainer = DesignColorsLight.Turquoise.Turquoise100,
+    onSecondaryContainer = DesignColorsLight.Turquoise.Turquoise900,
 
-    tertiary = Color(0xffffffff),
-    onTertiary = Color(0xFFEE8B8B),
-    tertiaryContainer = Color(0xFF370617),
-    onTertiaryContainer = Color(0xFFFFFFFF),
+    tertiary = DesignColorsLight.Purple.Purple500,
+    onTertiary = DesignColorsLight.BlackAndWhite.White,
+    tertiaryContainer = DesignColorsLight.Purple.Purple100,
+    onTertiaryContainer = DesignColorsLight.Purple.Purple900,
 
-    background = Color(0xffffffff),
-    onBackground = Color(0xffa3a3a3),
+    background = DesignColorsLight.BlackAndWhite.White,
+    onBackground = DesignColorsLight.BlackAndWhite.Black900,
 
-    surface = Color(0xFFFFFFFF),
-    onSurface = Color(0xFF000000),
+    surface = DesignColorsLight.BlackAndWhite.White,
+    onSurface = DesignColorsLight.BlackAndWhite.Black900,
 
-    error = Color(0xffff0000),
-    onError = Color(0xffffffff),
-    errorContainer = Color(0xffffffff),
-    onErrorContainer = Color(0xffff0000),
+    error = DesignColorsLight.Error.Red500,
+    onError = DesignColorsLight.BlackAndWhite.White,
+    errorContainer = DesignColorsLight.Error.Red200,
+    onErrorContainer = DesignColorsLight.Error.Red700,
 
-    outline = Color(0xffca682f),
+    success = DesignColorsLight.Success.Green500,
+    onSuccess = DesignColorsLight.BlackAndWhite.White,
+    successContainer = DesignColorsLight.Success.Green200,
+    onSuccessContainer = DesignColorsLight.Success.Green800,
+
+    outline = DesignColorsLight.BlackAndWhite.Grey400,
 )
 
 val DarkColors = Color(
-    primary = Color(0xffd16110),
-    onPrimary = Color(0xffffffff),
-    primaryContainer = Color(0xff000000),
-    onPrimaryContainer = Color(0xffffffff),
+    primary = DesignColorsDark.Blue.Blue500,
+    onPrimary = DesignColorsDark.BlackAndWhite.White,
+    primaryContainer = DesignColorsDark.Blue.Blue900,
+    onPrimaryContainer = DesignColorsDark.Blue.Blue100,
 
-    secondary = Color(0xFF03DAC6),
-    onSecondary = Color(0xFF000000),
-    secondaryContainer = Color(0xffffffff),
-    onSecondaryContainer = Color(0xFF000000),
+    secondary = DesignColorsDark.Turquoise.Turquoise500,
+    onSecondary = DesignColorsDark.BlackAndWhite.Black900,
+    secondaryContainer = DesignColorsDark.Turquoise.Turquoise900,
+    onSecondaryContainer = DesignColorsDark.Turquoise.Turquoise100,
 
-    tertiary = Color(0xFFCF6679),
-    onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFFB00020),
-    onTertiaryContainer = Color(0xFFFFFFFF),
+    tertiary = DesignColorsDark.Purple.Purple500,
+    onTertiary = DesignColorsDark.BlackAndWhite.Black900,
+    tertiaryContainer = DesignColorsDark.Purple.Purple900,
+    onTertiaryContainer = DesignColorsDark.Purple.Purple100,
 
-    background = Color(0xff000000),
-    onBackground = Color(0xff535353),
+    background = DesignColorsDark.BlackAndWhite.Black900,
+    onBackground = DesignColorsDark.BlackAndWhite.Grey100,
 
-    surface = Color(0xFF121212),
-    onSurface = Color(0xFFFFFFFF),
+    surface = DesignColorsDark.BlackAndWhite.Grey100,
+    onSurface = DesignColorsDark.BlackAndWhite.White,
 
-    error = Color(0xffff0000),
-    onError = Color(0xffffffff),
-    errorContainer = Color(0xffffffff),
-    onErrorContainer = Color(0xffff0000),
+    error = DesignColorsDark.Error.Red500,
+    onError = DesignColorsDark.BlackAndWhite.Black900,
+    errorContainer = DesignColorsDark.Error.Red800,
+    onErrorContainer = DesignColorsDark.Error.Red200,
 
-    outline = Color(0xffca682f),
+    success = DesignColorsDark.Success.Green500,
+    onSuccess = DesignColorsDark.BlackAndWhite.Black900,
+    successContainer = DesignColorsDark.Success.Green800,
+    onSuccessContainer = DesignColorsDark.Success.Green200,
+
+    outline = DesignColorsDark.BlackAndWhite.Grey600,
 )
 
 internal val LocalColors = staticCompositionLocalOf { LightColors }
