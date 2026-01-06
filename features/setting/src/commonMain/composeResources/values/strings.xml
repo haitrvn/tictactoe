@@ -1,7 +1,0 @@
-<resources>
-    <string name="setting_edit_profile">Edit Profile</string>
-    <string name="setting_recipe">Recipe</string>
-    <string name="setting_video">Video</string>
-    <string name="setting_followers">Followers</string>
-    <string name="setting_following">Following</string>
-</resources>

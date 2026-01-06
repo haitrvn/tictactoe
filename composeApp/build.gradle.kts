@@ -29,12 +29,7 @@ kotlin {
             implementation(projects.core)
             implementation(projects.coreui)
 
-            implementation(projects.features.auth)
-            implementation(projects.features.home)
-            implementation(projects.features.setting)
             implementation(projects.features.splash)
-            implementation(projects.features.notification)
-            implementation(projects.features.saved)
 
             implementation(libs.androidx.nav3.ui)
             implementation("org.jetbrains.compose.ui:ui-backhandler:1.8.2")
