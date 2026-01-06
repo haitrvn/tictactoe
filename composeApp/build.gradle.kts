@@ -34,11 +34,11 @@ kotlin {
             implementation(libs.androidx.nav3.ui)
             implementation("org.jetbrains.compose.ui:ui-backhandler:1.8.2")
 
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(libs.jetbrains.compose.runtime)
+            implementation(libs.jetbrains.compose.foundation)
+            implementation(libs.jetbrains.compose.material3)
+            implementation(libs.jetbrains.compose.components.resources)
+            implementation(libs.jetbrains.compose.components.uiToolingPreview)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation("io.insert-koin:koin-core-viewmodel:4.1.0")
@@ -48,12 +48,12 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
             @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.uiTest)
+            implementation(libs.jetbrains.compose.ui.test)
             implementation(libs.kotlinx.coroutines.test)
         }
 
         androidMain.dependencies {
-            implementation(compose.uiTooling)
+            implementation(libs.jetbrains.compose.ui.tooling)
             implementation(libs.androidx.activityCompose)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)
@@ -62,7 +62,7 @@ kotlin {
         }
 
         jvmMain.dependencies {
-            implementation(compose.desktop.currentOs)
+            implementation(libs.jetbrains.compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.room.runtime)

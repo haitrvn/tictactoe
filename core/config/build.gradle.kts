@@ -19,7 +19,7 @@ kotlin {
             dependencies {
                 implementation(projects.core)
                 implementation(libs.kotlin.stdlib)
-                implementation(compose.runtime)
+                implementation(libs.jetbrains.compose.runtime)
             }
         }
     }

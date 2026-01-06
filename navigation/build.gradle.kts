@@ -20,10 +20,10 @@ kotlin {
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
 
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
+                implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.jetbrains.compose.foundation)
+                implementation(libs.jetbrains.compose.components.resources)
+                implementation(libs.jetbrains.compose.components.uiToolingPreview)
             }
         }
 

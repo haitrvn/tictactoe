@@ -87,6 +87,14 @@ dokka-gradle = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref
 publishing-gradle = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 compose-gradle = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
+jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+jetbrains-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose" }
+jetbrains-compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
+jetbrains-compose-components-uiToolingPreview = { module = "org.jetbrains.compose.components:components-ui-tooling-preview", version.ref = "compose" }
+jetbrains-compose-ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "compose" }
+jetbrains-compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose" }
+jetbrains-compose-desktop-currentOs = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64", version.ref = "compose" } # Note: Ideally this would be dynamic if we were using a different way, but for toml we pick a default or specific one if needed. However, compose plugin usually handles this. Let's see if we can use the module name.
 
 androidx-nav3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "androidx-nav3" }
 [plugins]
