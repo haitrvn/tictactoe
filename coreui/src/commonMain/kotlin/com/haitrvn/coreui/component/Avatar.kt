@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -34,6 +35,22 @@ import kotlin.math.sqrt
 @Composable
 fun PreviewAvatar() {
     Avatar(AvatarState.Initial("HT", AvatarStatus.UserActive))
+}
+
+@Preview
+@Composable
+fun PreviewAvatarStack() {
+    AvatarStack(
+        listOf(
+            AvatarState.Initial("HT", AvatarStatus.UserActive),
+            AvatarState.Initial("HT", AvatarStatus.UserActive),
+            AvatarState.Initial("HT", AvatarStatus.UserActive),
+            AvatarState.Initial("HT", AvatarStatus.UserActive),
+            AvatarState.Initial("HT", AvatarStatus.UserActive),
+            AvatarState.Initial("HT", AvatarStatus.UserActive),
+            AvatarState.Initial("HT", AvatarStatus.UserActive)
+        ), modifier = Modifier.fillMaxWidth().height(100.dp)
+    )
 }
 
 enum class AvatarStatus {
@@ -69,6 +86,11 @@ fun Avatar(
             modifier = Modifier
                 .matchParentSize()
                 .clip(CircleShape)
+                .border(
+                    width = boxWidth * 0.025f,
+                    color = DesignColors.BlackAndWhite.White,
+                    shape = CircleShape
+                )
                 .background(getBackgroundColor(state)),
             contentAlignment = Alignment.Center
         ) {
@@ -98,7 +120,7 @@ fun Avatar(
                     state.status != AvatarStatus.UserInactive
             val indicatorSize = if (isLargeIndicator) boxWidth * 0.25f else boxWidth * 0.2f
             val sin45 = sqrt(2f) / 2f
-            val offsetFactor = 1f + sin45
+            val offsetFactor = 0.96f + sin45
             val position = (boxWidth / 2) * offsetFactor - (indicatorSize / 2)
 
             Box(
@@ -161,6 +183,7 @@ private fun StatusIndicator(status: AvatarStatus, modifier: Modifier = Modifier)
     }
 }
 
+//TODO
 @Composable
 fun AvatarStack(
     avatars: List<AvatarState>,
@@ -175,9 +198,8 @@ fun AvatarStack(
             Avatar(
                 state = state,
                 modifier = Modifier
-                    .zIndex((displayAvatars.size - index).toFloat())
+                    .zIndex((displayAvatars.size + index).toFloat())
                     .offset(x = if (index > 0) (-10).dp * index else 0.dp)
-                    .border(2.dp, DesignColors.BlackAndWhite.White, CircleShape)
             )
         }
 
