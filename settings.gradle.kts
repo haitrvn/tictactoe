@@ -23,7 +23,6 @@ plugins {
 include(":composeApp")
 
 include(":domain")
-include(":presentation")
 include(":data")
 include(":coreui")
 include(":core:config")

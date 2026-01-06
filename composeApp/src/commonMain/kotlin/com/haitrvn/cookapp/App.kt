@@ -7,19 +7,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
-import com.haitrvn.auth.LoginScreen
 import com.haitrvn.coreui.imageloader.initImageLoader
 import com.haitrvn.coreui.theme.CookTheme
-import com.haitrvn.features.setting.Setting
-import com.haitrvn.home.BottomNavigationBar
-import com.haitrvn.home.Home
 import com.haitrvn.navigation.Auth
 import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Screen
 import com.haitrvn.navigation.ShowBottomBar
-import com.haitrvn.notification.NotificationScreen
-import com.haitrvn.saved.SavedScreen
 import com.haitrvn.splash.SplashScreen
 import cookapp.resources.app.Res
 import cookapp.resources.app.ic_app_home
@@ -35,18 +29,12 @@ internal fun App(
 ) = CookTheme {
     initImageLoader()
 
-    val topLevelBackStack = remember { TopLevelBackStack<Screen>(Main.Home) }
+    val topLevelBackStack = remember { TopLevelBackStack<Screen>(Auth) }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
         bottomBar = {
             if (topLevelBackStack.backStack.lastOrNull() is ShowBottomBar) {
-                BottomNavigationBar(
-                    items = navigationItemsLists,
-                    currentRoute = topLevelBackStack.backStack.lastOrNull(),
-                    onItemClick = { item ->
-                        topLevelBackStack.addTopLevel(item.destination)
-                    })
             }
         }) {
         NavDisplay(
@@ -58,21 +46,6 @@ internal fun App(
                         modifier = modifier,
                         onStartClick = { topLevelBackStack.add(Auth.Login) }
                     )
-                }
-                entry<Auth.Login> {
-                    LoginScreen(gotoHome = { topLevelBackStack.addTopLevel(Main.Home) })
-                }
-                entry<Main.Home> {
-                    Home()
-                }
-                entry<Main.Search> {
-                    SavedScreen()
-                }
-                entry<Main.Notification> {
-                    NotificationScreen()
-                }
-                entry<Main.Setting> {
-                    Setting()
                 }
             },
         )
