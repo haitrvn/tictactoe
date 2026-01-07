@@ -19,7 +19,7 @@ object DesignColors {
 
     // Primary
     val Primary50 = Color(0xFFEFEAF5)
-    val Primary100 = Color(0xFF8E6CEF)
+    val Primary100 = Color(0xff4315c3)
 
     // Other Colors
     val Lemon = Color(0xFFB3B68B)
