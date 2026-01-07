@@ -1,4 +1,4 @@
-package com.haitrvn.core
+package com.haitrvn.core.log
 
 interface AppLogger {
     fun d(message: String)

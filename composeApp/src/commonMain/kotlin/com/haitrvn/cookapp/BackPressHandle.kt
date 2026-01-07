@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.backhandler.BackHandler
-import com.haitrvn.core.Log
+import com.haitrvn.core.log.Log
 import kotlinx.coroutines.delay
 
 const val BACK_PRESS_INTERVAL_MS = 2000L

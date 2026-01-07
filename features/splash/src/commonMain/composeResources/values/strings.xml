@@ -1,8 +1,3 @@
 <resources>
-    <string name="splash_let_cooking">Let’s\nCooking</string>
-    <string name="splash_best_recipes">Find best recipes for cooking</string>
-    <string name="splash_button_start">Start cooking</string>
-    <string name="splash_views">60k+</string>
-    <string name="splash_views_recipes">Premium recipes</string>
     <string name="app_name">Cookpedia</string>
 </resources>

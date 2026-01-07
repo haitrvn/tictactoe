@@ -1,4 +1,4 @@
-package com.haitrvn.core
+package com.haitrvn.core.log
 
 import co.touchlab.kermit.Logger
 

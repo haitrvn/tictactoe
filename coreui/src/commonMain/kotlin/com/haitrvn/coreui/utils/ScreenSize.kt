@@ -2,7 +2,7 @@ package com.haitrvn.coreui.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalWindowInfo
-import com.haitrvn.core.Log
+import com.haitrvn.core.log.Log
 
 @Composable
 fun rememberScreenSizeType(): ScreenSizeType {

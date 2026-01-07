@@ -1,7 +1,7 @@
 package com.haitrvn.coreui.imageloader
 
 import coil3.util.Logger
-import com.haitrvn.core.Log
+import com.haitrvn.core.log.Log
 
 class ImageLoggerImpl : Logger {
     override var minLevel: Logger.Level = Logger.Level.Debug

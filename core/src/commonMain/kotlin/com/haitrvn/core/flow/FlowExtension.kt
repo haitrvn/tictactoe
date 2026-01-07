@@ -1,4 +1,4 @@
-package com.haitrvn.core
+package com.haitrvn.core.flow
 
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineStart
@@ -19,7 +19,7 @@ fun <T> Flow<Flow<T>>.flattenFirst(): Flow<T> = channelFlow<T> {
     val busy = AtomicBoolean(false)
 
     collect { inner ->
-        if (busy.compareAndSet(false, true)) {
+        if (busy.compareAndSet(expectedValue = false, newValue = true)) {
             launch(start = CoroutineStart.UNDISPATCHED) {
                 try {
                     inner.collect { send(it) }
