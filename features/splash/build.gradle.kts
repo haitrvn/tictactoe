@@ -42,7 +42,7 @@ kotlin {
         }
 
         jvmMain.dependencies {
-            implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.8.0")
+            implementation(libs.ui.tooling.preview)
         }
 
     }

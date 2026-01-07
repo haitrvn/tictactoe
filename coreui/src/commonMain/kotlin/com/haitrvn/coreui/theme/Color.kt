@@ -127,6 +127,21 @@ val LightColors = Color(
     outline = DesignColorsLight.BlackAndWhite.Grey400,
 )
 
+val colorPrimary = Color(0xFFFC5C7D)
+val colorPrimaryDark = Color(0xFFCE1CFF)
+val colorAccent = Color(0xFF9AB3FF)
+val colorSoundbound = Color(0xFF4b9fff)
+val colorAccentVariant = Color(0xFF3457D5)
+val colorRedError = Color(0xFFFF9494)
+val colorSuccessGreen = Color(0xFF59C351)
+val darkBackgroundColor = Color(0xFF000000)
+val colorOffWhite = Color(0xFFE7E7E7)
+val transparent = Color(0x00000000)
+val black = Color(0xFF000000)
+val lightGray = Color(0xFFCCCCCC)
+
+
+
 val DarkColors = Color(
     primary = DesignColorsDark.Blue.Blue500,
     onPrimary = DesignColorsDark.BlackAndWhite.White,

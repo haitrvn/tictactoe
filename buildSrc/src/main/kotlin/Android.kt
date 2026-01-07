@@ -8,7 +8,7 @@ fun Project.configureLibraryAndroidTarget(
     namespace: String? = null,
     minSdk: Int = 21,
     compileSdk: Int = 36,
-    javaVersion: JavaVersion = JavaVersion.VERSION_11
+    javaVersion: JavaVersion = JavaVersion.VERSION_17
 ) {
     extensions.configure(LibraryExtension::class) {
         this.compileSdk = compileSdk
@@ -35,7 +35,7 @@ fun BaseAppModuleExtension.configureApplicationAndroidTarget(
     minSdk: Int = 26,
     compileSdk: Int = 36,
     targetSdk: Int = 36,
-    javaVersion: JavaVersion = JavaVersion.VERSION_11,
+    javaVersion: JavaVersion = JavaVersion.VERSION_17,
 ) {
     this.compileSdk = compileSdk
 

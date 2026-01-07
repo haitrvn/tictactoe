@@ -16,20 +16,20 @@ fun KotlinMultiplatformExtension.iosTargets() {
     }
 }
 
-fun KotlinMultiplatformExtension.configuredJvmTarget(jvmTarget: JvmTarget = JvmTarget.JVM_1_8) {
+fun KotlinMultiplatformExtension.configuredJvmTarget(jvmTarget: JvmTarget = JvmTarget.JVM_17) {
     jvm {
         compilerOptions.jvmTarget = jvmTarget
     }
 }
 
-fun KotlinMultiplatformExtension.configuredAndroidTarget(jvmTarget: JvmTarget = JvmTarget.JVM_1_8) {
+fun KotlinMultiplatformExtension.configuredAndroidTarget(jvmTarget: JvmTarget = JvmTarget.JVM_17) {
     androidTarget {
         compilerOptions.jvmTarget = jvmTarget
     }
 }
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)
-fun KotlinMultiplatformExtension.jvmTargets(jvmTarget: JvmTarget = JvmTarget.JVM_1_8) {
+fun KotlinMultiplatformExtension.jvmTargets(jvmTarget: JvmTarget = JvmTarget.JVM_17) {
     configuredAndroidTarget(jvmTarget)
     configuredJvmTarget(jvmTarget)
 }

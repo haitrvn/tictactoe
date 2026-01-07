@@ -34,6 +34,7 @@ maven-publish = "0.34.0"
 uiTooling = "1.9.1"
 navigation3 = "1.0.0-alpha09"
 androidx-nav3 = "1.1.0-alpha01"
+uiToolingPreview = "1.9.3"
 [libraries]
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -67,7 +68,6 @@ coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.re
 coil-network-core = { module = "io.coil-kt.coil3:coil-network-core", version.ref = "coil" }
 coil-network-cache-control = { module = "io.coil-kt.coil3:coil-network-cache-control", version.ref = "coil" }
 lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
-lifecycle-viewmodel-compose-v290 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelComposeVersion" }
 multiplatformSettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
@@ -97,6 +97,7 @@ jetbrains-compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling",
 jetbrains-compose-desktop-currentOs = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64", version.ref = "compose" } # Note: Ideally this would be dynamic if we were using a different way, but for toml we pick a default or specific one if needed. However, compose plugin usually handles this. Let's see if we can use the module name.
 
 androidx-nav3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "androidx-nav3" }
+ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 [plugins]
 
 multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
