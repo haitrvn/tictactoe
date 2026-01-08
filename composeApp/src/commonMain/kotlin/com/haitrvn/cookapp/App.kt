@@ -1,5 +1,6 @@
 package com.haitrvn.cookapp
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -14,7 +15,13 @@ import com.haitrvn.navigation.Main
 import com.haitrvn.navigation.NavigationItem
 import com.haitrvn.navigation.Screen
 import com.haitrvn.navigation.ShowBottomBar
-import com.haitrvn.splash.SplashScreen
+import com.haitrvn.auth.SignInEmailScreen
+import com.haitrvn.auth.SignInPasswordScreen
+import com.haitrvn.auth.CreateAccountScreen
+import com.haitrvn.auth.ForgotPasswordScreen
+import com.haitrvn.auth.EmailSentScreen
+import com.haitrvn.auth.AboutYourselfScreen
+import com.haitrvn.coreui.theme.AppColors
 import cookapp.resources.app.Res
 import cookapp.resources.app.ic_app_home
 import cookapp.resources.app.ic_app_search
@@ -29,23 +36,61 @@ internal fun App(
 ) = CookTheme {
     initImageLoader()
 
-    val topLevelBackStack = remember { TopLevelBackStack<Screen>(Auth) }
+    val topLevelBackStack = remember { TopLevelBackStack<Screen>(Auth.LoginWithEmail) }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
         bottomBar = {
             if (topLevelBackStack.backStack.lastOrNull() is ShowBottomBar) {
+                // TODO: Implement Bottom Bar
             }
         }) {
         NavDisplay(
+            modifier = Modifier.fillMaxSize().background(AppColors.background),
             backStack = topLevelBackStack.backStack,
             onBack = { topLevelBackStack.removeLast() },
             entryProvider = entryProvider {
                 entry<Auth> {
-                    SplashScreen(
-                        modifier = modifier,
-                        onStartClick = { topLevelBackStack.add(Auth.Login) }
+//                    SplashScreen(
+//                        modifier = modifier,
+//                        onStartClick = { topLevelBackStack.add(Auth.LoginWithEmail) }
+//                    )
+                }
+                entry<Auth.LoginWithEmail> {
+                    SignInEmailScreen(
+                        onContinueClick = { email -> topLevelBackStack.add(Auth.LoginWithPassword) },
+                        onCreateAccountClick = { topLevelBackStack.add(Auth.Register) }
                     )
+                }
+                entry<Auth.LoginWithPassword> {
+                    SignInPasswordScreen(
+                        onContinueClick = { password -> topLevelBackStack.add(Main.Home) },
+                        onForgotPasswordClick = { topLevelBackStack.add(Auth.ForgotPassword) }
+                    )
+                }
+                entry<Auth.Register> {
+                    CreateAccountScreen(
+                        onContinueClick = { topLevelBackStack.add(Auth.AboutYourself) },
+                        onForgotPasswordClick = { topLevelBackStack.add(Auth.ForgotPassword) }
+                    )
+                }
+                entry<Auth.ForgotPassword> {
+                    ForgotPasswordScreen(
+                        onContinueClick = { email -> topLevelBackStack.add(Auth.EmailSent) }
+                    )
+                }
+                entry<Auth.EmailSent> {
+                    EmailSentScreen(
+                        onReturnToLoginClick = { topLevelBackStack.add(Auth.LoginWithEmail) }
+                    )
+                }
+                entry<Auth.AboutYourself> {
+                    AboutYourselfScreen(
+                        onFinishClick = { topLevelBackStack.add(Main.Home) }
+                    )
+                }
+                entry<Main.Home> {
+                    // Placeholder for Home Screen
                 }
             },
         )

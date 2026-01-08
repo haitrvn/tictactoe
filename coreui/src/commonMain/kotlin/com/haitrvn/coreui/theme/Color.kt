@@ -111,7 +111,7 @@ val LightColors = Color(
     background = DesignColors.BgLight1,
     onBackground = DesignColors.Black100,
 
-    surface = DesignColors.BgLight1,
+    surface = DesignColors.BgLight2,
     onSurface = DesignColors.Black100,
 
     error = DesignColors.Red,
@@ -128,7 +128,7 @@ val LightColors = Color(
 )
 
 val DarkColors = Color(
-    primary = DesignColors.Primary100,
+    primary = DesignColors.DarkPrimary100,
     onPrimary = DesignColors.White100,
     primaryContainer = DesignColors.Primary50,
     onPrimaryContainer = DesignColors.Primary100,

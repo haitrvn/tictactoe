@@ -30,6 +30,7 @@ kotlin {
             implementation(projects.coreui)
 
             implementation(projects.features.splash)
+            implementation(projects.features.auth)
 
             implementation(libs.androidx.nav3.ui)
             implementation("org.jetbrains.compose.ui:ui-backhandler:1.8.2")

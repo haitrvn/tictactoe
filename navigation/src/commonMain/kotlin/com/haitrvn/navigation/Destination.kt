@@ -19,7 +19,19 @@ data object Auth : Screen {
     data object LoginWithEmail : Screen
 
     @Serializable
+    data object LoginWithPassword : Screen
+
+    @Serializable
     data object Register : Screen
+
+    @Serializable
+    data object ForgotPassword : Screen
+
+    @Serializable
+    data object EmailSent : Screen
+
+    @Serializable
+    data object AboutYourself : Screen
 }
 
 

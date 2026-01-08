@@ -8,5 +8,4 @@ import com.haitrvn.coreui.imageloader.initPreviewImageLoader
 @Composable
 fun PreviewSplashScreen() {
     initPreviewImageLoader()
-    SplashScreen()
 }

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.theme.Typography
+import com.haitrvn.coreui.component.OnPrimaryText
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -52,7 +53,7 @@ fun AppButton(
         ),
         contentPadding = PaddingValues(horizontal = 24.dp)
     ) {
-        Text(
+        OnPrimaryText(
             text = text,
             style = Typography.textMediumSmallMedium
         )

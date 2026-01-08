@@ -1,7 +1,8 @@
 [versions]
 
 kotlin = "2.2.0"
-compose = "1.8.2"
+composeOld = "1.8.2"
+compose = "1.9.3"
 agp = "8.9.3"
 androidx-activityCompose = "1.10.1"
 androidx-uiTest = "1.8.3"
@@ -89,7 +90,7 @@ compose-gradle = { module = "org.jetbrains.compose:compose-gradle-plugin", versi
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
 jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
 jetbrains-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
-jetbrains-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose" }
+jetbrains-compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "composeOld" }
 jetbrains-compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
 jetbrains-compose-components-uiToolingPreview = { module = "org.jetbrains.compose.components:components-ui-tooling-preview", version.ref = "compose" }
 jetbrains-compose-ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "compose" }

@@ -1,0 +1,57 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
+plugins {
+    id(libs.plugins.multiplatform.get().pluginId)
+    id(libs.plugins.compose.get().pluginId)
+    id(libs.plugins.android.library.get().pluginId)
+    alias(libs.plugins.composecompiler)
+}
+
+kotlin {
+    allTargets()
+    defaultConfig()
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(projects.navigation)
+                implementation(projects.domain)
+                implementation(projects.coreui)
+                implementation(projects.core)
+                implementation(libs.kotlin.stdlib)
+                implementation(libs.jetbrains.compose.runtime)
+                implementation(libs.jetbrains.compose.foundation)
+                implementation(libs.jetbrains.compose.components.resources)
+                implementation(libs.jetbrains.compose.components.uiToolingPreview)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.koin.compose)
+                implementation("io.insert-koin:koin-compose-viewmodel:4.0.4") {
+                    exclude(group = "org.jetbrains.androidx.core", module = "core-bundle")
+                }
+                implementation(libs.lifecycle.viewmodel.compose)
+                implementation(libs.kotlinx.collections.immutable)
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+
+        jvmMain.dependencies {
+            implementation(libs.ui.tooling.preview)
+        }
+
+    }
+}
+
+configureLibraryAndroidTarget()
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "cookapp.resources.auth"
+    generateResClass = auto
+}
