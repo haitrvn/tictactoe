@@ -1,5 +1,7 @@
 package com.haitrvn.coreui.component
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,12 +9,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import com.haitrvn.coreui.theme.AppColors
-import com.haitrvn.coreui.theme.Typography
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.Typography
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -24,11 +25,16 @@ internal fun AppText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     BasicText(
         text = text,
         modifier = modifier,
-        style = style.copy(color = color, textAlign = textAlign ?: TextAlign.Unspecified),
+        style = style.copy(
+            color = color,
+            textAlign = textAlign ?: TextAlign.Unspecified,
+            fontSize = fontSize
+        ),
         overflow = overflow,
         maxLines = maxLines,
     )
@@ -38,10 +44,11 @@ internal fun AppText(
 fun OnPrimaryText(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
+    style: TextStyle = Typography.textLargeRegular,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -51,6 +58,7 @@ fun OnPrimaryText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -62,6 +70,7 @@ fun OnPrimaryContainerText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -71,6 +80,7 @@ fun OnPrimaryContainerText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -82,6 +92,7 @@ fun OnSecondaryText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -91,6 +102,7 @@ fun OnSecondaryText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -102,6 +114,7 @@ fun OnSecondaryContainerText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -111,6 +124,7 @@ fun OnSecondaryContainerText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -122,6 +136,7 @@ fun OnTertiaryText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -131,6 +146,7 @@ fun OnTertiaryText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -142,6 +158,7 @@ fun OnTertiaryContainerText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -151,6 +168,7 @@ fun OnTertiaryContainerText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -162,6 +180,7 @@ fun OnBackgroundText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -171,6 +190,7 @@ fun OnBackgroundText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -182,6 +202,7 @@ fun OnSurfaceText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -191,6 +212,7 @@ fun OnSurfaceText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -202,6 +224,7 @@ fun OnErrorText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -211,6 +234,7 @@ fun OnErrorText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -222,6 +246,7 @@ fun OnErrorContainerText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -231,6 +256,7 @@ fun OnErrorContainerText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -242,6 +268,7 @@ fun OnSuccessText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -251,6 +278,7 @@ fun OnSuccessText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 
@@ -262,6 +290,7 @@ fun OnSuccessContainerText(
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
+    fontSize: TextUnit = TextUnit.Unspecified,
 ) {
     AppText(
         text = text,
@@ -271,6 +300,7 @@ fun OnSuccessContainerText(
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
+        fontSize = fontSize,
     )
 }
 

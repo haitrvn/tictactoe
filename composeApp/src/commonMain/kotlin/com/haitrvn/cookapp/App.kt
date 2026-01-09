@@ -29,6 +29,8 @@ import cookapp.resources.app.ic_app_setting
 import cookapp.resources.app.presentation_bottom_main_title
 import cookapp.resources.app.presentation_bottom_search_title
 import cookapp.resources.app.presentation_bottom_setting_title
+import com.haitrvn.splash.SplashScreen
+import com.haitrvn.onboarding.OnboardingScreen
 
 @Composable
 internal fun App(
@@ -51,10 +53,16 @@ internal fun App(
             onBack = { topLevelBackStack.removeLast() },
             entryProvider = entryProvider {
                 entry<Auth> {
-//                    SplashScreen(
-//                        modifier = modifier,
-//                        onStartClick = { topLevelBackStack.add(Auth.LoginWithEmail) }
-//                    )
+                    SplashScreen(
+                        modifier = modifier,
+                        onStartClick = { topLevelBackStack.add(Auth.Onboarding) }
+                    )
+                }
+                entry<Auth.Onboarding> {
+                    OnboardingScreen(
+                        modifier = modifier,
+                        onFinish = { topLevelBackStack.add(Auth.LoginWithEmail) }
+                    )
                 }
                 entry<Auth.LoginWithEmail> {
                     SignInEmailScreen(

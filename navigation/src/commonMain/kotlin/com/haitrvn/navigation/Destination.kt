@@ -13,6 +13,9 @@ data object Auth : Screen {
     data object Welcome : Screen
 
     @Serializable
+    data object Onboarding : Screen
+
+    @Serializable
     data object Login : Screen
 
     @Serializable
