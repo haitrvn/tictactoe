@@ -1,6 +1,6 @@
 package com.haitrvn.coreui.component
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.CookTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
 
 @Composable
 internal fun AppText(
@@ -26,12 +25,10 @@ internal fun AppText(
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
 ) {
-    Text(
+    BasicText(
         text = text,
         modifier = modifier,
-        style = style,
-        color = color,
-        textAlign = textAlign,
+        style = style.copy(color = color, textAlign = textAlign ?: TextAlign.Unspecified),
         overflow = overflow,
         maxLines = maxLines,
     )
