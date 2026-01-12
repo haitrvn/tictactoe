@@ -5,15 +5,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.CookTheme
 import com.haitrvn.coreui.theme.Typography
-import androidx.compose.ui.graphics.painter.BitmapPainter
+import cookapp.resources.core.ui.Res
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -69,11 +71,10 @@ fun AppButton(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(52.dp)
             .clip(shape)
             .background(if (enabled) containerColor else containerColor.copy(alpha = 0.5f))
             .clickable(enabled = enabled, onClick = onClick)
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp, vertical = 12.dp),
         contentAlignment = Alignment.Center
     ) {
         Row(
@@ -84,8 +85,12 @@ fun AppButton(
                 Image(
                     painter = icon,
                     contentDescription = null,
-                    modifier = Modifier.size(24.dp),
-                    colorFilter = ColorFilter.tint(if (enabled) contentColor else contentColor.copy(alpha = 0.5f))
+                    modifier = Modifier.height(IntrinsicSize.Min).aspectRatio(1f),
+                    colorFilter = ColorFilter.tint(
+                        if (enabled) contentColor else contentColor.copy(
+                            alpha = 0.5f
+                        )
+                    )
                 )
                 Spacer(modifier = Modifier.width(8.dp))
             }
