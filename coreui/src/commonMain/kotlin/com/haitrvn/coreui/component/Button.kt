@@ -116,11 +116,10 @@ fun AppIconButton(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(52.dp)
             .clip(shape)
             .background(if (enabled) containerColor else containerColor.copy(alpha = 0.5f))
             .clickable(enabled = enabled, onClick = onClick)
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp, vertical = 12.dp),
         contentAlignment = Alignment.Center
     ) {
         Image(
