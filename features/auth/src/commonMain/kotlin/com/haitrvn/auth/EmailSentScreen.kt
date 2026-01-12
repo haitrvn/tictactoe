@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import com.haitrvn.coreui.component.OnBackgroundText
+import com.haitrvn.coreui.component.Title
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,10 +37,11 @@ fun EmailSentScreen(
             modifier = Modifier.size(100.dp)
         )
         Spacer(modifier = Modifier.height(24.dp))
-        OnBackgroundText(
+        Title(
             text = "We Sent you an Email to reset your password.",
             style = Typography.textLargeBold,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(24.dp))
         AppButton(

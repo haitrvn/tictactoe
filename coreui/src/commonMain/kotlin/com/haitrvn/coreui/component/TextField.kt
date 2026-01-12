@@ -43,7 +43,7 @@ fun AppTextField(
                 contentAlignment = Alignment.CenterStart
             ) {
                 if (value.isEmpty()) {
-                    OnSurfaceText(
+                    Body(
                         text = placeholder,
                         style = Typography.textMediumSmallRegular,
                         modifier = Modifier.alpha(0.5f)

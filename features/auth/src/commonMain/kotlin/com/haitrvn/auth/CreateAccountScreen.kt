@@ -6,7 +6,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import com.haitrvn.coreui.component.OnBackgroundText
+import com.haitrvn.coreui.component.Heading
+import com.haitrvn.coreui.component.Label
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,9 +40,10 @@ fun CreateAccountScreen(
             .padding(24.dp)
     ) {
         Spacer(modifier = Modifier.height(40.dp))
-        OnBackgroundText(
+        Heading(
             text = "Create Account",
-            style = Typography.text2ExtraLargeBold
+            style = Typography.text2ExtraLargeBold,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(32.dp))
         AppTextField(
@@ -75,10 +77,11 @@ fun CreateAccountScreen(
             onClick = { onContinueClick() }
         )
         Spacer(modifier = Modifier.height(16.dp))
-        OnBackgroundText(
+        Label(
             text = "Forgot Password?",
             style = Typography.textExtraSmallMedium,
-            modifier = Modifier.clickable { onForgotPasswordClick() }
+            modifier = Modifier.clickable { onForgotPasswordClick() },
+            color = AppColors.onBackground
         )
     }
 }

@@ -5,7 +5,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import com.haitrvn.coreui.component.OnBackgroundText
+import com.haitrvn.coreui.component.Heading
+import com.haitrvn.coreui.component.Label
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,9 +38,10 @@ fun SignInEmailScreen(
             .padding(24.dp)
     ) {
         Spacer(modifier = Modifier.height(40.dp))
-        OnBackgroundText(
+        Heading(
             text = "Sign in",
-            style = Typography.text2ExtraLargeBold
+            style = Typography.text2ExtraLargeBold,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(32.dp))
         AppTextField(
@@ -53,10 +55,11 @@ fun SignInEmailScreen(
             onClick = { onContinueClick(email) }
         )
         Spacer(modifier = Modifier.height(16.dp))
-        OnBackgroundText(
+        Label(
             text = "Don't have an account? Create One",
             style = Typography.textExtraSmallMedium,
-            modifier = Modifier.clickable { onCreateAccountClick() }
+            modifier = Modifier.clickable { onCreateAccountClick() },
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(40.dp))
         SocialButton(

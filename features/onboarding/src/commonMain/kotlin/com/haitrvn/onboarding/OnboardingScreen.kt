@@ -33,7 +33,8 @@ import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.component.OnPrimaryText
+import com.haitrvn.coreui.component.Body
+import com.haitrvn.coreui.component.Heading
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.CookTheme
 import cookapp.resources.onboarding.Res
@@ -146,12 +147,14 @@ fun OnboardingScreen(
                     .align(Alignment.BottomStart)
                     .padding(bottom = 160.dp, start = 24.dp, end = 24.dp)
             ) {
-                OnPrimaryText(
+                Heading(
                     text = currentPage.title,
+                    color = AppColors.onPrimary
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                OnPrimaryText(
+                Body(
                     text = currentPage.description,
+                    color = AppColors.onPrimary
                 )
             }
 
@@ -202,7 +205,10 @@ fun OnboardingScreen(
                     },
                 contentAlignment = Alignment.Center
             ) {
-                OnPrimaryText(">")
+                Body(
+                    text = ">",
+                    color = AppColors.onPrimary
+                )
             }
         }
     }

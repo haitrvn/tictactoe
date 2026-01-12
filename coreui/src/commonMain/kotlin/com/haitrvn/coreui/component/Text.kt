@@ -3,6 +3,7 @@ package com.haitrvn.coreui.component
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,20 +21,20 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 internal fun AppText(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    color: Color = AppColors.onBackground,
+    style: TextStyle = LocalTextStyle.current,
+    color: Color = Color.Unspecified,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
+    fontSize: TextUnit? = null,
 ) {
     BasicText(
         text = text,
         modifier = modifier,
         style = style.copy(
-            color = color,
-            textAlign = textAlign ?: TextAlign.Unspecified,
-            fontSize = fontSize
+            color = if (color != Color.Unspecified) color else style.color,
+            textAlign = textAlign ?: style.textAlign,
+            fontSize = fontSize ?: style.fontSize
         ),
         overflow = overflow,
         maxLines = maxLines,
@@ -41,20 +42,21 @@ internal fun AppText(
 }
 
 @Composable
-fun OnPrimaryText(
+fun Heading(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textLargeRegular,
+    color: Color = AppColors.onBackground,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
+    style: TextStyle = Typography.text2ExtraLargeBold,
+    fontSize: TextUnit? = null,
 ) {
     AppText(
         text = text,
         modifier = modifier,
         style = style,
-        color = AppColors.onPrimary,
+        color = color,
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
@@ -63,20 +65,21 @@ fun OnPrimaryText(
 }
 
 @Composable
-fun OnPrimaryContainerText(
+fun Title(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
+    color: Color = AppColors.onBackground,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
+    style: TextStyle = Typography.textLargeBold,
+    fontSize: TextUnit? = null,
 ) {
     AppText(
         text = text,
         modifier = modifier,
         style = style,
-        color = AppColors.onPrimaryContainer,
+        color = color,
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
@@ -85,20 +88,21 @@ fun OnPrimaryContainerText(
 }
 
 @Composable
-fun OnSecondaryText(
+fun Body(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
+    color: Color = AppColors.onSurface,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
+    style: TextStyle = Typography.textBaseRegular,
+    fontSize: TextUnit? = null,
 ) {
     AppText(
         text = text,
         modifier = modifier,
         style = style,
-        color = AppColors.onSecondary,
+        color = color,
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
@@ -107,20 +111,21 @@ fun OnSecondaryText(
 }
 
 @Composable
-fun OnSecondaryContainerText(
+fun Label(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
+    color: Color = AppColors.onSurface,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
+    style: TextStyle = Typography.textSmallMedium,
+    fontSize: TextUnit? = null,
 ) {
     AppText(
         text = text,
         modifier = modifier,
         style = style,
-        color = AppColors.onSecondaryContainer,
+        color = color,
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
@@ -129,174 +134,21 @@ fun OnSecondaryContainerText(
 }
 
 @Composable
-fun OnTertiaryText(
+fun Caption(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
+    color: Color = AppColors.onSurface,
     textAlign: TextAlign? = null,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
+    style: TextStyle = Typography.textExtraSmallRegular,
+    fontSize: TextUnit? = null,
 ) {
     AppText(
         text = text,
         modifier = modifier,
         style = style,
-        color = AppColors.onTertiary,
-        textAlign = textAlign,
-        overflow = overflow,
-        maxLines = maxLines,
-        fontSize = fontSize,
-    )
-}
-
-@Composable
-fun OnTertiaryContainerText(
-    text: String,
-    modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    textAlign: TextAlign? = null,
-    overflow: TextOverflow = TextOverflow.Clip,
-    maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
-) {
-    AppText(
-        text = text,
-        modifier = modifier,
-        style = style,
-        color = AppColors.onTertiaryContainer,
-        textAlign = textAlign,
-        overflow = overflow,
-        maxLines = maxLines,
-        fontSize = fontSize,
-    )
-}
-
-@Composable
-fun OnBackgroundText(
-    text: String,
-    modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    textAlign: TextAlign? = null,
-    overflow: TextOverflow = TextOverflow.Clip,
-    maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
-) {
-    AppText(
-        text = text,
-        modifier = modifier,
-        style = style,
-        color = AppColors.onBackground,
-        textAlign = textAlign,
-        overflow = overflow,
-        maxLines = maxLines,
-        fontSize = fontSize,
-    )
-}
-
-@Composable
-fun OnSurfaceText(
-    text: String,
-    modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    textAlign: TextAlign? = null,
-    overflow: TextOverflow = TextOverflow.Clip,
-    maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
-) {
-    AppText(
-        text = text,
-        modifier = modifier,
-        style = style,
-        color = AppColors.onSurface,
-        textAlign = textAlign,
-        overflow = overflow,
-        maxLines = maxLines,
-        fontSize = fontSize,
-    )
-}
-
-@Composable
-fun OnErrorText(
-    text: String,
-    modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    textAlign: TextAlign? = null,
-    overflow: TextOverflow = TextOverflow.Clip,
-    maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
-) {
-    AppText(
-        text = text,
-        modifier = modifier,
-        style = style,
-        color = AppColors.onError,
-        textAlign = textAlign,
-        overflow = overflow,
-        maxLines = maxLines,
-        fontSize = fontSize,
-    )
-}
-
-@Composable
-fun OnErrorContainerText(
-    text: String,
-    modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    textAlign: TextAlign? = null,
-    overflow: TextOverflow = TextOverflow.Clip,
-    maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
-) {
-    AppText(
-        text = text,
-        modifier = modifier,
-        style = style,
-        color = AppColors.onErrorContainer,
-        textAlign = textAlign,
-        overflow = overflow,
-        maxLines = maxLines,
-        fontSize = fontSize,
-    )
-}
-
-@Composable
-fun OnSuccessText(
-    text: String,
-    modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    textAlign: TextAlign? = null,
-    overflow: TextOverflow = TextOverflow.Clip,
-    maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
-) {
-    AppText(
-        text = text,
-        modifier = modifier,
-        style = style,
-        color = AppColors.onSuccess,
-        textAlign = textAlign,
-        overflow = overflow,
-        maxLines = maxLines,
-        fontSize = fontSize,
-    )
-}
-
-@Composable
-fun OnSuccessContainerText(
-    text: String,
-    modifier: Modifier = Modifier,
-    style: TextStyle = Typography.textMediumSmallRegular,
-    textAlign: TextAlign? = null,
-    overflow: TextOverflow = TextOverflow.Clip,
-    maxLines: Int = Int.MAX_VALUE,
-    fontSize: TextUnit = TextUnit.Unspecified,
-) {
-    AppText(
-        text = text,
-        modifier = modifier,
-        style = style,
-        color = AppColors.onSuccessContainer,
+        color = color,
         textAlign = textAlign,
         overflow = overflow,
         maxLines = maxLines,
@@ -306,42 +158,28 @@ fun OnSuccessContainerText(
 
 @Composable
 @Preview
-fun PreviewSpecializedTextsLight() {
+fun PreviewHierarchicalTextLight() {
     CookTheme(systemIsDark = false) {
         Column(modifier = Modifier.padding(16.dp)) {
-            OnPrimaryText(text = "OnPrimaryText")
-            OnPrimaryContainerText(text = "OnPrimaryContainerText")
-            OnSecondaryText(text = "OnSecondaryText")
-            OnSecondaryContainerText(text = "OnSecondaryContainerText")
-            OnTertiaryText(text = "OnTertiaryText")
-            OnTertiaryContainerText(text = "OnTertiaryContainerText")
-            OnBackgroundText(text = "OnBackgroundText")
-            OnSurfaceText(text = "OnSurfaceText")
-            OnErrorText(text = "OnErrorText")
-            OnErrorContainerText(text = "OnErrorContainerText")
-            OnSuccessText(text = "OnSuccessText")
-            OnSuccessContainerText(text = "OnSuccessContainerText")
+            Heading(text = "Heading")
+            Title(text = "Title")
+            Body(text = "Body")
+            Label(text = "Label")
+            Caption(text = "Caption")
         }
     }
 }
 
 @Composable
 @Preview
-fun PreviewSpecializedTextsDark() {
+fun PreviewHierarchicalTextDark() {
     CookTheme(systemIsDark = true) {
         Column(modifier = Modifier.padding(16.dp)) {
-            OnPrimaryText(text = "OnPrimaryText")
-            OnPrimaryContainerText(text = "OnPrimaryContainerText")
-            OnSecondaryText(text = "OnSecondaryText")
-            OnSecondaryContainerText(text = "OnSecondaryContainerText")
-            OnTertiaryText(text = "OnTertiaryText")
-            OnTertiaryContainerText(text = "OnTertiaryContainerText")
-            OnBackgroundText(text = "OnBackgroundText")
-            OnSurfaceText(text = "OnSurfaceText")
-            OnErrorText(text = "OnErrorText")
-            OnErrorContainerText(text = "OnErrorContainerText")
-            OnSuccessText(text = "OnSuccessText")
-            OnSuccessContainerText(text = "OnSuccessContainerText")
+            Heading(text = "Heading")
+            Title(text = "Title")
+            Body(text = "Body")
+            Label(text = "Label")
+            Caption(text = "Caption")
         }
     }
 }

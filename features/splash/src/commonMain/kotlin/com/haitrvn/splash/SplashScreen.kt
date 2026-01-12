@@ -8,8 +8,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import com.haitrvn.coreui.component.OnPrimaryText
+import com.haitrvn.coreui.component.Heading
 import com.haitrvn.coreui.theme.CookTheme
+import com.haitrvn.coreui.theme.DesignColors
 import cookapp.resources.splash.Res
 import cookapp.resources.splash.bg_splash
 import kotlinx.coroutines.delay
@@ -48,8 +49,9 @@ fun SplashScreen(
             contentScale = ContentScale.Crop
         )
 
-        OnPrimaryText(
-            text = "Appétit"
+        Heading(
+            text = "Appétit",
+            color = DesignColors.Black100,
         )
     }
 

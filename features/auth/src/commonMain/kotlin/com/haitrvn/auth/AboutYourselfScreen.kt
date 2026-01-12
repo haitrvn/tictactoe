@@ -12,9 +12,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import com.haitrvn.coreui.component.OnBackgroundText
-import com.haitrvn.coreui.component.OnPrimaryText
-import com.haitrvn.coreui.component.OnSurfaceText
+import com.haitrvn.coreui.component.Body
+import com.haitrvn.coreui.component.Heading
+import com.haitrvn.coreui.component.Label
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,14 +42,17 @@ fun AboutYourselfScreen(
             .padding(24.dp)
     ) {
         Spacer(modifier = Modifier.height(40.dp))
-        OnBackgroundText(
+        Spacer(modifier = Modifier.height(40.dp))
+        Heading(
             text = "Tell us About yourself",
-            style = Typography.text2ExtraLargeBold
+            style = Typography.text2ExtraLargeBold,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(32.dp))
-        OnBackgroundText(
+        Body(
             text = "Who do you shop for?",
-            style = Typography.textMediumSmallMedium
+            style = Typography.textMediumSmallMedium,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(16.dp))
         Row(
@@ -70,9 +73,10 @@ fun AboutYourselfScreen(
             )
         }
         Spacer(modifier = Modifier.height(32.dp))
-        OnBackgroundText(
+        Body(
             text = "How Old are you?",
-            style = Typography.textMediumSmallMedium
+            style = Typography.textMediumSmallMedium,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(16.dp))
         Box(
@@ -85,9 +89,10 @@ fun AboutYourselfScreen(
                 .padding(horizontal = 16.dp),
             contentAlignment = Alignment.CenterStart
         ) {
-            OnSurfaceText(
+            Label(
                 text = selectedAgeRange,
-                style = Typography.textMediumSmallMedium
+                style = Typography.textMediumSmallMedium,
+                color = AppColors.onSurface
             )
             // TODO: Add dropdown icon
         }
@@ -115,14 +120,16 @@ fun GenderButton(
         contentAlignment = Alignment.Center
     ) {
         if (isSelected) {
-            OnPrimaryText(
+            Label(
                 text = text,
-                style = Typography.textMediumSmallMedium
+                style = Typography.textMediumSmallMedium,
+                color = AppColors.onPrimary
             )
         } else {
-            OnSurfaceText(
+            Label(
                 text = text,
-                style = Typography.textMediumSmallMedium
+                style = Typography.textMediumSmallMedium,
+                color = AppColors.onSurface
             )
         }
     }

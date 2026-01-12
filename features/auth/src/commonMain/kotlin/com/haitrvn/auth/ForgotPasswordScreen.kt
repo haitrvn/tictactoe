@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import com.haitrvn.coreui.component.OnBackgroundText
+import com.haitrvn.coreui.component.Heading
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,9 +31,10 @@ fun ForgotPasswordScreen(
             .padding(24.dp)
     ) {
         Spacer(modifier = Modifier.height(40.dp))
-        OnBackgroundText(
+        Heading(
             text = "Forgot Password",
-            style = Typography.text2ExtraLargeBold
+            style = Typography.text2ExtraLargeBold,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(32.dp))
         AppTextField(

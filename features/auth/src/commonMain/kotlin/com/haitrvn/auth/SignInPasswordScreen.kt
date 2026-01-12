@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import com.haitrvn.coreui.component.AppButton
-import com.haitrvn.coreui.component.OnBackgroundText
+import com.haitrvn.coreui.component.Heading
+import com.haitrvn.coreui.component.Label
 import com.haitrvn.coreui.component.AppTextField
 import com.haitrvn.coreui.theme.AppColors
 import com.haitrvn.coreui.theme.Typography
@@ -36,9 +36,10 @@ fun SignInPasswordScreen(
             .padding(24.dp)
     ) {
         Spacer(modifier = Modifier.height(40.dp))
-        OnBackgroundText(
+        Heading(
             text = "Sign in",
             style = Typography.text2ExtraLargeBold,
+            color = AppColors.onBackground
         )
         Spacer(modifier = Modifier.height(32.dp))
         AppTextField(
@@ -54,10 +55,11 @@ fun SignInPasswordScreen(
             onClick = { onContinueClick(password) }
         )
         Spacer(modifier = Modifier.height(16.dp))
-        OnBackgroundText(
+        Label(
             text = "Forgot Password?",
             style = Typography.textExtraSmallMedium,
-            modifier = Modifier.clickable { onForgotPasswordClick() }
+            modifier = Modifier.clickable { onForgotPasswordClick() },
+            color = AppColors.onBackground
         )
     }
 }
